@@ -2,8 +2,8 @@
   "name": "thermal",
   "version": "0.0.1",
   "author": "Yashu Mittal <mittalyashu77@gmail.com>",
-  "description": "Git GUI",
   "license": null,
+  "description": "Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
