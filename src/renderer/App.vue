@@ -5,11 +5,11 @@
 </template>
 
 <script>
-  export default {
-  }
+export default {
 	name: "thermal"
+}
 </script>
 
 <style>
-  /* CSS */
+/* CSS */
 </style>

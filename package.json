@@ -1,8 +1,11 @@
 {
   "name": "thermal",
   "version": "0.0.1",
-  "author": "Yashu Mittal <mittalyashu77@gmail.com>",
   "license": null,
+  "author": {
+    "name": "Yashu Mittal",
+    "email": "mittalyashu77@gmail.com"
+  },
   "description": "Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.",
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -53,8 +56,8 @@
     }
   },
   "dependencies": {
-    "vue": "^2.5.16",
     "axios": "^0.18.0",
+    "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
@@ -77,9 +80,9 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^2.0.4",
+    "electron-builder": "^20.19.2",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
-    "electron-builder": "^20.19.2",
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-friendly-formatter": "^4.0.1",
@@ -103,8 +106,8 @@
     "vue-loader": "^15.2.4",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
-    "webpack-cli": "^3.0.8",
     "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
     "webpack-hot-middleware": "^2.22.2",
     "webpack-merge": "^4.1.3"
