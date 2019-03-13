@@ -1,4 +1,4 @@
-# git-project
+# Thermal
 
 > Git GUI
 
