@@ -2,22 +2,23 @@
 
 Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.
 
-#### Build Setup
+## Contributing
 
-``` bash
+If you are interested in fixing issues and contributing directly to the codebase, please see the documentaiton [how to contribute](https://thermal.netlify.com/contribute). Here's a quick steps to get started quickly:
+
+```sh
 # install dependencies
-npm install
+yarn
 
 # serve with hot reload at localhost:9080
-npm run dev
+yarn dev
 
 # build electron application for production
-npm run build
+yarn build
 
 
 # lint all JS/Vue component files in `src/`
-npm run lint
-
+yarn lint
 ```
 
 ---
