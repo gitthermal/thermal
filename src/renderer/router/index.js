@@ -1,18 +1,28 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue"
+import Router from "vue-router"
+
+import WelcomePage from "@/components/WelcomePage"
+import pageNotFound from "@/components/pageNotFound"
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'landing-page',
-      component: require('@/components/LandingPage').default
-    },
-    {
-      path: '*',
-      redirect: '/'
-    }
-  ]
+let routes = [
+	{
+		path: "/",
+		name: "welcomePage",
+		component: WelcomePage
+	},
+	{
+		path: "/404",
+		name: "pageNotFound",
+		component: pageNotFound
+	}
+]
+
+const router = new Router({
+	base: "/",
+	mode: "history",
+	routes
 })
+
+export default router
