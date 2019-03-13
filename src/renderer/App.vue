@@ -6,8 +6,8 @@
 
 <script>
   export default {
-    name: 'git-project'
   }
+	name: "thermal"
 </script>
 
 <style>
