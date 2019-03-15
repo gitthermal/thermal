@@ -1,6 +1,6 @@
 <template>
-  <div>
     <h1>Welcome to Thermal</h1>
+  <div class="welcome">
     <p class="welcome--description">One stop for all of your Git repository.</p>
     <div class="welcome--icon">
       <div class="welcome--item-icon">
@@ -22,6 +22,13 @@ export default {
 </script>
 
 <style lang='sass'>
+	.welcome
+		width: 100%
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
 	.welcome--description
 		margin-bottom: 1rem
 
