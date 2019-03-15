@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Welcome to Thermal</h1>
-    <p>One stop for all your Git repository.</p>
+    <p class="welcome--description">One stop for all of your Git repository.</p>
   </div>
 </template>
 
@@ -11,5 +11,7 @@ export default {
 </script>
 
 <style lang='sass'>
+	.welcome--description
+		margin-bottom: 1rem
 
 </style>
