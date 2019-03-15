@@ -5,15 +5,21 @@
         <folderIcon/>
         <p>Workspace</p>
       </router-link>
+      <router-link class="sidebar--item" to="workspace">
+        <historyIcon/>
+        <p>History</p>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
 import folderIcon from "./icon/folder";
+import historyIcon from "./icon/history";
 export default {
   components: {
     folderIcon,
+    historyIcon
   }
 };
 </script>
