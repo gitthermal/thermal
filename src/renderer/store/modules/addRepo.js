@@ -1,6 +1,10 @@
-const state = {}
+const state = {
+	repo: []
+}
 
-const getters = {}
+const getters = {
+	allRepo: state => state.repo
+}
 
 const mutations = {}
 
