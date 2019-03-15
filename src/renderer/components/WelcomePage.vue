@@ -3,13 +3,13 @@
   <div class="welcome">
     <p class="welcome--description">One stop for all of your Git repository.</p>
     <div class="welcome--icon">
-      <div class="welcome--item-icon">
+      <div @click="websiteURL()" class="welcome--item-icon">
         <linkIcon/>
       </div>
-      <div class="welcome--item-icon">
+      <div @click="twitterURL()" class="welcome--item-icon">
         <twitterIcon/>
       </div>
-      <div class="welcome--item-icon">
+      <div @click="coffeeURL()" class="welcome--item-icon">
         <coffeeIcon/>
       </div>
     </div>
@@ -18,11 +18,30 @@
 </template>
 
 <script>
+import linkIcon from "./icon/link"
+import twitterIcon from "./icon/twitter"
+import coffeeIcon from "./icon/coffee"
 import Button from './button'
+const { shell } = require("electron")
+
 export default {
   components: {
+    linkIcon,
+    twitterIcon,
+    coffeeIcon,
 		Button,
   },
+  methods: {
+    websiteURL() {
+      shell.openExternal("https://thermal.netlify.com/")
+    },
+    twitterURL() {
+      shell.openExternal("https://www.twitter.com/@gitthermal")
+    },
+    coffeeURL() {
+      shell.openExternal("https://www.patreon.com/join/mittalyashu")
+    }
+  }
 };
 </script>
 
