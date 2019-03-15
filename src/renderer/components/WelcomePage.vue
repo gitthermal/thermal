@@ -13,11 +13,16 @@
         <coffeeIcon/>
       </div>
     </div>
+    <Button class="welcome--cta" text="Get Started"/>
   </div>
 </template>
 
 <script>
+import Button from './button'
 export default {
+  components: {
+		Button,
+  },
 };
 </script>
 
@@ -45,4 +50,7 @@ export default {
 
 		&:not(:last-child)
 			margin-right: 20px
+	
+	.welcome--cta
+		margin-top: 1rem
 </style>
