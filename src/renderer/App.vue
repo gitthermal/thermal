@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+		<div class="col-view">
+			<router-view></router-view>
+		</div>
   </div>
 </template>
 
@@ -10,6 +12,9 @@ export default {
 }
 </script>
 
-<style>
-/* CSS */
+<style lang="sass">
+	.col-view
+		display: flex
+		height: 100vh
+		flex-direction: row
 </style>
