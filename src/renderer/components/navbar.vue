@@ -64,7 +64,7 @@ export default {
 		border-bottom: 1px solid #DEE0E3
 		padding: 12px 20px
 		
-	.navbar, .navbar--item
+	.navbar, .navbar--item, .navbar--group
 		display: flex
 
 	.navbar--group
