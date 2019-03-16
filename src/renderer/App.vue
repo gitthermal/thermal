@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-		<div class="col-view">
-			<router-view></router-view>
-		</div>
+    <navbar/>
+    <div class="col-view">
+      <sidebar/>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import navbar from "./components/navbar"
+import sidebar from "./components/sidebar"
 export default {
-	name: "thermal"
+	name: "thermal",
+	components: {
+		navbar,
+		sidebar,
+	}
 }
 </script>
 
