@@ -51,4 +51,7 @@ export default {
 		p
 			color: #6C6F76
 			font-size: 14px
+
+	.router-link-active
+		background-color: #DEE0E3
 </style>
