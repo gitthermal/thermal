@@ -1,8 +1,8 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import WelcomePage from "@/components/WelcomePage"
-import pageNotFound from "@/components/pageNotFound"
+import WelcomePage from "../components/WelcomePage"
+import pageNotFound from "../components/pageNotFound"
 
 Vue.use(Router)
 
