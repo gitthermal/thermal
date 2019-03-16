@@ -13,7 +13,7 @@
         <coffeeIcon/>
       </div>
     </div>
-    <Button class="welcome--cta" text="Get Started"/>
+    <primaryButton class="welcome--cta" text="Get Started"/>
   </div>
 </template>
 
@@ -21,7 +21,7 @@
 import linkIcon from "./icon/link"
 import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
-import Button from './button'
+import primaryButton from "./primaryButton"
 const { shell } = require("electron")
 
 export default {
@@ -29,7 +29,6 @@ export default {
     linkIcon,
     twitterIcon,
     coffeeIcon,
-		Button,
   },
   methods: {
     websiteURL() {
@@ -43,6 +42,7 @@ export default {
     }
   }
 };
+		primaryButton
 </script>
 
 <style lang='sass'>
