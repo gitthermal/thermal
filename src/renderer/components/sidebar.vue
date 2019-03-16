@@ -5,7 +5,7 @@
         <folderIcon/>
         <p>Workspace</p>
       </router-link>
-      <router-link class="sidebar--item" to="workspace">
+      <router-link class="sidebar--item" to="history">
         <historyIcon/>
         <p>History</p>
       </router-link>
