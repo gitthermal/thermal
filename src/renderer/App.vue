@@ -5,6 +5,8 @@
       <sidebar/>
       <router-view></router-view>
     </div>
+    <div class="model--placeholder">
+    </div>
   </div>
 </template>
 
@@ -25,4 +27,12 @@ export default {
 		display: flex
 		height: 100vh
 		flex-direction: row
+
+	.model--placeholder
+		position: fixed
+		left: 0
+		top: 0
+		width: 100%
+		height: 100%
+		background-color: rgba(0, 0, 0, .5)
 </style>
