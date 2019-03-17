@@ -22,5 +22,7 @@ module.exports = {
 		"generator-star-spacing": 0,
 		// type of quotes "" or ''
 		quotes: [1, "double"],
+		// enforce consistent indentation
+		indent: [1, "tab"],
 	}
 }
