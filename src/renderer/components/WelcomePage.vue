@@ -25,24 +25,25 @@ import primaryButton from "./primaryButton"
 const { shell } = require("electron")
 
 export default {
-  components: {
-    linkIcon,
-    twitterIcon,
-    coffeeIcon,
-  },
-  methods: {
-    websiteURL() {
-      shell.openExternal("https://thermal.netlify.com/")
-    },
-    twitterURL() {
-      shell.openExternal("https://www.twitter.com/@gitthermal")
-    },
-    coffeeURL() {
-      shell.openExternal("https://www.patreon.com/join/mittalyashu")
-    }
-  }
-};
+	name: "WelcomePage",
+	components: {
+		linkIcon,
+		twitterIcon,
+		coffeeIcon,
 		primaryButton
+	},
+	methods: {
+		websiteURL() {
+			shell.openExternal("https://thermal.netlify.com/")
+		},
+		twitterURL() {
+			shell.openExternal("https://www.twitter.com/@gitthermal")
+		},
+		coffeeURL() {
+			shell.openExternal("https://www.patreon.com/join/mittalyashu")
+		},
+	}
+}
 </script>
 
 <style lang='sass'>

@@ -18,7 +18,7 @@ const winURL =
 		? "http://localhost:9080"
 		: `file://${__dirname}/index.html`
 
-function createWindow () {
+function createWindow() {
 	/**
 	 * Initial window options
 	 */

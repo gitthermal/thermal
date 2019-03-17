@@ -36,25 +36,25 @@
 </template>
 
 <script>
-import commitIcon from "./icon/commit";
-import pushIcon from "./icon/push";
-import pullIcon from "./icon/pull";
-import fetchIcon from './icon/fetch';
-import terminalIcon from "./icon/terminal";
-import folderIcon from "./icon/folder";
-import settingsIcon from "./icon/settings";
+import commitIcon from "./icon/commit"
+import pushIcon from "./icon/push"
+import pullIcon from "./icon/pull"
+import fetchIcon from "./icon/fetch"
+import terminalIcon from "./icon/terminal"
+import folderIcon from "./icon/folder"
+import settingsIcon from "./icon/settings"
 
 export default {
-  components: {
-    commitIcon,
-    pushIcon,
+	components: {
+		commitIcon,
+		pushIcon,
 		pullIcon,
 		fetchIcon,
-    terminalIcon,
-    folderIcon,
-    settingsIcon
-  }
-};
+		terminalIcon,
+		folderIcon,
+		settingsIcon
+	}
+}
 </script>
 
 <style lang='sass'>

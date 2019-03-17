@@ -14,14 +14,14 @@
 </template>
 
 <script>
-import folderIcon from "./icon/folder";
-import historyIcon from "./icon/history";
+import folderIcon from "./icon/folder"
+import historyIcon from "./icon/history"
 export default {
-  components: {
-    folderIcon,
-    historyIcon
-  }
-};
+	components: {
+		folderIcon,
+		historyIcon
+	}
+}
 </script>
 
 <style lang='sass'>
