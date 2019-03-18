@@ -3,11 +3,17 @@ import Router from "vue-router"
 
 import WelcomePage from "../components/WelcomePage"
 import pageNotFound from "../components/pageNotFound"
+import workspacePage from "../components/workspacePage"
 import historyPage from "../components/history"
 
 Vue.use(Router)
 
 let routes = [
+	{
+		path: "/workspace",
+		name: "workspace",
+		component: workspacePage
+	},
 	{
 		path: "/history",
 		name: "historyPage",
