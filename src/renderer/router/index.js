@@ -19,7 +19,7 @@ let routes = [
 		component: WelcomePage
 	},
 	{
-		path: "/404",
+		path: "*",
 		name: "pageNotFound",
 		component: pageNotFound
 	}
