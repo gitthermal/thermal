@@ -69,11 +69,18 @@ export default {
 				console.log(error)
 			}
 		},
-		async getCommitDetail(hash) {
+		getCommitDetail(hash) {
 			this.commitDetail.hash = hash
 			this.commitDetail.isActive = true
 
-			const gitShowFiles = await git(this.repo).show([hash, "--oneline", "--stat"])
+			this.getFilesDetail(hash)
+		},
+		async getFilesDetail(hash) {
+			const gitShowFiles = await git(this.repo).show([
+				hash,
+				"--oneline",
+				"--stat"
+			])
 			try {
 				let output = gitShowFiles.trim().split("\n")
 				this.getCommitSummary(output)
