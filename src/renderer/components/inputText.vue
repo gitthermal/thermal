@@ -32,4 +32,8 @@ export default {
 			font-family: inherit
 			outline: none
 			width: 100%
+
+			&:focus
+				border: 1px solid #00adb5
+				box-shadow: rgba(#00adb5, .2) 0 0 0 3px
 </style>
