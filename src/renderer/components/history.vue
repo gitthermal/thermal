@@ -18,6 +18,14 @@
       <div class="commit--detail-buttons">
         <div @click="commitDetail.isActive = false" class="commit--detail-back">Back</div>
       </div>
+      <div class="commit--detail-files">
+        <div class="commit--files-summary">
+					Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion
+				</div>
+				<div class="commit--fileList" v-for="file in this.commitDetail.fileList" :key="file">
+					{{ file.replace(/\|.*/, '').trim() }}
+				</div>
+      </div>
     </div>
   </div>
 </template>
@@ -33,6 +41,13 @@ export default {
 			logs: {},
 			commitDetail: {
 				isActive: false,
+				hash: "",
+				fileList: [],
+				meta: {
+					changes: "",
+					additions: "",
+					deletion: ""
+				}
 			}
 		}
 	},
@@ -48,6 +63,32 @@ export default {
 		async getCommitDetail(hash) {
 			this.commitDetail.hash = hash
 			this.commitDetail.isActive = true
+
+			const gitShowFiles = await git(this.repo).show([hash, "--oneline", "--stat"])
+			try {
+				let output = gitShowFiles.trim().split("\n")
+				this.getCommitSummary(output)
+				// list of file changes
+				this.commitDetail.fileList = output.slice(1, output.length - 1)
+				// number of file changes
+				this.commitDetail.meta.changes = this.commitDetail.fileList.length
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		getCommitSummary(summary) {
+			const commitSummary = summary[summary.length - 1].split(', ')
+			commitSummary.shift()
+			for (let i = 0; i < commitSummary.length; i++) {
+				const commitMetaType = commitSummary[i].slice(commitSummary[i].length - 2, commitSummary[i].length - 1)
+				const commitMetaNumber = commitSummary[i].split(" ")
+				if (commitMetaType === "+") {
+					this.commitDetail.meta.additions = commitMetaNumber[0]
+				}
+				if (commitMetaType === "-") {
+					this.commitDetail.meta.deletion = commitMetaNumber[0]
+				}
+			}
 		}
 	},
 	mounted() {
@@ -100,4 +141,22 @@ export default {
 		padding: 2px 6px
 		background-color: #DEE0E3
 		border-radius: 10px
+
+	.commit--files-summary
+		padding: 10px
+		color: #DEE0E3
+		font-size: 10px
+		border-bottom: 1px solid #DEE0E3
+
+	.commit--fileList
+		border-bottom: 1px solid #DEE0E3
+		font-size: 12px
+		font-family: 'Space Mono', monospace
+		color: #2E3034
+		padding: 4px 10px
+		cursor: pointer
+
+		&:hover
+			color: white
+			background-color: #0366D6
 </style>
