@@ -1,6 +1,6 @@
 <template>
   <div class="commit--history">
-    <div class="commit--history-list">
+    <div v-show="!commitDetail.isActive" class="commit--history-list">
       <a
         @click="getCommitDetail(log.hash)"
         class="commit--history-item"
@@ -14,6 +14,11 @@
         </div>
       </a>
     </div>
+    <div v-show="commitDetail.isActive">
+      <div class="commit--detail-buttons">
+        <div @click="commitDetail.isActive = false" class="commit--detail-back">Back</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,6 +31,9 @@ export default {
 		return {
 			repo: "C:/Users/YASHU/Desktop/thermal",
 			logs: {},
+			commitDetail: {
+				isActive: false,
+			}
 		}
 	},
 	methods: {
@@ -36,6 +44,10 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
+		},
+		async getCommitDetail(hash) {
+			this.commitDetail.hash = hash
+			this.commitDetail.isActive = true
 		}
 	},
 	mounted() {
@@ -74,4 +86,18 @@ export default {
 			width: 15px
 			height: 15px
 			margin-right: 6px
+
+	.commit--detail-buttons
+		display: flex
+		padding: 10px
+		flex-direction: row
+		border-bottom: 1px solid #DEE0E3
+
+	.commit--detail-back
+		font-size: 10px
+		cursor: pointer
+		color: #6C6F75
+		padding: 2px 6px
+		background-color: #DEE0E3
+		border-radius: 10px
 </style>
