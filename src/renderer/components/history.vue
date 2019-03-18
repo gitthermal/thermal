@@ -25,6 +25,10 @@
           <p class="commit__detail__author__email">{{ this.commitDetail.author.email }}</p>
         </div>
       </div>
+			<div class="commit__detail__summary">
+				<div class="commit__detail__summary__title">{{ this.commitDetail.title }}</div>
+				<div class="commit__detail__summary__description">{{ this.commitDetail.description }}</div>
+			</div>
       <div class="commit__detail__meta">
         <div class="commit__detail__meta__item">Date: {{ }}</div>
         <div class="commit__detail__meta__item">Commit:
@@ -56,10 +60,12 @@ export default {
 			logs: {},
 			commitDetail: {
 				isActive: false,
+				title: "",
 				author: {
 					name: "",
 					email: ""
 				},
+				description: "",
 				hash: "",
 				date: "",
 				fileList: [],
@@ -85,6 +91,7 @@ export default {
 			this.commitDetail.isActive = true
 
 			this.getAuthorDetail(hash)
+			this.getCommitBody(hash)
 			this.getFilesDetail(hash)
 		},
 		async getAuthorDetail(hash) {
@@ -93,6 +100,31 @@ export default {
 				const output = author.split("\n")
 				this.commitDetail.author.name = output[0].trim()
 				this.commitDetail.author.email = output[1].trim()
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async getCommitBody(hash) {
+			const content = await git(this.repo).show([
+				hash,
+				"--format=%s %n << %n %b% %n >>"
+			])
+			try {
+				const output = content.split("\n")
+				this.commitDetail.title = output[0]
+				let commitDescriptionStart
+				let commitDescriptionEnd
+				for (let i = 0; i < output.length; i++) {
+					if (output[i].trim() === '<<') {
+						commitDescriptionStart = i
+					}
+					if (output[i].trim() === '>>') {
+						commitDescriptionEnd = i
+					}
+				}
+				if ((commitDescriptionEnd - commitDescriptionStart) > 2) {
+					this.commitDetail.description = output.slice(commitDescriptionStart + 1, commitDescriptionEnd).toString()
+				}
 			} catch (error) {
 				console.log(error)
 			}
@@ -196,6 +228,14 @@ export default {
 			&__email
 				font-size: 12px
 				color: #6C6F75
+
+		&__summary
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+
+			&__description
+				margin-top: 6px
+				font-size: 12px
 
 		&__meta
 			padding: 10px
