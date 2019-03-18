@@ -26,5 +26,7 @@ module.exports = {
 		indent: [1, "tab"],
 		// disallow semicolons instead of ASI
 		semi: [1, "never"],
+		// require camelCase
+		camelcase: 1,
 	}
 }
