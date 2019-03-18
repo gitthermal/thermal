@@ -1,42 +1,42 @@
 <template>
-  <div class="commit--history">
-    <div v-show="!commitDetail.isActive" class="commit--history-list">
+  <div class="history">
+    <div v-show="!commitDetail.isActive">
       <a
         @click="getCommitDetail(log.hash)"
-        class="commit--history-item"
+        class="history__item d-flex flex-column"
         v-for="log in this.logs"
         :key="log.hash"
       >
-        <div class="commit--history-title">{{ log.message }}</div>
-        <div class="commit--history-author">
-          <img src="../../../static/image/user_avatar.png">
+        <div class="history__item__title">{{ log.message }}</div>
+        <div class="history__item__author d-flex flex-row align-items-center">
+          <img class="history__item__author__image" src="../../../static/image/user_avatar.png">
           {{ log.author_name }} committed {{ log.date | moment("from", "now") }}
         </div>
       </a>
     </div>
-    <div v-show="commitDetail.isActive">
-      <div class="commit--detail-buttons">
-        <div @click="commitDetail.isActive = false" class="commit--detail-back">Back</div>
+    <div v-show="commitDetail.isActive" class="commit__detail">
+      <div class="commit__detail__buttons">
+        <div @click="commitDetail.isActive = false" class="commit__detail__buttons__back">Back</div>
       </div>
-      <div class="commit--author">
-        <img class="author--image" src="../../../static/image/user_avatar.png">
-        <div class="author--detai">
-          <h6 class="author--name">{{ this.commitDetail.author.name }}</h6>
-          <p class="author--email">{{ this.commitDetail.author.email }}</p>
+      <div class="commit__detail__author">
+        <img class="commit__detail__author__image" src="../../../static/image/user_avatar.png">
+        <div>
+          <h6 class="commit__detail__author__name">{{ this.commitDetail.author.name }}</h6>
+          <p class="commit__detail__author__email">{{ this.commitDetail.author.email }}</p>
         </div>
       </div>
-      <div class="commit--meta">
-        <div class="commit--metaItem">Date: {{ }}</div>
-        <div class="commit--metaItem">Commit:
+      <div class="commit__detail__meta">
+        <div class="commit__detail__meta__item">Date: {{ }}</div>
+        <div class="commit__detail__meta__item">Commit:
           <p>{{ this.commitDetail.hash }}</p>
         </div>
       </div>
-      <div class="commit--detail-files">
+      <div class="commit__detail__files">
         <div
-          class="commit--files-summary"
+          class="commit__detail__files__summary"
         >Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion</div>
         <div
-          class="commit--fileList"
+          class="commit__detail__files__list"
           v-for="file in this.commitDetail.fileList"
           :key="file"
         >{{ file.replace(/\|.*/, '').trim() }}</div>
@@ -139,96 +139,95 @@ export default {
 </script>
 
 <style lang='sass'>
-	.commit--history
+	.history
 		border-right: 1px solid #DEE0E3
 		width: 300px
 		overflow: hidden
 		overflow-y: scroll
-		display: flex
-		flex-direction: row
 
-	.commit--history-item
-		padding: 10px
-		font-size: 12px
-		border-bottom: 1px solid #DEE0E3
-		display: flex
-		flex-direction: column
-
-	.commit--history-title
-		margin-bottom: 6px
-		color: black
-
-	.commit--history-author
-		font-size: 10px
-		color: #6C6F75
-		display: flex
-		flex-direction: row
-
-		img
-			width: 15px
-			height: 15px
-			margin-right: 6px
-
-	.commit--detail-buttons
-		display: flex
-		padding: 10px
-		flex-direction: row
-		border-bottom: 1px solid #DEE0E3
-
-	.commit--detail-back
-		font-size: 10px
-		cursor: pointer
-		color: #6C6F75
-		padding: 2px 6px
-		background-color: #DEE0E3
-		border-radius: 10px
-
-	.commit--author
-		padding: 10px
-		border-bottom: 1px solid #DEE0E3
-		display: flex
-		flex-direction: row
-
-		.author--image
-			width: 50px
-			height: 50px
-			margin-right: 10px
-
-		.author--name
-			margin-bottom: 0
-
-		.author--email
+		&__item
+			padding: 10px
 			font-size: 12px
-			color: #6C6F75
+			border-bottom: 1px solid #DEE0E3
 
-	.commit--meta
-		padding: 10px
-		border-bottom: 1px solid #DEE0E3
+			&__title
+				margin-bottom: 6px
+				color: black
 
-	.commit--metaItem
-		font-size: 12px
-		&:not(:last-child)
-			margin-bottom: 4px
-		color: #DEE0E3
+			&__author
+				font-size: 10px
+				color: #6C6F75
 
-		p
-			color: #2E3034
+				&__image
+					width: 15px
+					height: 15px
+					margin-right: 6px
 
-	.commit--files-summary
-		padding: 10px
-		color: #DEE0E3
-		font-size: 10px
-		border-bottom: 1px solid #DEE0E3
+	.commit__detail
 
-	.commit--fileList
-		border-bottom: 1px solid #DEE0E3
-		font-size: 12px
-		font-family: 'Space Mono', monospace
-		color: #2E3034
-		padding: 4px 10px
-		cursor: pointer
+		&__buttons
+			display: flex
+			padding: 10px
+			flex-direction: row
+			border-bottom: 1px solid #DEE0E3
 
-		&:hover
-			color: white
-			background-color: #0366D6
+			&__back
+				font-size: 10px
+				cursor: pointer
+				color: #6C6F75
+				padding: 2px 6px
+				background-color: #DEE0E3
+				border-radius: 10px
+
+		&__author
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+			display: flex
+			flex-direction: row
+
+			&__image
+				width: 50px
+				height: 50px
+				margin-right: 10px
+
+			&__name
+				margin-bottom: 0
+
+			&__email
+				font-size: 12px
+				color: #6C6F75
+
+		&__meta
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+
+			&__item
+				font-size: 12px
+				color: #DEE0E3
+
+				&:not(:last-child)
+					margin-bottom: 4px
+
+				p
+					color: #2E3034
+
+		&__files
+
+			&__summary
+				padding: 10px
+				color: #DEE0E3
+				font-size: 10px
+				border-bottom: 1px solid #DEE0E3
+
+			&__list
+				border-bottom: 1px solid #DEE0E3
+				font-size: 12px
+				font-family: 'Space Mono', monospace
+				color: #2E3034
+				padding: 4px 10px
+				cursor: pointer
+
+				&:hover
+					color: white
+					background-color: #0366D6
 </style>

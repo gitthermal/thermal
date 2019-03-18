@@ -1,20 +1,20 @@
 <template>
-  <div class="model--content">
-    <div class="model--section modal--header">
-      <h6 class="model--header-title">Add local repository</h6>
-      <div class="model--header-close">
+  <div class="model--small">
+    <div class="model__section modal__header">
+      <h6 class="model__header__title">Add local repository</h6>
+      <div class="model__header__close">
         <closeIcon/>
       </div>
     </div>
-    <div class="model--section model--body">
+    <div class="model__section model__body">
       <inputText
         v-model="pathToRepository"
         name="pathToRepository"
         placeholder="Local path to repository"
       />
     </div>
-    <div class="model--section model--footer">
-      <primaryButton class="model--footer-primaryButton" text="Add repository"/>
+    <div class="model__section model__footer">
+      <primaryButton class="ml-auto" text="Add repository"/>
 			<button @click="addRepository()">Add repo</button>
     </div>
   </div>
@@ -55,38 +55,28 @@ export default {
 </script>
 
 <style lang='sass'>
-	.model--content
-		width: 450px
-		position: absolute
-		top: 50%
-		background-color: white
-		border-radius: 5px
-		left: 50%
-		transform: translate(-50%, -50%)
-
-	.model--section
-		padding: .8rem 1rem
-		display: flex
-
-	.modal--header
-		border-bottom: 1px solid #eee
-
-		h6
-			margin-bottom: 0
-
-		.model--header-close
-			cursor: pointer
+	.model
+		
+		&__section
+			padding: .8rem 1rem
 			display: flex
-			margin-left: auto
 
-			svg
-				width: 20px
-				height: 20px
-				stroke: #222831
+		&__header
+			border-bottom: 1px solid #eee
 
-	.model--body
-		border-bottom: 1px solid #eee
+			&__title
+				margin-bottom: 0
 
-	.model--footer-primaryButton
-		margin-left: auto
+			&__close
+				cursor: pointer
+				display: flex
+				margin-left: auto
+
+				svg
+					width: 20px
+					height: 20px
+					stroke: #222831
+
+		&__body
+			border-bottom: 1px solid #eee
 </style>
