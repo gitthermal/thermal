@@ -105,7 +105,7 @@ export default {
 			])
 			try {
 				let output = gitShowFiles.trim().split("\n")
-				this.getCommitSummary(output)
+				this.getCommitFiles(output)
 				// list of file changes
 				this.commitDetail.fileList = output.slice(1, output.length - 1)
 				// number of file changes
@@ -114,12 +114,15 @@ export default {
 				console.log(error)
 			}
 		},
-		getCommitSummary(summary) {
-			const commitSummary = summary[summary.length - 1].split(', ')
-			commitSummary.shift()
-			for (let i = 0; i < commitSummary.length; i++) {
-				const commitMetaType = commitSummary[i].slice(commitSummary[i].length - 2, commitSummary[i].length - 1)
-				const commitMetaNumber = commitSummary[i].split(" ")
+		getCommitFiles(summary) {
+			const filesSummary = summary[summary.length - 1].split(", ")
+			filesSummary.shift()
+			for (let i = 0; i < filesSummary.length; i++) {
+				const commitMetaType = filesSummary[i].slice(
+					filesSummary[i].length - 2,
+					filesSummary[i].length - 1
+				)
+				const commitMetaNumber = filesSummary[i].split(" ")
 				if (commitMetaType === "+") {
 					this.commitDetail.meta.additions = commitMetaNumber[0]
 				}
