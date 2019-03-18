@@ -18,14 +18,6 @@
       <div class="commit--detail-buttons">
         <div @click="commitDetail.isActive = false" class="commit--detail-back">Back</div>
       </div>
-			<div class="commit--meta">
-				<div class="commit--metaItem">
-					Date: {{  }}
-				</div>
-				<div class="commit--metaItem">
-					Commit: <p>{{ this.commitDetail.hash }}</p>
-				</div>
-			</div>
       <div class="commit--author">
         <img class="author--image" src="../../../static/image/user_avatar.png">
         <div class="author--detai">
@@ -33,13 +25,21 @@
           <p class="author--email">{{ this.commitDetail.author.email }}</p>
         </div>
       </div>
+      <div class="commit--meta">
+        <div class="commit--metaItem">Date: {{ }}</div>
+        <div class="commit--metaItem">Commit:
+          <p>{{ this.commitDetail.hash }}</p>
+        </div>
+      </div>
       <div class="commit--detail-files">
-        <div class="commit--files-summary">
-					Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion
-				</div>
-				<div class="commit--fileList" v-for="file in this.commitDetail.fileList" :key="file">
-					{{ file.replace(/\|.*/, '').trim() }}
-				</div>
+        <div
+          class="commit--files-summary"
+        >Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion</div>
+        <div
+          class="commit--fileList"
+          v-for="file in this.commitDetail.fileList"
+          :key="file"
+        >{{ file.replace(/\|.*/, '').trim() }}</div>
       </div>
     </div>
   </div>
