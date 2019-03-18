@@ -18,6 +18,14 @@
       <div class="commit--detail-buttons">
         <div @click="commitDetail.isActive = false" class="commit--detail-back">Back</div>
       </div>
+			<div class="commit--meta">
+				<div class="commit--metaItem">
+					Date: {{  }}
+				</div>
+				<div class="commit--metaItem">
+					Commit: <p>{{ this.commitDetail.hash }}</p>
+				</div>
+			</div>
       <div class="commit--detail-files">
         <div class="commit--files-summary">
 					Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion
@@ -42,6 +50,7 @@ export default {
 			commitDetail: {
 				isActive: false,
 				hash: "",
+				date: "",
 				fileList: [],
 				meta: {
 					changes: "",
@@ -141,6 +150,20 @@ export default {
 		padding: 2px 6px
 		background-color: #DEE0E3
 		border-radius: 10px
+
+
+	.commit--meta
+		padding: 10px
+		border-bottom: 1px solid #DEE0E3
+
+	.commit--metaItem
+		font-size: 12px
+		&:not(:last-child)
+			margin-bottom: 4px
+		color: #DEE0E3
+
+		p
+			color: #2E3034
 
 	.commit--files-summary
 		padding: 10px
