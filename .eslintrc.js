@@ -24,5 +24,7 @@ module.exports = {
 		quotes: [1, "double"],
 		// enforce consistent indentation
 		indent: [1, "tab"],
+		// disallow semicolons instead of ASI
+		semi: [1, "never"],
 	}
 }
