@@ -26,7 +26,7 @@ export default {
 	.input
 
 		&__text
-			border-radius: 3px
+			border-radius: .3rem
 			padding: .5rem .8rem
 			border: 1px solid #eeeeee
 			font-family: inherit
