@@ -26,6 +26,13 @@
 					Commit: <p>{{ this.commitDetail.hash }}</p>
 				</div>
 			</div>
+      <div class="commit--author">
+        <img class="author--image" src="../../../static/image/user_avatar.png">
+        <div class="author--detai">
+          <h6 class="author--name">{{ this.commitDetail.author.name }}</h6>
+          <p class="author--email">{{ this.commitDetail.author.email }}</p>
+        </div>
+      </div>
       <div class="commit--detail-files">
         <div class="commit--files-summary">
 					Showing {{ this.commitDetail.fileList.length }} changed files with {{ this.commitDetail.meta.additions ? this.commitDetail.meta.additions : '0' }} additions and {{ this.commitDetail.meta.deletion ? this.commitDetail.meta.additions : '0' }} deletion
@@ -49,6 +56,10 @@ export default {
 			logs: {},
 			commitDetail: {
 				isActive: false,
+				author: {
+					name: "",
+					email: ""
+				},
 				hash: "",
 				date: "",
 				fileList: [],
@@ -73,7 +84,18 @@ export default {
 			this.commitDetail.hash = hash
 			this.commitDetail.isActive = true
 
+			this.getAuthorDetail(hash)
 			this.getFilesDetail(hash)
+		},
+		async getAuthorDetail(hash) {
+			const author = await git(this.repo).show([hash, "--format=%an %n %ae"])
+			try {
+				const output = author.split("\n")
+				this.commitDetail.author.name = output[0].trim()
+				this.commitDetail.author.email = output[1].trim()
+			} catch (error) {
+				console.log(error)
+			}
 		},
 		async getFilesDetail(hash) {
 			const gitShowFiles = await git(this.repo).show([
@@ -158,6 +180,23 @@ export default {
 		background-color: #DEE0E3
 		border-radius: 10px
 
+	.commit--author
+		padding: 10px
+		border-bottom: 1px solid #DEE0E3
+		display: flex
+		flex-direction: row
+
+		.author--image
+			width: 50px
+			height: 50px
+			margin-right: 10px
+
+		.author--name
+			margin-bottom: 0
+
+		.author--email
+			font-size: 12px
+			color: #6C6F75
 
 	.commit--meta
 		padding: 10px
