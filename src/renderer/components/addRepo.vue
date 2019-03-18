@@ -14,8 +14,7 @@
       />
     </div>
     <div class="model__section model__footer">
-      <primaryButton class="ml-auto" text="Add repository"/>
-			<button @click="addRepository()">Add repo</button>
+      <primaryButton @click.native="addRepository()" class="ml-auto" text="Add repository"/>
     </div>
   </div>
 </template>
