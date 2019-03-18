@@ -1,19 +1,19 @@
 <template>
     <h1>Welcome to Thermal</h1>
   <div class="welcome">
-    <p class="welcome--description">One stop for all of your Git repository.</p>
-    <div class="welcome--icon">
-      <div @click="websiteURL()" class="welcome--item-icon">
+    <p class="welcome__description">One stop for all of your Git repository.</p>
+    <div class="welcome__item">
+      <div @click="websiteURL()" class="welcome__item__icon">
         <linkIcon/>
       </div>
-      <div @click="twitterURL()" class="welcome--item-icon">
+      <div @click="twitterURL()" class="welcome__item__icon">
         <twitterIcon/>
       </div>
-      <div @click="coffeeURL()" class="welcome--item-icon">
+      <div @click="coffeeURL()" class="welcome__item__icon">
         <coffeeIcon/>
       </div>
     </div>
-    <primaryButton class="welcome--cta" text="Get Started"/>
+    <primaryButton class="welcome__cta" text="Get Started"/>
   </div>
 </template>
 
@@ -54,23 +54,23 @@ export default {
 		justify-content: center
 		align-items: center
 
-	.welcome--description
-		margin-bottom: 1rem
+		&__description
+			margin-bottom: 1rem
 
-	.welcome--icon
-		display: flex
+		&__item
+			display: flex
 
-	.welcome--item-icon
-		cursor: pointer
+			&__icon
+				cursor: pointer
 		
-		svg
-			width: 30px
-			height: 30px
-			stroke: #222831
+				svg
+					width: 30px
+					height: 30px
+					stroke: #222831
 
-		&:not(:last-child)
-			margin-right: 20px
+				&:not(:last-child)
+					margin-right: 20px
 	
-	.welcome--cta
-		margin-top: 1rem
+		&__cta
+			margin-top: 1rem
 </style>

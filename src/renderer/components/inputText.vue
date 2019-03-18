@@ -2,7 +2,7 @@
   <input
     type="text"
     :name="name"
-    class="input--field-text"
+    class="input__text"
     :placeholder="placeholder"
 		@input="$emit('input', $event.target.value)"
   >
@@ -23,11 +23,13 @@ export default {
 </script>
 
 <style lang='sass'>
-	.input--field-text
-		border-radius: 3px
-		padding: .5rem .8rem
-		border: 1px solid #eeeeee
-		font-family: inherit
-		outline: none
-		width: 100%
+	.input
+
+		&__text
+			border-radius: 3px
+			padding: .5rem .8rem
+			border: 1px solid #eeeeee
+			font-family: inherit
+			outline: none
+			width: 100%
 </style>

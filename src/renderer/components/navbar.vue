@@ -1,33 +1,33 @@
 <template>
   <div class="navbar">
-    <div class="navbar--item">
+    <div class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
     </div>
-    <div class="navbar--group">
-      <div class="navbar--item">
+    <div class="navbar__group">
+      <div class="navbar__item">
         <pullIcon/>
         <p>Pull</p>
       </div>
-      <div class="navbar--item">
+      <div class="navbar__item">
         <pushIcon/>
         <p>Push</p>
       </div>
-      <div class="navbar--item">
+      <div class="navbar__item">
 				<fetchIcon/>
         <p>Fetch</p>
       </div>
     </div>
-    <div class="navbar--group navbar--repo-meta">
-      <div class="navbar--item">
+    <div class="navbar__group ml-auto">
+      <div class="navbar__item">
         <terminalIcon/>
         <p>Terminal</p>
       </div>
-      <div class="navbar--item">
+      <div class="navbar__item">
         <folderIcon/>
         <p>Explorer</p>
       </div>
-      <div class="navbar--item">
+      <div class="navbar__item">
         <settingsIcon/>
         <p>Settings</p>
       </div>
@@ -63,35 +63,32 @@ export default {
 		border-top: 1px solid #DEE0E3
 		border-bottom: 1px solid #DEE0E3
 		padding: 12px 20px
+
+		&__item
+			flex-direction: column
+			align-items: center
+
+			&:hover
+				cursor: pointer
+
+			svg
+				width: 20px
+				height: 20px
+				stroke: #A1A5AC
+				margin-bottom: 5px
+
+			p
+				color: #7A7D84
+				font-size: 12px
 		
-	.navbar, .navbar--item, .navbar--group
+		&__group
+			padding-left: 30px
+			padding-right: 30px
+
+			.navbar__item
+				&:not(:last-child)
+					margin-right: 15px
+
+	.navbar, .navbar__item, .navbar__group
 		display: flex
-
-	.navbar--group
-		padding-left: 30px
-		padding-right: 30px
-
-		.navbar--item
-			&:not(:last-child)
-				margin-right: 15px
-	
-	.navbar--item
-		flex-direction: column
-		align-items: center
-
-		&:hover
-			cursor: pointer
-
-		svg
-			width: 20px
-			height: 20px
-			stroke: #A1A5AC
-			margin-bottom: 5px
-
-		p
-			color: #7A7D84
-			font-size: 12px
-
-	.navbar--repo-meta
-		margin-left: auto
 </style>
