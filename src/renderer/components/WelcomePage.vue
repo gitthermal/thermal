@@ -1,8 +1,8 @@
 <template>
-  <div class="welcome">
+  <div class="welcome d-flex flex-column justify-center align-items-center">
     <h1>Welcome to Thermal</h1>
     <p class="welcome__description">One stop for all of your Git repository.</p>
-    <div class="welcome__item">
+    <div class="welcome__item d-flex">
       <div @click="websiteURL()" class="welcome__item__icon">
         <linkIcon/>
       </div>
@@ -66,16 +66,13 @@ export default {
 <style lang='sass'>
 	.welcome
 		width: 100%
-		display: flex
-		flex-direction: column
-		justify-content: center
+		
 		align-items: center
 
 		&__description
 			margin-bottom: 1rem
 
 		&__item
-			display: flex
 			margin-bottom: 1rem
 
 			&__icon
