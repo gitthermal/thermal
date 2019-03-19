@@ -27,7 +27,7 @@ export default {
 <style lang="sass">
 	.col__view
 		display: flex
-		height: 100vh
+		height: 90vh
 		flex-direction: row
 
 	.model
