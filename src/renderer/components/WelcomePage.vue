@@ -18,6 +18,7 @@
 				<div v-for="repo in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
 					<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
+					<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
 				</div>
 			</div>
 		</div>
@@ -30,6 +31,7 @@ import linkIcon from "./icon/link"
 import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import primaryButton from "./atoms/primaryButton"
+import outlineButton from "./atoms/outlineButton"
 const { shell } = require("electron")
 
 export default {
@@ -38,7 +40,8 @@ export default {
 		linkIcon,
 		twitterIcon,
 		coffeeIcon,
-		primaryButton
+		primaryButton,
+		outlineButton
 	},
 	computed: {
 		getAllRepository() {
@@ -116,4 +119,7 @@ export default {
 					p
 						color: #6C6F75
 						font-size: 14px
+
+					&__delete
+						margin-left: .5rem
 </style>
