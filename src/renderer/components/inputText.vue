@@ -4,22 +4,22 @@
     :name="name"
     class="input__text"
     :placeholder="placeholder"
-		@input="$emit('input', $event.target.value)"
+    @input="$emit('input', $event.target.value)"
   >
 </template>
 
 <script>
 export default {
-	name: "inputText",
-	props: {
-		name: {
-			type: String
-		},
-		placeholder: {
-			type: String
-		}
-	}
-}
+  name: "inputText",
+  props: {
+    name: {
+      type: String
+    },
+    placeholder: {
+      type: String
+    }
+  }
+};
 </script>
 
 <style lang='sass'>

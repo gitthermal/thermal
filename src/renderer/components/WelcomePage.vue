@@ -1,6 +1,6 @@
 <template>
-    <h1>Welcome to Thermal</h1>
   <div class="welcome">
+    <h1>Welcome to Thermal</h1>
     <p class="welcome__description">One stop for all of your Git repository.</p>
     <div class="welcome__item">
       <div @click="websiteURL()" class="welcome__item__icon">

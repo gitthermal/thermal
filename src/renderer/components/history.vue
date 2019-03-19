@@ -130,10 +130,10 @@ export default {
 				let commitDescriptionStart
 				let commitDescriptionEnd
 				for (let i = 0; i < output.length; i++) {
-					if (output[i].trim() === '<<') {
+					if (output[i].trim() === "<<") {
 						commitDescriptionStart = i
 					}
-					if (output[i].trim() === '>>') {
+					if (output[i].trim() === ">>") {
 						commitDescriptionEnd = i
 					}
 				}
