@@ -69,6 +69,7 @@ export default {
 	methods: {
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository")
+			this.$router.push({ name: "welcome" })
 		}
 	}
 }
