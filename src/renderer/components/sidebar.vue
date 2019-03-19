@@ -6,7 +6,7 @@
         <p>Workspace</p>
       </router-link>
       <router-link class="sidebar__item d-flex align-items-center" to="history">
-        <historyIcon/>
+        <clockIcon/>
         <p>History</p>
       </router-link>
     </div>
@@ -15,11 +15,11 @@
 
 <script>
 import folderIcon from "./icon/folder"
-import historyIcon from "./icon/history"
+import clockIcon from "./icon/clock"
 export default {
 	components: {
 		folderIcon,
-		historyIcon
+		clockIcon
 	}
 }
 </script>
