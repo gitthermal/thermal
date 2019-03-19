@@ -32,6 +32,10 @@
         <p>Settings</p>
       </div>
     </div>
+		<div @click="switchRepository()" class="navbar__item">
+      <switchRepositoryIcon/>
+      <p>Switch repo</p>
+    </div>
   </div>
 </template>
 
@@ -43,6 +47,7 @@ import fetchIcon from "./icon/fetch"
 import terminalIcon from "./icon/terminal"
 import folderIcon from "./icon/folder"
 import settingsIcon from "./icon/settings"
+import switchRepositoryIcon from './icon/switch';
 
 export default {
 	components: {
@@ -52,7 +57,13 @@ export default {
 		fetchIcon,
 		terminalIcon,
 		folderIcon,
-		settingsIcon
+		settingsIcon,
+		switchRepositoryIcon
+	},
+	methods: {
+		switchRepository() {
+			
+		}
 	}
 }
 </script>
