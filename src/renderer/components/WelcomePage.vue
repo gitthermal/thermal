@@ -30,7 +30,7 @@
 import linkIcon from "./icon/link"
 import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
-import primaryButton from "./primaryButton"
+import primaryButton from "./atoms/primaryButton"
 const { shell } = require("electron")
 
 export default {
