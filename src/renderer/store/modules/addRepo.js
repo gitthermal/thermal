@@ -1,5 +1,9 @@
 const state = {
 	repo: []
+	model: {
+		addLocalRepository: false,
+		newRepository: false
+	}
 }
 
 const getters = {
@@ -7,6 +11,9 @@ const getters = {
 }
 
 const mutations = {
+	toggleAddLocalRepositoryModel(state) {
+		state.model.addLocalRepository = !state.model.addLocalRepository
+	},
 	localRepository(state, payload) {
 		let repoData = {
 			path: payload.path,
@@ -22,6 +29,11 @@ const actions = {
 			type: "localRepository",
 			path: payload.path,
 			name: payload.name
+		})
+	},
+	showAddLocalRepositoryModel: ({ commit }) => {
+		commit({
+			type: "toggleAddLocalRepositoryModel"
 		})
 	}
 }

@@ -11,12 +11,9 @@ const mutations = {
 }
 
 const actions = {
-	showAddLocalRepositoryModel: ({ commit }) => {
+	showModelPlaceholder: ({ commit }) => {
 		commit({
 			type: "toggleModelPlaceholder"
-		})
-		commit({
-			type: "addRepo/toggleAddLocalRepositoryModel"
 		})
 	}
 }

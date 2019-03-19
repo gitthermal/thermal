@@ -22,6 +22,7 @@
 			</div>
 		</div>
 		<primaryButton v-else class="welcome__cta" text="Get Started"/>
+		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Get Started"/>
   </div>
 </template>
 
@@ -55,6 +56,10 @@ export default {
 		coffeeURL() {
 			shell.openExternal("https://www.patreon.com/join/mittalyashu")
 		},
+		addLocalRepository() {
+			this.$store.dispatch("model/showModelPlaceholder")
+			this.$store.dispatch("addRepo/showAddLocalRepositoryModel")
+		}
 	}
 }
 </script>
