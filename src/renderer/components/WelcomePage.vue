@@ -21,8 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<primaryButton v-else class="welcome__cta" text="Get Started"/>
-		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Get Started"/>
+		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
   </div>
 </template>
 
@@ -89,6 +88,9 @@ export default {
 
 				&:not(:last-child)
 					margin-right: 20px
+			
+		&__cta
+			margin-top: 1rem
 	
 		&__repository
 			border: 1px solid #EFEFEF
