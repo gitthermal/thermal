@@ -39,15 +39,13 @@ export default {
 	},
 	methods: {
 		addRepository() {
-			console.log(this.pathToRepository.toString().split("/"))
 			let repoName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
-
-			console.log(repoName)
-
-			console.log(this.$store._actions)
-
-			this.$store.dispatch("addRepo/addLocalRepo")
-			console.log({ ...this.$store.state.addRepo.repo })
+			this.$store.dispatch({
+				type: "addRepo/addLocalRepository",
+				name: repoName,
+				path: this.pathToRepository
+			})
+			this.closeModel()
 		},
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
