@@ -16,12 +16,12 @@ let routes = [
 	},
 	{
 		path: "/history",
-		name: "historyPage",
+		name: "history",
 		component: historyPage
 	},
 	{
 		path: "/",
-		name: "welcomePage",
+		name: "welcome",
 		component: WelcomePage
 	},
 	{
