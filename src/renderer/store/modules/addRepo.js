@@ -8,7 +8,15 @@ const getters = {
 
 const mutations = {}
 
-const actions = {}
+const actions = {
+	addLocalRepository: ({ commit }, payload) => {
+		commit({
+			type: "localRepository",
+			path: payload.path,
+			name: payload.name
+		})
+	}
+}
 
 export default {
 	namespaced: true,
