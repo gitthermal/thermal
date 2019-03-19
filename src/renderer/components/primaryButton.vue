@@ -14,14 +14,6 @@
 </script>
 
 <style lang='sass'>
-	.button
-		outline: none
-		border: none
-		cursor: pointer
-		padding: .5rem 1rem
-		border-radius: 1rem
-		font-family: inherit
-
 	.button--primary
 		color: white
 		background-color: #00adb5
