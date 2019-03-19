@@ -28,5 +28,7 @@ module.exports = {
 		semi: [1, "never"],
 		// require camelCase
 		camelcase: 1,
+		// consistent line endings
+		"linebreak-style": 1,
 	}
 }
