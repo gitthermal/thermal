@@ -31,5 +31,7 @@ module.exports = {
 		camelcase: 1,
 		// consistent line endings
 		"linebreak-style": 1,
+		// disable console log
+		"no-console": process.env.NODE_ENV === "production" ? 2 : 1,
 	}
 }
