@@ -50,6 +50,7 @@ import settingsIcon from "./icon/settings"
 import switchRepositoryIcon from './icon/switch';
 
 export default {
+	name: "navbar",
 	components: {
 		commitIcon,
 		pushIcon,
