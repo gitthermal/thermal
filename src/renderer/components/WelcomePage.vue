@@ -17,7 +17,7 @@
 			<div class="welcome__repository__list">
 				<div v-for="repo in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
-					<button class="button button--outline ml-auto">Select</button>
+					<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
 				</div>
 			</div>
 		</div>
@@ -58,6 +58,15 @@ export default {
 		addLocalRepository() {
 			this.$store.dispatch("model/showModelPlaceholder")
 			this.$store.dispatch("addRepo/showAddLocalRepositoryModel")
+		},
+		selectCurrentRepository(data) {
+			console.log(data)
+			this.$store.dispatch({
+				type: "workspace/updateWorkspaceRepository",
+				name: data.name,
+				path: data.path
+			})
+		},
 		}
 	}
 }
