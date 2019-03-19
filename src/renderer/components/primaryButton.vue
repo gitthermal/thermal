@@ -19,7 +19,7 @@
 		border: none
 		cursor: pointer
 		padding: .5rem 1rem
-		border-radius: 3px
+		border-radius: 1rem
 		font-family: inherit
 
 	.button--primary
