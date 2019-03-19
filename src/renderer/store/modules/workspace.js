@@ -24,6 +24,14 @@ const actions = {
 			name: payload.name,
 			path: payload.path
 		})
+	},
+	switchWorkspaceRepository: ({ commit }) => {
+		commit({
+			type: "workspaceRepository",
+			id: "",
+			name: "",
+			path: ""
+		})
 	}
 }
 
