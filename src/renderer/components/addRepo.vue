@@ -1,5 +1,5 @@
 <template>
-  <div class="model--small">
+  <div v-show="this.$store.state.addRepo.model.addLocalRepository" class="model--small">
     <div class="model__section modal__header">
       <h6 class="model__header__title">Add local repository</h6>
       <div class="model__header__close">
