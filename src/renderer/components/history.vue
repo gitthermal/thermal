@@ -25,21 +25,35 @@
           <p class="commit__detail__author__email">{{ this.commitDetail.author.email }}</p>
         </div>
       </div>
-			<div class="commit__detail__summary">
-				<div class="commit__detail__summary__title">{{ this.commitDetail.title }}</div>
-				<div class="commit__detail__summary__description">{{ this.commitDetail.description }}</div>
-			</div>
+      <div class="commit__detail__summary">
+        <div class="commit__detail__summary__title">{{ this.commitDetail.title }}</div>
+        <div class="commit__detail__summary__description">{{ this.commitDetail.description }}</div>
+      </div>
       <div class="commit__detail__meta">
-        <div class="commit__detail__meta__item">Author: <p>{{ this.commitDetail.author.name }} <{{ this.commitDetail.author.email }}></p></div>
-        <div class="commit__detail__meta__item">Author Date: <p>{{ this.commitDetail.author.date }}</p></div>
-        <div class="commit__detail__meta__item">Committer: <p>{{ this.commitDetail.committer.name }} <{{ this.commitDetail.committer.email}}></p></div>
-        <div class="commit__detail__meta__item">Committer Date: <p>{{ this.commitDetail.committer.date }}</p></div>
-        <div class="commit__detail__meta__item">Refs: <p>{{ this.commitDetail.refs }}</p></div>
+        <div class="commit__detail__meta__item">Author:
+          <p>{{ this.commitDetail.author.name }} <{{ this.commitDetail.author.email }}></p>
+        </div>
+        <div class="commit__detail__meta__item">Author Date:
+          <p>{{ this.commitDetail.author.date }}</p>
+        </div>
+        <div class="commit__detail__meta__item">Committer:
+          <p>{{ this.commitDetail.committer.name }} <{{ this.commitDetail.committer.email}}></p>
+        </div>
+        <div class="commit__detail__meta__item">Committer Date:
+          <p>{{ this.commitDetail.committer.date }}</p>
+        </div>
+        <div class="commit__detail__meta__item">Refs:
+          <p>{{ this.commitDetail.refs }}</p>
+        </div>
         <div class="commit__detail__meta__item">Commit Hash:
           <p>{{ this.commitDetail.hash }}</p>
         </div>
-				<div class="commit__detail__meta__item">Tree Hash: <p>{{ this.commitDetail.tree_hash }}</p></div>
-				<div class="commit__detail__meta__item">Parent Hash: <p>{{ this.commitDetail.parent_hash }}</p></div>
+        <div class="commit__detail__meta__item">Tree Hash:
+          <p>{{ this.commitDetail.tree_hash }}</p>
+        </div>
+        <div class="commit__detail__meta__item">Parent Hash:
+          <p>{{ this.commitDetail.parent_hash }}</p>
+        </div>
       </div>
       <div class="commit__detail__files">
         <div
@@ -137,8 +151,10 @@ export default {
 						commitDescriptionEnd = i
 					}
 				}
-				if ((commitDescriptionEnd - commitDescriptionStart) > 2) {
-					this.commitDetail.description = output.slice(commitDescriptionStart + 1, commitDescriptionEnd).toString()
+				if (commitDescriptionEnd - commitDescriptionStart > 2) {
+					this.commitDetail.description = output
+						.slice(commitDescriptionStart + 1, commitDescriptionEnd)
+						.toString()
 				}
 			} catch (error) {
 				console.log(error)
@@ -150,7 +166,7 @@ export default {
 				"--format=%ai %n %cn %n %ce %n %cd %n %d %n %T %n %P"
 			])
 			try {
-				const output = content.split('\n')
+				const output = content.split("\n")
 				console.log(output)
 				this.commitDetail.author.date = output[0]
 				this.commitDetail.committer.name = output[1]
@@ -176,7 +192,7 @@ export default {
 				this.commitDetail.fileList = output.slice(1, output.length - 2)
 				// number of file changes
 				this.commitDetail.meta.changes = this.commitDetail.fileList.length
-				
+
 				const filesSummary = output[output.length - 1].split(", ")
 				filesSummary.shift()
 

@@ -16,6 +16,7 @@
 <script>
 import folderIcon from "./icon/folder"
 import clockIcon from "./icon/clock"
+
 export default {
 	components: {
 		folderIcon,

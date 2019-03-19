@@ -10,16 +10,16 @@
 
 <script>
 export default {
-  name: "inputText",
-  props: {
-    name: {
-      type: String
-    },
-    placeholder: {
-      type: String
-    }
-  }
-};
+	name: "inputText",
+	props: {
+		name: {
+			type: String
+		},
+		placeholder: {
+			type: String
+		}
+	}
+}
 </script>
 
 <style lang='sass'>

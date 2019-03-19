@@ -47,7 +47,7 @@ import fetchIcon from "./icon/fetch"
 import terminalIcon from "./icon/terminal"
 import folderIcon from "./icon/folder"
 import settingsIcon from "./icon/settings"
-import switchRepositoryIcon from './icon/switch';
+import switchRepositoryIcon from "./icon/switch"
 
 export default {
 	name: "navbar",
