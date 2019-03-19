@@ -1,5 +1,5 @@
 <template>
-	<button class="button button--outline">{{ text }}</button>
+	<a :class="buttonType" class="button button--outline">{{ text }}</a>
 </template>
 
 <script>
@@ -8,6 +8,19 @@
 			text: {
 				type: String,
 				required: true
+			},
+			type: {
+				type: String
+			}
+		},
+		computed: {
+			buttonType() {
+				switch (this.type) {
+					case 'danger':
+						return 'button--outline--danger'
+					default:
+						return 'button--outline--normal'
+				}
 			}
 		}
 	}
@@ -15,7 +28,13 @@
 
 <style lang='sass'>
 	.button--outline
+		background: none
+
+	.button--outline--normal
 		border: 1px solid #00adb5
 		color: #00adb5
-		background: none
+
+	.button--outline--danger
+		border: 1px solid #f04747
+		color: #f04747
 </style>
