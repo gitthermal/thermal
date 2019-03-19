@@ -122,7 +122,7 @@ export default {
 		async getCommitBody(hash) {
 			const content = await git(this.repo).show([
 				hash,
-				"--format=%s %n << %n %b% %n >>"
+				"--format=%s %n << %n %b %n >>"
 			])
 			try {
 				const output = content.split("\n")
