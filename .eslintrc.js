@@ -21,7 +21,7 @@ module.exports = {
 		"arrow-parens": 0,
 		// allow async-await
 		"generator-star-spacing": 0,
-		// type of quotes "" or ''
+		// enforce consistent single quotes
 		quotes: [1, "double"],
 		// enforce consistent indentation
 		indent: [1, "tab"],
