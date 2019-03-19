@@ -30,10 +30,16 @@
 				<div class="commit__detail__summary__description">{{ this.commitDetail.description }}</div>
 			</div>
       <div class="commit__detail__meta">
-        <div class="commit__detail__meta__item">Date: {{ }}</div>
-        <div class="commit__detail__meta__item">Commit:
+        <div class="commit__detail__meta__item">Author: <p>{{ this.commitDetail.author.name }} <{{ this.commitDetail.author.email }}></p></div>
+        <div class="commit__detail__meta__item">Author Date: <p>{{ this.commitDetail.author.date }}</p></div>
+        <div class="commit__detail__meta__item">Committer: <p>{{ this.commitDetail.committer.name }} <{{ this.commitDetail.committer.email}}></p></div>
+        <div class="commit__detail__meta__item">Committer Date: <p>{{ this.commitDetail.committer.date }}</p></div>
+        <div class="commit__detail__meta__item">Refs: <p>{{ this.commitDetail.refs }}</p></div>
+        <div class="commit__detail__meta__item">Commit Hash:
           <p>{{ this.commitDetail.hash }}</p>
         </div>
+				<div class="commit__detail__meta__item">Tree Hash: <p>{{ this.commitDetail.tree_hash }}</p></div>
+				<div class="commit__detail__meta__item">Parent Hash: <p>{{ this.commitDetail.parent_hash }}</p></div>
       </div>
       <div class="commit__detail__files">
         <div
@@ -63,11 +69,19 @@ export default {
 				title: "",
 				author: {
 					name: "",
-					email: ""
+					email: "",
+					date: ""
 				},
 				description: "",
-				hash: "",
-				date: "",
+				hash: "", // TODO Change to commit_hash
+				committer: {
+					name: "",
+					email: "",
+					date: ""
+				},
+				refs: "",
+				tree_hash: "",
+				parent_hash: "",
 				fileList: [],
 				meta: {
 					changes: "",
@@ -92,6 +106,7 @@ export default {
 
 			this.getAuthorDetail(hash)
 			this.getCommitBody(hash)
+			this.getCommitMeta(hash)
 			this.getFilesDetail(hash)
 		},
 		async getAuthorDetail(hash) {
@@ -125,6 +140,25 @@ export default {
 				if ((commitDescriptionEnd - commitDescriptionStart) > 2) {
 					this.commitDetail.description = output.slice(commitDescriptionStart + 1, commitDescriptionEnd).toString()
 				}
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async getCommitMeta(hash) {
+			const content = await git(this.repo).show([
+				hash,
+				"--format=%ai %n %cn %n %ce %n %cd %n %d %n %T %n %P"
+			])
+			try {
+				const output = content.split('\n')
+				console.log(output)
+				this.commitDetail.author.date = output[0]
+				this.commitDetail.committer.name = output[1]
+				this.commitDetail.committer.email = output[2]
+				this.commitDetail.committer.date = output[3]
+				this.commitDetail.refs = output[4]
+				this.commitDetail.tree_hash = output[5]
+				this.commitDetail.parent_hash = output[6]
 			} catch (error) {
 				console.log(error)
 			}
