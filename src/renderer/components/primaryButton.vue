@@ -13,7 +13,7 @@
 	}
 </script>
 
-<style lang='sass' scoped>
+<style lang='sass'>
 	.button
 		outline: none
 		border: none
