@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import closeIcon from "./icon/close"
-import inputText from "./inputText"
-import primaryButton from "./atoms/primaryButton"
+import closeIcon from "../icon/close"
+import inputText from "../inputText"
+import primaryButton from "../atoms/primaryButton"
 
 export default {
 	name: "addRepo",
