@@ -63,7 +63,7 @@ export default {
 	},
 	methods: {
 		switchRepository() {
-			
+			this.$store.dispatch("workspace/switchWorkspaceRepository")
 		}
 	}
 }
