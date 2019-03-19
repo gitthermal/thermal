@@ -6,7 +6,15 @@ const getters = {
 	allRepo: state => state.repo
 }
 
-const mutations = {}
+const mutations = {
+	localRepository(state, payload) {
+		let repoData = {
+			path: payload.path,
+			name: payload.name
+		}
+		state.repo.push(repoData)
+	}
+}
 
 const actions = {
 	addLocalRepository: ({ commit }, payload) => {
