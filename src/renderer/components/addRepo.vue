@@ -2,7 +2,7 @@
   <div v-show="this.$store.state.addRepo.model.addLocalRepository" class="model--small">
     <div class="model__section modal__header">
       <h6 class="model__header__title">Add local repository</h6>
-      <div class="model__header__close">
+      <div @click="closeModel()" class="model__header__close">
         <closeIcon/>
       </div>
     </div>
@@ -48,6 +48,10 @@ export default {
 
 			this.$store.dispatch("addRepo/addLocalRepo")
 			console.log({ ...this.$store.state.addRepo.repo })
+		},
+		closeModel() {
+			this.$store.dispatch("model/showModelPlaceholder")
+			this.$store.dispatch("addRepo/showAddLocalRepositoryModel")
 		}
 	}
 }
