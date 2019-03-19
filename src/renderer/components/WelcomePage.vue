@@ -103,7 +103,7 @@ export default {
 	
 		&__repository
 			border: 1px solid #EFEFEF
-			width: 450px
+			width: 550px
 			border-radius: 1rem
 			padding: 1rem
 
