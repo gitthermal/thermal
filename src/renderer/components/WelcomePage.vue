@@ -13,7 +13,15 @@
         <coffeeIcon/>
       </div>
     </div>
-    <primaryButton class="welcome__cta" text="Get Started"/>
+		<div v-if="getAllRepo.length > 0" class="welcome__repository">
+			<div class="welcome__repository__list">
+				<div v-for="repo in getAllRepo" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
+					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
+					<button class="button button--outline ml-auto">Select</button>
+				</div>
+			</div>
+		</div>
+		<primaryButton v-else class="welcome__cta" text="Get Started"/>
   </div>
 </template>
 
@@ -31,6 +39,11 @@ export default {
 		twitterIcon,
 		coffeeIcon,
 		primaryButton
+	},
+	computed: {
+		getAllRepo() {
+			return this.$store.getters["addRepo/allRepo"]
+		}
 	},
 	methods: {
 		websiteURL() {
@@ -59,6 +72,7 @@ export default {
 
 		&__item
 			display: flex
+			margin-bottom: 1rem
 
 			&__icon
 				cursor: pointer
@@ -71,6 +85,22 @@ export default {
 				&:not(:last-child)
 					margin-right: 20px
 	
-		&__cta
-			margin-top: 1rem
+		&__repository
+			border: 1px solid #EFEFEF
+			width: 450px
+			border-radius: 1rem
+			padding: 1rem
+
+			&__list
+				&__item
+					&:not(:last-child)
+						margin-bottom: .5rem
+
+					h6
+						padding-right: 5px
+						margin-bottom: 0
+
+					p
+						color: #6C6F75
+						font-size: 14px
 </style>
