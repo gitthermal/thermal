@@ -7,6 +7,7 @@
 		</div>
 		<div v-show="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
+				<addLocalRepository/>
 			</div>
 		</div>
 	</div>
