@@ -69,6 +69,7 @@ export default {
 				name: data.name,
 				path: data.path
 			})
+			this.$router.push({ name: "workspace" })
 		},
 		}
 	}
