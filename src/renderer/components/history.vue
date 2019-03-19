@@ -7,7 +7,7 @@
         v-for="log in this.logs"
         :key="log.hash"
       >
-        <div class="history__item__title">{{ log.message }}</div>
+        <div :title="log.message" class="history__item__title">{{ log.message }}</div>
         <div class="history__item__author d-flex flex-row align-items-center">
           <img class="history__item__author__image" src="../../../static/image/user_avatar.png">
           {{ log.author_name }} committed {{ log.date | moment("from", "now") }}
