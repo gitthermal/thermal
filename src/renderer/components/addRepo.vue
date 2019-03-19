@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// C:/Users/YASHU/Desktop/vscode
 import closeIcon from "./icon/close"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
