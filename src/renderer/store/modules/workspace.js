@@ -16,7 +16,16 @@ const mutations = {
 	}
 }
 
-const actions = {}
+const actions = {
+	updateWorkspaceRepository: ({ commit }, payload) => {
+		commit({
+			type: "workspaceRepository",
+			id: payload.id,
+			name: payload.name,
+			path: payload.path
+		})
+	}
+}
 
 export default {
 	namespaced: true,
