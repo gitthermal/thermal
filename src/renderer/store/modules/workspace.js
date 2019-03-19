@@ -1,4 +1,10 @@
-const state = {}
+const state = {
+	repository: {
+		id: "",
+		name: "",
+		path: ""
+	}
+}
 
 const getters = {}
 
