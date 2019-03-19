@@ -8,7 +8,13 @@ const state = {
 
 const getters = {}
 
-const mutations = {}
+const mutations = {
+	workspaceRepository(state, payload) {
+		state.repository.id = payload.id
+		state.repository.name = payload.name
+		state.repository.path = payload.path
+	}
+}
 
 const actions = {}
 
