@@ -18,6 +18,7 @@ import folderIcon from "./icon/folder"
 import clockIcon from "./icon/clock"
 
 export default {
+	name: "sidebar",
 	components: {
 		folderIcon,
 		clockIcon
