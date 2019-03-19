@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "git-project",
     "appId": "com.example.yourapp",
+    "productName": "Thermal",
     "directories": {
       "output": "build"
     },
