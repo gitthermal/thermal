@@ -13,9 +13,9 @@
         <coffeeIcon/>
       </div>
     </div>
-		<div v-if="getAllRepo.length > 0" class="welcome__repository">
+		<div v-if="getAllRepository.length > 0" class="welcome__repository">
 			<div class="welcome__repository__list">
-				<div v-for="repo in getAllRepo" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
+				<div v-for="repo in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
 					<button class="button button--outline ml-auto">Select</button>
 				</div>
@@ -42,8 +42,8 @@ export default {
 		primaryButton
 	},
 	computed: {
-		getAllRepo() {
-			return this.$store.getters["addRepo/allRepo"]
+		getAllRepository() {
+			return this.$store.getters["addRepo/allRepository"]
 		}
 	},
 	methods: {
