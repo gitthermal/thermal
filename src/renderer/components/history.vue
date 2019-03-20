@@ -2,7 +2,7 @@
   <div class="history">
     <div v-show="!commitDetail.isActive">
       <a
-        @click="getCommitDetail(log.hash)"
+        @click="gitShow(log.hash)"
         class="history__item d-flex flex-column"
         v-for="log in repositoryLogs"
         :key="log.hash"
@@ -120,7 +120,7 @@ export default {
 				console.log(error)
 			}
 		},
-		getCommitDetail(hash) {
+		gitShow(hash) {
 			this.commitDetail.hash = hash
 			this.commitDetail.isActive = true
 
