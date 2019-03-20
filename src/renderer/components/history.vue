@@ -3,7 +3,7 @@
     <div v-show="!commitDetail.isActive">
 			<commitHistoryItem @click.native="gitShow(log.hash)" :data="log" v-for="log in repositoryLogs" :key="log.hash" />
     </div>
-    <div v-show="commitDetail.isActive" class="commit__detail">
+    <div v-show="this.$store.state.history.commitInformation.isActive" class="commit__detail">
       <div class="commit__detail__buttons">
         <div @click="commitDetail.isActive = false" class="commit__detail__buttons__back">Back</div>
       </div>
