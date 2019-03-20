@@ -2,7 +2,9 @@ const state = {
 	logs: {},
 }
 
-const getters = {}
+const getters = {
+	allLogs: state => state.logs,
+}
 
 const mutations = {}
 
