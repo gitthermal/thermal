@@ -37,6 +37,9 @@ const getters = {
 const mutations = {
 	updateLogs(state, payload) {
 		state.logs = payload.logs
+	},
+	toggleCommitInformation(state) {
+		state.commitInformation.isActive = !state.commitInformation.isActive
 	}
 }
 
@@ -45,6 +48,11 @@ const actions = {
 		commit({
 			type: "updateLogs",
 			logs: payload.logs
+		})
+	},
+	showCommitInformation: ({ commit }) => {
+		commit({
+			type: "toggleCommitInformation"
 		})
 	},
 	updateCommitInformationAuthor: ({ commit }, payload) => {
