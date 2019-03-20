@@ -46,6 +46,7 @@
         >{{ file.replace(/\|.*/, '').trim() }}</div>
         <div @click="toggleCommitDetail()" class="commit__detail__buttons__back">Back</div>
       </div>
+			<commitInformation />
     </div>
   </div>
 </template>
@@ -53,11 +54,13 @@
 <script>
 import git from "simple-git/promise"
 import commitHistoryItem from './molecules/commitHistoryItem'
+import commitInformation from "./organisms/commitInformation"
 
 export default {
 	name: "history",
 	components: {
-		commitHistoryItem
+		commitHistoryItem,
+		commitInformation
 	},
 	computed: {
 		repositoryLogs() {
