@@ -12,7 +12,14 @@ const mutations = {
 	}
 }
 
-const actions = {}
+const actions = {
+	getRepositoryLogs: ({ commit }, payload) => {
+		commit({
+			type: "updateLogs",
+			logs: payload.logs
+		})
+	}
+}
 
 export default {
 	namespaced: true,
