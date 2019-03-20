@@ -6,7 +6,11 @@ const getters = {
 	allLogs: state => state.logs,
 }
 
-const mutations = {}
+const mutations = {
+	updateLogs(state, payload) {
+		state.logs = payload.logs
+	}
+}
 
 const actions = {}
 
