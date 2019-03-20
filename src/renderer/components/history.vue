@@ -5,7 +5,6 @@
     </div>
     <div v-show="this.$store.state.history.commitInformation.isActive" class="commit__detail">
       <div class="commit__detail__buttons">
-        <div @click="commitDetail.isActive = false" class="commit__detail__buttons__back">Back</div>
       </div>
       <div class="commit__detail__author">
         <img class="commit__detail__author__image" src="../../../static/image/user_avatar.png">
@@ -53,6 +52,7 @@
           v-for="file in this.commitDetail.fileList"
           :key="file"
         >{{ file.replace(/\|.*/, '').trim() }}</div>
+        <div @click="toggleCommitDetail()" class="commit__detail__buttons__back">Back</div>
       </div>
     </div>
   </div>
@@ -88,6 +88,8 @@ export default {
 			this.getCommitBody(hash)
 			this.getCommitMeta(hash)
 			this.getFilesDetail(hash)
+		toggleCommitDetail() {
+			this.$store.dispatch("history/showCommitInformation")
 		},
 		async getAuthorDetail(hash) {
 			const author = await git(this.repo).show([hash, "--format=%an %n %ae"])
