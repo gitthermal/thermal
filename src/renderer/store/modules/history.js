@@ -40,6 +40,28 @@ const mutations = {
 	},
 	toggleCommitInformation(state) {
 		state.commitInformation.isActive = !state.commitInformation.isActive
+	},
+	updateCommitInformation(state, payload) {
+		state.commitInformation.title = payload.title
+		state.commitInformation.description = payload.description
+		// author
+		state.commitInformation.author.name = payload.author_name
+		state.commitInformation.author.email = payload.author_email
+		state.commitInformation.author.date = payload.author_date
+		// meta
+		state.commitInformation.meta.commit_hash = payload.commit_hash
+		state.commitInformation.meta.tree_hash = payload.tree_hash
+		state.commitInformation.meta.parent_hash = payload.parent_hash
+		state.commitInformation.meta.refs = payload.meta_refs
+		// committer
+		state.commitInformation.committer.name = payload.committer_name
+		state.commitInformation.committer.email = payload.committer_email
+		state.commitInformation.committer.date = payload.committer_date
+		// files
+		state.commitInformation.files.changes = payload.files_changes
+		state.commitInformation.files.additions = payload.files_additions
+		state.commitInformation.files.deletion = payload.files_deletion
+		state.commitInformation.files.list = payload.files_list
 	}
 }
 
