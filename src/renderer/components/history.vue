@@ -83,9 +83,6 @@ export default {
 				console.log(error)
 			}
 		},
-		gitShow(hash) {
-			this.commitDetail.hash = hash
-			this.commitDetail.isActive = true
 
 			this.getAuthorDetail(hash)
 			this.getCommitBody(hash)
@@ -101,6 +98,11 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
+		gitShow(hash) {
+			this.toggleCommitDetail()
+			this.$store.dispatch("history/updateCommitInformationCommitHash", {
+				commit_hash: hash
+			})
 		},
 		async getCommitBody(hash) {
 			const content = await git(this.repo).show([
