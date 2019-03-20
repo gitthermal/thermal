@@ -31,6 +31,7 @@ const state = {
 
 const getters = {
 	allLogs: state => state.logs,
+	getCommitInformation: state => state.commitInformation
 }
 
 const mutations = {
