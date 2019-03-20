@@ -1,5 +1,32 @@
 const state = {
 	logs: {},
+	commitInformation: {
+		isActive: false,
+		title: "",
+		description: "",
+		author: {
+			name: "",
+			email: "",
+			date: ""
+		},
+		meta: {
+			commit_hash: "",
+			tree_hash: "",
+			parent_hash: "",
+			refs: ""
+		},
+		committer: {
+			name: "",
+			email: "",
+			date: ""
+		},
+		files: {
+			changes: "",
+			additions: "",
+			deletion: "",
+			list: []
+		}
+	}
 }
 
 const getters = {

@@ -64,36 +64,6 @@ import commitHistoryItem from './molecules/commitHistoryItem'
 
 export default {
 	name: "history",
-	data() {
-		return {
-			repo: "C:/Users/YASHU/Desktop/thermal",
-			commitDetail: {
-				isActive: false,
-				title: "",
-				author: {
-					name: "",
-					email: "",
-					date: ""
-				},
-				description: "",
-				hash: "", // TODO Change to commit_hash
-				committer: {
-					name: "",
-					email: "",
-					date: ""
-				},
-				refs: "",
-				tree_hash: "",
-				parent_hash: "",
-				fileList: [],
-				meta: {
-					changes: "",
-					additions: "",
-					deletion: ""
-				}
-			}
-		}
-	},
 	components: {
 		commitHistoryItem
 	},
