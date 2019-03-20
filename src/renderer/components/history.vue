@@ -5,14 +5,6 @@
     </div>
     <div v-show="this.$store.state.history.commitInformation.isActive" class="commit__detail">
       <div class="commit__detail__buttons">
-      </div>
-      <div class="commit__detail__author">
-        <img class="commit__detail__author__image" src="../../../static/image/user_avatar.png">
-        <div>
-          <h6 class="commit__detail__author__name">{{ this.commitDetail.author.name }}</h6>
-          <p class="commit__detail__author__email">{{ this.commitDetail.author.email }}</p>
-        </div>
-      </div>
       <div class="commit__detail__summary">
         <div class="commit__detail__summary__title">{{ this.commitDetail.title }}</div>
         <div class="commit__detail__summary__description">{{ this.commitDetail.description }}</div>
@@ -83,23 +75,12 @@ export default {
 				console.log(error)
 			}
 		},
-
-			this.getAuthorDetail(hash)
 			this.getCommitBody(hash)
 			this.getCommitMeta(hash)
 			this.getFilesDetail(hash)
 		toggleCommitDetail() {
 			this.$store.dispatch("history/showCommitInformation")
 		},
-		async getAuthorDetail(hash) {
-			const author = await git(this.repo).show([hash, "--format=%an %n %ae"])
-			try {
-				const output = author.split("\n")
-				this.commitDetail.author.name = output[0].trim()
-				this.commitDetail.author.email = output[1].trim()
-			} catch (error) {
-				console.log(error)
-			}
 		gitShow(hash) {
 			this.toggleCommitDetail()
 			this.$store.dispatch("history/updateCommitInformationCommitHash", {

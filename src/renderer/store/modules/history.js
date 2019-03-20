@@ -45,6 +45,13 @@ const actions = {
 			type: "updateLogs",
 			logs: payload.logs
 		})
+	},
+	updateCommitInformationAuthor: ({ commit }, payload) => {
+		commit({
+			type: "updateCommitInformation",
+			author_name: payload.author_name,
+			author_email: payload.author_email
+		})
 	}
 }
 
