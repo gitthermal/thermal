@@ -4,7 +4,7 @@
       <a
         @click="getCommitDetail(log.hash)"
         class="history__item d-flex flex-column"
-        v-for="log in this.logs"
+        v-for="log in repositoryLogs"
         :key="log.hash"
       >
         <div :title="log.message" class="history__item__title">{{ log.message }}</div>
@@ -77,7 +77,6 @@ export default {
 	data() {
 		return {
 			repo: "C:/Users/YASHU/Desktop/thermal",
-			logs: {},
 			commitDetail: {
 				isActive: false,
 				title: "",
@@ -105,11 +104,18 @@ export default {
 			}
 		}
 	},
+	computed: {
+		repositoryLogs() {
+			return this.$store.getters["history/allLogs"]
+		}
+	},
 	methods: {
 		async getLogs() {
-			const gitLog = await git(this.repo).log()
+			const gitLog = await git(this.$store.state.workspace.repository.path).log()
 			try {
-				this.logs = gitLog.all
+				this.$store.dispatch("history/getRepositoryLogs", {
+					logs: gitLog.all
+				})
 			} catch (error) {
 				console.log(error)
 			}
