@@ -1,18 +1,7 @@
 <template>
   <div class="history">
     <div v-show="!commitDetail.isActive">
-      <a
-        @click="gitShow(log.hash)"
-        class="history__item d-flex flex-column"
-        v-for="log in repositoryLogs"
-        :key="log.hash"
-      >
-        <div :title="log.message" class="history__item__title">{{ log.message }}</div>
-        <div class="history__item__author d-flex flex-row align-items-center">
-          <img class="history__item__author__image" src="../../../static/image/user_avatar.png">
-          {{ log.author_name }} committed {{ log.date | moment("from", "now") }}
-        </div>
-      </a>
+			<commitHistoryItem @click.native="gitShow(log.hash)" :data="log" v-for="log in repositoryLogs" :key="log.hash" />
     </div>
     <div v-show="commitDetail.isActive" class="commit__detail">
       <div class="commit__detail__buttons">
@@ -71,6 +60,7 @@
 
 <script>
 import git from "simple-git/promise"
+import commitHistoryItem from './molecules/commitHistoryItem'
 
 export default {
 	name: "history",
@@ -103,6 +93,9 @@ export default {
 				}
 			}
 		}
+	},
+	components: {
+		commitHistoryItem
 	},
 	computed: {
 		repositoryLogs() {
@@ -232,24 +225,6 @@ export default {
 		width: 300px
 		overflow: hidden
 		overflow-y: scroll
-
-		&__item
-			padding: 10px
-			font-size: 12px
-			border-bottom: 1px solid #DEE0E3
-
-			&__title
-				margin-bottom: 6px
-				color: black
-
-			&__author
-				font-size: 10px
-				color: #6C6F75
-
-				&__image
-					width: 15px
-					height: 15px
-					margin-right: 6px
 
 	.commit__detail
 
