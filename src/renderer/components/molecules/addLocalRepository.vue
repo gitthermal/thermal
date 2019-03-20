@@ -42,7 +42,7 @@ export default {
 			this.$store.dispatch({
 				type: "addRepo/addLocalRepository",
 				name: repoName,
-				path: this.pathToRepository
+				path: this.pathToRepository.trim()
 			})
 			this.closeModel()
 		},
