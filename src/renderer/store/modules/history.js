@@ -55,6 +55,12 @@ const actions = {
 			type: "toggleCommitInformation"
 		})
 	},
+	updateCommitInformationCommitHash: ({ commit }, payload) => {
+		commit({
+			type: "updateCommitInformation",
+			commit_hash: payload.commit_hash
+		})
+	},
 	updateCommitInformationAuthor: ({ commit }, payload) => {
 		commit({
 			type: "updateCommitInformation",
