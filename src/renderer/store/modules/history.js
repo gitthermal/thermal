@@ -41,6 +41,9 @@ const mutations = {
 	toggleCommitInformation(state) {
 		state.commitInformation.isActive = !state.commitInformation.isActive
 	},
+	commitInformationCommitHash(state, payload) {
+		state.commitInformation.meta.commit_hash = payload.commit_hash
+	},
 	commitInformationBody(state, payload) {
 		state.commitInformation.title = payload.title
 		state.commitInformation.description = payload.description
@@ -80,10 +83,7 @@ const actions = {
 			type: "toggleCommitInformation"
 		})
 	},
-	updateCommitInformationCommitHash: ({ commit }, payload) => {
 		commit({
-			type: "updateCommitInformation",
-			commit_hash: payload.commit_hash
 		})
 	},
 	updateCommitInformationAuthor: ({ commit }, payload) => {
