@@ -38,10 +38,10 @@ export default {
 	},
 	methods: {
 		addRepository() {
-			let repoName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
+			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
 			this.$store.dispatch({
-				name: repoName,
 				type: "workspace/addLocalRepositoryToList",
+				name: repositoryName,
 				path: this.pathToRepository.trim()
 			})
 			this.closeModel()
