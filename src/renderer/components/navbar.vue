@@ -14,7 +14,7 @@
         <p>Push</p>
       </div>
       <div class="navbar__item">
-				<fetchIcon/>
+        <fetchIcon/>
         <p>Fetch</p>
       </div>
     </div>
@@ -32,7 +32,7 @@
         <p>Settings</p>
       </div>
     </div>
-		<div @click="switchRepository()" class="navbar__item">
+    <div @click="switchRepository()" class="navbar__item">
       <switchRepositoryIcon/>
       <p>Switch repo</p>
     </div>

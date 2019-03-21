@@ -16,10 +16,10 @@
 		computed: {
 			buttonType() {
 				switch (this.type) {
-					case 'danger':
-						return 'button--outline--danger'
-					default:
-						return 'button--outline--normal'
+				case "danger":
+					return "button--outline--danger"
+				default:
+					return "button--outline--normal"
 				}
 			}
 		}

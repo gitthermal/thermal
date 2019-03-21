@@ -10,12 +10,12 @@
 
 <script>
 export default {
-  props: {
-    data: {
-      type: Object
-    }
-  }
-};
+	props: {
+		data: {
+			type: Object
+		}
+	}
+}
 </script>
 
 <style lang='sass'>

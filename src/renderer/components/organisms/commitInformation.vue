@@ -56,9 +56,10 @@ export default {
 			}
 		},
 		async getCommitBody(hash) {
-			let body = await git(
-				this.workspaceRepository
-			).show([hash, "--format=%s %n << %n %b %n >>"])
+			let body = await git(this.workspaceRepository).show([
+				hash,
+				"--format=%s %n << %n %b %n >>"
+			])
 			try {
 				let output = body.split("\n")
 				let title = output[0].trim()

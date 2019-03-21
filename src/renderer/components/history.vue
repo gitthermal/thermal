@@ -1,7 +1,12 @@
 <template>
   <div class="history">
-			<commitHistoryItem @click.native="gitShow(log.hash)" :data="log" v-for="log in repositoryLogs" :key="log.hash" />
     <div v-if="!this.$store.state.history.commitInformation.isActive">
+      <commitHistoryItem
+        @click.native="gitShow(log.hash)"
+        :data="log"
+        v-for="log in repositoryLogs"
+        :key="log.hash"
+      />
     </div>
     <div v-else class="commit__detail">
       <div class="commit__detail__buttons">
@@ -14,7 +19,7 @@
 
 <script>
 import git from "simple-git/promise"
-import commitHistoryItem from './molecules/commitHistoryItem'
+import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 
 export default {
@@ -30,7 +35,9 @@ export default {
 	},
 	methods: {
 		async getLogs() {
-			const gitLog = await git(this.$store.state.workspace.repository.path).log()
+			const gitLog = await git(
+				this.$store.state.workspace.currentRepository.path
+			).log()
 			try {
 				this.$store.dispatch("history/getRepositoryLogs", {
 					logs: gitLog.all
