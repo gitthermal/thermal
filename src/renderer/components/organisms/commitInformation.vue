@@ -61,7 +61,7 @@ export default {
 			).show([hash, "--format=%s %n << %n %b %n >>"])
 			try {
 				let output = body.split("\n")
-				let title = output[0]
+				let title = output[0].trim()
 				let description
 				let commitDescriptionStart
 				let commitDescriptionEnd
@@ -77,6 +77,7 @@ export default {
 					description = output
 						.slice(commitDescriptionStart + 1, commitDescriptionEnd)
 						.toString()
+						.trim()
 				}
 				this.$store.dispatch({
 					type: "history/updateCommitInformationBody",
