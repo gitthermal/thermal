@@ -54,5 +54,79 @@ export default {
 </script>
 
 <style lang='sass'>
+	.commit__detail
 
+		&__buttons
+			display: flex
+			padding: 10px
+			flex-direction: row
+			border-bottom: 1px solid #DEE0E3
+
+			&__back
+				font-size: 10px
+				cursor: pointer
+				color: #6C6F75
+				padding: 2px 6px
+				background-color: #DEE0E3
+				border-radius: 10px
+
+		&__author
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+			display: flex
+			flex-direction: row
+
+			&__image
+				width: 50px
+				height: 50px
+				margin-right: 10px
+
+			&__name
+				margin-bottom: 0
+
+			&__email
+				font-size: 12px
+				color: #6C6F75
+
+		&__summary
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+
+			&__description
+				margin-top: 6px
+				font-size: 12px
+
+		&__meta
+			padding: 10px
+			border-bottom: 1px solid #DEE0E3
+
+			&__item
+				font-size: 12px
+				color: #DEE0E3
+
+				&:not(:last-child)
+					margin-bottom: 4px
+
+				p
+					color: #2E3034
+
+		&__files
+
+			&__summary
+				padding: 10px
+				color: #DEE0E3
+				font-size: 10px
+				border-bottom: 1px solid #DEE0E3
+
+			&__list
+				border-bottom: 1px solid #DEE0E3
+				font-size: 12px
+				font-family: 'Space Mono', monospace
+				color: #2E3034
+				padding: 4px 10px
+				cursor: pointer
+
+				&:hover
+					color: white
+					background-color: #0366D6
 </style>
