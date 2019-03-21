@@ -92,9 +92,12 @@ const actions = {
 	},
 	updateCommitInformationAuthor: ({ commit }, payload) => {
 		commit({
-			type: "updateCommitInformation",
+			type: "commitInformationAuthor",
 			author_name: payload.author_name,
-			author_email: payload.author_email
+			author_email: payload.author_email,
+			author_date: payload.author_date
+		})
+	},
 		})
 	}
 }
