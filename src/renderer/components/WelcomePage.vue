@@ -45,7 +45,7 @@ export default {
 	},
 	computed: {
 		getAllRepository() {
-			return this.$store.getters["addRepo/allRepository"]
+			return this.$store.getters["workspace/listAllRepository"]
 		}
 	},
 	methods: {
@@ -60,7 +60,7 @@ export default {
 		},
 		addLocalRepository() {
 			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("addRepo/showAddLocalRepositoryModel")
+			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
 		},
 		selectCurrentRepository(data) {
 			console.log(data)

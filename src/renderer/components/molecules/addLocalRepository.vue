@@ -1,5 +1,5 @@
 <template>
-  <div v-show="this.$store.state.addRepo.model.addLocalRepository" class="model--small">
+  <div v-show="this.$store.state.workspace.model.addLocalRepository" class="model--small">
     <div class="model__section modal__header">
       <h6 class="model__header__title">Add local repository</h6>
       <div @click="closeModel()" class="model__header__close">
@@ -40,15 +40,15 @@ export default {
 		addRepository() {
 			let repoName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
 			this.$store.dispatch({
-				type: "addRepo/addLocalRepository",
 				name: repoName,
+				type: "workspace/addLocalRepositoryToList",
 				path: this.pathToRepository.trim()
 			})
 			this.closeModel()
 		},
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("addRepo/showAddLocalRepositoryModel")
+			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
 		}
 	}
 }
