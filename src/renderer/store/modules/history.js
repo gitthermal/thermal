@@ -83,7 +83,11 @@ const actions = {
 			type: "toggleCommitInformation"
 		})
 	},
+	updateCommitInformationBody: ({ commit }, payload) => {
 		commit({
+			type: "commitInformationBody",
+			title: payload.title,
+			description: payload.description
 		})
 	},
 	updateCommitInformationAuthor: ({ commit }, payload) => {
