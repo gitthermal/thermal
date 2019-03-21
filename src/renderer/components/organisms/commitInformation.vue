@@ -33,14 +33,15 @@ export default {
 		async getAuthorDetail(hash) {
 			let author = await git(this.workspaceRepository).show([
 				hash,
-				"--format=%an %n %ae"
+				"--format=%an %n %ae %n %ad"
 			])
 			try {
 				let output = author.split("\n")
 				this.$store.dispatch({
 					type: "history/updateCommitInformationAuthor",
 					author_name: output[0].trim(),
-					author_email: output[1].trim()
+					author_email: output[1].trim(),
+					author_date: output[2].trim()
 				})
 			} catch (error) {
 				console.log(error)
