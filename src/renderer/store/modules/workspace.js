@@ -1,5 +1,4 @@
 const state = {
-		id: "",
 	currentRepository: {
 		name: "",
 		path: ""
@@ -17,9 +16,8 @@ const getters = {
 
 const mutations = {
 	workspaceRepository(state, payload) {
-		state.repository.id = payload.id
-		state.repository.name = payload.name
-		state.repository.path = payload.path
+		state.currentRepository.name = payload.name
+		state.currentRepository.path = payload.path
 	},
 	toggleAddLocalRepositoryModel(state) {
 		state.model.addLocalRepository = !state.model.addLocalRepository
@@ -38,7 +36,6 @@ const actions = {
 	updateWorkspaceRepository: ({ commit }, payload) => {
 		commit({
 			type: "workspaceRepository",
-			id: payload.id,
 			name: payload.name,
 			path: payload.path
 		})
@@ -46,7 +43,6 @@ const actions = {
 	switchWorkspaceRepository: ({ commit }) => {
 		commit({
 			type: "workspaceRepository",
-			id: "",
 			name: "",
 			path: ""
 		})
