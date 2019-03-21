@@ -1,6 +1,6 @@
 const state = {
-	repository: {
 		id: "",
+	currentRepository: {
 		name: "",
 		path: ""
 	},

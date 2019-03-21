@@ -27,7 +27,7 @@ export default {
 			return this.$store.getters["history/getCommitInformation"]
 		},
 		workspaceRepository() {
-			return this.$store.state.workspace.repository.path
+			return this.$store.state.workspace.currentRepository.path
 		},
 		commitHash() {
 			return this.$store.state.history.commitInformation.meta.commit_hash

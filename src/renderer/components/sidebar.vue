@@ -25,7 +25,7 @@ export default {
 	},
 	computed: {
 		workspaceRepository() {
-			return !!this.$store.state.workspace.repository.path
+			return !!this.$store.state.workspace.currentRepository.path
 		}
 	}
 }
