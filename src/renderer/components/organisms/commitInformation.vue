@@ -7,6 +7,13 @@
         <p class="commit__detail__author__email">{{ commitInformation.author.email }}</p>
       </div>
     </div>
+    <div class="commit__detail__summary">
+      <div class="commit__detail__summary__title">{{ commitInformation.title }}</div>
+      <div
+        v-if="commitInformation.description"
+        class="commit__detail__summary__description"
+      >{{ commitInformation.description }}</div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +36,7 @@ export default {
 	methods: {
 		getCommitInformation() {
 			this.getAuthorDetail(this.commitHash)
+			this.getCommitBody(this.commitHash)
 		},
 		async getAuthorDetail(hash) {
 			let author = await git(this.workspaceRepository).show([
@@ -42,6 +50,38 @@ export default {
 					author_name: output[0].trim(),
 					author_email: output[1].trim(),
 					author_date: output[2].trim()
+				})
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async getCommitBody(hash) {
+			let body = await git(
+				this.workspaceRepository
+			).show([hash, "--format=%s %n << %n %b %n >>"])
+			try {
+				let output = body.split("\n")
+				let title = output[0]
+				let description
+				let commitDescriptionStart
+				let commitDescriptionEnd
+				for (let i = 0; i < output.length; i++) {
+					if (output[i].trim() === "<<") {
+						commitDescriptionStart = i
+					}
+					if (output[i].trim() === ">>") {
+						commitDescriptionEnd = i
+					}
+				}
+				if (commitDescriptionEnd - commitDescriptionStart > 2) {
+					description = output
+						.slice(commitDescriptionStart + 1, commitDescriptionEnd)
+						.toString()
+				}
+				this.$store.dispatch({
+					type: "history/updateCommitInformationBody",
+					title: title,
+					description: description
 				})
 			} catch (error) {
 				console.log(error)
