@@ -11,13 +11,13 @@
         class="workspace__changes__item d-flex align-items-center"
       >
         <input
-          class="workspace__changes__item__staged"
+          class="workspace__changes__item__checkbox"
           type="checkbox"
           :value="file.path"
 					v-model="stagedFile"
         >
         <label
-          class="workspace__changes__item__file"
+          class="workspace__changes__item__path"
           :title="file.path"
           :for="file.path"
         >{{ file.path }}</label>
@@ -149,6 +149,28 @@ export default {
 				margin-left: 10px
 				font-size: 14px
 				font-weight: 600
+
+		&__changes
+			overflow: hidden
+			overflow-y: scroll
+
+			&__item
+				border-bottom: 1px solid #DEE0E3
+				font-size: 12px
+				color: #2E3034
+				padding: 6px 10px				
+				cursor: pointer
+
+				&__checkbox
+					margin-right: 5px
+
+				&__type
+					padding: 3px 5px
+					color: black
+					border-radius: 3px
+
+				&:hover
+					background-color: rgba(#EFEFEF, .4)
 		
 	.commit-message
 		margin: 10px
