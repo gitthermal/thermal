@@ -21,7 +21,6 @@ const state = {
 			date: ""
 		},
 		files: {
-			changes: "",
 			additions: "",
 			deletion: "",
 			list: []
@@ -64,7 +63,6 @@ const mutations = {
 		state.commitInformation.committer.date = payload.committer_date
 	},
 	commitInformationFiles(state, payload) {
-		state.commitInformation.files.changes = payload.files_changes
 		state.commitInformation.files.additions = payload.files_additions
 		state.commitInformation.files.deletion = payload.files_deletion
 		state.commitInformation.files.list = payload.files_list
