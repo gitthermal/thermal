@@ -4,6 +4,17 @@
       <branchIcon/>
       <p>{{ this.$store.state.commit.activeBranch }}</p>
     </div>
+    <div class="commit-message">
+      <inputText
+        v-model="commitMessageTitle"
+        name="commitMessageTitle"
+        placeholder="Summary (required)"
+        class="commit-message__title"
+      />
+      <primaryButton
+        class="commit-message__button w-100"
+        :text="'Commit to ' + this.$store.state.commit.activeBranch"
+      />
     </div>
   </div>
 </template>
@@ -11,11 +22,20 @@
 <script>
 import git from "simple-git/promise"
 import branchIcon from "./icon/branch"
+import inputText from "./inputText"
+import primaryButton from "./atoms/primaryButton"
 
 export default {
 	name: "workspace",
+	data() {
+		return {
+			commitMessageTitle: "",
+		}
+	},
 	components: {
 		branchIcon,
+		inputText,
+		primaryButton
 	},
 	methods: {
 		async gitStatus() {
@@ -60,4 +80,10 @@ export default {
 				margin-left: 10px
 				font-size: 14px
 				font-weight: 600
+		
+	.commit-message
+		margin: 10px
+
+		&__title
+			margin-bottom: 15px
 </style>
