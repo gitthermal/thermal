@@ -96,6 +96,27 @@ export default {
 				console.log(error)
 			}
 		},
+		fileType(file) {
+			switch (file.working_dir) {
+			case "M":
+				return "M"
+			case "D":
+				return "D"
+			case "?":
+				return "A"
+			case " ":
+				switch (file.index) {
+				case "M":
+					return "M"
+				case "D":
+					return "D"
+				case "R":
+					return "R"
+				case "A":
+					return "A"
+				}
+			}
+		},
 			} catch (error) {
 				console.log(error)
 			}
