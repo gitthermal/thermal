@@ -88,6 +88,14 @@ export default {
 					type: "commit/updateActiveBranch",
 					branch: status.current
 				})
+				this.$store.dispatch({
+					type: "commit/updateFiles",
+					files: status.files
+				})
+			} catch (error) {
+				console.log(error)
+			}
+		},
 			} catch (error) {
 				console.log(error)
 			}
