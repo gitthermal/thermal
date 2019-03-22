@@ -15,10 +15,11 @@
     </div>
 		<div v-if="getAllRepository.length > 0" class="welcome__repository">
 			<div class="welcome__repository__list">
-				<div v-for="repo in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
+				<!-- :data-repository-id="repo.id" -->
+				<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
 					<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
-					<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+					<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
 				</div>
 			</div>
 		</div>
@@ -71,6 +72,11 @@ export default {
 			})
 			this.$router.push({ name: "workspace" })
 		},
+		removeCurrentRepository(index) {
+			this.$store.dispatch({
+				type: "workspace/removeRepositoryFromList",
+				index: index
+			})
 		}
 	}
 }

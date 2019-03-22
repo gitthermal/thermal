@@ -29,6 +29,8 @@ const mutations = {
 		}
 		state.repositoryList.push(repositoryData)
 	},
+	removeRepository(state, payload) {
+		state.repositoryList.splice(payload.index, 1)
 	}
 }
 
@@ -52,6 +54,12 @@ const actions = {
 			type: "localRepository",
 			path: payload.path,
 			name: payload.name
+		})
+	},
+	removeRepositoryFromList: ({ commit }, payload) => {
+		commit({
+			type: "removeRepository",
+			index: payload.index
 		})
 	},
 	showAddLocalRepositoryModel: ({ commit }) => {
