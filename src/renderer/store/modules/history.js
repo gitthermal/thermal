@@ -98,6 +98,24 @@ const actions = {
 			author_date: payload.author_date
 		})
 	},
+	updateCommitInformationMeta: ({ commit }, payload) => {
+		commit({
+			type: "commitInformationCommitHash",
+			commit_hash: payload.commit_hash
+		})
+		commit({
+			type: "commitInformationMeta",
+			tree_hash: payload.tree_hash,
+			parent_hash: payload.parent_hash,
+			meta_refs: payload.meta_refs
+		})
+		commit({
+			type: "commitInformationCommitter",
+			committer_name: payload.committer_name,
+			committer_email: payload.committer_email,
+			committer_date: payload.committer_date
+		})
+	},
 		})
 	}
 }

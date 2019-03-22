@@ -14,6 +14,35 @@
         class="commit__detail__summary__description"
       >{{ commitInformation.description }}</div>
     </div>
+    <div class="commit__detail__meta">
+      <div v-if="commitInformation.author.name" class="commit__detail__meta__item">Author:
+        <p>{{ commitInformation.author.name }} <{{ commitInformation.author.email }}></p>
+      </div>
+      <div v-if="commitInformation.author.date" class="commit__detail__meta__item">Author Date:
+        <p>{{ commitInformation.author.date }}</p>
+      </div>
+      <div v-if="commitInformation.committer.name" class="commit__detail__meta__item">Committer:
+        <p>{{ commitInformation.committer.name }} <{{ commitInformation.committer.email}}></p>
+      </div>
+      <div
+        v-if="commitInformation.committer.date"
+        class="commit__detail__meta__item"
+      >Committer Date:
+        <p>{{ commitInformation.committer.date }}</p>
+      </div>
+      <div v-if="commitInformation.meta.refs" class="commit__detail__meta__item">Refs:
+        <p>{{ commitInformation.meta.refs }}</p>
+      </div>
+      <div v-if="commitInformation.meta.commit_hash" class="commit__detail__meta__item">Commit Hash:
+        <p>{{ commitInformation.meta.commit_hash }}</p>
+      </div>
+      <div v-if="commitInformation.meta.tree_hash" class="commit__detail__meta__item">Tree Hash:
+        <p>{{ commitInformation.meta.tree_hash }}</p>
+      </div>
+      <div v-if="commitInformation.meta.parent_hash" class="commit__detail__meta__item">Parent Hash:
+        <p>{{ commitInformation.meta.parent_hash }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +66,7 @@ export default {
 		getCommitInformation() {
 			this.getAuthorDetail(this.commitHash)
 			this.getCommitBody(this.commitHash)
+			this.getCommitMeta(this.commitHash)
 		},
 		async getAuthorDetail(hash) {
 			let author = await git(this.workspaceRepository).show([
@@ -84,6 +114,27 @@ export default {
 					type: "history/updateCommitInformationBody",
 					title: title,
 					description: description
+				})
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async getCommitMeta(hash) {
+			let meta = await git(this.workspaceRepository).show([
+				hash,
+				"--format=%cn %n %ce %n %cd %n %d %n %H %n %T %n %P"
+			])
+			try {
+				let output = meta.split("\n")
+				this.$store.dispatch({
+					type: "history/updateCommitInformationMeta",
+					committer_name: output[0].trim(),
+					committer_email: output[1].trim(),
+					committer_date: output[2].trim(),
+					meta_refs: output[3].trim(),
+					commit_hash: output[4].trim(),
+					tree_hash: output[5].trim(),
+					parent_hash: output[6].trim()
 				})
 			} catch (error) {
 				console.log(error)
