@@ -14,6 +14,7 @@
           class="workspace__changes__item__staged"
           type="checkbox"
           :value="file.path"
+					v-model="stagedFile"
         >
         <label
           class="workspace__changes__item__file"
@@ -57,6 +58,19 @@ export default {
 		branchIcon,
 		inputText,
 		primaryButton
+	},
+	computed: {
+		stagedFile: {
+			get() {
+				return this.$store.getters["commit/allStagedFiles"]
+			},
+			set(value) {
+				this.$store.dispatch({
+					type: "commit/updateStagedFiles",
+					staged: value
+				})
+			}
+		}
 	},
 	methods: {
 		async gitStatus() {
