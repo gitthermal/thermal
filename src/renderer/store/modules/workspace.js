@@ -3,7 +3,16 @@ const state = {
 		name: "",
 		path: ""
 	},
-	repositoryList: [],
+	repositoryList: [
+		{
+			name: "thermal",
+			path: "C:/Users/YASHU/Desktop/thermal"
+		},
+		{
+			name: "git-test",
+			path: "C:/Users/YASHU/Desktop/git-test"
+		}
+	],
 	model: {
 		addLocalRepository: false,
 		newRepository: false
