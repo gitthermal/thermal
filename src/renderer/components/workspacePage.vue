@@ -4,6 +4,27 @@
       <branchIcon/>
       <p>{{ this.$store.state.commit.activeBranch }}</p>
     </div>
+    <div class="workspace__changes">
+      <div
+        v-for="file in this.$store.getters['commit/allFiles']"
+        :key="file.path"
+        class="workspace__changes__item d-flex align-items-center"
+      >
+        <input
+          class="workspace__changes__item__staged"
+          type="checkbox"
+          :value="file.path"
+        >
+        <label
+          class="workspace__changes__item__file"
+          :title="file.path"
+          :for="file.path"
+        >{{ file.path }}</label>
+        <div
+          class="workspace__changes__item__type ml-auto"
+        >{{ fileType(file) }}</div>
+      </div>
+    </div>
     <div class="commit-message">
       <inputText
         v-model="commitMessageTitle"

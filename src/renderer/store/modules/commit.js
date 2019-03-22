@@ -1,10 +1,12 @@
 const state = {
 	activeBranch: "",
-	staged: []
+	staged: [],
+	files: []
 }
 
 const getters = {
-	allStagedFiles: state => state.staged
+	allStagedFiles: state => state.staged,
+	allFiles: state => state.files
 }
 
 const mutations = {
@@ -13,6 +15,9 @@ const mutations = {
 	},
 	stagedFiles(state, payload) {
 		state.staged = payload.staged
+	},
+	files(state, payload) {
+		state.files = payload.files
 	}
 }
 
@@ -41,6 +46,12 @@ const actions = {
 		commit({
 			type: "stagedFiles",
 			staged: payload.staged
+		})
+	},
+	updateFiles: ({ commit }, payload) => {
+		commit({
+			type: "files",
+			files: payload.files
 		})
 	}
 }
