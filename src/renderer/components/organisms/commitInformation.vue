@@ -43,6 +43,16 @@
         <p>{{ commitInformation.meta.parent_hash }}</p>
       </div>
     </div>
+    <div class="commit__detail__files">
+      <div
+        class="commit__detail__files__summary"
+      >Showing {{ commitInformation.files.list.length }} changed files with {{ commitInformation.files.additions ? commitInformation.files.additions : '0' }} additions and {{ commitInformation.files.deletion ? commitInformation.files.additions : '0' }} deletion</div>
+      <div
+        class="commit__detail__files__list"
+        v-for="file in commitInformation.files.list"
+        :key="file"
+      >{{ file.replace(/\|.*/, '').trim() }}</div>
+    </div>
   </div>
 </template>
 
@@ -67,6 +77,7 @@ export default {
 			this.getAuthorDetail(this.commitHash)
 			this.getCommitBody(this.commitHash)
 			this.getCommitMeta(this.commitHash)
+			this.getFilesDetail(this.commitHash)
 		},
 		async getAuthorDetail(hash) {
 			let author = await git(this.workspaceRepository).show([
@@ -140,6 +151,43 @@ export default {
 				console.log(error)
 			}
 		},
+		async getFilesDetail(hash) {
+			let files = await git(this.repo).show([
+				hash,
+				"--oneline",
+				"--stat"
+			])
+			try {
+				let output = files.split("\n")
+				let additionDeletion = output[output.length - 2].split(", ")
+				additionDeletion.shift()
+				let addition
+				let deletion
+
+				for (let i = 0; i < additionDeletion.length; i++) {
+					let commitMetaType = additionDeletion[i].slice(
+						additionDeletion[i].length - 2,
+						additionDeletion[i].length - 1
+					)
+					let additionDeletionNumber = additionDeletion[i].split(" ")
+					if (commitMetaType === "+") {
+						addition = additionDeletionNumber[0]
+					}
+					if (commitMetaType === "-") {
+						deletion = additionDeletionNumber[0]
+					}
+				}
+
+				this.$store.dispatch({
+					type: "history/updateCommitInformationFiles",
+					files_additions: addition,
+					files_deletion: deletion,
+					files_list: output.slice(1, output.length - 2)
+				})
+			} catch (error) {
+				console.log(error)
+			}
+		}
 	},
 	mounted() {
 		this.getCommitInformation()

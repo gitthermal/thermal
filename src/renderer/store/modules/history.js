@@ -116,6 +116,12 @@ const actions = {
 			committer_date: payload.committer_date
 		})
 	},
+	updateCommitInformationFiles: ({ commit }, payload) => {
+		commit({
+			type: "commitInformationFiles",
+			files_additions: payload.files_additions,
+			files_deletion: payload.files_deletion,
+			files_list: payload.files_list
 		})
 	}
 }
