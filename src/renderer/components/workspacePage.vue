@@ -117,9 +117,15 @@ export default {
 				}
 			}
 		},
+		async commitMessageButton() {
+			git(this.$store.state.workspace.currentRepository.path).add(this.$store.getters["commit/allStagedFiles"])
+			let commit = git(this.$store.state.workspace.currentRepository.path).commit(this.commitMessageTitle)
+			try {
+				console.log(commit)
 			} catch (error) {
 				console.log(error)
 			}
+		}
 	},
 	mounted() {
 		this.gitStatus()
