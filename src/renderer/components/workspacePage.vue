@@ -34,7 +34,9 @@
         class="commit-message__title"
       />
       <primaryButton
+				:class="{ 'button--disable': !this.stagedFileLength > 0 }"
         class="commit-message__button w-100"
+				@click.native="commitMessageButton()"
         :text="'Commit to ' + this.$store.state.commit.activeBranch"
       />
     </div>
@@ -70,6 +72,9 @@ export default {
 					staged: value
 				})
 			}
+		},
+		stagedFileLength() {
+			return this.$store.state.commit.staged.length
 		}
 	},
 	methods: {
