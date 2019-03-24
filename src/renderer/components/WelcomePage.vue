@@ -71,7 +71,6 @@ export default {
 			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
 		},
 		selectCurrentRepository(data) {
-			console.log(data)
 			this.$store.dispatch({
 				type: "workspace/updateWorkspaceRepository",
 				name: data.name,
