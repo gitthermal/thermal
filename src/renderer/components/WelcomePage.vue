@@ -24,6 +24,9 @@
 			</div>
 		</div>
 		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		<div class="appMetaData">
+			Version: {{ appVersion }}
+		</div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@ import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
+import packageJson from '../../../package.json';
 const { shell } = require("electron")
 
 export default {
@@ -47,6 +51,9 @@ export default {
 	computed: {
 		getAllRepository() {
 			return this.$store.getters["workspace/listAllRepository"]
+		},
+		appVersion() {
+			return packageJson.version
 		}
 	},
 	methods: {
@@ -129,4 +136,9 @@ export default {
 
 					&__delete
 						margin-left: .5rem
+					
+	.appMetaData
+		font-size: 10px
+		position: absolute
+		bottom: 3px	
 </style>
