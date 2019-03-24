@@ -50,6 +50,7 @@
       <div
         class="commit__detail__files__list"
         v-for="file in commitInformation.files.list"
+        :key="trimFilePath(file)" @click="commitHistoryPreview(commitInformation.meta.commit_hash, trimFilePath(file))"
       >{{ trimFilePath(file) }}</div>
     </div>
   </div>
@@ -189,6 +190,20 @@ export default {
 		},
 		trimFilePath(path) {
 			return path.replace(/\|.*/, "").trim()
+		},
+		async commitHistoryPreview(hash, path) {
+			this.$store.dispatch("history/showFilePreview")
+			let gitDiff = await git(this.$store.state.workspace.currentRepository.path).diff([hash + "^1", hash, "--", path])
+			try {
+				let output = gitDiff.split("\n")
+				output.splice(0, 4)
+				this.$store.dispatch({
+					type: "history/updateFilePreview",
+					preview: output
+				})
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	},
 	mounted() {

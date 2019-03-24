@@ -25,12 +25,17 @@ const state = {
 			deletion: "",
 			list: []
 		}
+	},
+	filePreview: {
+		isActive: false,
+		preview: []
 	}
 }
 
 const getters = {
 	allLogs: state => state.logs,
-	getCommitInformation: state => state.commitInformation
+	getCommitInformation: state => state.commitInformation,
+	getFilePreview: state => state.filePreview.preview
 }
 
 const mutations = {
@@ -66,6 +71,12 @@ const mutations = {
 		state.commitInformation.files.additions = payload.files_additions
 		state.commitInformation.files.deletion = payload.files_deletion
 		state.commitInformation.files.list = payload.files_list
+	},
+	toggleFilePreview(state) {
+		state.filePreview.isActive = !state.filePreview.isActive
+	},
+	filePreview(state, payload) {
+		state.filePreview.preview = payload.preview
 	}
 }
 
@@ -120,6 +131,17 @@ const actions = {
 			files_additions: payload.files_additions,
 			files_deletion: payload.files_deletion,
 			files_list: payload.files_list
+		})
+	},
+	showFilePreview: ({ commit }) => {
+		commit({
+			type: "toggleFilePreview"
+		})
+	},
+	updateFilePreview: ({ commit }, payload) => {
+		commit({
+			type: "filePreview",
+			preview: payload.preview
 		})
 	}
 }

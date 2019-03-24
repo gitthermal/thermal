@@ -14,6 +14,14 @@
       </div>
 			<commitInformation />
     </div>
+		<div class="history__preview">
+			<div v-if="this.$store.state.history.filePreview.isActive">
+				<commitHistoryPreview/>
+			</div>
+			<div v-else>
+				No content to show
+			</div>
+		</div>
   </div>
 </template>
 
@@ -21,12 +29,14 @@
 import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
+import commitHistoryPreview from "./organisms/commitHistoryPreview"
 
 export default {
 	name: "history",
 	components: {
 		commitHistoryItem,
-		commitInformation
+		commitInformation,
+		commitHistoryPreview
 	},
 	computed: {
 		repositoryLogs() {
@@ -69,4 +79,7 @@ export default {
 		width: 300px
 		overflow: hidden
 		overflow-y: scroll
+
+		&__preview
+			padding: 10px
 </style>
