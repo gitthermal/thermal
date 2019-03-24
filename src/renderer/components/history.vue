@@ -57,7 +57,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch logs.")
+				let errorMessage = "Unable to fetch logs."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, gitLog)
 			}
 		},
 		toggleCommitDetail() {

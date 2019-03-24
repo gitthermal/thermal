@@ -104,7 +104,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Error fetching git status.")
+				let errorMessage = "Error fetching git status."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, status)				
 			}
 		},
 		fileType(file) {
@@ -135,7 +137,9 @@ export default {
 				console.log(commit)
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to make commit.")
+				let errorMessage = "Unable to make commit."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, commit)
 			}
 		}
 	},

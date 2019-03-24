@@ -95,7 +95,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch commit author details.")
+				let errorMessage = "Unable to fetch commit author details."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, author)
 			}
 		},
 		async getCommitBody(hash) {
@@ -130,7 +132,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch commit title/description.")
+				let errorMessage = "Unable to fetch commit title/description."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, body)
 			}
 		},
 		async getCommitMeta(hash) {
@@ -152,7 +156,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch commit meta data.")
+				let errorMessage = "Unable to fetch commit meta data."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, meta)
 			}
 		},
 		async getFilesDetail(hash) {
@@ -190,7 +196,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch commit files.")
+				let errorMessage = "Unable to fetch commit files."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, files)
 			}
 		},
 		trimFilePath(path) {
@@ -208,7 +216,9 @@ export default {
 				})
 			} catch (error) {
 				Sentry.captureException(error)
-				console.log("Unable to fetch commit history preview.")
+				let errorMessage = "Unable to fetch commit history preview."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, gitDiff)
 			}
 		}
 	},
