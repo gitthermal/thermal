@@ -2,6 +2,7 @@
 
 import { app, BrowserWindow } from "electron"
 import store from "../renderer/store"
+import * as Sentry from "@sentry/electron"
 
 /**
  * Set `__static` path to static files in production
