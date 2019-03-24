@@ -92,7 +92,6 @@ export default {
 				this.$store.state.workspace.currentRepository.path
 			).status()
 			try {
-				console.log(status)
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
 					branch: status.current
