@@ -4,6 +4,8 @@ import { app, BrowserWindow } from "electron"
 import store from "../renderer/store"
 import * as Sentry from "@sentry/electron"
 
+Sentry.init({dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446"})
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
