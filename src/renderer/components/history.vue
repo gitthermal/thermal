@@ -32,6 +32,7 @@ import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 import commitHistoryPreview from "./organisms/commitHistoryPreview"
+import * as Sentry from '@sentry/electron'
 
 export default {
 	name: "history",
@@ -55,7 +56,8 @@ export default {
 					logs: gitLog.all
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch logs.")
 			}
 		},
 		toggleCommitDetail() {

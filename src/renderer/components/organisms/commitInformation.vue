@@ -58,6 +58,7 @@
 
 <script>
 import git from "simple-git/promise"
+import * as Sentry from '@sentry/electron'
 
 export default {
 	name: "commitInformation",
@@ -93,7 +94,8 @@ export default {
 					author_date: output[2].trim()
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch commit author details.")
 			}
 		},
 		async getCommitBody(hash) {
@@ -127,7 +129,8 @@ export default {
 					description: description
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch commit title/description.")
 			}
 		},
 		async getCommitMeta(hash) {
@@ -148,7 +151,8 @@ export default {
 					parent_hash: output[6].trim()
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch commit meta data.")
 			}
 		},
 		async getFilesDetail(hash) {
@@ -185,7 +189,8 @@ export default {
 					files_list: output.slice(1, output.length - 2)
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch commit files.")
 			}
 		},
 		trimFilePath(path) {
@@ -202,7 +207,8 @@ export default {
 					preview: output
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to fetch commit history preview.")
 			}
 		}
 	},

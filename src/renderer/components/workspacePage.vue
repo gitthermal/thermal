@@ -50,6 +50,7 @@ import git from "simple-git/promise"
 import branchIcon from "./icon/branch"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
+import * as Sentry from '@sentry/electron'
 
 export default {
 	name: "workspace",
@@ -102,7 +103,8 @@ export default {
 					files: status.files
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Error fetching git status.")
 			}
 		},
 		fileType(file) {
@@ -132,7 +134,8 @@ export default {
 			try {
 				console.log(commit)
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				console.log("Unable to make commit.")
 			}
 		}
 	},
