@@ -56,6 +56,13 @@ export default {
 	data() {
 		return {
 			commitMessageTitle: "",
+			fileColors: {
+				modify: "57C9F6",
+				new: "7CCD5F",
+				delete: "EC746E",
+				rename: "3585de",
+				other: "E2E2E2"
+			}
 		}
 	},
 	components: {

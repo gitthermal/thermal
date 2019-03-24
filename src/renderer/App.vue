@@ -5,7 +5,7 @@
 			<sidebar/>
 			<router-view></router-view>
 		</div>
-		<div v-show="this.$store.state.model.isActive" class="model__placeholder">
+		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<addLocalRepository/>
 			</div>
