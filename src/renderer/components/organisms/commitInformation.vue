@@ -50,8 +50,7 @@
       <div
         class="commit__detail__files__list"
         v-for="file in commitInformation.files.list"
-        :key="file"
-      >{{ file.replace(/\|.*/, '').trim() }}</div>
+      >{{ trimFilePath(file) }}</div>
     </div>
   </div>
 </template>
@@ -187,6 +186,9 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
+		},
+		trimFilePath(path) {
+			return path.replace(/\|.*/, "").trim()
 		}
 	},
 	mounted() {
