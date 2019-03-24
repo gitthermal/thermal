@@ -1,19 +1,21 @@
 <template>
   <div class="history">
-    <div v-if="!this.$store.state.history.commitInformation.isActive">
-      <commitHistoryItem
-        @click.native="gitShow(log.hash)"
-        :data="log"
-        v-for="log in repositoryLogs"
-        :key="log.hash"
-      />
-    </div>
-    <div v-else class="commit__detail">
-      <div class="commit__detail__buttons">
-        <div @click="toggleCommitDetail()" class="commit__detail__buttons__back">Back</div>
-      </div>
-			<commitInformation />
-    </div>
+		<div class="history__logs">
+			<div v-if="!this.$store.state.history.commitInformation.isActive">
+				<commitHistoryItem
+					@click.native="gitShow(log.hash)"
+					:data="log"
+					v-for="log in repositoryLogs"
+					:key="log.hash"
+				/>
+			</div>
+			<div v-else class="commit__detail">
+				<div class="commit__detail__buttons">
+					<div @click="toggleCommitDetail()" class="commit__detail__buttons__back">Back</div>
+				</div>
+				<commitInformation />
+			</div>
+		</div>
 		<div class="history__preview">
 			<div v-if="this.$store.state.history.filePreview.isActive">
 				<commitHistoryPreview/>
@@ -76,10 +78,14 @@ export default {
 
 <style lang='sass'>
 	.history
-		border-right: 1px solid #DEE0E3
-		width: 300px
-		overflow: hidden
-		overflow-y: scroll
+		display: flex
+		flex-direction: row
+
+		&__logs
+			border-right: 1px solid #DEE0E3
+			width: 300px
+			overflow: hidden
+			overflow-y: scroll
 
 		&__preview
 			padding: 10px
