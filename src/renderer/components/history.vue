@@ -58,9 +58,10 @@ export default {
 		},
 		toggleCommitDetail() {
 			this.$store.dispatch("history/showCommitInformation")
+			this.$store.dispatch("history/showFilePreview")
 		},
 		gitShow(hash) {
-			this.toggleCommitDetail()
+			this.$store.dispatch("history/showCommitInformation")
 			this.$store.dispatch({
 				type: "history/updateCommitInformationMeta",
 				commit_hash: hash
