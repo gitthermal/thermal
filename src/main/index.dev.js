@@ -7,9 +7,6 @@
 
 /* eslint-disable */
 
-// Install `electron-debug` with `devtron`
-require("electron-debug")({ showDevTools: true })
-
 // Install `vue-devtools`
 require("electron").app.on("ready", () => {
 	let installExtension = require("electron-devtools-installer")

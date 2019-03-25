@@ -1,6 +1,8 @@
 "use strict"
 
 import { app, BrowserWindow } from "electron"
+// Install `electron-debug` with `devtron`
+require("electron-debug")({ showDevTools: true })
 
 /**
  * Set `__static` path to static files in production
