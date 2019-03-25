@@ -8,6 +8,7 @@
 		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<addLocalRepository/>
+				<newRepository/>
 			</div>
 		</div>
 	</div>
@@ -17,6 +18,7 @@
 import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
+import newRepository from "./components/molecules/newRepository"
 
 export default {
 	name: "thermal",
@@ -24,6 +26,7 @@ export default {
 		navbar,
 		sidebar,
 		addLocalRepository,
+		newRepository
 	}
 }
 </script>
