@@ -35,7 +35,7 @@ import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
-import packageJson from '../../../package.json';
+import packageJson from "../../../package.json"
 const { shell } = require("electron")
 
 export default {

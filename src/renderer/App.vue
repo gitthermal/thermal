@@ -17,6 +17,7 @@
 import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
+
 export default {
 	name: "thermal",
 	components: {
