@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "appId": "com.example.yourapp",
     "productName": "Thermal",
+    "appId": "com.netlify.thermal",
     "directories": {
       "output": "build"
     },
