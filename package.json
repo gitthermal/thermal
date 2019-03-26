@@ -19,7 +19,8 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "npm run lint:fix",
+		"rebuild": "electron-rebuild -f -w sqlite3"
   },
   "build": {
     "productName": "Thermal",
@@ -85,6 +86,7 @@
     "electron-builder": "^20.19.2",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
+    "electron-rebuild": "^1.8.4",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^4.1.0",
     "eslint-config-standard": "^11.0.0",
