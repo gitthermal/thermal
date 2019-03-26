@@ -44,6 +44,7 @@ export default {
 				name: repositoryName,
 				path: this.pathToRepository.trim()
 			})
+			this.pathToRepository = ""
 			this.closeModel()
 		},
 		closeModel() {
