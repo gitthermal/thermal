@@ -2,7 +2,7 @@
 
 import { app, BrowserWindow } from "electron"
 // Install `electron-debug` with `devtron`
-require("electron-debug")({ showDevTools: true })
+require("electron-debug")({ enabled: true })
 
 /**
  * Set `__static` path to static files in production
