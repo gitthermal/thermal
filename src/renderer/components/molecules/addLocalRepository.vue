@@ -1,6 +1,6 @@
 <template>
   <div v-show="this.$store.state.workspace.model.addLocalRepository" class="model--small">
-    <div class="model__section modal__header">
+    <div class="model__section model__header">
       <h6 class="model__header__title">Add local repository</h6>
       <div @click="closeModel()" class="model__header__close">
         <closeIcon/>
