@@ -10,6 +10,7 @@
       <inputText
         v-model="pathToRepository"
         name="pathToRepository"
+				v-focus
         placeholder="Local path to repository"
       />
 			<div v-show="showError" class="model__error">
@@ -66,6 +67,13 @@ export default {
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
 			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+		}
+	},
+	directives: {
+		focus: {
+			inserted: function (el) {
+				el.focus()
+			}
 		}
 	}
 }
