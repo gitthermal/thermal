@@ -12,6 +12,9 @@
         name="pathToRepository"
         placeholder="Local path to repository"
       />
+			<div v-show="showError" class="model__error">
+				This directoy does not appear to be a Git repository. Would you like to create a repositroy here instead?
+			</div>
     </div>
     <div class="model__section model__footer">
       <primaryButton @click.native="addRepository()" class="ml-auto" text="Add repository"/>
@@ -23,12 +26,14 @@
 import closeIcon from "../icon/close"
 import inputText from "../inputText"
 import primaryButton from "../atoms/primaryButton"
+import git from "simple-git/promise"
 
 export default {
 	name: "addLocalRepository",
 	data() {
 		return {
-			pathToRepository: ""
+			pathToRepository: "",
+			showError: false
 		}
 	},
 	components: {
@@ -37,15 +42,26 @@ export default {
 		primaryButton
 	},
 	methods: {
-		addRepository() {
+		async addRepository() {
 			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
-			this.$store.dispatch({
-				type: "workspace/addLocalRepositoryToList",
-				name: repositoryName,
-				path: this.pathToRepository.trim()
-			})
-			this.pathToRepository = ""
-			this.closeModel()
+			console.log(this.pathToRepository)
+			let gitRepositoryPath = git(this.pathToRepository)
+			let validateGit = await gitRepositoryPath.checkIsRepo()
+			try {
+				if (validateGit) {
+					this.$store.dispatch({
+						type: "workspace/addLocalRepositoryToList",
+						name: repositoryName,
+						path: this.pathToRepository.trim()
+					})
+					this.pathToRepository = ""
+					this.closeModel()
+				} else {
+					this.showError = true
+				}
+			} catch (error) {
+				console.log(error)
+			}
 		},
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
@@ -80,4 +96,8 @@ export default {
 
 		&__body
 			border-bottom: 1px solid #eee
+			
+		&__error
+			font-size: 11px
+			margin-top: 10px
 </style>
