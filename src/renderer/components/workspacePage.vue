@@ -1,7 +1,7 @@
 <template>
   <div class="workspace">
 		<div class="workspace__repository">
-			<div class="workspace__branch d-flex">
+			<div class="workspace__branch d-flex align-items-center">
 				<branchIcon/>
 				<p>{{ this.$store.state.commit.activeBranch }}</p>
 			</div>
