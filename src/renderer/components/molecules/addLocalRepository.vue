@@ -6,7 +6,7 @@
         <closeIcon/>
       </div>
     </div>
-    <div class="model__section model__body">
+    <div class="model__section model__body flex-column">
       <inputText
         v-model="pathToRepository"
         name="pathToRepository"
