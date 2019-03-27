@@ -1,10 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import WelcomePage from "../components/WelcomePage"
 import pageNotFound from "../components/pageNotFound"
-import workspacePage from "../components/workspacePage"
-import historyPage from "../components/history"
 
 Vue.use(Router)
 
@@ -12,17 +9,17 @@ let routes = [
 	{
 		path: "/workspace",
 		name: "workspace",
-		component: workspacePage
+		component: require("../components/workspacePage").default
 	},
 	{
 		path: "/history",
 		name: "history",
-		component: historyPage
+		component: require("../components/history").default
 	},
 	{
 		path: "/",
 		name: "welcome",
-		component: WelcomePage
+		component: require("../components/WelcomePage").default
 	},
 	{
 		path: "*",
