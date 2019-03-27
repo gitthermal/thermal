@@ -5,8 +5,6 @@
  *  environment.
  */
 
-/* eslint-disable */
-
 // Install `vue-devtools`
 require("electron").app.on("ready", () => {
 	let installExtension = require("electron-devtools-installer")
