@@ -1,8 +1,6 @@
 import Vue from "vue"
 import Router from "vue-router"
 
-import pageNotFound from "../components/pageNotFound"
-
 Vue.use(Router)
 
 let routes = [
@@ -24,7 +22,7 @@ let routes = [
 	{
 		path: "*",
 		name: "pageNotFound",
-		component: pageNotFound
+		redirect: "/",
 	}
 ]
 
