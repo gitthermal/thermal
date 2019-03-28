@@ -36,6 +36,7 @@ import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 import commitHistoryPreview from "./organisms/commitHistoryPreview"
+import * as Sentry from '@sentry/electron'
 import VueScrollbar from 'vue2-scrollbar'
 
 export default {
@@ -61,7 +62,10 @@ export default {
 					logs: gitLog.all
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				let errorMessage = "Unable to fetch logs."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, gitLog)
 			}
 		},
 		toggleCommitDetail() {
