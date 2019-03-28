@@ -1,17 +1,12 @@
 "use strict"
 
 import { app, BrowserWindow } from "electron"
-import Vue from "vue"
 import * as Sentry from "@sentry/electron"
 
 require("electron-debug")({ enabled: true })
 
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
-	integrations: [new Sentry.Integrations.Vue({
-		Vue,
-		attachProps: true
-	})],
 	environment: "production"
 })
 
