@@ -2,12 +2,16 @@
 	<div class="history">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
-				<commitHistoryItem
-					@click.native="gitShow(log.hash)"
-					:data="log"
-					v-for="log in repositoryLogs"
-					:key="log.hash"
-				/>
+				<VueScrollbar class="history__logs__scrollbar">
+					<div>
+						<commitHistoryItem
+							@click.native="gitShow(log.hash)"
+							:data="log"
+							v-for="log in repositoryLogs"
+							:key="log.hash"
+						/>
+					</div>
+				</VueScrollbar>
 			</div>
 			<div v-else class="commit__detail">
 				<div class="commit__detail__buttons">
@@ -32,13 +36,15 @@ import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 import commitHistoryPreview from "./organisms/commitHistoryPreview"
+import VueScrollbar from 'vue2-scrollbar'
 
 export default {
 	name: "history",
 	components: {
 		commitHistoryItem,
 		commitInformation,
-		commitHistoryPreview
+		commitHistoryPreview,
+		VueScrollbar
 	},
 	computed: {
 		repositoryLogs() {
@@ -84,8 +90,9 @@ export default {
 		&__logs
 			border-right: 1px solid #DEE0E3
 			width: 300px
-			overflow: hidden
-			overflow-y: scroll
+
+			&__scrollbar
+				max-height: 90vh
 
 		&__preview
 			padding: 10px

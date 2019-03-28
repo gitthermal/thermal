@@ -5,28 +5,30 @@
 				<branchIcon/>
 				<p>{{ this.$store.state.commit.activeBranch }}</p>
 			</div>
-			<div class="workspace__changes">
-				<div
-					v-for="file in this.$store.getters['commit/allFiles']"
-					:key="file.path"
-					class="workspace__changes__item d-flex align-items-center"
-				>
-					<input
-						class="workspace__changes__item__checkbox"
-						type="checkbox"
-						:value="file.path"
-						v-model="stagedFile"
-					>
-					<label
-						class="workspace__changes__item__path"
-						:title="file.path"
-						:for="file.path"
-					>{{ file.path }}</label>
+			<VueScrollbar class="workspace__changes__scrollbar">
+				<div class="workspace__changes">
 					<div
-						class="workspace__changes__item__type ml-auto"
-					>{{ fileType(file) }}</div>
+						v-for="file in this.$store.getters['commit/allFiles']"
+						:key="file.path"
+						class="workspace__changes__item d-flex align-items-center"
+					>
+						<input
+							class="workspace__changes__item__checkbox"
+							type="checkbox"
+							:value="file.path"
+							v-model="stagedFile"
+						>
+						<label
+							class="workspace__changes__item__path"
+							:title="file.path"
+							:for="file.path"
+						>{{ file.path }}</label>
+						<div
+							class="workspace__changes__item__type ml-auto"
+						>{{ fileType(file) }}</div>
+					</div>
 				</div>
-			</div>
+			</VueScrollbar>
 		</div>
 		<div class="commit-message">
 			<inputText
@@ -47,6 +49,7 @@
 
 <script>
 import git from "simple-git/promise"
+import VueScrollbar from "vue2-scrollbar"
 import branchIcon from "./icon/branch"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
@@ -68,7 +71,8 @@ export default {
 	components: {
 		branchIcon,
 		inputText,
-		primaryButton
+		primaryButton,
+		VueScrollbar
 	},
 	computed: {
 		stagedFile: {
