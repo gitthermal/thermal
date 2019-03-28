@@ -22,7 +22,14 @@
 							class="workspace__changes__item__path"
 							:title="file.path"
 							:for="file.path"
-						>{{ file.path }}</label>
+						>
+							<p class="workspace__changes__item__path__name">
+								{{ filePath(file.path) }}
+							</p>
+							<p class="workspace__changes__item__path__file">
+								{{ fileName(file.path) }}
+							</p>
+						</label>
 						<div
 							:style="'background-color: #' + fileTypeColor(file)"
 							class="workspace__changes__item__type ml-auto"
@@ -159,6 +166,17 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
+		},
+		filePath(path) {
+			if (path.lastIndexOf("/").toString() !== "-1") {
+				return path.slice(0, path.lastIndexOf("/"))
+			}
+		},
+		fileName(path) {
+			if (path.lastIndexOf("/").toString() !== "-1") {
+				return path.slice(path.lastIndexOf("/"), path.length)
+			}
+			return path
 		}
 	},
 	mounted() {
@@ -207,6 +225,12 @@ export default {
 
 				&__checkbox
 					margin-right: 5px
+
+				&__path
+					display: flex
+
+					&__name
+						color: #BEBEBE
 
 				&__type
 					padding: 3px 5px
