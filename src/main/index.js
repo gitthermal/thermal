@@ -7,7 +7,7 @@ require("electron-debug")({ enabled: true })
 
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
-	environment: "production"
+	environment: process.env.NODE_ENV
 })
 
 /**
