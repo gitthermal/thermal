@@ -22,7 +22,9 @@
 				</div>
 			</div>
 		</div>
-		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		<div>
+			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		</div>
 		<div class="appMetaData">
 			Version: {{ appVersion }}
 		</div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="history">
+	<div class="history">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
 				<commitHistoryItem
@@ -24,7 +24,7 @@
 				No content to show
 			</div>
 		</div>
-  </div>
+	</div>
 </template>
 
 <script>

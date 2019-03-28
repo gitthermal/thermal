@@ -1,5 +1,5 @@
 <template>
-  <div class="workspace">
+	<div class="workspace">
 		<div class="workspace__repository">
 			<div class="workspace__branch d-flex align-items-center">
 				<branchIcon/>
@@ -28,21 +28,21 @@
 				</div>
 			</div>
 		</div>
-    <div class="commit-message">
-      <inputText
-        v-model="commitMessageTitle"
-        name="commitMessageTitle"
-        placeholder="Summary (required)"
-        class="commit-message__title"
-      />
-      <primaryButton
+		<div class="commit-message">
+			<inputText
+				v-model="commitMessageTitle"
+				name="commitMessageTitle"
+				placeholder="Summary (required)"
+				class="commit-message__title"
+			/>
+			<primaryButton
 				:class="{ 'button--disable': !this.stagedFileLength > 0 }"
-        class="commit-message__button w-100"
+				class="commit-message__button w-100"
 				@click.native="commitMessageButton()"
-        :text="'Commit to ' + this.$store.state.commit.activeBranch"
-      />
-    </div>
-  </div>
+				:text="'Commit to ' + this.$store.state.commit.activeBranch"
+			/>
+		</div>
+	</div>
 </template>
 
 <script>
