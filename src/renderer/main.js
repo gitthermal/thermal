@@ -15,6 +15,7 @@ Sentry.init({
 		Vue,
 		attachProps: true
 	})],
+	environment: process.env.NODE_ENV
 })
 
 if (!process.env.IS_WEB) Vue.use(require("vue-electron"))
