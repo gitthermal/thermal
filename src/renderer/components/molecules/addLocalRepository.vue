@@ -46,7 +46,7 @@ export default {
 		async addRepository() {
 			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
 			console.log(this.pathToRepository)
-			let gitRepositoryPath = git(this.pathToRepository)
+			let gitRepositoryPath = git(this.pathToRepository.trim())
 			let validateGit = await gitRepositoryPath.checkIsRepo()
 			try {
 				if (validateGit) {
