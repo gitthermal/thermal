@@ -172,8 +172,9 @@ export default {
 				font-weight: 600
 
 		&__changes
-			overflow: hidden
-			overflow-y: scroll
+
+			&__scrollbar
+				height: calc(90vh - (41px + 102px))
 
 			&__item
 				font-size: 12px
