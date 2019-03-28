@@ -24,6 +24,7 @@
 							:for="file.path"
 						>{{ file.path }}</label>
 						<div
+							:style="'background-color: #' + fileTypeColor(file)"
 							class="workspace__changes__item__type ml-auto"
 						>{{ fileType(file) }}</div>
 					</div>
@@ -129,6 +130,27 @@ export default {
 				}
 			}
 		},
+		fileTypeColor(file) {
+			switch (file.working_dir) {
+			case "M":
+				return this.fileColors.modify
+			case "D":
+				return this.fileColors.delete
+			case "?":
+				return this.fileColors.new
+			case " ":
+				switch (file.index) {
+				case "M":
+					return this.fileColors.modify
+				case "D":
+					return this.fileColors.delete
+				case "R":
+					return this.fileColors.rename
+				case "A":
+					return this.fileColors.new
+				}
+			}
+		},
 		async commitMessageButton() {
 			git(this.$store.state.workspace.currentRepository.path).add(this.$store.getters["commit/allStagedFiles"])
 			let commit = git(this.$store.state.workspace.currentRepository.path).commit(this.commitMessageTitle)
@@ -190,7 +212,7 @@ export default {
 
 				&__type
 					padding: 3px 5px
-					color: black
+					color: white
 					border-radius: 3px
 
 				&:hover
