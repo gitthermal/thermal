@@ -199,13 +199,11 @@ export default {
 				height: calc(90vh - (41px + 102px))
 
 			&__item
+				border-bottom: 1px solid #DEE0E3
 				font-size: 12px
 				color: #2E3034
 				padding: 6px 10px				
 				cursor: pointer
-
-				&:not(:last-child)
-					border-bottom: 1px solid #DEE0E3
 
 				&__checkbox
 					margin-right: 5px
