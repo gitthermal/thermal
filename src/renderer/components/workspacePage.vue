@@ -61,6 +61,7 @@ import VueScrollbar from "vue2-scrollbar"
 import branchIcon from "./icon/branch"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
+import * as Sentry from '@sentry/electron'
 
 export default {
 	name: "workspace",
@@ -113,7 +114,10 @@ export default {
 					files: status.files
 				})
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				let errorMessage = "Error fetching git status."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, status)				
 			}
 		},
 		fileType(file) {
@@ -164,7 +168,10 @@ export default {
 			try {
 				console.log(commit)
 			} catch (error) {
-				console.log(error)
+				Sentry.captureException(error)
+				let errorMessage = "Unable to make commit."
+				console.log(errorMessage)
+				Sentry.captureMessage(errorMessage, commit)
 			}
 		},
 		filePath(path) {

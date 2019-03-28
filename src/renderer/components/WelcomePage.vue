@@ -37,8 +37,14 @@ import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
+<<<<<<< src/renderer/components/WelcomePage.vue
 import packageJson from "../../../package.json"
+import * as Sentry from "@sentry/electron"
 const { shell } = require("electron")
+
+Sentry.configureScope((scope) => {
+	scope.setTag("appVersion", this.appVersion)
+})
 
 export default {
 	name: "WelcomePage",
