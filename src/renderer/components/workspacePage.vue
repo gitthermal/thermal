@@ -1,52 +1,56 @@
 <template>
-  <div class="workspace">
+	<div class="workspace">
 		<div class="workspace__repository">
-			<div class="workspace__branch d-flex">
+			<div class="workspace__branch d-flex align-items-center">
 				<branchIcon/>
 				<p>{{ this.$store.state.commit.activeBranch }}</p>
 			</div>
-			<div class="workspace__changes">
-				<div
-					v-for="file in this.$store.getters['commit/allFiles']"
-					:key="file.path"
-					class="workspace__changes__item d-flex align-items-center"
-				>
-					<input
-						class="workspace__changes__item__checkbox"
-						type="checkbox"
-						:value="file.path"
-						v-model="stagedFile"
-					>
-					<label
-						class="workspace__changes__item__path"
-						:title="file.path"
-						:for="file.path"
-					>{{ file.path }}</label>
+			<VueScrollbar class="workspace__changes__scrollbar">
+				<div class="workspace__changes">
 					<div
-						class="workspace__changes__item__type ml-auto"
-					>{{ fileType(file) }}</div>
+						v-for="file in this.$store.getters['commit/allFiles']"
+						:key="file.path"
+						class="workspace__changes__item d-flex align-items-center"
+					>
+						<input
+							class="workspace__changes__item__checkbox"
+							type="checkbox"
+							:value="file.path"
+							v-model="stagedFile"
+						>
+						<label
+							class="workspace__changes__item__path"
+							:title="file.path"
+							:for="file.path"
+						>{{ file.path }}</label>
+						<div
+							:style="'background-color: #' + fileTypeColor(file)"
+							class="workspace__changes__item__type ml-auto"
+						>{{ fileType(file) }}</div>
+					</div>
 				</div>
-			</div>
+			</VueScrollbar>
 		</div>
-    <div class="commit-message">
-      <inputText
-        v-model="commitMessageTitle"
-        name="commitMessageTitle"
-        placeholder="Summary (required)"
-        class="commit-message__title"
-      />
-      <primaryButton
+		<div class="commit-message">
+			<inputText
+				v-model="commitMessageTitle"
+				name="commitMessageTitle"
+				placeholder="Summary (required)"
+				class="commit-message__title"
+			/>
+			<primaryButton
 				:class="{ 'button--disable': !this.stagedFileLength > 0 }"
-        class="commit-message__button w-100"
+				class="commit-message__button w-100"
 				@click.native="commitMessageButton()"
-        :text="'Commit to ' + this.$store.state.commit.activeBranch"
-      />
-    </div>
-  </div>
+				:text="'Commit to ' + this.$store.state.commit.activeBranch"
+			/>
+		</div>
+	</div>
 </template>
 
 <script>
 import git from "simple-git/promise"
+import VueScrollbar from "vue2-scrollbar"
 import branchIcon from "./icon/branch"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
@@ -69,7 +73,8 @@ export default {
 	components: {
 		branchIcon,
 		inputText,
-		primaryButton
+		primaryButton,
+		VueScrollbar
 	},
 	computed: {
 		stagedFile: {
@@ -93,7 +98,6 @@ export default {
 				this.$store.state.workspace.currentRepository.path
 			).status()
 			try {
-				console.log(status)
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
 					branch: status.current
@@ -127,6 +131,27 @@ export default {
 					return "R"
 				case "A":
 					return "A"
+				}
+			}
+		},
+		fileTypeColor(file) {
+			switch (file.working_dir) {
+			case "M":
+				return this.fileColors.modify
+			case "D":
+				return this.fileColors.delete
+			case "?":
+				return this.fileColors.new
+			case " ":
+				switch (file.index) {
+				case "M":
+					return this.fileColors.modify
+				case "D":
+					return this.fileColors.delete
+				case "R":
+					return this.fileColors.rename
+				case "A":
+					return this.fileColors.new
 				}
 			}
 		},
@@ -176,8 +201,9 @@ export default {
 				font-weight: 600
 
 		&__changes
-			overflow: hidden
-			overflow-y: scroll
+
+			&__scrollbar
+				height: calc(90vh - (41px + 102px))
 
 			&__item
 				border-bottom: 1px solid #DEE0E3
@@ -191,14 +217,15 @@ export default {
 
 				&__type
 					padding: 3px 5px
-					color: black
+					color: white
 					border-radius: 3px
 
 				&:hover
 					background-color: rgba(#EFEFEF, .4)
 		
 	.commit-message
-		margin: 10px
+		padding: 10px
+		border-top: 1px solid #DEE0E3
 
 		&__title
 			margin-bottom: 15px

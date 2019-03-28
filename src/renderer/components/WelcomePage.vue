@@ -15,7 +15,6 @@
     </div>
 		<div v-if="getAllRepository.length > 0" class="welcome__repository">
 			<div class="welcome__repository__list">
-				<!-- :data-repository-id="repo.id" -->
 				<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
 					<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
@@ -23,7 +22,9 @@
 				</div>
 			</div>
 		</div>
-		<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		<div>
+			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		</div>
 		<div class="appMetaData">
 			Version: {{ appVersion }}
 		</div>
@@ -36,7 +37,8 @@ import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
-import packageJson from '../../../package.json';
+<<<<<<< src/renderer/components/WelcomePage.vue
+import packageJson from "../../../package.json"
 import * as Sentry from "@sentry/electron"
 const { shell } = require("electron")
 

@@ -1,17 +1,21 @@
 <template>
   <div v-show="this.$store.state.workspace.model.addLocalRepository" class="model--small">
-    <div class="model__section modal__header">
+    <div class="model__section model__header">
       <h6 class="model__header__title">Add local repository</h6>
       <div @click="closeModel()" class="model__header__close">
         <closeIcon/>
       </div>
     </div>
-    <div class="model__section model__body">
+    <div class="model__section model__body flex-column">
       <inputText
         v-model="pathToRepository"
         name="pathToRepository"
+				v-focus
         placeholder="Local path to repository"
       />
+			<div v-show="showError" class="model__error">
+				This directoy does not appear to be a Git repository. Would you like to create a repositroy here instead?
+			</div>
     </div>
     <div class="model__section model__footer">
       <primaryButton @click.native="addRepository()" class="ml-auto" text="Add repository"/>
@@ -23,12 +27,14 @@
 import closeIcon from "../icon/close"
 import inputText from "../inputText"
 import primaryButton from "../atoms/primaryButton"
+import git from "simple-git/promise"
 
 export default {
 	name: "addLocalRepository",
 	data() {
 		return {
-			pathToRepository: ""
+			pathToRepository: "",
+			showError: false
 		}
 	},
 	components: {
@@ -37,18 +43,36 @@ export default {
 		primaryButton
 	},
 	methods: {
-		addRepository() {
+		async addRepository() {
 			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
-			this.$store.dispatch({
-				type: "workspace/addLocalRepositoryToList",
-				name: repositoryName,
-				path: this.pathToRepository.trim()
-			})
-			this.closeModel()
+			let gitRepositoryPath = git(this.pathToRepository.trim())
+			let validateGit = await gitRepositoryPath.checkIsRepo()
+			try {
+				if (validateGit) {
+					this.$store.dispatch({
+						type: "workspace/addLocalRepositoryToList",
+						name: repositoryName,
+						path: this.pathToRepository.trim()
+					})
+					this.pathToRepository = ""
+					this.closeModel()
+				} else {
+					this.showError = true
+				}
+			} catch (error) {
+				console.log(error)
+			}
 		},
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
 			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+		}
+	},
+	directives: {
+		focus: {
+			inserted: function (el) {
+				el.focus()
+			}
 		}
 	}
 }
@@ -79,4 +103,8 @@ export default {
 
 		&__body
 			border-bottom: 1px solid #eee
+			
+		&__error
+			font-size: 11px
+			margin-top: 10px
 </style>

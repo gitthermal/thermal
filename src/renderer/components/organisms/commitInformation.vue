@@ -277,7 +277,7 @@ export default {
 
 			&__item
 				font-size: 12px
-				color: #DEE0E3
+				color: #BEBEBE
 
 				&:not(:last-child)
 					margin-bottom: 4px
@@ -289,7 +289,7 @@ export default {
 
 			&__summary
 				padding: 10px
-				color: #DEE0E3
+				color: #BEBEBE
 				font-size: 10px
 				border-bottom: 1px solid #DEE0E3
 

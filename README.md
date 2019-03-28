@@ -2,9 +2,6 @@
 
 Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.
 
-C:/Users/YASHU/Desktop/thermal
-C:/Users/YASHU/Desktop/git-test
-
 ## Contributing
 
 If you are interested in fixing issues and contributing directly to the codebase, please see the documentaiton [how to contribute](https://thermal.netlify.com/contribute). Here's a quick steps to get started quickly:

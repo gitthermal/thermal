@@ -1,8 +1,10 @@
 "use strict"
 
 import { app, BrowserWindow } from "electron"
-import store from "../renderer/store"
+import Vue from "vue"
 import * as Sentry from "@sentry/electron"
+
+require("electron-debug")({ enabled: true })
 
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
@@ -46,7 +48,9 @@ function createWindow() {
 	})
 }
 
-app.on("ready", createWindow)
+app.on("ready", () => {
+	createWindow()
+})
 
 app.on("window-all-closed", () => {
 	if (process.platform !== "darwin") {

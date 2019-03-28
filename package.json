@@ -1,7 +1,7 @@
 {
   "name": "thermal",
-  "version": "0.0.1",
   "license": null,
+  "version": "0.0.1-alpha.1",
   "author": {
     "name": "Yashu Mittal",
     "email": "mittalyashu77@gmail.com"
@@ -22,8 +22,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "appId": "com.example.yourapp",
     "productName": "Thermal",
+    "appId": "com.netlify.thermal",
     "directories": {
       "output": "build"
     },
@@ -59,11 +59,11 @@
     "@sentry/electron": "^0.17.0",
     "axios": "^0.18.0",
     "simple-git": "^1.107.0",
+    "sqlite3": "^4.0.6",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "vuex-electron": "^1.0.0"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
@@ -112,6 +112,7 @@
     "vue-moment": "^4.0.0",
     "vue-style-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16",
+    "vue2-scrollbar": "^0.0.3",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4",
