@@ -27,17 +27,22 @@
 								<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
 							</div>
 						</div>
-						<div v-else>
-							<div v-for="repo in this.repositoryList" :key="repo" class="welcome__repository__list__item welcome__repository__example d-flex align-items-center">
-								<h6>{{ repo }}</h6>
-								<primaryButton text="Select" class="welcome__repository__list__item__select ml-auto"/>
-								<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+						<div v-else @mouseenter="toggleRepositoryExampleModel" @mouseleave="toggleRepositoryExampleModel">
+							<div>
+								<div v-for="repo in this.repositoryList" :key="repo" class="welcome__repository__list__item welcome__repository__example d-flex align-items-center">
+									<h6>{{ repo }}</h6>
+									<primaryButton text="Select" class="welcome__repository__list__item__select ml-auto"/>
+									<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+								</div>
+							</div>
+							<div v-show="exampleRepositoryModel" class="welcome__repository__example__model">
+								<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
 							</div>
 						</div>
 					</div>
 				</VueScrollbar>
 			</div>
-			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
+			<primaryButton v-show="getAllRepository.length > 0" @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
 		</div>
 		<div class="appMetaData">
 			Version: {{ appVersion }}
@@ -68,7 +73,8 @@ export default {
 				"thermal-app",
 				"gatsbyjs",
 				"awesome-vuejs"
-			]
+			],
+			exampleRepositoryModel: false
 		}
 	},
 	components: {
@@ -100,6 +106,9 @@ export default {
 		addLocalRepository() {
 			this.$store.dispatch("model/showModelPlaceholder")
 			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+		},
+		toggleRepositoryExampleModel() {
+			this.exampleRepositoryModel = !this.exampleRepositoryModel
 		},
 		selectCurrentRepository(data) {
 			this.$store.dispatch({
@@ -159,6 +168,20 @@ export default {
 
 			&__example
 				user-select: none
+
+				&__model
+					position: absolute
+					bottom: 0
+					align-items: center
+					flex-direction: column
+					justify-content: center
+					display: flex
+					opacity: 1
+					transition: opacity .2s ease-in-out
+					width: 93%
+					height: 100%
+					padding: 0 16px
+					background-color: rgba(#fff, .8)
 
 			&__list
 				border: 1px solid #EFEFEF
