@@ -163,5 +163,7 @@ export default {
 	.appMetaData
 		font-size: 10px
 		position: absolute
-		bottom: 3px	
+		bottom: 3px
+		width: 100%
+		text-align: center	
 </style>
