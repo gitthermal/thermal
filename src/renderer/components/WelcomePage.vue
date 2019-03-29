@@ -20,11 +20,20 @@
 			<div class="welcome__repository__list">
 				<VueScrollbar class="welcome__repository__scrollbar">
 					<div>
+						<div v-if="getAllRepository.length > 0">
 							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 								<h6>{{ repo.name }}</h6>
 								<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
 								<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
 							</div>
+						</div>
+						<div v-else>
+							<div v-for="repo in this.repositoryList" :key="repo" class="welcome__repository__list__item welcome__repository__example d-flex align-items-center">
+								<h6>{{ repo }}</h6>
+								<primaryButton text="Select" class="welcome__repository__list__item__select ml-auto"/>
+								<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+							</div>
+						</div>
 					</div>
 				</VueScrollbar>
 			</div>
@@ -53,6 +62,15 @@ Sentry.configureScope((scope) => {
 
 export default {
 	name: "WelcomePage",
+	data() {
+		return {
+			repositoryList: [
+				"thermal-app",
+				"gatsbyjs",
+				"awesome-vuejs"
+			]
+		}
+	},
 	components: {
 		linkIcon,
 		twitterIcon,
@@ -139,6 +157,8 @@ export default {
 				max-height: 400px
 				padding: 1rem
 
+			&__example
+				user-select: none
 
 			&__list
 				border: 1px solid #EFEFEF
