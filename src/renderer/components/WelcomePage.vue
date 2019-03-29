@@ -18,11 +18,15 @@
 		<div class="welcome__seperate"></div>
 		<div class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto">
 			<div class="welcome__repository__list">
+				<VueScrollbar class="welcome__repository__scrollbar">
+					<div>
 							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 								<h6>{{ repo.name }}</h6>
 								<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
 								<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
 							</div>
+					</div>
+				</VueScrollbar>
 			</div>
 			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
 		</div>
@@ -40,6 +44,7 @@ import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
 import packageJson from "../../../package.json"
 import * as Sentry from "@sentry/electron"
+import VueScrollbar from "vue2-scrollbar"
 const { shell } = require("electron")
 
 Sentry.configureScope((scope) => {
@@ -53,7 +58,8 @@ export default {
 		twitterIcon,
 		coffeeIcon,
 		primaryButton,
-		outlineButton
+		outlineButton,
+		VueScrollbar
 	},
 	computed: {
 		getAllRepository() {
@@ -129,6 +135,10 @@ export default {
 	
 		&__repository
 			
+			&__scrollbar
+				max-height: 400px
+				padding: 1rem
+
 
 			&__list
 				border: 1px solid #EFEFEF
