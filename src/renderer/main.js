@@ -1,6 +1,6 @@
 import Vue from "vue"
 import axios from "axios"
-import * as Sentry from "@sentry/electron"
+import { init, getIntegrations } from "@sentry/electron"
 
 import App from "./App"
 import router from "./router"
@@ -9,9 +9,10 @@ import store from "./store"
 import "vue2-scrollbar/dist/style/vue2-scrollbar.css"
 import "./assets/css/all.sass"
 
-Sentry.init({
+const VueIntegration = getIntegrations().browser.Vue
+init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
-	integrations: [new Sentry.Integrations.Vue({
+	integrations: [new VueIntegration({
 		Vue,
 		attachProps: true
 	})],
