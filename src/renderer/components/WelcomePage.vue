@@ -1,29 +1,30 @@
 <template>
-  <div class="welcome d-flex flex-column justify-center align-items-center">
-    <h1>Welcome to Thermal</h1>
-    <p class="welcome__description">One stop for all of your Git repository.</p>
-    <div class="welcome__item d-flex">
-      <div @click="websiteURL()" class="welcome__item__icon">
-        <linkIcon/>
-      </div>
-      <div @click="twitterURL()" class="welcome__item__icon">
-        <twitterIcon/>
-      </div>
-      <div @click="coffeeURL()" class="welcome__item__icon">
-        <coffeeIcon/>
-      </div>
-    </div>
-		<div v-if="getAllRepository.length > 0" class="welcome__repository">
-			<div class="welcome__repository__list">
-				<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
-					<h6>{{ repo.name }}:</h6> <p :title="repo.path">{{ repo.path }}</p>
-					<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
-					<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+  <div class="welcome d-flex align-items-center">
+		<div class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto">
+			<h1>Welcome to Thermal</h1>
+			<p class="welcome__introduction__description">One stop for all of your Git repository.</p>
+			<div class="welcome__introduction__item d-flex">
+				<div @click="websiteURL()" class="welcome__introduction__item__icon">
+					<linkIcon/>
+				</div>
+				<div @click="twitterURL()" class="welcome__introduction__item__icon">
+					<twitterIcon/>
+				</div>
+				<div @click="coffeeURL()" class="welcome__introduction__item__icon">
+					<coffeeIcon/>
 				</div>
 			</div>
 		</div>
-		<div>
-			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" :text="getAllRepository.length > 0 ? 'Add Repository' : 'Get Started'"/>
+		<div class="welcome__seperate"></div>
+		<div class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto">
+			<div class="welcome__repository__list">
+							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
+								<h6>{{ repo.name }}</h6>
+								<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
+								<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+							</div>
+			</div>
+			<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
 		</div>
 		<div class="appMetaData">
 			Version: {{ appVersion }}
@@ -97,36 +98,43 @@ export default {
 <style lang='sass'>
 	.welcome
 		width: 100%
-		
-		align-items: center
+		height: 100vh
 
-		&__description
-			margin-bottom: 1rem
+		&__introduction
 
-		&__item
-			margin-bottom: 1rem
+			&__description
+				margin-bottom: 1rem
 
-			&__icon
-				cursor: pointer
-		
-				svg
-					width: 30px
-					height: 30px
-					stroke: #222831
+			&__item
+				margin-bottom: 1rem
 
-				&:not(:last-child)
-					margin-right: 20px
+				&__icon
+					cursor: pointer
+			
+					svg
+						width: 30px
+						height: 30px
+						stroke: #222831
+
+					&:not(:last-child)
+						margin-right: 20px
 			
 		&__cta
 			margin-top: 1rem
+
+		&__seperate
+			width: 1px
+			height: 480px
+			background-color: #DEE0E3
 	
 		&__repository
-			border: 1px solid #EFEFEF
-			width: 550px
-			border-radius: 1rem
-			padding: 1rem
+			
 
 			&__list
+				border: 1px solid #EFEFEF
+				width: 450px
+				border-radius: 1rem
+
 				&__item
 					&:not(:last-child)
 						margin-bottom: .5rem
