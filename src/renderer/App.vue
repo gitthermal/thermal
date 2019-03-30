@@ -1,5 +1,6 @@
 <template>
 	<div id="app">
+		<menubar/>
 		<navbar/>
 		<div class="col__view">
 			<sidebar/>
@@ -14,6 +15,7 @@
 </template>
 
 <script>
+import menubar from "./components/menubar"
 import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
@@ -21,6 +23,7 @@ import addLocalRepository from "./components/molecules/addLocalRepository"
 export default {
 	name: "thermal",
 	components: {
+		menubar,
 		navbar,
 		sidebar,
 		addLocalRepository,
