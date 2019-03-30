@@ -1,0 +1,3 @@
+<template>
+	<svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 10C0 4.477 4.477 0 10 0s10 4.477 10 10-4.477 10-10 10S0 15.523 0 10z" fill="url(#paint0_linear)"/><path fill-rule="evenodd" clip-rule="evenodd" d="M6 7a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm1-2a2 2 0 0 0-.5 3.937V14.5a.5.5 0 0 0 1 0V8.937A2 2 0 0 0 7 5zm5 8a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm-1 0a2 2 0 0 1 1.5-1.937V8a.5.5 0 0 0-.5-.5h-1.5a.5.5 0 0 1 0-1H12A1.5 1.5 0 0 1 13.5 8v3.063A2 2 0 1 1 11 13z" fill="#fff"/><defs><linearGradient id="paint0_linear" x1="10" x2="10" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#00ADB5"/><stop offset="1" stop-color="#008A90"/></linearGradient></defs></svg>
+</template>
