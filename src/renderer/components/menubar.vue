@@ -14,7 +14,7 @@
         <div class="menubar__list__item">File</div>
         <div @mouseleave="fileDropdown()" v-show="this.menu.file.isActive" class="menubar__list__item__dropdown">
 					<div class="menubar__list__item__dropdown__item">New repository</div>
-          <div class="menubar__list__item__dropdown__item">Add local repository</div>
+          <div @click="addLocalRepository()" class="menubar__list__item__dropdown__item">Add local repository</div>
           <div class="menubar__list__item__dropdown__item">Clone repository</div>
           <div class="menubar__list__item__dropdown__item">Options</div>
           <div class="menubar__list__item__dropdown__item">Exit</div>
@@ -141,6 +141,10 @@ export default {
 		},
 		helpDropdown() {
 			this.menu.help.isActive = !this.menu.help.isActive
+		},
+		addLocalRepository() {
+			this.$store.dispatch("model/showModelPlaceholder")
+			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
 		}
 	}
 }
