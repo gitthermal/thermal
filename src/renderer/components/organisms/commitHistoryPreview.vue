@@ -1,25 +1,27 @@
 <template>
-		<div v-for="(line, index) in filePreview" :key="index">
-			{{ line }}
 	<VueScrollbar class="commit__preview">
+		<div>
+			<div v-for="(line, index) in filePreview" :key="index">
+				{{ line }}
+			</div>
 		</div>
 	</VueScrollbar>
 </template>
 
 <script>
-	export default {
-		name: "commitHistoryPreivew",
-		computed: {
-			filePreview: function() {
-				return this.$store.getters["history/getFilePreview"]
-			}  
-		}
 import VueScrollbar from "vue2-scrollbar"
 
+export default {
+	name: "commitHistoryPreivew",
 	components: {
 		VueScrollbar
 	},
+	computed: {
+		filePreview: function() {
+			return this.$store.getters["history/getFilePreview"]
+		}  
 	}
+}
 </script>
 
 <style lang='sass'>

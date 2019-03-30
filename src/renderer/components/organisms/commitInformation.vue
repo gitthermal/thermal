@@ -58,7 +58,7 @@
 
 <script>
 import git from "simple-git/promise"
-import * as Sentry from '@sentry/electron'
+import * as Sentry from "@sentry/electron"
 
 export default {
 	name: "commitInformation",

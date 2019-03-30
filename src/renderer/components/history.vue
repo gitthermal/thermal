@@ -36,8 +36,8 @@ import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 import commitHistoryPreview from "./organisms/commitHistoryPreview"
-import * as Sentry from '@sentry/electron'
-import VueScrollbar from 'vue2-scrollbar'
+import * as Sentry from "@sentry/electron"
+import VueScrollbar from "vue2-scrollbar"
 
 export default {
 	name: "history",

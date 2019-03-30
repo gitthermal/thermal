@@ -61,7 +61,7 @@ import VueScrollbar from "vue2-scrollbar"
 import branchIcon from "./icon/branch"
 import inputText from "./inputText"
 import primaryButton from "./atoms/primaryButton"
-import * as Sentry from '@sentry/electron'
+import * as Sentry from "@sentry/electron"
 
 export default {
 	name: "workspace",
