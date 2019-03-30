@@ -196,10 +196,6 @@ export default {
 	.workspace
 		border-right: 1px solid #DEE0E3
 		width: 400px
-		height: 90vh
-		display: flex
-		flex-direction: column
-		justify-content: space-between
 
 		&__branch
 			background-color: #EFEFEF
@@ -221,7 +217,7 @@ export default {
 		&__changes
 
 			&__scrollbar
-				height: calc(90vh - (41px + 102px))
+				height: calc(86vh - (41px + 102px))
 
 			&__item
 				border-bottom: 1px solid #DEE0E3
