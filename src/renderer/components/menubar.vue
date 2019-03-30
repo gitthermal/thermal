@@ -1,15 +1,9 @@
 <template>
-	<div class="menubar d-flex">
-		<div class="menubar__logo d-flex">
-			<thermalLogo/>
-		</div>
-		<div class="menubar__list d-flex align-items-center">
-		</div>
-		<div class="menubar__drag"></div>
-		<div class="menubar__controles">
-			<windowsButton/>
-		</div>
-	</div>
+  <div class="menubar d-flex">
+    <div class="menubar__logo d-flex">
+      <thermalLogo/>
+    </div>
+    <div class="menubar__list d-flex align-items-center">
       <div @click="fileDropdown()">
         <div class="menubar__list__item">File</div>
         <div @mouseleave="fileDropdown()" v-show="this.menu.file.isActive" class="menubar__list__item__dropdown">
@@ -85,14 +79,21 @@
 					<div class="menubar__list__item__dropdown__item">Contact support</div>
 					<div class="menubar__list__item__dropdown__item">Show User Guides</div>
 					<div class="menubar__list__item__dropdown__item">Show logs in Explorer</div>
-					<div class="menubar__list__item__dropdown__item">About</div>
+					<div @click="about()" class="menubar__list__item__dropdown__item">About</div>
         </div>
       </div>
+    </div>
+    <div class="menubar__drag"></div>
+    <div class="menubar__controles">
+      <windowsButton/>
+    </div>
+  </div>
 </template>
 
 <script>
 import thermalLogo from "./icon/logo"
 import windowsButton from "./windowsButton"
+const { remote } = require("electron")
 
 export default {
 	name: "menubar",
@@ -148,6 +149,10 @@ export default {
 		},
 		exitApp() {
 			remote.getCurrentWindow().close()
+		},
+		about() {
+			this.$store.dispatch("model/showModelPlaceholder")
+			this.$store.dispatch("workspace/showAboutModel")
 		}
 	}
 }
