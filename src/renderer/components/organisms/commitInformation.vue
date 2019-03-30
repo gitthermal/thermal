@@ -230,6 +230,7 @@ export default {
 
 <style lang='sass'>
 	.commit__detail
+		overflow: hidden
 
 		&__buttons
 			display: flex
