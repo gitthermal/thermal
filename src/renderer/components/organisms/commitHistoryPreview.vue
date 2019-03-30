@@ -1,9 +1,9 @@
 <template>
-	<div>
 		<div v-for="(line, index) in filePreview" :key="index">
 			{{ line }}
+	<VueScrollbar class="commit__preview">
 		</div>
-	</div>
+	</VueScrollbar>
 </template>
 
 <script>
@@ -14,9 +14,15 @@
 				return this.$store.getters["history/getFilePreview"]
 			}  
 		}
+import VueScrollbar from "vue2-scrollbar"
+
+	components: {
+		VueScrollbar
+	},
 	}
 </script>
 
 <style lang='sass'>
-
+.commit__preview
+	max-height: 90vh
 </style>
