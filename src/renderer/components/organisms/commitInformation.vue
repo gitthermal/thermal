@@ -162,7 +162,7 @@ export default {
 			}
 		},
 		async getFilesDetail(hash) {
-			let files = await git(this.repo).show([
+			let files = await git(this.workspaceRepository).show([
 				hash,
 				"--oneline",
 				"--stat"
