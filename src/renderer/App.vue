@@ -9,6 +9,7 @@
 		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<addLocalRepository/>
+				<about/>
 			</div>
 		</div>
 	</div>
@@ -19,6 +20,7 @@ import menubar from "./components/menubar"
 import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
+import about from './components/model/about';
 
 export default {
 	name: "thermal",
@@ -27,6 +29,7 @@ export default {
 		navbar,
 		sidebar,
 		addLocalRepository,
+		about
 	}
 }
 </script>
