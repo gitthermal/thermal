@@ -10,6 +10,7 @@
       <inputText
         v-model="pathToRepository"
         name="pathToRepository"
+				@keyup.enter.native="addRepository"
 				v-focus
         placeholder="Local path to repository"
       />
