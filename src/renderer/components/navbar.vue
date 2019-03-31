@@ -1,5 +1,5 @@
 <template>
-  <div v-show="workspaceRepository" class="navbar">
+  <div v-show="!!this.workspaceRepository.path" class="navbar">
     <div class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
@@ -63,7 +63,7 @@ export default {
 	},
 	computed: {
 		workspaceRepository() {
-			return !!this.$store.state.workspace.currentRepository.path
+			return this.$store.state.workspace.currentRepository
 		}
 	},
 	methods: {
