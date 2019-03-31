@@ -10,6 +10,7 @@
 			<div class="model__container">
 				<addLocalRepository/>
 				<about/>
+				<exportCommitData/>
 			</div>
 		</div>
 	</div>
@@ -21,6 +22,7 @@ import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
 import about from './components/model/about';
+import exportCommitData from "./components/model/exportCommitData"
 
 export default {
 	name: "thermal",
@@ -29,7 +31,8 @@ export default {
 		navbar,
 		sidebar,
 		addLocalRepository,
-		about
+		about,
+		exportCommitData
 	}
 }
 </script>
