@@ -5,7 +5,7 @@
       <p>Commit</p>
     </div>
     <div class="navbar__group">
-      <div class="navbar__item">
+      <div @click="gitPull()" class="navbar__item">
         <pullIcon/>
         <p>Pull</p>
       </div>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import git from "simple-git/promise"
 import commitIcon from "./icon/commit"
 import pushIcon from "./icon/push"
 import pullIcon from "./icon/pull"
@@ -70,6 +71,14 @@ export default {
 	methods: {
 		openCommitPage() {
 			this.$router.push({ name: "workspace" })
+		},
+		async gitPull() {
+			let pull = await git(this.$store.state.workspace.currentRepository.path).pull()
+			try {
+				console.log(pull)
+			} catch (error) {
+				console.log(error)
+			}
 		},
 		openFileExplorer() {
 			console.log(this.workspaceRepository.path)
