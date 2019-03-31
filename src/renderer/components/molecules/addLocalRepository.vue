@@ -82,26 +82,9 @@ export default {
 
 <style lang='sass'>
 	.model
-		
-		&__section
-			padding: .8rem 1rem
-			display: flex
 
 		&__header
 			border-bottom: 1px solid #eee
-
-			&__title
-				margin-bottom: 0
-
-			&__close
-				cursor: pointer
-				display: flex
-				margin-left: auto
-
-				svg
-					width: 20px
-					height: 20px
-					stroke: #222831
 
 		&__body
 			border-bottom: 1px solid #eee
