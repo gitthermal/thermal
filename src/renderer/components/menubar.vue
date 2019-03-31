@@ -164,7 +164,6 @@ export default {
 <style lang='sass'>
 .menubar
 	width: 100%
-	width: 100%
 	position: relative
 	z-index: 10
 
