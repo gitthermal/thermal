@@ -49,12 +49,19 @@ export default {
 			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
 			let gitRepositoryPath = git(this.pathToRepository.trim())
 			let validateGit = await gitRepositoryPath.checkIsRepo()
+			let listRemote
+			try {
+				listRemote = await git(this.pathToRepository).listRemote(["--get-url"])
+			} catch (error) {
+				console.log(error)
+			}
 			try {
 				if (validateGit) {
 					this.$store.dispatch({
 						type: "workspace/addLocalRepositoryToList",
 						name: repositoryName,
-						path: this.pathToRepository.trim()
+						path: this.pathToRepository.trim(),
+						remote: listRemote
 					})
 					this.pathToRepository = ""
 					this.closeModel()
