@@ -23,7 +23,7 @@
         <terminalIcon/>
         <p>Terminal</p>
       </div>
-      <div class="navbar__item">
+      <div @click="openFileExplorer()" class="navbar__item">
         <folderIcon/>
         <p>Explorer</p>
       </div>
@@ -48,6 +48,7 @@ import terminalIcon from "./icon/terminal"
 import folderIcon from "./icon/folder"
 import settingsIcon from "./icon/settings"
 import switchRepositoryIcon from "./icon/switch"
+const { shell } = require("electron")
 
 export default {
 	name: "navbar",
@@ -67,6 +68,10 @@ export default {
 		}
 	},
 	methods: {
+		openFileExplorer() {
+			console.log(this.workspaceRepository.path)
+			shell.openItem(this.workspaceRepository.path)
+		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository")
 			this.$router.push({ name: "welcome" })
