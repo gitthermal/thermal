@@ -76,7 +76,7 @@
         >
 					<div class="menubar__list__item__dropdown__item">Welcome</div>
 					<div class="menubar__list__item__dropdown__item">Report issue</div>
-					<div class="menubar__list__item__dropdown__item">Contact support</div>
+					<div @click="contactSupport()" class="menubar__list__item__dropdown__item">Contact support</div>
 					<div class="menubar__list__item__dropdown__item">Show User Guides</div>
 					<div class="menubar__list__item__dropdown__item">Show logs in Explorer</div>
 					<div @click="about()" class="menubar__list__item__dropdown__item">About</div>
@@ -93,7 +93,7 @@
 <script>
 import thermalLogo from "./icon/logo"
 import windowsButton from "./windowsButton"
-const { remote } = require("electron")
+const { shell, remote } = require("electron")
 
 export default {
 	name: "menubar",
@@ -149,6 +149,9 @@ export default {
 		},
 		exitApp() {
 			remote.getCurrentWindow().close()
+		},
+		contactSupport() {
+			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		about() {
 			this.$store.dispatch("model/showModelPlaceholder")
