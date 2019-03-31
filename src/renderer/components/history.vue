@@ -16,6 +16,9 @@
 			<div v-else class="history__logs__detail">
 				<div class="history__logs__detail__buttons">
 					<div @click="toggleCommitDetail()" class="history__logs__detail__buttons__back">Back</div>
+					<div @click="exportCommitDetail()" class="history__logs__detail__buttons__export d-flex ml-auto">
+						<fileIcon/>
+					</div>
 				</div>
 				<commitInformation />
 			</div>
@@ -36,6 +39,7 @@ import git from "simple-git/promise"
 import commitHistoryItem from "./molecules/commitHistoryItem"
 import commitInformation from "./organisms/commitInformation"
 import commitHistoryPreview from "./organisms/commitHistoryPreview"
+import fileIcon from './icon/fileIcon'
 import * as Sentry from "@sentry/electron"
 import VueScrollbar from "vue2-scrollbar"
 
@@ -45,7 +49,8 @@ export default {
 		commitHistoryItem,
 		commitInformation,
 		commitHistoryPreview,
-		VueScrollbar
+		VueScrollbar,
+		fileIcon
 	},
 	computed: {
 		repositoryLogs() {
