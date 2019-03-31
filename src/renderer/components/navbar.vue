@@ -1,6 +1,6 @@
 <template>
   <div v-show="!!this.workspaceRepository.path" class="navbar">
-    <div class="navbar__item">
+    <div @click="openCommitPage()" class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
     </div>
@@ -68,6 +68,9 @@ export default {
 		}
 	},
 	methods: {
+		openCommitPage() {
+			this.$router.push({ name: "workspace" })
+		},
 		openFileExplorer() {
 			console.log(this.workspaceRepository.path)
 			shell.openItem(this.workspaceRepository.path)
