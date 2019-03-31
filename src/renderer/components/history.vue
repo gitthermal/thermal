@@ -13,9 +13,9 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<div v-else class="commit__detail">
-				<div class="commit__detail__buttons">
-					<div @click="toggleCommitDetail()" class="commit__detail__buttons__back">Back</div>
+			<div v-else class="history__logs__detail">
+				<div class="history__logs__detail__buttons">
+					<div @click="toggleCommitDetail()" class="history__logs__detail__buttons__back">Back</div>
 				</div>
 				<commitInformation />
 			</div>
@@ -94,6 +94,30 @@ export default {
 		&__logs
 			border-right: 1px solid #DEE0E3
 			width: 300px
+
+			&__detail
+
+				&__buttons
+					display: flex
+					padding: 10px
+					flex-direction: row
+					border-bottom: 1px solid #DEE0E3
+
+					&__back
+						font-size: 10px
+						cursor: pointer
+						color: #6C6F75
+						padding: 2px 6px
+						background-color: #DEE0E3
+						border-radius: 10px
+
+					&__export
+						cursor: pointer
+
+						svg
+							stroke: #6C6F75
+							width: 18px
+							height: 18px
 
 			&__scrollbar
 				max-height: 90vh
