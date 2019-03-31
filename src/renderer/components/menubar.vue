@@ -200,7 +200,7 @@ export default {
 				display: flex
 				font-size: .8rem
 				flex-direction: column
-				z-index: 30
+				z-index: 10
 				
 				&__item
 					cursor: pointer
