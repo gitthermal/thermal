@@ -86,6 +86,8 @@ export default {
 		border-top: 1px solid #DEE0E3
 		border-bottom: 1px solid #DEE0E3
 		padding: 12px 20px
+		z-index: 8
+		position: relative
 
 		&__item
 			flex-direction: column

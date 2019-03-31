@@ -165,6 +165,8 @@ export default {
 .menubar
 	width: 100%
 	width: 100%
+	position: relative
+	z-index: 10
 
 	&__drag
 		width: 100%
