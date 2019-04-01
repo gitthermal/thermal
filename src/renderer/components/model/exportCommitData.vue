@@ -60,6 +60,7 @@ export default {
 				this.exportFilePath + this.exportFileName + ".json",
 				commitData
 			)
+			this.closeModel()
 		},
 		closeModel() {
 			this.$store.dispatch("model/showModelPlaceholder")
