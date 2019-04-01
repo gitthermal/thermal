@@ -33,7 +33,8 @@ const mutations = {
 	localRepository(state, payload) {
 		let repositoryData = {
 			path: payload.path,
-			name: payload.name
+			name: payload.name,
+			remote: payload.remote
 		}
 		state.repositoryList.push(repositoryData)
 	},
@@ -61,7 +62,8 @@ const actions = {
 		commit({
 			type: "localRepository",
 			path: payload.path,
-			name: payload.name
+			name: payload.name,
+			remote: payload.remote
 		})
 	},
 	removeRepositoryFromList: ({ commit }, payload) => {
