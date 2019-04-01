@@ -95,7 +95,6 @@ export default {
 <style lang='sass'>
 	.navbar
 		background-color: #EFEFEF
-		border-top: 1px solid #DEE0E3
 		border-bottom: 1px solid #DEE0E3
 		padding: 12px 20px
 		z-index: 8

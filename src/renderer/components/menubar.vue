@@ -170,6 +170,7 @@ export default {
 	background-color: white
 	position: relative
 	z-index: 10
+	border-bottom: 1px solid #DEE0E3
 
 	&__drag
 		width: 100%
