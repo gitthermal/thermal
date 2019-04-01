@@ -83,6 +83,10 @@ export default {
 				type: "history/updateCommitInformationMeta",
 				commit_hash: hash
 			})
+		},
+		exportCommitDetail() {
+			this.$store.dispatch("model/showModelPlaceholder")
+			this.$store.dispatch("workspace/showExportCommitData")
 		}
 	},
 	mounted() {
