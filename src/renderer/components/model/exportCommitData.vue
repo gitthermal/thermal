@@ -8,14 +8,14 @@
     </div>
     <div class="model__section model__body d-flex flex-row">
       <inputTextLabel
-        type="text"
+        v-model="exportFileName"
         name="fileName"
         label="Name"
         placeholder="File name"
         class="model__body__input"
       />
       <inputTextLabel
-        type="text"
+        v-model="exportFilePath"
         name="filePath"
         label="Path"
         placeholder="File path"
@@ -38,10 +38,8 @@ export default {
 	name: "exportCommitData",
 	data() {
 		return {
-			export: {
-				name: "",
-				path: ""
-			}
+			exportFileName: "",
+			exportFilePath: ""
 		}
 	},
 	components: {
@@ -59,7 +57,7 @@ export default {
 			let commitData = JSON.stringify(this.commitInformation)
 			console.log(commitData)
 			fs.writeFileSync(
-				this.export.path + this.export.name + ".json",
+				this.exportFilePath + this.exportFileName + ".json",
 				commitData
 			)
 		},
