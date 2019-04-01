@@ -72,6 +72,8 @@ export default {
 
 <style lang='sass'>
 .model__body__input
+	width: 100%
+
 	&:not(:last-child)
 		margin-right: .8rem
 </style>
