@@ -7,7 +7,8 @@ const state = {
 	model: {
 		addLocalRepository: false,
 		newRepository: false,
-		about: false
+		about: false,
+		exportCommitData: false,
 	}
 }
 
@@ -25,6 +26,9 @@ const mutations = {
 	},
 	toggleAboutModel(state) {
 		state.model.about = !state.model.about
+	},
+	toggleExportCommitData(state) {
+		state.model.exportCommitData = !state.model.exportCommitData
 	},
 	localRepository(state, payload) {
 		let repositoryData = {
@@ -74,6 +78,11 @@ const actions = {
 	showAboutModel: ({ commit }) => {
 		commit({
 			type: "toggleAboutModel"
+		})
+	},
+	showExportCommitData: ({ commit }) => {
+		commit({
+			type: "toggleExportCommitData"
 		})
 	}
 }
