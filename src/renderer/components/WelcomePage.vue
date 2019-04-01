@@ -13,6 +13,9 @@
 				<div @click="coffeeURL()" class="welcome__introduction__item__icon">
 					<coffeeIcon/>
 				</div>
+				<div @click="helpURL()" class="welcome__introduction__item__icon">
+					<helpIcon/>
+				</div>
 			</div>
 		</div>
 		<div class="welcome__seperate"></div>
@@ -54,6 +57,7 @@
 import linkIcon from "./icon/link"
 import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
+import helpIcon from "./icon/help"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
 import packageJson from "../../../package.json"
@@ -81,6 +85,7 @@ export default {
 		linkIcon,
 		twitterIcon,
 		coffeeIcon,
+		helpIcon,
 		primaryButton,
 		outlineButton,
 		VueScrollbar
@@ -102,6 +107,9 @@ export default {
 		},
 		coffeeURL() {
 			shell.openExternal("https://www.patreon.com/join/mittalyashu")
+		},
+		helpIcon() {
+			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		addLocalRepository() {
 			this.$store.dispatch("model/showModelPlaceholder")
