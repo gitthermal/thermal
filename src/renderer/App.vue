@@ -21,7 +21,7 @@ import menubar from "./components/menubar"
 import navbar from "./components/navbar"
 import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
-import about from './components/model/about';
+import about from "./components/model/about"
 import exportCommitData from "./components/model/exportCommitData"
 
 export default {

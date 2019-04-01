@@ -20,15 +20,12 @@ export default {
 	name: "windowsButton",
 	methods: {
 		close() {
-			console.log("close")
 			win.close()
 		},
 		minimize() {
-			console.log("minimize")
 			win.minimize()
 		},
 		maximize() {
-			console.log("maximize")
 			if (!win.isMaximized()) {
 				win.maximize()
 			} else {

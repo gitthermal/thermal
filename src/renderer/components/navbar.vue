@@ -73,7 +73,9 @@ export default {
 			this.$router.push({ name: "workspace" })
 		},
 		async gitPull() {
-			let pull = await git(this.$store.state.workspace.currentRepository.path).pull()
+			let pull = await git(
+				this.$store.state.workspace.currentRepository.path
+			).pull()
 			try {
 				console.log(pull)
 			} catch (error) {
@@ -81,7 +83,6 @@ export default {
 			}
 		},
 		openFileExplorer() {
-			console.log(this.workspaceRepository.path)
 			shell.openItem(this.workspaceRepository.path)
 		},
 		switchRepository() {
