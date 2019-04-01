@@ -1,6 +1,6 @@
 <template>
   <div class="menubar d-flex">
-    <div class="menubar__logo d-flex">
+    <div @click="homepage()" class="menubar__logo d-flex">
       <thermalLogo/>
     </div>
     <div class="menubar__list d-flex align-items-center">
@@ -128,6 +128,9 @@ export default {
 		windowsButton
 	},
 	methods: {
+		homepage() {
+			this.$router.push({ name: "welcome" })
+		},
 		fileDropdown() {
 			this.menu.file.isActive = !this.menu.file.isActive
 		},
@@ -174,6 +177,8 @@ export default {
 
 	&__logo
 		padding: 8px 10px
+		cursor: pointer
+
 		svg
 			width: 20px
 			height: 20px
