@@ -17,6 +17,10 @@
         <fetchIcon/>
         <p>Fetch</p>
       </div>
+		</div>
+		<div class="navbar__item">
+      <publishIcon/>
+      <p>Publish</p>
     </div>
     <div class="navbar__group ml-auto">
       <div class="navbar__item">
@@ -45,6 +49,7 @@ import commitIcon from "./icon/commit"
 import pushIcon from "./icon/push"
 import pullIcon from "./icon/pull"
 import fetchIcon from "./icon/fetch"
+import publishIcon from "./icon/publish"
 import terminalIcon from "./icon/terminal"
 import folderIcon from "./icon/folder"
 import settingsIcon from "./icon/settings"
@@ -58,6 +63,7 @@ export default {
 		pushIcon,
 		pullIcon,
 		fetchIcon,
+		publishIcon,
 		terminalIcon,
 		folderIcon,
 		settingsIcon,
