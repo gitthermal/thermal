@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="input__label" :for="labelName">{{ label }}</label>
+    <p class="input__label" :for="labelName">{{ label }}</p>
     <inputText
       :name="name"
       :placeholder="placeholder"
