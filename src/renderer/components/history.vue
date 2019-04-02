@@ -90,8 +90,7 @@ export default {
 			})
 		},
 		exportCommitDetail() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showExportCommitData")
+			this.$store.dispatch("model/showExportCommitData")
 		}
 	},
 	mounted() {

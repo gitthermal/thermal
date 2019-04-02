@@ -63,8 +63,7 @@ export default {
 			this.closeModel()
 		},
 		closeModel() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showExportCommitData")
+			this.$store.dispatch("model/showExportCommitData")
 		}
 	}
 }
