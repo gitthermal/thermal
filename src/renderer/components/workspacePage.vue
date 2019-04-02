@@ -84,6 +84,9 @@ export default {
 		VueScrollbar
 	},
 	computed: {
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
+		},
 		stagedFile: {
 			get() {
 				return this.$store.getters["commit/allStagedFiles"]
@@ -102,7 +105,7 @@ export default {
 	methods: {
 		async gitStatus() {
 			let status = await git(
-				this.$store.state.workspace.currentRepository.path
+				this.currentRepository.path
 			).status()
 			try {
 				this.$store.dispatch({
@@ -163,8 +166,8 @@ export default {
 			}
 		},
 		async commitMessageButton() {
-			git(this.$store.state.workspace.currentRepository.path).add(this.$store.getters["commit/allStagedFiles"])
-			let commit = git(this.$store.state.workspace.currentRepository.path).commit(this.commitMessageTitle)
+			git(this.currentRepository.path).add(this.$store.getters["commit/allStagedFiles"])
+			let commit = git(this.currentRepository.path).commit(this.commitMessageTitle)
 			try {
 				console.log(commit)
 			} catch (error) {

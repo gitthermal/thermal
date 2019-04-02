@@ -15,6 +15,11 @@ let routes = [
 		component: require("../components/history").default
 	},
 	{
+		path: "/settings",
+		name: "repositorySettings",
+		component: require("../components/pages/repository/settings").default
+	},
+	{
 		path: "/",
 		name: "welcome",
 		component: require("../components/WelcomePage").default

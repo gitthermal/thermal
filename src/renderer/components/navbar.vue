@@ -1,5 +1,5 @@
 <template>
-  <div v-show="!!this.workspaceRepository.path" class="navbar">
+  <div v-show="!!currentRepository" class="navbar">
     <div @click="openCommitPage()" class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
@@ -31,7 +31,7 @@
         <folderIcon/>
         <p>Explorer</p>
       </div>
-      <div class="navbar__item">
+      <div @click="openRepositorySettings()" class="navbar__item">
         <settingsIcon/>
         <p>Settings</p>
       </div>
@@ -70,8 +70,8 @@ export default {
 		switchRepositoryIcon
 	},
 	computed: {
-		workspaceRepository() {
-			return this.$store.state.workspace.currentRepository
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
 		}
 	},
 	methods: {
@@ -79,9 +79,7 @@ export default {
 			this.$router.push({ name: "workspace" })
 		},
 		async gitPull() {
-			let pull = await git(
-				this.$store.state.workspace.currentRepository.path
-			).pull()
+			let pull = await git(this.currentRepository.path).pull()
 			try {
 				console.log(pull)
 			} catch (error) {
@@ -89,7 +87,11 @@ export default {
 			}
 		},
 		openFileExplorer() {
-			shell.openItem(this.workspaceRepository.path)
+			console.log(this.workspaceRepository.path)
+			shell.openItem(this.currentRepository.path)
+		},
+		openRepositorySettings() {
+			this.$router.push({ name: "repositorySettings" })
 		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository")

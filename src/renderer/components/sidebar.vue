@@ -1,5 +1,5 @@
 <template>
-  <div v-show="workspaceRepository" class="sidebar">
+  <div v-show="!!currentRepository" class="sidebar">
     <div class="sidebar__group d-flex flex-column">
       <router-link class="sidebar__item d-flex align-items-center" to="workspace">
         <folderIcon/>
@@ -24,8 +24,8 @@ export default {
 		clockIcon
 	},
 	computed: {
-		workspaceRepository() {
-			return !!this.$store.state.workspace.currentRepository.path
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
 		}
 	}
 }

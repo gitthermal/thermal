@@ -1,37 +1,38 @@
 <template>
-	<div class="history">
-		<div class="history__logs">
-			<div v-if="!this.$store.state.history.commitInformation.isActive">
-				<VueScrollbar class="history__logs__scrollbar">
-					<div>
-						<commitHistoryItem
-							@click.native="gitShow(log.hash)"
-							:data="log"
-							v-for="log in repositoryLogs"
-							:key="log.hash"
-						/>
-					</div>
-				</VueScrollbar>
-			</div>
-			<div v-else class="history__logs__detail">
-				<div class="history__logs__detail__buttons">
-					<div @click="toggleCommitDetail()" class="history__logs__detail__buttons__back">Back</div>
-					<div @click="exportCommitDetail()" class="history__logs__detail__buttons__export d-flex ml-auto">
-						<fileIcon/>
-					</div>
-				</div>
-				<commitInformation />
-			</div>
-		</div>
-		<div class="history__preview">
-			<div v-if="this.$store.state.history.filePreview.isActive">
-				<commitHistoryPreview/>
-			</div>
-			<div v-else>
-				No content to show
-			</div>
-		</div>
-	</div>
+  <div class="history">
+    <div class="history__logs">
+      <div v-if="!this.$store.state.history.commitInformation.isActive">
+        <VueScrollbar class="history__logs__scrollbar">
+          <div>
+            <commitHistoryItem
+              @click.native="gitShow(log.hash)"
+              :data="log"
+              v-for="log in repositoryLogs"
+              :key="log.hash"
+            />
+          </div>
+        </VueScrollbar>
+      </div>
+      <div v-else class="history__logs__detail">
+        <div class="history__logs__detail__buttons">
+          <div @click="toggleCommitDetail()" class="history__logs__detail__buttons__back">Back</div>
+          <div
+            @click="exportCommitDetail()"
+            class="history__logs__detail__buttons__export d-flex ml-auto"
+          >
+            <fileIcon/>
+          </div>
+        </div>
+        <commitInformation/>
+      </div>
+    </div>
+    <div class="history__preview">
+      <div v-if="this.$store.state.history.filePreview.isActive">
+        <commitHistoryPreview/>
+      </div>
+      <div v-else>No content to show</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -55,13 +56,14 @@ export default {
 	computed: {
 		repositoryLogs() {
 			return this.$store.getters["history/allLogs"]
+		},
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
 		}
 	},
 	methods: {
 		async getLogs() {
-			const gitLog = await git(
-				this.$store.state.workspace.currentRepository.path
-			).log()
+			const gitLog = await git(this.currentRepository.path).log()
 			try {
 				this.$store.dispatch("history/getRepositoryLogs", {
 					logs: gitLog.all
@@ -74,11 +76,14 @@ export default {
 			}
 		},
 		toggleCommitDetail() {
-			this.$store.dispatch("history/showCommitInformation")
-			this.$store.dispatch("history/showFilePreview")
+			this.$store.commit("history/toggleCommitInformation")
+			this.$store.commit({
+				type: "history/toggleFilePreview",
+				isActive: false
+			})
 		},
 		gitShow(hash) {
-			this.$store.dispatch("history/showCommitInformation")
+			this.toggleCommitDetail()
 			this.$store.dispatch({
 				type: "history/updateCommitInformationMeta",
 				commit_hash: hash

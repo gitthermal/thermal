@@ -10,6 +10,7 @@
 					<div class="menubar__list__item__dropdown__item">New repository</div>
           <div @click="addLocalRepository()" class="menubar__list__item__dropdown__item">Add local repository</div>
           <div class="menubar__list__item__dropdown__item">Clone repository</div>
+          <div @click="switchRepository()" class="menubar__list__item__dropdown__item">Switch repository</div>
           <div class="menubar__list__item__dropdown__item">Options</div>
           <div @click="exitApp()" class="menubar__list__item__dropdown__item">Exit</div>
         </div>
@@ -147,8 +148,11 @@ export default {
 			this.menu.help.isActive = !this.menu.help.isActive
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+			this.$store.dispatch("model/showAddLocalRepositoryModel")
+		},
+		switchRepository() {
+			this.$store.dispatch("workspace/switchWorkspaceRepository")
+			this.$router.push({ name: "welcome" })
 		},
 		exitApp() {
 			remote.getCurrentWindow().close()
@@ -157,8 +161,7 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		about() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showAboutModel")
+			this.$store.dispatch("model/showAboutModel")
 		}
 	}
 }

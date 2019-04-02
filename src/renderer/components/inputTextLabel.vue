@@ -4,6 +4,8 @@
     <inputText
       :name="name"
       :placeholder="placeholder"
+			:value="value"
+			:disable="disable"
 			@input="$emit('input', $event)"
     />
   </div>
@@ -20,6 +22,13 @@ export default {
 		},
 		placeholder: {
 			type: String
+		},
+		value: {
+			type: String
+		},
+		disable: {
+			type: Boolean,
+			default: false
 		},
 		label: {
 			type: String

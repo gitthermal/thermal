@@ -26,8 +26,10 @@
 						<div v-if="getAllRepository.length > 0">
 							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
 								<h6>{{ repo.name }}</h6>
-								<primaryButton @click.native="selectCurrentRepository(repo)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
-								<outlineButton @click.native="removeCurrentRepository(index)" text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+								<primaryButton @click.native="selectCurrentRepository(index)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
+								<div @click="openRepositorySettings(index)" class="welcome__repository__list__item__settings">
+									<settingsIcon/>
+								</div>
 							</div>
 						</div>
 						<div v-else @mouseenter="toggleRepositoryExampleModel" @mouseleave="toggleRepositoryExampleModel">
@@ -35,7 +37,9 @@
 								<div v-for="repo in this.repositoryList" :key="repo" class="welcome__repository__list__item welcome__repository__example d-flex align-items-center">
 									<h6>{{ repo }}</h6>
 									<primaryButton text="Select" class="welcome__repository__list__item__select ml-auto"/>
-									<outlineButton text="Remove" type="danger" class="welcome__repository__list__item__delete"/>
+									<div class="welcome__repository__list__item__settings">
+									<settingsIcon/>
+								</div>
 								</div>
 							</div>
 							<div v-show="exampleRepositoryModel" class="welcome__repository__example__model">
@@ -58,6 +62,7 @@ import linkIcon from "./icon/link"
 import twitterIcon from "./icon/twitter"
 import coffeeIcon from "./icon/coffee"
 import helpIcon from "./icon/help"
+import settingsIcon from "./icon/settings"
 import primaryButton from "./atoms/primaryButton"
 import outlineButton from "./atoms/outlineButton"
 import packageJson from "../../../package.json"
@@ -86,13 +91,14 @@ export default {
 		twitterIcon,
 		coffeeIcon,
 		helpIcon,
+		settingsIcon,
 		primaryButton,
 		outlineButton,
 		VueScrollbar
 	},
 	computed: {
 		getAllRepository() {
-			return this.$store.getters["workspace/listAllRepository"]
+			return this.$store.getters["repository/listAllRepository"]
 		},
 		appVersion() {
 			return packageJson.version
@@ -112,25 +118,24 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+			this.$store.dispatch("model/showAddLocalRepositoryModel")
 		},
 		toggleRepositoryExampleModel() {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel
 		},
-		selectCurrentRepository(data) {
+		updateCurrentRepository(index) {
 			this.$store.dispatch({
 				type: "workspace/updateWorkspaceRepository",
-				name: data.name,
-				path: data.path
-			})
-			this.$router.push({ name: "workspace" })
-		},
-		removeCurrentRepository(index) {
-			this.$store.dispatch({
-				type: "workspace/removeRepositoryFromList",
 				index: index
 			})
+		},
+		selectCurrentRepository(index) {
+			this.updateCurrentRepository(index)
+			this.$router.push({ name: "workspace" })
+		},
+		openRepositorySettings(index) {
+			this.updateCurrentRepository(index)
+			this.$router.push({ name: "repositorySettings" })
 		}
 	}
 }
@@ -208,9 +213,19 @@ export default {
 						color: #6C6F75
 						font-size: 14px
 
-					&__delete
+					&__settings
 						margin-left: .5rem
-					
+						border: 1px solid #00adb5
+						padding: .5rem
+						border-radius: 5rem
+						display: flex
+						cursor: pointer
+
+						svg
+							width: 20px
+							height: 20px
+							stroke: #00adb5
+						
 	.appMetaData
 		font-size: 10px
 		position: absolute

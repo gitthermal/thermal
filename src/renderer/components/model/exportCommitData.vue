@@ -1,5 +1,5 @@
 <template>
-  <div v-show="this.$store.state.workspace.model.exportCommitData" class="model--small">
+  <div v-show="this.$store.state.model.model.exportCommitData" class="model--small">
     <div class="model__section model__header">
       <h6 class="model__header__title">Export commit data</h6>
       <div @click="closeModel()" class="model__header__close">
