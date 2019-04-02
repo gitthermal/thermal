@@ -15,31 +15,36 @@
       >{{ commitInformation.description }}</div>
     </div>
     <div class="commit__detail__meta">
-      <div v-if="commitInformation.author.name" class="commit__detail__meta__item">Author:
+      <div v-if="commitInformation.author.name" class="commit__detail__meta__item">
+        Author:
         <p>{{ commitInformation.author.name }} <{{ commitInformation.author.email }}></p>
       </div>
-      <div v-if="commitInformation.author.date" class="commit__detail__meta__item">Author Date:
+      <div v-if="commitInformation.author.date" class="commit__detail__meta__item">
+        Author Date:
         <p>{{ commitInformation.author.date }}</p>
       </div>
-      <div v-if="commitInformation.committer.name" class="commit__detail__meta__item">Committer:
+      <div v-if="commitInformation.committer.name" class="commit__detail__meta__item">
+        Committer:
         <p>{{ commitInformation.committer.name }} <{{ commitInformation.committer.email}}></p>
       </div>
-      <div
-        v-if="commitInformation.committer.date"
-        class="commit__detail__meta__item"
-      >Committer Date:
+      <div v-if="commitInformation.committer.date" class="commit__detail__meta__item">
+        Committer Date:
         <p>{{ commitInformation.committer.date }}</p>
       </div>
-      <div v-if="commitInformation.meta.refs" class="commit__detail__meta__item">Refs:
+      <div v-if="commitInformation.meta.refs" class="commit__detail__meta__item">
+        Refs:
         <p>{{ commitInformation.meta.refs }}</p>
       </div>
-      <div v-if="commitInformation.meta.commit_hash" class="commit__detail__meta__item">Commit Hash:
+      <div v-if="commitInformation.meta.commit_hash" class="commit__detail__meta__item">
+        Commit Hash:
         <p>{{ commitInformation.meta.commit_hash }}</p>
       </div>
-      <div v-if="commitInformation.meta.tree_hash" class="commit__detail__meta__item">Tree Hash:
+      <div v-if="commitInformation.meta.tree_hash" class="commit__detail__meta__item">
+        Tree Hash:
         <p>{{ commitInformation.meta.tree_hash }}</p>
       </div>
-      <div v-if="commitInformation.meta.parent_hash" class="commit__detail__meta__item">Parent Hash:
+      <div v-if="commitInformation.meta.parent_hash" class="commit__detail__meta__item">
+        Parent Hash:
         <p>{{ commitInformation.meta.parent_hash }}</p>
       </div>
     </div>
@@ -50,7 +55,8 @@
       <div
         class="commit__detail__files__list"
         v-for="file in commitInformation.files.list"
-        :key="trimFilePath(file)" @click="commitHistoryPreview(commitInformation.meta.commit_hash, trimFilePath(file))"
+        :key="trimFilePath(file)"
+        @click="commitHistoryPreview(commitInformation.meta.commit_hash, trimFilePath(file))"
       >{{ trimFilePath(file) }}</div>
     </div>
   </div>
@@ -66,8 +72,8 @@ export default {
 		commitInformation() {
 			return this.$store.getters["history/getCommitInformation"]
 		},
-		workspaceRepository() {
-			return this.$store.state.workspace.currentRepository.path
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
 		},
 		commitHash() {
 			return this.$store.state.history.commitInformation.meta.commit_hash
@@ -81,7 +87,7 @@ export default {
 			this.getFilesDetail(this.commitHash)
 		},
 		async getAuthorDetail(hash) {
-			let author = await git(this.workspaceRepository).show([
+			let author = await git(this.currentRepository.path).show([
 				hash,
 				"--format=%an %n %ae %n %ad"
 			])
@@ -101,7 +107,7 @@ export default {
 			}
 		},
 		async getCommitBody(hash) {
-			let body = await git(this.workspaceRepository).show([
+			let body = await git(this.currentRepository.path).show([
 				hash,
 				"--format=%s %n << %n %b %n >>"
 			])
@@ -138,7 +144,7 @@ export default {
 			}
 		},
 		async getCommitMeta(hash) {
-			let meta = await git(this.workspaceRepository).show([
+			let meta = await git(this.currentRepository.path).show([
 				hash,
 				"--format=%cn %n %ce %n %cd %n %d %n %H %n %T %n %P"
 			])
@@ -162,7 +168,7 @@ export default {
 			}
 		},
 		async getFilesDetail(hash) {
-			let files = await git(this.workspaceRepository).show([
+			let files = await git(this.currentRepository.path).show([
 				hash,
 				"--oneline",
 				"--stat"
@@ -205,8 +211,16 @@ export default {
 			return path.replace(/\|.*/, "").trim()
 		},
 		async commitHistoryPreview(hash, path) {
-			this.$store.dispatch("history/showFilePreview")
-			let gitDiff = await git(this.$store.state.workspace.currentRepository.path).diff([hash + "^1", hash, "--", path])
+			this.$store.commit({
+				type: "history/toggleFilePreview",
+				isActive: true
+			})
+			let gitDiff = await git(this.currentRepository.path).diff([
+				hash + "^1",
+				hash,
+				"--",
+				path
+			])
 			try {
 				let output = gitDiff.split("\n")
 				output.splice(0, 4)

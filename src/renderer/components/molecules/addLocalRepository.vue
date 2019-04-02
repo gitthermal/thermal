@@ -1,5 +1,5 @@
 <template>
-  <div v-show="this.$store.state.workspace.model.addLocalRepository" class="model--small">
+  <div v-show="this.$store.state.model.model.addLocalRepository" class="model--small">
     <div class="model__section model__header">
       <h6 class="model__header__title">Add local repository</h6>
       <div @click="closeModel()" class="model__header__close">
@@ -57,8 +57,8 @@ export default {
 			}
 			try {
 				if (validateGit) {
-					this.$store.dispatch({
-						type: "workspace/addLocalRepositoryToList",
+					this.$store.commit({
+						type: "repository/addLocalRepository",
 						name: repositoryName,
 						path: this.pathToRepository.trim(),
 						remote: listRemote
@@ -73,8 +73,7 @@ export default {
 			}
 		},
 		closeModel() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showAddLocalRepositoryModel")
+			this.$store.dispatch("model/showAddLocalRepositoryModel")
 		}
 	},
 	directives: {

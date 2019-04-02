@@ -1,5 +1,5 @@
 <template>
-	<div v-show="this.$store.state.workspace.model.about" class="model--medium">
+	<div v-show="this.$store.state.model.model.about" class="model--medium">
 		<div class="about">
 			<div class="about__header d-flex flex-column align-items-center">
 				<div class="about__header__logo">
@@ -50,8 +50,7 @@ export default {
 			shell.openExternal("https://www.notion.so/gitthermal/Release-notes-7d77751a39484413b7ca8564b3f390a9#7d77751a39484413b7ca8564b3f390a9")
 		},
 		closeModel() {
-			this.$store.dispatch("model/showModelPlaceholder")
-			this.$store.dispatch("workspace/showAboutModel")
+			this.$store.dispatch("model/showAboutModel")
 		}
 	}
 }

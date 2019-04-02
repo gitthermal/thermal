@@ -1,6 +1,10 @@
 <template>
   <div>
-    <a @mouseenter="showFiles(data.hash)" @mouseleave="hideFiles()" class="history__item d-flex flex-column">
+    <a
+      @mouseenter="showFiles(data.hash)"
+      @mouseleave="hideFiles()"
+      class="history__item d-flex flex-column"
+    >
       <div :title="data.message" class="history__item__title">{{ data.message }}</div>
       <div class="history__item__author d-flex flex-row align-items-center">
         <img class="history__item__author__image" src="../../../../static/image/user_avatar.png">
@@ -8,12 +12,14 @@
       </div>
     </a>
     <div v-show="this.files.isActive" class="history__files">
-			<div class="history__files__dropdown">
-				<div class="history__files__dropdown__item" v-for="item in this.files.list" :key="item">
-					{{ item.replace(/\|.*/, "").trim() }}
-				</div>
-			</div>
-		</div>
+      <div class="history__files__dropdown">
+        <div
+          class="history__files__dropdown__item"
+          v-for="item in this.files.list"
+          :key="item"
+        >{{ item.replace(/\|.*/, "").trim() }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,6 +42,11 @@ export default {
 			type: Object
 		}
 	},
+	computed: {
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
+		}
+	},
 	methods: {
 		showFiles(hash) {
 			this.files.isActive = true
@@ -48,7 +59,7 @@ export default {
 			this.files.list = []
 		},
 		async getFilesDetail(hash) {
-			let files = await git(this.$store.state.workspace.currentRepository.path).show([
+			let files = await git(this.currentRepository.path).show([
 				hash,
 				"--oneline",
 				"--stat"

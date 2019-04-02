@@ -72,8 +72,8 @@ const mutations = {
 		state.commitInformation.files.deletion = payload.files_deletion
 		state.commitInformation.files.list = payload.files_list
 	},
-	toggleFilePreview(state) {
-		state.filePreview.isActive = !state.filePreview.isActive
+	toggleFilePreview(state, payload) {
+		state.filePreview.isActive = payload.isActive
 	},
 	filePreview(state, payload) {
 		state.filePreview.preview = payload.preview
@@ -85,11 +85,6 @@ const actions = {
 		commit({
 			type: "updateLogs",
 			logs: payload.logs
-		})
-	},
-	showCommitInformation: ({ commit }) => {
-		commit({
-			type: "toggleCommitInformation"
 		})
 	},
 	updateCommitInformationBody: ({ commit }, payload) => {
@@ -131,11 +126,6 @@ const actions = {
 			files_additions: payload.files_additions,
 			files_deletion: payload.files_deletion,
 			files_list: payload.files_list
-		})
-	},
-	showFilePreview: ({ commit }) => {
-		commit({
-			type: "toggleFilePreview"
 		})
 	},
 	updateFilePreview: ({ commit }, payload) => {
