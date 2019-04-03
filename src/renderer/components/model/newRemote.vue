@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import inputText from '../inputText'
-import closeIcon from '../icon/close'
-import primaryButton from '../atoms/primaryButton'
+import inputText from "../inputText"
+import closeIcon from "../icon/close"
+import primaryButton from "../atoms/primaryButton"
 import git from "simple-git/promise"
 
 export default {

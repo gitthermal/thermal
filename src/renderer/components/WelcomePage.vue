@@ -137,7 +137,7 @@ export default {
 		openRepositorySettings(index) {
 			this.updateCurrentRepository(index)
 			this.$router.push({ name: "repositorySettings" })
-		}
+		}		
 	},
 	filters: {
 		truncateFilter
