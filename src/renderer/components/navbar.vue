@@ -18,7 +18,7 @@
         <p>Fetch</p>
       </div>
 		</div>
-		<div v-else :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
+		<div @click="newRemote()" v-else :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
       <publishIcon/>
       <p>Publish</p>
     </div>
@@ -88,6 +88,9 @@ export default {
 			} catch (error) {
 				console.log(error)
 			}
+		},
+		newRemote() {
+			this.$store.dispatch("model/showNewRemote")
 		},
 		openFileExplorer() {
 			console.log(this.workspaceRepository.path)
