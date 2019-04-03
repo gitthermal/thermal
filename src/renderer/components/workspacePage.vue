@@ -170,6 +170,7 @@ export default {
 			let commit = git(this.currentRepository.path).commit(this.commitMessageTitle)
 			try {
 				console.log(commit)
+				this.commitMessageTitle = ""
 			} catch (error) {
 				Sentry.captureException(error)
 				let errorMessage = "Unable to make commit."
