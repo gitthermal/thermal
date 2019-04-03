@@ -22,6 +22,9 @@ const mutations = {
 	},
 	editLocalRepositoryName(state, payload) {
 		state.repositoryList[workspace.state.workspaceRepository.index].name = payload.name
+	},
+	localRepositoryRemote(state, payload) {
+		state.repositoryList[workspace.state.workspaceRepository.index].remote = payload.remote
 	}
 }
 

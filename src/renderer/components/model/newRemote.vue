@@ -55,6 +55,10 @@ export default {
 			try {
 				console.log('Pushing to remote repository')
 				console.log(push)
+				this.$store.commit({
+					type: "repository/localRepositoryRemote",
+					remote: this.remoteUrl
+				})
 				this.closeModel()
 			} catch (error) {
 				console.log(error)
