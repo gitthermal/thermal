@@ -50,7 +50,9 @@ export default {
 			this.$store.dispatch("model/showNewRemote")
 		},
 		async addRemoteUrl() {
-			let activeBranch = this.$store.state.commit.activeBranch
+			let status = await git(
+				this.currentRepository.path
+			).status()
 			await git(this.currentRepository.path).push([this.remoteUrl, status.current])
 			try {
 				console.log('Pushing to remote repository')
