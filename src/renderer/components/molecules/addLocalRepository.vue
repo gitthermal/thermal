@@ -8,7 +8,7 @@
     </div>
     <div class="model__section model__body flex-column">
       <inputText
-        v-model="pathToRepository"
+        v-model.trim="pathToRepository"
         name="pathToRepository"
 				@keyup.esc.native="closeModel"
 				@keyup.enter.native="addRepository"
@@ -47,7 +47,7 @@ export default {
 	methods: {
 		async addRepository() {
 			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ]
-			let gitRepositoryPath = git(this.pathToRepository.trim())
+			let gitRepositoryPath = git(this.pathToRepository)
 			let validateGit = await gitRepositoryPath.checkIsRepo()
 			let listRemote
 			try {
@@ -60,7 +60,7 @@ export default {
 					this.$store.commit({
 						type: "repository/addLocalRepository",
 						name: repositoryName,
-						path: this.pathToRepository.trim(),
+						path: this.pathToRepository,
 						remote: listRemote
 					})
 					this.pathToRepository = ""
