@@ -58,13 +58,13 @@
 </template>
 
 <script>
-import linkIcon from "./icon/link"
-import twitterIcon from "./icon/twitter"
-import coffeeIcon from "./icon/coffee"
-import helpIcon from "./icon/help"
-import settingsIcon from "./icon/settings"
-import primaryButton from "./atoms/primaryButton"
-import outlineButton from "./atoms/outlineButton"
+import linkIcon from "../components/icon/link"
+import twitterIcon from "../components/icon/twitter"
+import coffeeIcon from "../components/icon/coffee"
+import helpIcon from "../components/icon/help"
+import settingsIcon from "../components/icon/settings"
+import primaryButton from "../components/buttons/primaryButton"
+import outlineButton from "../components/buttons/outlineButton"
 import packageJson from "../../../package.json"
 import * as Sentry from "@sentry/electron"
 import VueScrollbar from "vue2-scrollbar"
@@ -132,7 +132,7 @@ export default {
 		},
 		selectCurrentRepository(index) {
 			this.updateCurrentRepository(index)
-			this.$router.push({ name: "workspace" })
+			this.$router.push({ name: "repositoryWorkspace" })
 		},
 		openRepositorySettings(index) {
 			this.updateCurrentRepository(index)

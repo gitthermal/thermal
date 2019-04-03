@@ -33,7 +33,7 @@ let routes = [
 	{
 		path: "/",
 		name: "welcome",
-		component: require("../components/WelcomePage").default
+		component: require("../pages/welcome").default
 	},
 	{
 		path: "*",
