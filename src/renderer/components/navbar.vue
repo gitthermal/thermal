@@ -128,6 +128,7 @@ export default {
 		&__item
 			flex-direction: column
 			align-items: center
+			user-select: none
 
 			&:hover
 				cursor: pointer
