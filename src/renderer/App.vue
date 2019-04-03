@@ -14,7 +14,7 @@
 
 <script>
 import menubar from "./components/menubar"
-import addLocalRepository from "./components/molecules/addLocalRepository"
+import addLocalRepository from "./components/model/addLocalRepository"
 import about from "./components/model/about"
 import exportCommitData from "./components/model/exportCommitData"
 import newRemote from "./components/model/newRemote"

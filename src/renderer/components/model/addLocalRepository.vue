@@ -27,8 +27,8 @@
 
 <script>
 import closeIcon from "../icon/close"
-import inputText from "../inputText"
-import primaryButton from "../atoms/primaryButton"
+import inputText from "../input/inputText"
+import primaryButton from "../buttons/primaryButton"
 import git from "simple-git/promise"
 
 export default {
