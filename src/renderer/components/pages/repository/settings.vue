@@ -1,5 +1,6 @@
 <template>
-  <div class="settings w-100 d-flex flex-row">
+  <div class="settings w-100">
+		<VueScrollbar class="settings__scrollbar">
     <div class="settings__content container">
       <div class="settings__content__header">
         <h4>Settings</h4>
@@ -64,6 +65,7 @@
 				</div>
       </div>
     </div>
+		</VueScrollbar>
   </div>
 </template>
 
@@ -71,6 +73,7 @@
 import inputTextLabel from "../../inputTextLabel"
 import outlineButton from "../../atoms/outlineButton"
 import { ToggleButton } from "vue-js-toggle-button"
+import VueScrollbar from "vue2-scrollbar"
 
 export default {
 	name: "repositorySettings",
@@ -78,6 +81,7 @@ export default {
 		inputTextLabel,
 		outlineButton,
 		ToggleButton,
+		VueScrollbar
 	},
 	computed: {
 		currentRepository() {
@@ -134,6 +138,9 @@ export default {
 
 <style lang='sass'>
 	.settings
+
+		&__scrollbar
+			max-height: 86vh
 		
 		&__content
 			padding: 20px
