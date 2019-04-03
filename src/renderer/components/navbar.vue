@@ -91,10 +91,9 @@ export default {
 		},
 		async gitPush() {
 			let activeBranch = this.$store.state.commit.activeBranch
-			let push = await git(this.currentRepository.path).push([this.remoteUrl, activeBranch])
+			await git(this.currentRepository.path).push([this.currentRepository.remote, activeBranch])
 			try {
 				console.log('Pushing to remote repository')
-				console.log(push)
 			} catch (error) {
 				console.log(error)
 			}

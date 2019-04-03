@@ -51,10 +51,9 @@ export default {
 		},
 		async addRemoteUrl() {
 			let activeBranch = this.$store.state.commit.activeBranch
-			let push = await git(this.currentRepository.path).push([this.remoteUrl, activeBranch])
+			await git(this.currentRepository.path).push([this.remoteUrl, status.current])
 			try {
 				console.log('Pushing to remote repository')
-				console.log(push)
 				this.$store.commit({
 					type: "repository/localRepositoryRemote",
 					remote: this.remoteUrl
