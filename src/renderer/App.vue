@@ -11,6 +11,7 @@
 				<addLocalRepository/>
 				<about/>
 				<exportCommitData/>
+				<newRemote/>
 			</div>
 		</div>
 	</div>
@@ -23,6 +24,7 @@ import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
 import about from "./components/model/about"
 import exportCommitData from "./components/model/exportCommitData"
+import newRemote from "./components/model/newRemote"
 
 export default {
 	name: "thermal",
@@ -32,7 +34,8 @@ export default {
 		sidebar,
 		addLocalRepository,
 		about,
-		exportCommitData
+		exportCommitData,
+		newRemote
 	}
 }
 </script>
