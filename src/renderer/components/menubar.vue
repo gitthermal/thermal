@@ -85,6 +85,15 @@
       </div>
     </div>
     <div class="menubar__drag"></div>
+		<div class="menubar__title">
+			<div v-if="!!currentRepository" class="menubar__title__repository d-flex">
+				{{ currentRepository.name }}
+				<div style="padding: 0 5px">-</div>
+			</div>
+			<div class="menubar__title__app">
+				Thermal
+			</div>
+		</div>
     <div class="menubar__controles">
       <windowsButton/>
     </div>
@@ -223,6 +232,14 @@ export default {
 
 					&:hover
 						background-color: rgba(139, 151, 152, .1)
+
+	&__title
+		position: absolute
+		display: flex
+		left: 50%
+		top: 50%
+		transform: translate(-50%, -50%)
+		font-size: 14px
 
 	&__controles
 		margin-left: auto
