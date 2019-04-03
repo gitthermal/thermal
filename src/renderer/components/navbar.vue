@@ -1,5 +1,5 @@
 <template>
-  <div v-show="!!currentRepository" class="navbar">
+  <div v-if="!!currentRepository" class="navbar">
     <div @click="openCommitPage()" class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
