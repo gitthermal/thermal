@@ -67,7 +67,9 @@ export default {
 						type: "repository/addLocalRepository",
 						name: repositoryName,
 						path: this.pathToRepository,
-						remote: listRemote
+						remote: listRemote,
+						commits: true,
+						remotes: true
 					})
 					this.pathToRepository = ""
 					this.closeModel()
