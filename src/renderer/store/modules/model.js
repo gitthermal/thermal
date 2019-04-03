@@ -5,6 +5,7 @@ const state = {
 		newRepository: false,
 		about: false,
 		exportCommitData: false,
+		newRemote: false
 	}
 }
 
@@ -22,6 +23,9 @@ const mutations = {
 	},
 	toggleExportCommitData(state) {
 		state.model.exportCommitData = !state.model.exportCommitData
+	},
+	toggleNewRemote(state) {
+		state.model.newRemote = !state.model.newRemote
 	},
 }
 
@@ -48,6 +52,14 @@ const actions = {
 		})
 		commit({
 			type: "toggleExportCommitData"
+		})
+	},
+	showNewRemote: ({ commit }) => {
+		commit({
+			type: "toggleModelPlaceholder"
+		})
+		commit({
+			type: "toggleNewRemote"
 		})
 	}
 }
