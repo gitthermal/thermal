@@ -29,6 +29,14 @@ const mutations = {
 	},
 	localRepositoryRemote(state, payload) {
 		state.repositoryList[workspace.state.workspaceRepository.index].remote = payload.remote
+	},
+	toggleCommitFeature(state, payload) {
+		console.log(state.repositoryList[workspace.state.workspaceRepository.index].features.commit)
+		state.repositoryList[workspace.state.workspaceRepository.index].features.commit = payload.commits
+	},
+	toggleRemoteFeature(state, payload) {
+		console.log(state.repositoryList[workspace.state.workspaceRepository.index].features.remote)
+		state.repositoryList[workspace.state.workspaceRepository.index].features.remote = payload.remotes
 	}
 }
 
