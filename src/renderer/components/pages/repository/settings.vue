@@ -9,14 +9,14 @@
 				<div class="settings__body__section">
 					<inputTextLabel
 						v-model="repositoryName"
-						name="name"
+						name="repositoryName"
 						label="Name"
 						placeholder="Repository name"
 						class="settings__body__section__item"
 					/>
 					<inputTextLabel
 						v-model="repositoryPath"
-						name="directoryPath"
+						name="repositoryPath"
 						label="Directory path"
 						placeholder="Path"
 						:disable="true"
