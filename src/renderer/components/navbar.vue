@@ -9,7 +9,7 @@
         <pullIcon/>
         <p>Pull</p>
       </div>
-      <div class="navbar__item">
+      <div @click="gitPush()" class="navbar__item">
         <pushIcon/>
         <p>Push</p>
       </div>
@@ -85,6 +85,16 @@ export default {
 			let pull = await git(this.currentRepository.path).pull()
 			try {
 				console.log(pull)
+			} catch (error) {
+				console.log(error)
+			}
+		},
+		async gitPush() {
+			let activeBranch = this.$store.state.commit.activeBranch
+			let push = await git(this.currentRepository.path).push([this.remoteUrl, activeBranch])
+			try {
+				console.log('Pushing to remote repository')
+				console.log(push)
 			} catch (error) {
 				console.log(error)
 			}

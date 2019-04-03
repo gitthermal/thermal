@@ -17,7 +17,7 @@
 			/>
     </div>
     <div class="model__section model__footer">
-      <primaryButton class="ml-auto" text="Publish repository"/>
+      <primaryButton @click.native="addRemoteUrl()" class="ml-auto" text="Publish repository"/>
     </div>
 	</div>
 </template>
@@ -26,8 +26,15 @@
 import inputText from '../inputText'
 import closeIcon from '../icon/close'
 import primaryButton from '../atoms/primaryButton'
+import git from "simple-git/promise"
+
 export default {
 	name: "newRemote",
+	data() {
+		return {
+			remoteUrl: ""
+		}
+	},
 	components: {
 		inputText,
 		closeIcon,
@@ -41,6 +48,17 @@ export default {
 	methods: {
 		closeModel() {
 			this.$store.dispatch("model/showNewRemote")
+		},
+		async addRemoteUrl() {
+			let activeBranch = this.$store.state.commit.activeBranch
+			let push = await git(this.currentRepository.path).push([this.remoteUrl, activeBranch])
+			try {
+				console.log('Pushing to remote repository')
+				console.log(push)
+				this.closeModel()
+			} catch (error) {
+				console.log(error)
+			}
 		}
 	},
 	directives: {
