@@ -1,11 +1,6 @@
 <template>
 	<div id="app">
 		<menubar/>
-		<navbar/>
-		<div class="col__view">
-			<sidebar/>
-			<router-view></router-view>
-		</div>
 		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<addLocalRepository/>
@@ -19,8 +14,6 @@
 
 <script>
 import menubar from "./components/menubar"
-import navbar from "./components/navbar"
-import sidebar from "./components/sidebar"
 import addLocalRepository from "./components/molecules/addLocalRepository"
 import about from "./components/model/about"
 import exportCommitData from "./components/model/exportCommitData"
@@ -30,8 +23,6 @@ export default {
 	name: "thermal",
 	components: {
 		menubar,
-		navbar,
-		sidebar,
 		addLocalRepository,
 		about,
 		exportCommitData,
@@ -41,11 +32,6 @@ export default {
 </script>
 
 <style lang="sass">
-	.col__view
-		display: flex
-		height: 86vh
-		flex-direction: row
-
 	.model
 		&__placeholder
 			position: fixed

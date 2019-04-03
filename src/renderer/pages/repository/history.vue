@@ -37,10 +37,10 @@
 
 <script>
 import git from "simple-git/promise"
-import commitHistoryItem from "./molecules/commitHistoryItem"
-import commitInformation from "./organisms/commitInformation"
-import commitHistoryPreview from "./organisms/commitHistoryPreview"
-import fileIcon from "./icon/file"
+import commitHistoryItem from "../../components/commit/commitHistoryItem"
+import commitInformation from "../../components/commit/commitInformation"
+import commitHistoryPreview from "../../components/commit/commitHistoryPreview"
+import fileIcon from "../../components/icon/file"
 import * as Sentry from "@sentry/electron"
 import VueScrollbar from "vue2-scrollbar"
 

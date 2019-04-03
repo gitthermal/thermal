@@ -81,70 +81,70 @@
 </template>
 
 <script>
-import inputTextLabel from "../../inputTextLabel";
-import outlineButton from "../../atoms/outlineButton";
-import { ToggleButton } from "vue-js-toggle-button";
-import VueScrollbar from "vue2-scrollbar";
+import inputTextLabel from "../../components/input/inputTextLabel"
+import outlineButton from "../../components/buttons/outlineButton"
+import { ToggleButton } from "vue-js-toggle-button"
+import VueScrollbar from "vue2-scrollbar"
 
 export default {
-  name: "repositorySettings",
-  components: {
-    inputTextLabel,
-    outlineButton,
-    ToggleButton,
-    VueScrollbar
-  },
-  computed: {
-    currentRepository() {
-      return this.$store.getters["workspace/currentRepository"];
-    },
-    repositoryName: {
-      get: function() {
-        return this.currentRepository.name;
-      },
-      set: function(value) {
-        this.$store.commit({
-          type: "repository/editLocalRepositoryName",
-          name: value
-        });
-      }
-    },
-    repositoryPath() {
-      return this.currentRepository.path;
-    },
-    toggleCommit: {
-      get: function() {
-        return this.currentRepository.features.commit;
-      },
-      set: function(value) {
-        this.$store.commit({
-          type: "repository/toggleCommitFeature",
-          commits: value
-        });
-      }
-    },
-    toggleRemote: {
-      get: function() {
-        return this.currentRepository.features.remote;
-      },
-      set: function(value) {
-        this.$store.commit({
-          type: "repository/toggleRemoteFeature",
-          remotes: value
-        });
-      }
-    },
-    repositoryRemoteUrl() {
-      return this.currentRepository.remote;
-    }
-  },
-  methods: {
-    removeCurrentRepository() {
-      this.$store.commit("repository/removeLocalRepository");
-      this.$router.push({ name: "welcome" });
-    }
-  }
-};
+	name: "repositorySettings",
+	components: {
+		inputTextLabel,
+		outlineButton,
+		ToggleButton,
+		VueScrollbar
+	},
+	computed: {
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
+		},
+		repositoryName: {
+			get: function() {
+				return this.currentRepository.name
+			},
+			set: function(value) {
+				this.$store.commit({
+					type: "repository/editLocalRepositoryName",
+					name: value
+				})
+			}
+		},
+		repositoryPath() {
+			return this.currentRepository.path
+		},
+		toggleCommit: {
+			get: function() {
+				return this.currentRepository.features.commit
+			},
+			set: function(value) {
+				this.$store.commit({
+					type: "repository/toggleCommitFeature",
+					commits: value
+				})
+			}
+		},
+		toggleRemote: {
+			get: function() {
+				return this.currentRepository.features.remote
+			},
+			set: function(value) {
+				this.$store.commit({
+					type: "repository/toggleRemoteFeature",
+					remotes: value
+				})
+			}
+		},
+		repositoryRemoteUrl() {
+			return this.currentRepository.remote
+		}
+	},
+	methods: {
+		removeCurrentRepository() {
+			this.$store.commit("repository/removeLocalRepository")
+			this.$router.push({ name: "welcome" })
+		}
+	}
+}
 </script>
 
 <style lang='sass'>

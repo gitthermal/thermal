@@ -59,9 +59,9 @@
 <script>
 import git from "simple-git/promise"
 import VueScrollbar from "vue2-scrollbar"
-import branchIcon from "./icon/branch"
-import inputText from "./inputText"
-import primaryButton from "./atoms/primaryButton"
+import branchIcon from "../../components/icon/branch"
+import inputText from "../../components/input/inputText"
+import primaryButton from "../../components/buttons/primaryButton"
 import * as Sentry from "@sentry/electron"
 
 export default {

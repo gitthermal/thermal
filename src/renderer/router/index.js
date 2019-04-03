@@ -5,14 +5,25 @@ Vue.use(Router)
 
 let routes = [
 	{
-		path: "/workspace",
-		name: "workspace",
-		component: require("../components/workspacePage").default
-	},
-	{
-		path: "/history",
-		name: "history",
-		component: require("../components/history").default
+		path: "/repository",
+		component: require("../pages/repository").default,
+		children: [
+			{
+				path: "workspace",
+				name: "repositoryWorkspace",
+				component: require("../pages/repository/workspace").default
+			},
+			{
+				path: "history",
+				name: "repositoryHistory",
+				component: require("../pages/repository/history").default
+			},
+			{
+				path: "settings",
+				name: "repositorySettings",
+				component: require("../pages/repository/settings").default
+			}
+		]
 	},
 	{
 		path: "/settings",
