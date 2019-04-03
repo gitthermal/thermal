@@ -4,7 +4,7 @@
       <commitIcon/>
       <p>Commit</p>
     </div>
-    <div v-if="!!getRemoteUrl" class="navbar__group">
+    <div v-show="getFeatureValue.remote" v-if="!!getRemoteUrl" class="navbar__group">
       <div @click="gitPull()" class="navbar__item">
         <pullIcon/>
         <p>Pull</p>
@@ -18,7 +18,7 @@
         <p>Fetch</p>
       </div>
 		</div>
-		<div @click="newRemote()" v-else :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
+		<div @click="newRemote()" v-else v-show="getFeatureValue.remote" :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
       <publishIcon/>
       <p>Publish</p>
     </div>
