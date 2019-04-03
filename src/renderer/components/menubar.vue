@@ -10,7 +10,7 @@
 					<div class="menubar__list__item__dropdown__item">New repository</div>
           <div @click="addLocalRepository()" class="menubar__list__item__dropdown__item">Add local repository</div>
           <div class="menubar__list__item__dropdown__item">Clone repository</div>
-          <div @click="switchRepository()" class="menubar__list__item__dropdown__item">Switch repository</div>
+          <div v-if="!!currentRepository"  @click="switchRepository()" class="menubar__list__item__dropdown__item">Switch repository</div>
           <div class="menubar__list__item__dropdown__item">Options</div>
           <div @click="exitApp()" class="menubar__list__item__dropdown__item">Exit</div>
         </div>
@@ -127,6 +127,11 @@ export default {
 	components: {
 		thermalLogo,
 		windowsButton
+	},
+	computed: {
+		currentRepository() {
+			return this.$store.getters["workspace/currentRepository"]
+		}
 	},
 	methods: {
 		homepage() {
