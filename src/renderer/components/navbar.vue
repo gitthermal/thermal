@@ -4,7 +4,7 @@
       <commitIcon/>
       <p>Commit</p>
     </div>
-    <div class="navbar__group">
+    <div v-if="!!getRemoteUrl" class="navbar__group">
       <div @click="gitPull()" class="navbar__item">
         <pullIcon/>
         <p>Pull</p>
@@ -18,7 +18,7 @@
         <p>Fetch</p>
       </div>
 		</div>
-		<div class="navbar__item">
+		<div v-else :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
       <publishIcon/>
       <p>Publish</p>
     </div>
@@ -72,6 +72,9 @@ export default {
 	computed: {
 		currentRepository() {
 			return this.$store.getters["workspace/currentRepository"]
+		},
+		getRemoteUrl() {
+			return this.currentRepository.remote
 		}
 	},
 	methods: {
