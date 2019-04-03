@@ -82,7 +82,7 @@ export default {
 	},
 	methods: {
 		openCommitPage() {
-			this.$router.push({ name: "workspace" })
+			this.$router.push({ name: "repositoryWorkspace" })
 		},
 		async gitPull() {
 			let pull = await git(this.currentRepository.path).pull()
