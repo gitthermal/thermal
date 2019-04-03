@@ -25,7 +25,7 @@
 					<div>
 						<div v-if="getAllRepository.length > 0">
 							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
-								<h6>{{ repo.name }}</h6>
+								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<primaryButton @click.native="selectCurrentRepository(index)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
 								<div @click="openRepositorySettings(index)" class="welcome__repository__list__item__settings">
 									<settingsIcon/>
@@ -68,6 +68,7 @@ import outlineButton from "./atoms/outlineButton"
 import packageJson from "../../../package.json"
 import * as Sentry from "@sentry/electron"
 import VueScrollbar from "vue2-scrollbar"
+import truncateFilter from "../filters/truncate"
 const { shell } = require("electron")
 
 Sentry.configureScope((scope) => {
@@ -137,6 +138,9 @@ export default {
 			this.updateCurrentRepository(index)
 			this.$router.push({ name: "repositorySettings" })
 		}
+	},
+	filters: {
+		truncateFilter
 	}
 }
 </script>
