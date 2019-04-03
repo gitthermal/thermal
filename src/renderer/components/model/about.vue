@@ -29,8 +29,8 @@
 <script>
 import thermalLogo from "../icon/logo"
 import packageJson from "../../../../package.json"
-import primaryButton from "../atoms/primaryButton"
-import outlineButton from "../atoms/outlineButton"
+import primaryButton from "../buttons/primaryButton"
+import outlineButton from "../buttons/outlineButton"
 const { shell } = require("electron")
 
 export default {

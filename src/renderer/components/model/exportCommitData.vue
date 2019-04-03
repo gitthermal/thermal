@@ -30,8 +30,8 @@
 
 <script>
 import closeIcon from "../icon/close"
-import primaryButton from "../atoms/primaryButton"
 import inputTextLabel from "../inputTextLabel"
+import primaryButton from "../buttons/primaryButton"
 const fs = require("fs")
 
 export default {
