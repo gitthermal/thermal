@@ -32,6 +32,25 @@
 					/>
 				</div>				
 				<div class="settings__body__section">
+					<h4>Features</h4>
+					<div class="settings__body__section__content">
+						<div class="settings__body__section__content__item d-flex flex-row align-items-center">
+							<div>
+								<h6>Commit</h6>
+								<p>Enable/disable commits for this repository</p>
+							</div>
+							<toggle-button color="#00adb5" class="ml-auto"/>
+						</div>
+						<div class="settings__body__section__content__item d-flex flex-row align-items-center">
+							<div>
+								<h6>Remote</h6>
+								<p>Pull, push and fetch</p>
+							</div>
+							<toggle-button color="#00adb5" class="ml-auto"/>
+						</div>
+					</div>
+				</div>
+				<div class="settings__body__section">
 					<h4>Danger Zone</h4>
 					<div class="settings__body__section__content">
 						<div class="settings__body__section__content__item d-flex flex-row align-items-center">
@@ -51,12 +70,14 @@
 <script>
 import inputTextLabel from "../../inputTextLabel"
 import outlineButton from "../../atoms/outlineButton"
+import { ToggleButton } from "vue-js-toggle-button"
 
 export default {
 	name: "repositorySettings",
 	components: {
 		inputTextLabel,
-		outlineButton
+		outlineButton,
+		ToggleButton,
 	},
 	computed: {
 		currentRepository() {
