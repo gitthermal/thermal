@@ -168,6 +168,7 @@ export default {
 
 						&:not(:last-child)
 							padding-bottom: .8rem
+							border-bottom: 1px solid #eee
 					p
 						font-size: 14px
 
