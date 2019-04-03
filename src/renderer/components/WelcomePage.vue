@@ -13,7 +13,7 @@
 				<div @click="coffeeURL()" class="welcome__introduction__item__icon">
 					<coffeeIcon/>
 				</div>
-				<div @click="helpURL()" class="welcome__introduction__item__icon">
+				<div @click="discordURL()" class="welcome__introduction__item__icon">
 					<helpIcon/>
 				</div>
 			</div>
@@ -115,7 +115,7 @@ export default {
 		coffeeURL() {
 			shell.openExternal("https://www.patreon.com/join/mittalyashu")
 		},
-		helpIcon() {
+		discordURL() {
 			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		addLocalRepository() {
