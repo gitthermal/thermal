@@ -105,7 +105,6 @@ export default {
 			this.$store.dispatch("model/showNewRemote")
 		},
 		openFileExplorer() {
-			console.log(this.workspaceRepository.path)
 			shell.openItem(this.currentRepository.path)
 		},
 		openRepositorySettings() {
