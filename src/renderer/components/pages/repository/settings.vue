@@ -46,7 +46,7 @@
 								<h6>Remote</h6>
 								<p>Pull, push and fetch</p>
 							</div>
-							<toggle-button color="#00adb5" class="ml-auto"/>
+							<toggle-button v-model="toggleRemote" color="#00adb5" class="ml-auto"/>
 						</div>
 					</div>
 				</div>
@@ -105,6 +105,17 @@ export default {
 				this.$store.commit({
 					type: "repository/toggleCommitFeature",
 					commits: value
+				})
+			}
+		},
+		toggleRemote: {
+			get: function() {
+				return this.currentRepository.features.remote
+			},
+			set: function(value) {
+				this.$store.commit({
+					type: "repository/toggleRemoteFeature",
+					remotes: value
 				})
 			}
 		},
