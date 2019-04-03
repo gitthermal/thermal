@@ -22,6 +22,14 @@
 						:disable="true"
 						class="settings__body__section__item"
 					/>
+					<inputTextLabel
+						v-model="repositoryRemoteUrl"
+						name="repositoryRemoteUrl"
+						label="Remote URL"
+						placeholder="Path"
+						:disable="true"
+						class="settings__body__section__item"
+					/>
 				</div>				
 				<div class="settings__body__section">
 					<h4>Danger Zone</h4>
@@ -67,6 +75,9 @@ export default {
 		},
 		repositoryPath() {
 			return this.currentRepository.path
+		},
+		repositoryRemoteUrl() {
+			return this.currentRepository.remote
 		}
 	},
 	methods: {
