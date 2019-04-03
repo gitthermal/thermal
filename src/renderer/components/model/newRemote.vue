@@ -55,7 +55,10 @@ export default {
 			).status()
 			console.log("Pushing changes...")
 			await git(this.currentRepository.path).push([this.remoteUrl, status.current])
+			let addRemote = await git(this.currentRepository.path).addRemote("origin", this.remoteUrl)
 			try {
+				console.log("Adding remote url to origin")
+				console.log(addRemote)
 				this.$store.commit({
 					type: "repository/localRepositoryRemote",
 					remote: this.remoteUrl
