@@ -34,7 +34,7 @@
 				<div class="settings__body__section">
 					<h4>Danger Zone</h4>
 					<div class="settings__body__section__content">
-						<div class="d-flex flex-row align-items-center">
+						<div class="settings__body__section__content__item d-flex flex-row align-items-center">
 							<div>
 								<h6>Remove this repository</h6>
 								<p>Once you remove the repository, you can add again.</p>
@@ -111,6 +111,13 @@ export default {
 					border-radius: .3rem
 					padding: 1rem
 
+					&__item
+
+						&:not(:first-child)
+							padding-top: .8rem
+
+						&:not(:last-child)
+							padding-bottom: .8rem
 					p
 						font-size: 14px
 
