@@ -52,6 +52,12 @@ export default {
 			let listRemote
 			try {
 				listRemote = await git(this.pathToRepository).listRemote(["--get-url"])
+				if (listRemote.slice(-4, -1) === "git") {
+					this.$store.commit({
+						type: "repository/localRepositoryRemote",
+						remote: listRemote
+					})
+				}
 			} catch (error) {
 				console.log(error)
 			}
