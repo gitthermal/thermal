@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import inputText from "../inputText"
+import inputText from "../input/inputText"
 import closeIcon from "../icon/close"
 import primaryButton from "../buttons/primaryButton"
 import git from "simple-git/promise"
