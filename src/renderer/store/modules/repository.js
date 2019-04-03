@@ -13,7 +13,11 @@ const mutations = {
 		let repositoryData = {
 			path: payload.path,
 			name: payload.name,
-			remote: payload.remote
+			remote: payload.remote,
+			features: {
+				commit: payload.commits,
+				remote: payload.remotes
+			}
 		}
 		state.repositoryList.push(repositoryData)
 	},	
