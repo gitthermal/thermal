@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<menubar/>
+		<router-view></router-view>
 		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<addLocalRepository/>
