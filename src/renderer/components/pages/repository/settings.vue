@@ -39,7 +39,7 @@
 								<h6>Commit</h6>
 								<p>Enable/disable commits for this repository</p>
 							</div>
-							<toggle-button color="#00adb5" class="ml-auto"/>
+							<toggle-button v-model="toggleCommit" color="#00adb5" class="ml-auto"/>
 						</div>
 						<div class="settings__body__section__content__item d-flex flex-row align-items-center">
 							<div>
@@ -96,6 +96,17 @@ export default {
 		},
 		repositoryPath() {
 			return this.currentRepository.path
+		},
+		toggleCommit: {
+			get: function() {
+				return this.currentRepository.features.commit
+			},
+			set: function(value) {
+				this.$store.commit({
+					type: "repository/toggleCommitFeature",
+					commits: value
+				})
+			}
 		},
 		repositoryRemoteUrl() {
 			return this.currentRepository.remote
