@@ -13,6 +13,7 @@
 						class="workspace__changes__item d-flex align-items-center"
 					>
 						<input
+							v-show="getFeatureValue.commit"
 							class="workspace__changes__item__checkbox"
 							type="checkbox"
 							:value="file.path"
@@ -38,7 +39,7 @@
 				</div>
 			</VueScrollbar>
 		</div>
-		<div class="commit-message">
+		<div v-show="getFeatureValue.commit" class="commit-message">
 			<inputText
 				v-model="commitMessageTitle"
 				name="commitMessageTitle"
@@ -100,6 +101,9 @@ export default {
 		},
 		stagedFileLength() {
 			return this.$store.state.commit.staged.length
+		},
+		getFeatureValue() {
+			return this.currentRepository.features
 		}
 	},
 	methods: {

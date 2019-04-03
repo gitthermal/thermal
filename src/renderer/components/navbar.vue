@@ -1,6 +1,6 @@
 <template>
   <div v-if="!!currentRepository" class="navbar">
-    <div @click="openCommitPage()" class="navbar__item">
+    <div v-show="getFeatureValue.commit" @click="openCommitPage()" class="navbar__item">
       <commitIcon/>
       <p>Commit</p>
     </div>
@@ -75,6 +75,9 @@ export default {
 		},
 		getRemoteUrl() {
 			return this.currentRepository.remote
+		},
+		getFeatureValue() {
+			return this.currentRepository.features
 		}
 	},
 	methods: {
