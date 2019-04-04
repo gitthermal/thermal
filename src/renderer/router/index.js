@@ -27,8 +27,24 @@ let routes = [
 	},
 	{
 		path: "/settings",
-		name: "repositorySettings",
-		component: require("../components/pages/repository/settings").default
+		component: require("../pages/settings").default,
+		children: [
+			{
+				path: "profile",
+				name: "profileSettings",
+				component: require("../pages/settings/profile").default
+			},
+			{
+				path: "experimental",
+				name: "experimentalFeatures",
+				component: require("../pages/settings/experimental").default
+			},
+			{
+				path: "information",
+				name: "appInformation",
+				component: require("../pages/settings/information").default
+			}
+		]
 	},
 	{
 		path: "/",

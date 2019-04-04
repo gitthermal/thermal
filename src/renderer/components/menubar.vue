@@ -211,6 +211,7 @@ export default {
 			color: #8B9798
 			cursor: pointer
 			font-size: .8rem
+			user-select: none
 			
 			&:not(:last-child)
 				margin-right: 1rem
