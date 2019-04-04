@@ -7,6 +7,10 @@
       </div>
     </div>
     <div class="settings__sidebar__group d-flex flex-column">
+      <router-link :to="{ name: 'profileSettings' }" class="settings__sidebar__group__item d-flex align-items-center">
+        <userIcon/>
+        <p>Profile</p>
+      </router-link>
       <router-link :to="{ name: 'experimentalFeatures' }" class="settings__sidebar__group__item d-flex align-items-center">
         <flagIcon/>
         <p>Experimental</p>
@@ -17,12 +21,14 @@
 
 <script>
 import closeIcon from "../icon/close"
+import userIcon from "../icon/user"
 import flagIcon from "../icon/flag"
 
 export default {
 	name: "settingsSidebar",
 	components: {
 		closeIcon,
+		userIcon,
 		flagIcon,
 	},
 	methods: {
