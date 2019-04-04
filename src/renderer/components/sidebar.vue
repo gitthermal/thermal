@@ -1,11 +1,11 @@
 <template>
   <div class="repository__sidebar d-flex">
     <div class="repository__sidebar__group d-flex flex-column">
-      <router-link class="repository__sidebar__item d-flex align-items-center" to="workspace">
+      <router-link class="repository__sidebar__item d-flex align-items-center" :to="{ name: 'repositoryWorkspace' }">
         <folderIcon/>
         <p>Workspace</p>
       </router-link>
-      <router-link class="repository__sidebar__item d-flex align-items-center" to="history">
+      <router-link class="repository__sidebar__item d-flex align-items-center" :to="{ name: 'repositoryHistory' }">
         <clockIcon/>
         <p>History</p>
       </router-link>
