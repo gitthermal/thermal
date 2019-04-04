@@ -6,13 +6,23 @@
         <closeIcon/>
       </div>
     </div>
+    <div class="settings__sidebar__group d-flex flex-column">
+      <router-link :to="{ name: 'experimentalFeatures' }" class="settings__sidebar__group__item d-flex align-items-center">
+        <flagIcon/>
+        <p>Experimental</p>
+      </router-link>
+    </div>		
   </div>
 </template>
 
 <script>
+import flagIcon from "../icon/flag"
 
 export default {
 	name: "settingsSidebar",
+	components: {
+		flagIcon,
+	},
 	methods: {
 		previousPage() {
 			this.$router.push({ name: "welcome" })
@@ -43,3 +53,20 @@ export default {
 					width: 20px
 					height: 20px
 					stroke: #222831
+
+		&__group
+
+			&__item
+				padding: .8rem 1.2rem
+				color: #222831
+				user-select: none
+
+				&:hover
+					background-color: #DEE0E3
+
+				svg
+					width: 20px
+					height: 20px
+					stroke: #222831
+					margin-right: 14px
+</style>
