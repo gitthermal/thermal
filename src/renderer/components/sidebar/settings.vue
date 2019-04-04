@@ -15,6 +15,10 @@
         <flagIcon/>
         <p>Experimental</p>
       </router-link>
+      <router-link :to="{ name: 'appInformation' }" class="settings__sidebar__group__item d-flex align-items-center">
+        <infoIcon/>
+        <p>Information</p>
+      </router-link>
     </div>		
   </div>
 </template>
@@ -23,6 +27,7 @@
 import closeIcon from "../icon/close"
 import userIcon from "../icon/user"
 import flagIcon from "../icon/flag"
+import infoIcon from "../icon/info"
 
 export default {
 	name: "settingsSidebar",
@@ -30,6 +35,7 @@ export default {
 		closeIcon,
 		userIcon,
 		flagIcon,
+		infoIcon
 	},
 	methods: {
 		previousPage() {
