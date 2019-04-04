@@ -16,11 +16,13 @@
 </template>
 
 <script>
+import closeIcon from "../icon/close"
 import flagIcon from "../icon/flag"
 
 export default {
 	name: "settingsSidebar",
 	components: {
+		closeIcon,
 		flagIcon,
 	},
 	methods: {
