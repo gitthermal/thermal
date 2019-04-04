@@ -1,42 +1,42 @@
 <template>
-  <div v-if="!!currentRepository" class="navbar">
-    <div v-show="getFeatureValue.commit" @click="openCommitPage()" class="navbar__item">
+  <div class="workspace__navbar">
+    <div v-show="getFeatureValue.commit" @click="openCommitPage()" class="workspace__navbar__item">
       <commitIcon/>
       <p>Commit</p>
     </div>
-    <div v-show="getFeatureValue.remote" v-if="!!getRemoteUrl" class="navbar__group">
-      <div @click="gitPull()" class="navbar__item">
+    <div v-show="getFeatureValue.remote" v-if="!!getRemoteUrl" class="workspace__navbar__group">
+      <div @click="gitPull()" class="workspace__navbar__item">
         <pullIcon/>
         <p>Pull</p>
       </div>
-      <div @click="gitPush()" class="navbar__item">
+      <div @click="gitPush()" class="workspace__navbar__item">
         <pushIcon/>
         <p>Push</p>
       </div>
-      <div class="navbar__item">
+      <div class="workspace__navbar__item">
         <fetchIcon/>
         <p>Fetch</p>
       </div>
 		</div>
-		<div @click="newRemote()" v-else v-show="getFeatureValue.remote" :class="!!getRemoteUrl === false ? 'navbar__group' : ''" class="navbar__item">
+		<div @click="newRemote()" v-else v-show="getFeatureValue.remote" :class="!!getRemoteUrl === false ? 'workspace__navbar__group' : ''" class="workspace__navbar__item">
       <publishIcon/>
       <p>Publish</p>
     </div>
-    <div class="navbar__group ml-auto">
-      <div class="navbar__item">
+    <div class="workspace__navbar__group ml-auto">
+      <div class="workspace__navbar__item">
         <terminalIcon/>
         <p>Terminal</p>
       </div>
-      <div @click="openFileExplorer()" class="navbar__item">
+      <div @click="openFileExplorer()" class="workspace__navbar__item">
         <folderIcon/>
         <p>Explorer</p>
       </div>
-      <div @click="openRepositorySettings()" class="navbar__item">
+      <div @click="openRepositorySettings()" class="workspace__navbar__item">
         <settingsIcon/>
         <p>Settings</p>
       </div>
     </div>
-    <div @click="switchRepository()" class="navbar__item">
+    <div @click="switchRepository()" class="workspace__navbar__item">
       <switchRepositoryIcon/>
       <p>Switch repo</p>
     </div>
@@ -119,7 +119,9 @@ export default {
 </script>
 
 <style lang='sass'>
-	.navbar
+.workspace
+
+	&__navbar
 		background-color: #EFEFEF
 		border-bottom: 1px solid #DEE0E3
 		padding: 12px 20px
@@ -152,6 +154,6 @@ export default {
 				&:not(:last-child)
 					margin-right: 15px
 
-	.navbar, .navbar__item, .navbar__group
+	.workspace__navbar, .workspace__navbar__item, .workspace__navbar__group
 		display: flex
 </style>
