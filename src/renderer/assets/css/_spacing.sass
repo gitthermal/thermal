@@ -7,8 +7,11 @@
 .w-100
 	width: 100%
 
-.p-1
-	padding: 1rem
 
-.m-1
-	margin: 1rem
+@for $i from 1 through 10
+	.p-#{$i}
+		padding: $i + rem
+
+@for $i from 1 through 10
+	.m-#{$i}
+		margin: $i + rem
