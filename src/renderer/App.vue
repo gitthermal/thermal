@@ -21,7 +21,7 @@ import exportCommitData from "./components/model/exportCommitData"
 import newRemote from "./components/model/newRemote"
 
 export default {
-	name: "thermal",
+	name: "app",
 	components: {
 		menubar,
 		addLocalRepository,
