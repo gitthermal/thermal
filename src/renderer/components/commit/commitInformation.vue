@@ -211,28 +211,32 @@ export default {
 			return path.replace(/\|.*/, "").trim()
 		},
 		async commitHistoryPreview(hash, path) {
-			this.$store.commit({
-				type: "history/toggleFilePreview",
-				isActive: true
-			})
-			let gitDiff = await git(this.currentRepository.path).diff([
-				hash + "^1",
-				hash,
-				"--",
-				path
-			])
-			try {
-				let output = gitDiff.split("\n")
-				output.splice(0, 4)
-				this.$store.dispatch({
-					type: "history/updateFilePreview",
-					preview: output
+			if (this.$store.state.settings.experimental.fileChanges) {
+				this.$store.commit({
+					type: "history/toggleFilePreview",
+					isActive: true
 				})
-			} catch (error) {
-				Sentry.captureException(error)
-				let errorMessage = "Unable to fetch commit history preview."
-				console.log(errorMessage)
-				Sentry.captureMessage(errorMessage, gitDiff)
+				let gitDiff = await git(this.currentRepository.path).diff([
+					hash + "^1",
+					hash,
+					"--",
+					path
+				])
+				try {
+					let output = gitDiff.split("\n")
+					output.splice(0, 4)
+					this.$store.dispatch({
+						type: "history/updateFilePreview",
+						preview: output
+					})
+				} catch (error) {
+					Sentry.captureException(error)
+					let errorMessage = "Unable to fetch commit history preview."
+					console.log(errorMessage)
+					Sentry.captureMessage(errorMessage, gitDiff)
+				}
+			} else {
+				console.log("You have not enabled File changes feature from settings.")
 			}
 		}
 	},

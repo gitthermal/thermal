@@ -1,8 +1,18 @@
-const state = {}
+const state = {
+	experimental: {
+		fileChanges: true
+	}
+}
 
-const getters = {}
+const getters = {
+	getExperimental: state => state.experimental
+}
 
-const mutations = {}
+const mutations = {
+	toggleFileChanges(state, payload) {
+		state.experimental.fileChanges = payload.fileChanges
+	}
+}
 
 const actions = {}
 
