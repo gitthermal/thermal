@@ -11,7 +11,7 @@
           <div @click="addLocalRepository()" class="menubar__list__item__dropdown__item">Add local repository</div>
           <div class="menubar__list__item__dropdown__item">Clone repository</div>
           <div v-if="!!currentRepository"  @click="switchRepository()" class="menubar__list__item__dropdown__item">Switch repository</div>
-          <div class="menubar__list__item__dropdown__item">Options</div>
+          <div @click="appOptions()" class="menubar__list__item__dropdown__item">Options</div>
           <div @click="exitApp()" class="menubar__list__item__dropdown__item">Exit</div>
         </div>
       </div>
@@ -167,6 +167,9 @@ export default {
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository")
 			this.$router.push({ name: "welcome" })
+		},
+		appOptions() {
+			this.$router.push({ name: "profileSettings" })
 		},
 		exitApp() {
 			remote.getCurrentWindow().close()
