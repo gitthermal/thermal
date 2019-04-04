@@ -1,11 +1,11 @@
 <template>
-  <div v-show="!!currentRepository" class="sidebar">
-    <div class="sidebar__group d-flex flex-column">
-      <router-link class="sidebar__item d-flex align-items-center" to="workspace">
+  <div v-show="!!currentRepository" class="repository__sidebar d-flex">
+    <div class="repository__sidebar__group d-flex flex-column">
+      <router-link class="repository__sidebar__item d-flex align-items-center" to="workspace">
         <folderIcon/>
         <p>Workspace</p>
       </router-link>
-      <router-link class="sidebar__item d-flex align-items-center" to="history">
+      <router-link class="repository__sidebar__item d-flex align-items-center" to="history">
         <clockIcon/>
         <p>History</p>
       </router-link>
@@ -32,7 +32,9 @@ export default {
 </script>
 
 <style lang='sass'>
-	.sidebar
+.repository
+
+	&__sidebar
 		background-color: #EFEFEF
 		padding-top: 20px
 		border-right: 1px solid #DEE0E3
