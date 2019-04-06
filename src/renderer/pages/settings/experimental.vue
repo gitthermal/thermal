@@ -56,4 +56,7 @@ export default {
 		padding: 1rem 0
 		font-size: 12px
 		color: #6C6F75		
+		
+		a
+			border-bottom: 1px solid #00adb5	
 </style>
