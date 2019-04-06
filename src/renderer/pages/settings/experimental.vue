@@ -39,7 +39,7 @@ export default {
 			},
 			set: function(value) {
 				this.$store.commit({
-					type: "toggleFileChanges",
+					type: "settings/toggleFileChanges",
 					fileChanges: value
 				})
 			}
