@@ -161,30 +161,4 @@ export default {
 				
 				p
 					color: #7A7D84
-
-		&__body
-			
-			&__section
-				margin-bottom: 2rem
-
-				&__content
-					border: 1px solid #eee
-					border-radius: .3rem
-					padding: 1rem
-
-					&__item
-
-						&:not(:first-child)
-							padding-top: .8rem
-
-						&:not(:last-child)
-							padding-bottom: .8rem
-							border-bottom: 1px solid #eee
-					p
-						font-size: 14px
-
-				&__item
-				
-					&:not(:last-child)
-						margin-bottom: .8rem
 </style>
