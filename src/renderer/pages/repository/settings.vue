@@ -6,14 +6,15 @@
           <h4>Settings</h4>
           <p>Your local repository settings</p>
         </div>
-        <div class="settings__body">
-          <div class="settings__body__section">
+				
+        <div>
+          <div class="settings__section">
             <inputTextLabel
               v-model="repositoryName"
               name="repositoryName"
               label="Name"
               placeholder="Repository name"
-              class="settings__body__section__item"
+              class="settings__input"
             />
             <inputTextLabel
               v-model="repositoryPath"
@@ -21,7 +22,7 @@
               label="Directory path"
               placeholder="Path"
               :disable="true"
-              class="settings__body__section__item"
+              class="settings__input"
             />
             <inputTextLabel
               v-model="repositoryRemoteUrl"
@@ -29,14 +30,14 @@
               label="Remote URL"
               placeholder="Path"
               :disable="true"
-              class="settings__body__section__item"
+              class="settings__input"
             />
           </div>
-          <div class="settings__body__section">
+          <div class="settings__section">
             <h4>Features</h4>
-            <div class="settings__body__section__content">
+            <div class="settings__section__group">
               <div
-                class="settings__body__section__content__item d-flex flex-row align-items-center"
+                class="settings__section__group__item"
               >
                 <div>
                   <h6>Commit</h6>
@@ -45,7 +46,7 @@
                 <toggle-button v-model="toggleCommit" color="#00adb5" class="ml-auto"/>
               </div>
               <div
-                class="settings__body__section__content__item d-flex flex-row align-items-center"
+                class="settings__section__group__item"
               >
                 <div>
                   <h6>Remote</h6>
@@ -55,11 +56,11 @@
               </div>
             </div>
           </div>
-          <div class="settings__body__section">
+          <div class="settings__section">
             <h4>Danger Zone</h4>
-            <div class="settings__body__section__content">
+            <div class="settings__section__group">
               <div
-                class="settings__body__section__content__item d-flex flex-row align-items-center"
+                class="settings__section__group__item"
               >
                 <div>
                   <h6>Remove this repository</h6>

@@ -4,16 +4,23 @@
 		<div class="experimental__warning">
 			Experimental features are projects/features that aren't quite ready. They may break (or disapper) at any time. Let us know what you think on our <a @click="discordURL()">Thermal Discord server</a>.
 		</div>
-		<div class="settings__body__section__content">
-			<div class="settings__body__section__content__item d-flex flex-row align-items-center">
-				<div>
-					<h6>File changes</h6>
-					<p>Preview additions and deletion in file from commit history, <a @click="fileChanges()">click to learn more</a>.</p>
-				</div>
-				<toggle-button v-model="toggleFileChanges" color="#00adb5" class="ml-auto"/>
-			</div>
-		</div>
 	</div>
+    <div class="settings__section__group">
+      <div class="settings__section__group__item">
+        <div>
+          <h6>File changes</h6>
+          <p>
+            Preview additions and deletion in file from commit history,
+            <a @click="fileChanges()">click to learn more</a>.
+          </p>
+        </div>
+        <toggle-button
+          v-model="toggleFileChanges"
+          color="#00adb5"
+          class="ml-auto"
+        />
+      </div>
+    </div>
 </template>
 
 <script>
