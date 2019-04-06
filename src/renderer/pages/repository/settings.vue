@@ -1,8 +1,8 @@
 <template>
-  <div class="settings w-100">
-    <VueScrollbar class="settings__scrollbar">
-      <div class="settings__content container">
-        <div class="settings__content__header">
+  <div class="repository__settings w-100">
+    <VueScrollbar class="repository__settings__scrollbar">
+      <div class="repository__settings__content container">
+        <div class="repository__settings__content__header">
           <h4>Settings</h4>
           <p>Your local repository settings</p>
         </div>
@@ -149,7 +149,9 @@ export default {
 </script>
 
 <style lang='sass'>
-	.settings
+.repository
+
+	&__settings
 
 		&__scrollbar
 			max-height: 86vh
