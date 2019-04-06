@@ -86,7 +86,7 @@ import switchRepositoryIcon from "./icon/switch"
 const { shell } = require("electron")
 
 export default {
-	name: "navbar",
+	name: "Navbar",
 	components: {
 		commitIcon,
 		pushIcon,

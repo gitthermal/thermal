@@ -1,11 +1,11 @@
 <template>
-	<div>
-		<navbar/>
-		<div class="col__view">
-			<sidebar/>
-			<router-view></router-view>
-		</div>
-	</div>
+  <div>
+    <navbar />
+    <div class="col__view">
+      <sidebar />
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@ import navbar from "../../components/navbar"
 import sidebar from "../../components/sidebar"
 
 export default {
-	name: "repositoryIndex",
+	name: "RepositoryIndex",
 	components: {
 		navbar,
 		sidebar

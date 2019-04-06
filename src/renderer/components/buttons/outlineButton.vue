@@ -1,29 +1,32 @@
 <template>
-	<a :class="buttonType" class="button button--outline">{{ text }}</a>
+  <a
+    :class="buttonType"
+    class="button button--outline"
+  >{{ text }}</a>
 </template>
 
 <script>
-	export default {
-		props: {
-			text: {
-				type: String,
-				required: true
-			},
-			type: {
-				type: String
-			}
+export default {
+	props: {
+		text: {
+			type: String,
+			required: true
 		},
-		computed: {
-			buttonType() {
-				switch (this.type) {
-				case "danger":
-					return "button--outline--danger"
-				default:
-					return "button--outline--normal"
-				}
+		type: {
+			type: String
+		}
+	},
+	computed: {
+		buttonType() {
+			switch (this.type) {
+			case "danger":
+				return "button--outline--danger"
+			default:
+				return "button--outline--normal"
 			}
 		}
 	}
+}
 </script>
 
 <style lang='sass'>

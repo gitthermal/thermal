@@ -1,16 +1,19 @@
 <template>
-	<div id="app">
-		<menubar/>
-		<router-view></router-view>
-		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
-			<div class="model__container">
-				<addLocalRepository/>
-				<about/>
-				<exportCommitData/>
-				<newRemote/>
-			</div>
-		</div>
-	</div>
+  <div id="app">
+    <menubar />
+    <router-view />
+    <div
+      v-if="this.$store.state.model.isActive"
+      class="model__placeholder"
+    >
+      <div class="model__container">
+        <addLocalRepository />
+        <about />
+        <exportCommitData />
+        <newRemote />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -21,9 +24,9 @@ import exportCommitData from "./components/model/exportCommitData"
 import newRemote from "./components/model/newRemote"
 
 export default {
-	name: "app",
+	name: "App",
 	components: {
-		menubar,
+		menubar,	
 		addLocalRepository,
 		about,
 		exportCommitData,

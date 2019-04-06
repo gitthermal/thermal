@@ -1,12 +1,17 @@
 <template>
   <div>
-    <p class="input__label" :for="labelName">{{ label }}</p>
+    <p
+      class="input__label"
+      :for="labelName"
+    >
+      {{ label }}
+    </p>
     <inputText
       :name="name"
       :placeholder="placeholder"
-			:value="value"
-			:disable="disable"
-			@input="$emit('input', $event)"
+      :value="value"
+      :disable="disable"
+      @input="$emit('input', $event)"
     />
   </div>
 </template>
@@ -15,7 +20,10 @@
 import inputText from "./inputText"
 
 export default {
-	name: "inputTextLabel",
+	name: "InputTextLabel",
+	components: {
+		inputText
+	},
 	props: {
 		name: {
 			type: String
@@ -33,9 +41,6 @@ export default {
 		label: {
 			type: String
 		}
-	},
-	components: {
-		inputText
 	},
 	computed: {
 		labelName() {

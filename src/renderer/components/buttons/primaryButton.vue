@@ -1,16 +1,16 @@
 <template>
-	<a class="button button--primary">{{ text }}</a>
+  <a class="button button--primary">{{ text }}</a>
 </template>
 
 <script>
-	export default {
-		props: {
-			text: {
-				type: String,
-				required: true
-			}
+export default {
+	props: {
+		text: {
+			type: String,
+			required: true
 		}
 	}
+}
 </script>
 
 <style lang='sass'>

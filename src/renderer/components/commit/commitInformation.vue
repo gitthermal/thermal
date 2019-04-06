@@ -1,49 +1,84 @@
 <template>
   <div class="commit__detail">
     <div class="commit__detail__author">
-      <img class="commit__detail__author__image" src="../../../../static/image/user_avatar.png">
+      <img
+        class="commit__detail__author__image"
+        src="../../../../static/image/user_avatar.png"
+      >
       <div>
-        <h6 class="commit__detail__author__name">{{ commitInformation.author.name }}</h6>
-        <p class="commit__detail__author__email">{{ commitInformation.author.email }}</p>
+        <h6 class="commit__detail__author__name">
+          {{ commitInformation.author.name }}
+        </h6>
+        <p class="commit__detail__author__email">
+          {{ commitInformation.author.email }}
+        </p>
       </div>
     </div>
     <div class="commit__detail__summary">
-      <div class="commit__detail__summary__title">{{ commitInformation.title }}</div>
+      <div class="commit__detail__summary__title">
+        {{ commitInformation.title }}
+      </div>
       <div
         v-if="commitInformation.description"
         class="commit__detail__summary__description"
-      >{{ commitInformation.description }}</div>
+      >
+        {{ commitInformation.description }}
+      </div>
     </div>
     <div class="commit__detail__meta">
-      <div v-if="commitInformation.author.name" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.author.name"
+        class="commit__detail__meta__item"
+      >
         Author:
         <p>{{ commitInformation.author.name }} <{{ commitInformation.author.email }}></p>
       </div>
-      <div v-if="commitInformation.author.date" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.author.date"
+        class="commit__detail__meta__item"
+      >
         Author Date:
         <p>{{ commitInformation.author.date }}</p>
       </div>
-      <div v-if="commitInformation.committer.name" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.committer.name"
+        class="commit__detail__meta__item"
+      >
         Committer:
-        <p>{{ commitInformation.committer.name }} <{{ commitInformation.committer.email}}></p>
+        <p>{{ commitInformation.committer.name }} <{{ commitInformation.committer.email }}></p>
       </div>
-      <div v-if="commitInformation.committer.date" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.committer.date"
+        class="commit__detail__meta__item"
+      >
         Committer Date:
         <p>{{ commitInformation.committer.date }}</p>
       </div>
-      <div v-if="commitInformation.meta.refs" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.meta.refs"
+        class="commit__detail__meta__item"
+      >
         Refs:
         <p>{{ commitInformation.meta.refs }}</p>
       </div>
-      <div v-if="commitInformation.meta.commit_hash" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.meta.commit_hash"
+        class="commit__detail__meta__item"
+      >
         Commit Hash:
         <p>{{ commitInformation.meta.commit_hash }}</p>
       </div>
-      <div v-if="commitInformation.meta.tree_hash" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.meta.tree_hash"
+        class="commit__detail__meta__item"
+      >
         Tree Hash:
         <p>{{ commitInformation.meta.tree_hash }}</p>
       </div>
-      <div v-if="commitInformation.meta.parent_hash" class="commit__detail__meta__item">
+      <div
+        v-if="commitInformation.meta.parent_hash"
+        class="commit__detail__meta__item"
+      >
         Parent Hash:
         <p>{{ commitInformation.meta.parent_hash }}</p>
       </div>
@@ -51,13 +86,17 @@
     <div class="commit__detail__files">
       <div
         class="commit__detail__files__summary"
-      >Showing {{ commitInformation.files.list.length }} changed files with {{ commitInformation.files.additions ? commitInformation.files.additions : '0' }} additions and {{ commitInformation.files.deletion ? commitInformation.files.additions : '0' }} deletion</div>
+      >
+        Showing {{ commitInformation.files.list.length }} changed files with {{ commitInformation.files.additions ? commitInformation.files.additions : '0' }} additions and {{ commitInformation.files.deletion ? commitInformation.files.additions : '0' }} deletion
+      </div>
       <div
-        class="commit__detail__files__list"
         v-for="file in commitInformation.files.list"
         :key="trimFilePath(file)"
+        class="commit__detail__files__list"
         @click="commitHistoryPreview(commitInformation.meta.commit_hash, trimFilePath(file))"
-      >{{ trimFilePath(file) }}</div>
+      >
+        {{ trimFilePath(file) }}
+      </div>
     </div>
   </div>
 </template>
@@ -67,7 +106,7 @@ import git from "simple-git/promise"
 import * as Sentry from "@sentry/electron"
 
 export default {
-	name: "commitInformation",
+	name: "CommitInformation",
 	computed: {
 		commitInformation() {
 			return this.$store.getters["history/getCommitInformation"]
@@ -78,6 +117,9 @@ export default {
 		commitHash() {
 			return this.$store.state.history.commitInformation.meta.commit_hash
 		}
+	},
+	mounted() {
+		this.getCommitInformation()
 	},
 	methods: {
 		getCommitInformation() {
@@ -239,9 +281,6 @@ export default {
 				console.log("You have not enabled File changes feature from settings.")
 			}
 		}
-	},
-	mounted() {
-		this.getCommitInformation()
 	}
 }
 </script>

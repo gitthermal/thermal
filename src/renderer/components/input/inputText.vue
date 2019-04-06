@@ -3,16 +3,16 @@
     type="text"
     :name="name"
     class="input__text"
-		:class="disabled"
+    :class="disabled"
     :placeholder="placeholder"
-		:disabled="disable"
+    :disabled="disable"
     @input="$emit('input', $event.target.value)"
   >
 </template>
 
 <script>
 export default {
-	name: "inputText",
+	name: "InputText",
 	props: {
 		name: {
 			type: String

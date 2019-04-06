@@ -1,10 +1,10 @@
 <template>
-	<div class="experimental">
-		<h4>Experimental Features</h4>
-		<div class="experimental__warning">
-			Experimental features are projects/features that aren't quite ready. They may break (or disapper) at any time. Let us know what you think on our <a @click="discordURL()">Thermal Discord server</a>.
-		</div>
-	</div>
+  <div class="experimental">
+    <h4>Experimental Features</h4>
+    <div class="experimental__warning">
+      Experimental features are projects/features that aren't quite ready. They may break (or disapper) at any time. Let us know what you think on our
+      <a @click="discordURL()">Thermal Discord server</a>.
+    </div>
     <div class="settings__section__group">
       <div class="settings__section__group__item">
         <div>
@@ -21,6 +21,7 @@
         />
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -28,7 +29,7 @@ import { ToggleButton } from "vue-js-toggle-button"
 const { shell } = require("electron")
 
 export default {
-	name: "experimentalFeatures",
+	name: "ExperimentalFeatures",
 	components: {
 		ToggleButton
 	},
@@ -50,7 +51,9 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8")
 		},
 		fileChanges() {
-			shell.openExternal("https://www.notion.so/gitthermal/File-changes-ad75574eee7143e398fd6d46b0b91b92#ad75574eee7143e398fd6d46b0b91b92https://www.notion.so/gitthermal/File-changes-ad75574eee7143e398fd6d46b0b91b92#ad75574eee7143e398fd6d46b0b91b92")
+			shell.openExternal(
+				"https://www.notion.so/gitthermal/File-changes-ad75574eee7143e398fd6d46b0b91b92#ad75574eee7143e398fd6d46b0b91b92https://www.notion.so/gitthermal/File-changes-ad75574eee7143e398fd6d46b0b91b92#ad75574eee7143e398fd6d46b0b91b92"
+			)
 		}
 	}
 }
@@ -62,7 +65,7 @@ export default {
 	&__warning
 		padding: 1rem 0
 		font-size: 12px
-		color: #6C6F75		
+		color: #6C6F75
 		
 		a
 			border-bottom: 1px solid #00adb5	

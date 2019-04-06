@@ -1,6 +1,7 @@
 <template>
-	<div>
-	</div>
+  <div>
+    Profile
+  </div>
 </template>
 
 <script>

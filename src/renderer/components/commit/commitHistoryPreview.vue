@@ -1,18 +1,21 @@
 <template>
-	<VueScrollbar class="commit__preview">
-		<div>
-			<div v-for="(line, index) in filePreview" :key="index">
-				{{ line }}
-			</div>
-		</div>
-	</VueScrollbar>
+  <VueScrollbar class="commit__preview">
+    <div>
+      <div
+        v-for="(line, index) in filePreview"
+        :key="index"
+      >
+        {{ line }}
+      </div>
+    </div>
+  </VueScrollbar>
 </template>
 
 <script>
 import VueScrollbar from "vue2-scrollbar"
 
 export default {
-	name: "commitHistoryPreivew",
+	name: "CommitHistoryPreivew",
 	components: {
 		VueScrollbar
 	},

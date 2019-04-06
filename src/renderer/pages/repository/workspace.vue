@@ -1,59 +1,64 @@
 <template>
-	<div class="workspace">
-		<div class="workspace__repository">
-			<div class="workspace__branch d-flex align-items-center">
-				<branchIcon/>
-				<p>{{ this.$store.state.commit.activeBranch }}</p>
-			</div>
-			<VueScrollbar class="workspace__changes__scrollbar">
-				<div class="workspace__changes">
-					<div
-						v-for="file in this.$store.getters['commit/allFiles']"
-						:key="file.path"
-						class="workspace__changes__item d-flex align-items-center"
-					>
-						<input
-							v-show="getFeatureValue.commit"
-							class="workspace__changes__item__checkbox"
-							type="checkbox"
-							:value="file.path"
-							v-model="stagedFile"
-						>
-						<label
-							class="workspace__changes__item__path"
-							:title="file.path"
-							:for="file.path"
-						>
-							<p class="workspace__changes__item__path__name">
-								{{ filePath(file.path) }}
-							</p>
-							<p class="workspace__changes__item__path__file">
-								{{ fileName(file.path) }}
-							</p>
-						</label>
-						<div
-							:style="'background-color: #' + fileTypeColor(file)"
-							class="workspace__changes__item__type ml-auto"
-						>{{ fileType(file) }}</div>
-					</div>
-				</div>
-			</VueScrollbar>
-		</div>
-		<div v-show="getFeatureValue.commit" class="commit-message">
-			<inputText
-				v-model="commitMessageTitle"
-				name="commitMessageTitle"
-				placeholder="Summary (required)"
-				class="commit-message__title"
-			/>
-			<primaryButton
-				:class="{ 'button--disable': !this.stagedFileLength > 0 }"
-				class="commit-message__button w-100"
-				@click.native="commitMessageButton()"
-				:text="'Commit to ' + this.$store.state.commit.activeBranch"
-			/>
-		</div>
-	</div>
+  <div class="workspace">
+    <div class="workspace__repository">
+      <div class="workspace__branch d-flex align-items-center">
+        <branchIcon />
+        <p>{{ this.$store.state.commit.activeBranch }}</p>
+      </div>
+      <VueScrollbar class="workspace__changes__scrollbar">
+        <div class="workspace__changes">
+          <div
+            v-for="file in this.$store.getters['commit/allFiles']"
+            :key="file.path"
+            class="workspace__changes__item d-flex align-items-center"
+          >
+            <input
+              v-show="getFeatureValue.commit"
+              v-model="stagedFile"
+              class="workspace__changes__item__checkbox"
+              type="checkbox"
+              :value="file.path"
+            >
+            <label
+              class="workspace__changes__item__path"
+              :title="file.path"
+              :for="file.path"
+            >
+              <p class="workspace__changes__item__path__name">
+                {{ filePath(file.path) }}
+              </p>
+              <p class="workspace__changes__item__path__file">
+                {{ fileName(file.path) }}
+              </p>
+            </label>
+            <div
+              :style="'background-color: #' + fileTypeColor(file)"
+              class="workspace__changes__item__type ml-auto"
+            >
+              {{ fileType(file) }}
+            </div>
+          </div>
+        </div>
+      </VueScrollbar>
+    </div>
+    <div
+      v-show="getFeatureValue.commit"
+      class="commit-message"
+    >
+      <inputText
+        v-model="commitMessageTitle"
+        name="commitMessageTitle"
+        placeholder="Summary (required)"
+        class="commit-message__title"
+      />
+      <primaryButton
+        :class="{ 'button--disable': !this.stagedFileLength > 0 }"
+        class="commit-message__button w-100"
+        :text="'Commit to ' + this.$store.state.commit.activeBranch"
+        @click.native="commitMessageButton()"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -65,7 +70,13 @@ import primaryButton from "../../components/buttons/primaryButton"
 import * as Sentry from "@sentry/electron"
 
 export default {
-	name: "workspace",
+	name: "Workspace",
+	components: {
+		branchIcon,
+		inputText,
+		primaryButton,
+		VueScrollbar
+	},
 	data() {
 		return {
 			commitMessageTitle: "",
@@ -77,12 +88,6 @@ export default {
 				other: "E2E2E2"
 			}
 		}
-	},
-	components: {
-		branchIcon,
-		inputText,
-		primaryButton,
-		VueScrollbar
 	},
 	computed: {
 		currentRepository() {
@@ -105,6 +110,9 @@ export default {
 		getFeatureValue() {
 			return this.currentRepository.features
 		}
+	},
+	mounted() {
+		this.gitStatus()
 	},
 	methods: {
 		async gitStatus() {
@@ -193,9 +201,6 @@ export default {
 			}
 			return path
 		}
-	},
-	mounted() {
-		this.gitStatus()
 	}
 }
 </script>

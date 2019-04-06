@@ -1,59 +1,107 @@
 <template>
   <div class="welcome d-flex align-items-center">
-		<div class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto">
-			<h1>Welcome to Thermal</h1>
-			<p class="welcome__introduction__description">One stop for all of your Git repository.</p>
-			<div class="welcome__introduction__item d-flex">
-				<div @click="websiteURL()" class="welcome__introduction__item__icon">
-					<linkIcon/>
-				</div>
-				<div @click="twitterURL()" class="welcome__introduction__item__icon">
-					<twitterIcon/>
-				</div>
-				<div @click="coffeeURL()" class="welcome__introduction__item__icon">
-					<coffeeIcon/>
-				</div>
-				<div @click="discordURL()" class="welcome__introduction__item__icon">
-					<helpIcon/>
-				</div>
-			</div>
-		</div>
-		<div class="welcome__seperate"></div>
-		<div class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto">
-			<div class="welcome__repository__list">
-				<VueScrollbar class="welcome__repository__scrollbar">
-					<div>
-						<div v-if="getAllRepository.length > 0">
-							<div v-for="(repo, index) in getAllRepository" :key="repo.path" class="welcome__repository__list__item d-flex align-items-center">
-								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<primaryButton @click.native="selectCurrentRepository(index)" text="Select" class="welcome__repository__list__item__select ml-auto"/>
-								<div @click="openRepositorySettings(index)" class="welcome__repository__list__item__settings">
-									<settingsIcon/>
-								</div>
-							</div>
-						</div>
-						<div v-else @mouseenter="toggleRepositoryExampleModel" @mouseleave="toggleRepositoryExampleModel">
-							<div>
-								<div v-for="repo in this.repositoryList" :key="repo" class="welcome__repository__list__item welcome__repository__example d-flex align-items-center">
-									<h6>{{ repo }}</h6>
-									<primaryButton text="Select" class="welcome__repository__list__item__select ml-auto"/>
-									<div class="welcome__repository__list__item__settings">
-									<settingsIcon/>
-								</div>
-								</div>
-							</div>
-							<div v-show="exampleRepositoryModel" class="welcome__repository__example__model">
-								<primaryButton @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
-							</div>
-						</div>
-					</div>
-				</VueScrollbar>
-			</div>
-			<primaryButton v-show="getAllRepository.length > 0" @click.native="addLocalRepository()" class="welcome__cta" text="Add Repository"/>
-		</div>
-		<div class="appMetaData">
-			Version: {{ appVersion }}
-		</div>
+    <div class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto">
+      <h1>Welcome to Thermal</h1>
+      <p class="welcome__introduction__description">
+        One stop for all of your Git repository.
+      </p>
+      <div class="welcome__introduction__item d-flex">
+        <div
+          class="welcome__introduction__item__icon"
+          @click="websiteURL()"
+        >
+          <linkIcon />
+        </div>
+        <div
+          class="welcome__introduction__item__icon"
+          @click="twitterURL()"
+        >
+          <twitterIcon />
+        </div>
+        <div
+          class="welcome__introduction__item__icon"
+          @click="coffeeURL()"
+        >
+          <coffeeIcon />
+        </div>
+        <div
+          class="welcome__introduction__item__icon"
+          @click="discordURL()"
+        >
+          <helpIcon />
+        </div>
+      </div>
+    </div>
+    <div class="welcome__seperate" />
+    <div class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto">
+      <div class="welcome__repository__list">
+        <VueScrollbar class="welcome__repository__scrollbar">
+          <div>
+            <div v-if="getAllRepository.length > 0">
+              <div
+                v-for="(repo, index) in getAllRepository"
+                :key="repo.path"
+                class="welcome__repository__list__item d-flex align-items-center"
+              >
+                <h6>{{ repo.name | truncateFilter(30) }}</h6>
+                <primaryButton
+                  text="Select"
+                  class="welcome__repository__list__item__select ml-auto"
+                  @click.native="selectCurrentRepository(index)"
+                />
+                <div
+                  class="welcome__repository__list__item__settings"
+                  @click="openRepositorySettings(index)"
+                >
+                  <settingsIcon />
+                </div>
+              </div>
+            </div>
+            <div
+              v-else
+              @mouseenter="toggleRepositoryExampleModel"
+              @mouseleave="toggleRepositoryExampleModel"
+            >
+              <div>
+                <div
+                  v-for="repo in this.repositoryList"
+                  :key="repo"
+                  class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
+                >
+                  <h6>{{ repo }}</h6>
+                  <primaryButton
+                    text="Select"
+                    class="welcome__repository__list__item__select ml-auto"
+                  />
+                  <div class="welcome__repository__list__item__settings">
+                    <settingsIcon />
+                  </div>
+                </div>
+              </div>
+              <div
+                v-show="exampleRepositoryModel"
+                class="welcome__repository__example__model"
+              >
+                <primaryButton
+                  class="welcome__cta"
+                  text="Add Repository"
+                  @click.native="addLocalRepository()"
+                />
+              </div>
+            </div>
+          </div>
+        </VueScrollbar>
+      </div>
+      <primaryButton
+        v-show="getAllRepository.length > 0"
+        class="welcome__cta"
+        text="Add Repository"
+        @click.native="addLocalRepository()"
+      />
+    </div>
+    <div class="appMetaData">
+      Version: {{ appVersion }}
+    </div>
   </div>
 </template>
 
@@ -77,16 +125,6 @@ Sentry.configureScope((scope) => {
 
 export default {
 	name: "WelcomePage",
-	data() {
-		return {
-			repositoryList: [
-				"thermal-app",
-				"gatsbyjs",
-				"awesome-vuejs"
-			],
-			exampleRepositoryModel: false
-		}
-	},
 	components: {
 		linkIcon,
 		twitterIcon,
@@ -96,6 +134,19 @@ export default {
 		primaryButton,
 		outlineButton,
 		VueScrollbar
+	},
+	filters: {
+		truncateFilter
+	},
+	data() {
+		return {
+			repositoryList: [
+				"thermal-app",
+				"gatsbyjs",
+				"awesome-vuejs"
+			],
+			exampleRepositoryModel: false
+		}
 	},
 	computed: {
 		getAllRepository() {
@@ -138,9 +189,6 @@ export default {
 			this.updateCurrentRepository(index)
 			this.$router.push({ name: "repositorySettings" })
 		}		
-	},
-	filters: {
-		truncateFilter
 	}
 }
 </script>

@@ -1,26 +1,41 @@
 <template>
-  <div v-show="this.$store.state.model.model.addLocalRepository" class="model--small">
+  <div
+    v-show="this.$store.state.model.model.addLocalRepository"
+    class="model--small"
+  >
     <div class="model__section model__header">
-      <h6 class="model__header__title">Add local repository</h6>
-      <div @click="closeModel()" class="model__header__close">
-        <closeIcon/>
+      <h6 class="model__header__title">
+        Add local repository
+      </h6>
+      <div
+        class="model__header__close"
+        @click="closeModel()"
+      >
+        <closeIcon />
       </div>
     </div>
     <div class="model__section model__body flex-column">
       <inputText
         v-model.trim="pathToRepository"
+        v-focus
         name="pathToRepository"
-				@keyup.esc.native="closeModel"
-				@keyup.enter.native="addRepository"
-				v-focus
         placeholder="Local path to repository"
+        @keyup.esc.native="closeModel"
+        @keyup.enter.native="addRepository"
       />
-			<div v-show="showError" class="model__error">
-				This directoy does not appear to be a Git repository. Would you like to create a repositroy here instead?
-			</div>
+      <div
+        v-show="showError"
+        class="model__error"
+      >
+        This directoy does not appear to be a Git repository. Would you like to create a repositroy here instead?
+      </div>
     </div>
     <div class="model__section model__footer">
-      <primaryButton @click.native="addRepository()" class="ml-auto" text="Add repository"/>
+      <primaryButton
+        class="ml-auto"
+        text="Add repository"
+        @click.native="addRepository()"
+      />
     </div>
   </div>
 </template>
@@ -32,17 +47,24 @@ import primaryButton from "../buttons/primaryButton"
 import git from "simple-git/promise"
 
 export default {
-	name: "addLocalRepository",
+	name: "AddLocalRepository",
+	components: {
+		closeIcon,
+		inputText,
+		primaryButton
+	},
+	directives: {
+		focus: {
+			inserted: function (el) {
+				el.focus()
+			}
+		}
+	},
 	data() {
 		return {
 			pathToRepository: "",
 			showError: false
 		}
-	},
-	components: {
-		closeIcon,
-		inputText,
-		primaryButton
 	},
 	methods: {
 		async addRepository() {
@@ -82,13 +104,6 @@ export default {
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel")
-		}
-	},
-	directives: {
-		focus: {
-			inserted: function (el) {
-				el.focus()
-			}
 		}
 	}
 }

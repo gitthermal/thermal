@@ -1,6 +1,7 @@
 <template>
-	<div>
-	</div>
+  <div>
+    Information
+  </div>
 </template>
 
 <script>

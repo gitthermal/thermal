@@ -1,4 +1,11 @@
 const state = {
+	profile: {
+		author: {
+			name: "",
+			username: "",
+			imageUrl: ""
+		}
+	},
 	experimental: {
 		fileChanges: true
 	}

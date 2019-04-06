@@ -1,25 +1,37 @@
 <template>
-	<div v-show="this.$store.state.model.model.newRemote" class="model--small">
-		<div class="model__section model__header">
-      <h6 class="model__header__title">Add remote url</h6>
-      <div @click="closeModel()" class="model__header__close">
-        <closeIcon/>
+  <div
+    v-show="this.$store.state.model.model.newRemote"
+    class="model--small"
+  >
+    <div class="model__section model__header">
+      <h6 class="model__header__title">
+        Add remote url
+      </h6>
+      <div
+        class="model__header__close"
+        @click="closeModel()"
+      >
+        <closeIcon />
       </div>
     </div>
     <div class="model__section model__body flex-column">
-			<inputText
-				v-model="remoteUrl"
-				name="remoteUrl"
-				placeholder="Remote URL"
-				@keyup.esc.native="closeModel"
-				@keyup.enter.native="addRemoteUrl"
-				v-focus
-			/>
+      <inputText
+        v-model="remoteUrl"
+        v-focus
+        name="remoteUrl"
+        placeholder="Remote URL"
+        @keyup.esc.native="closeModel"
+        @keyup.enter.native="addRemoteUrl"
+      />
     </div>
     <div class="model__section model__footer">
-      <primaryButton @click.native="addRemoteUrl()" class="ml-auto" text="Publish repository"/>
+      <primaryButton
+        class="ml-auto"
+        text="Publish repository"
+        @click.native="addRemoteUrl()"
+      />
     </div>
-	</div>
+  </div>
 </template>
 
 <script>
@@ -29,16 +41,23 @@ import primaryButton from "../buttons/primaryButton"
 import git from "simple-git/promise"
 
 export default {
-	name: "newRemote",
-	data() {
-		return {
-			remoteUrl: ""
-		}
-	},
+	name: "NewRemote",
 	components: {
 		inputText,
 		closeIcon,
 		primaryButton
+	},
+	directives: {
+		focus: {
+			inserted: function (el) {
+				el.focus()
+			}
+		}
+	},
+	data() {
+		return {
+			remoteUrl: ""
+		}
 	},
 	computed: {
 		currentRepository() {
@@ -66,13 +85,6 @@ export default {
 				this.closeModel()
 			} catch (error) {
 				console.log(error)
-			}
-		}
-	},
-	directives: {
-		focus: {
-			inserted: function (el) {
-				el.focus()
 			}
 		}
 	}

@@ -43,7 +43,11 @@
                   <h6>Commit</h6>
                   <p>Enable/disable commits for this repository</p>
                 </div>
-                <toggle-button v-model="toggleCommit" color="#00adb5" class="ml-auto"/>
+                <toggle-button
+                  v-model="toggleCommit"
+                  color="#00adb5"
+                  class="ml-auto"
+                />
               </div>
               <div
                 class="settings__section__group__item"
@@ -52,7 +56,11 @@
                   <h6>Remote</h6>
                   <p>Pull, push and fetch</p>
                 </div>
-                <toggle-button v-model="toggleRemote" color="#00adb5" class="ml-auto"/>
+                <toggle-button
+                  v-model="toggleRemote"
+                  color="#00adb5"
+                  class="ml-auto"
+                />
               </div>
             </div>
           </div>
@@ -88,7 +96,7 @@ import { ToggleButton } from "vue-js-toggle-button"
 import VueScrollbar from "vue2-scrollbar"
 
 export default {
-	name: "repositorySettings",
+	name: "RepositorySettings",
 	components: {
 		inputTextLabel,
 		outlineButton,

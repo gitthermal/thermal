@@ -1,101 +1,218 @@
 <template>
   <div class="menubar d-flex">
-    <div @click="homepage()" class="menubar__logo d-flex">
-      <thermalLogo/>
+    <div
+      class="menubar__logo d-flex"
+      @click="homepage()"
+    >
+      <thermalLogo />
     </div>
     <div class="menubar__list d-flex align-items-center">
       <div @click="fileDropdown()">
-        <div class="menubar__list__item">File</div>
-        <div @mouseleave="fileDropdown()" v-show="this.menu.file.isActive" class="menubar__list__item__dropdown">
-					<div class="menubar__list__item__dropdown__item">New repository</div>
-          <div @click="addLocalRepository()" class="menubar__list__item__dropdown__item">Add local repository</div>
-          <div class="menubar__list__item__dropdown__item">Clone repository</div>
-          <div v-if="!!currentRepository"  @click="switchRepository()" class="menubar__list__item__dropdown__item">Switch repository</div>
-          <div @click="appOptions()" class="menubar__list__item__dropdown__item">Options</div>
-          <div @click="exitApp()" class="menubar__list__item__dropdown__item">Exit</div>
+        <div class="menubar__list__item">
+          File
+        </div>
+        <div
+          v-show="this.menu.file.isActive"
+          class="menubar__list__item__dropdown"
+          @mouseleave="fileDropdown()"
+        >
+          <div class="menubar__list__item__dropdown__item">
+            New repository
+          </div>
+          <div
+            class="menubar__list__item__dropdown__item"
+            @click="addLocalRepository()"
+          >
+            Add local repository
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Clone repository
+          </div>
+          <div
+            v-if="!!currentRepository"
+            class="menubar__list__item__dropdown__item"
+            @click="switchRepository()"
+          >
+            Switch repository
+          </div>
+          <div
+            class="menubar__list__item__dropdown__item"
+            @click="appOptions()"
+          >
+            Options
+          </div>
+          <div
+            class="menubar__list__item__dropdown__item"
+            @click="exitApp()"
+          >
+            Exit
+          </div>
         </div>
       </div>
       <div @click="viewDropdown()">
-        <div class="menubar__list__item">View</div>
+        <div class="menubar__list__item">
+          View
+        </div>
         <div
-					@mouseleave="viewDropdown()"
           v-show="this.menu.view.isActive"
           class="menubar__list__item__dropdown"
+          @mouseleave="viewDropdown()"
         >
-          <div class="menubar__list__item__dropdown__item">Changes</div>
-					<div class="menubar__list__item__dropdown__item">History</div>
-					<div class="menubar__list__item__dropdown__item">Repository list</div>
-					<div class="menubar__list__item__dropdown__item">Branches list</div>
-					<div class="menubar__list__item__dropdown__item">Go to summary</div>
-					<div class="menubar__list__item__dropdown__item">Toggle full screen</div>
-					<div class="menubar__list__item__dropdown__item">Reset zoom</div>
-					<div class="menubar__list__item__dropdown__item">Zoom in</div>
-					<div class="menubar__list__item__dropdown__item">Zoom out</div>
-					<div class="menubar__list__item__dropdown__item">Toggle developer tools</div>
+          <div class="menubar__list__item__dropdown__item">
+            Changes
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            History
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Repository list
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Branches list
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Go to summary
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Toggle full screen
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Reset zoom
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Zoom in
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Zoom out
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Toggle developer tools
+          </div>
         </div>
       </div>
       <div @click="repositoryDropdown()">
-        <div class="menubar__list__item">Repository</div>
+        <div class="menubar__list__item">
+          Repository
+        </div>
         <div
-					@mouseleave="repositoryDropdown()"
           v-show="this.menu.repository.isActive"
           class="menubar__list__item__dropdown"
+          @mouseleave="repositoryDropdown()"
         >
-					<div class="menubar__list__item__dropdown__item">Push</div>
-					<div class="menubar__list__item__dropdown__item">Pull</div>
-					<div class="menubar__list__item__dropdown__item">Remove</div>
-					<div class="menubar__list__item__dropdown__item">View on GitHub</div>
-					<div class="menubar__list__item__dropdown__item">Open in PowerShell</div>
-					<div class="menubar__list__item__dropdown__item">Show in Explorer</div>
-					<div class="menubar__list__item__dropdown__item">Open in Code editor</div>
-					<div class="menubar__list__item__dropdown__item">Repository settings</div>
+          <div class="menubar__list__item__dropdown__item">
+            Push
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Pull
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Remove
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            View on GitHub
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Open in PowerShell
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Show in Explorer
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Open in Code editor
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Repository settings
+          </div>
         </div>
       </div>
       <div @click="branchDropdown()">
-        <div class="menubar__list__item">Branch</div>
+        <div class="menubar__list__item">
+          Branch
+        </div>
         <div
-					@mouseleave="branchDropdown()"
           v-show="this.menu.branch.isActive"
           class="menubar__list__item__dropdown"
+          @mouseleave="branchDropdown()"
         >
-					<div class="menubar__list__item__dropdown__item">New branch</div>
-					<div class="menubar__list__item__dropdown__item">Rename branch</div>
-					<div class="menubar__list__item__dropdown__item">Delete branch</div>
-					<div class="menubar__list__item__dropdown__item">Update to master</div>
-					<div class="menubar__list__item__dropdown__item">Compare to master</div>
-					<div class="menubar__list__item__dropdown__item">Merge into current branch</div>
-					<div class="menubar__list__item__dropdown__item">Compare on GitHub</div>
-					<div class="menubar__list__item__dropdown__item">Create pull request</div>
+          <div class="menubar__list__item__dropdown__item">
+            New branch
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Rename branch
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Delete branch
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Update to master
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Compare to master
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Merge into current branch
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Compare on GitHub
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Create pull request
+          </div>
         </div>
       </div>
       <div @click="helpDropdown()">
-        <div class="menubar__list__item">Help</div>
+        <div class="menubar__list__item">
+          Help
+        </div>
         <div
-					@mouseleave="helpDropdown()"
           v-show="this.menu.help.isActive"
           class="menubar__list__item__dropdown"
+          @mouseleave="helpDropdown()"
         >
-					<div class="menubar__list__item__dropdown__item">Welcome</div>
-					<div class="menubar__list__item__dropdown__item">Report issue</div>
-					<div @click="contactSupport()" class="menubar__list__item__dropdown__item">Contact support</div>
-					<div class="menubar__list__item__dropdown__item">Show User Guides</div>
-					<div class="menubar__list__item__dropdown__item">Show logs in Explorer</div>
-					<div @click="about()" class="menubar__list__item__dropdown__item">About</div>
+          <div class="menubar__list__item__dropdown__item">
+            Welcome
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Report issue
+          </div>
+          <div
+            class="menubar__list__item__dropdown__item"
+            @click="contactSupport()"
+          >
+            Contact support
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Show User Guides
+          </div>
+          <div class="menubar__list__item__dropdown__item">
+            Show logs in Explorer
+          </div>
+          <div
+            class="menubar__list__item__dropdown__item"
+            @click="about()"
+          >
+            About
+          </div>
         </div>
       </div>
     </div>
-    <div class="menubar__drag"></div>
-		<div class="menubar__title">
-			<div v-if="!!currentRepository" class="menubar__title__repository d-flex">
-				{{ currentRepository.name }}
-				<div style="padding: 0 5px">-</div>
-			</div>
-			<div class="menubar__title__app">
-				Thermal
-			</div>
-		</div>
+    <div class="menubar__drag" />
+    <div class="menubar__title">
+      <div
+        v-if="!!currentRepository"
+        class="menubar__title__repository d-flex"
+      >
+        {{ currentRepository.name }}
+        <div style="padding: 0 5px">
+          -
+        </div>
+      </div>
+      <div class="menubar__title__app">
+        Thermal
+      </div>
+    </div>
     <div class="menubar__controles">
-      <windowsButton/>
+      <windowsButton />
     </div>
   </div>
 </template>
@@ -106,7 +223,11 @@ import windowsButton from "./windowsButton"
 const { shell, remote } = require("electron")
 
 export default {
-	name: "menubar",
+	name: "Menubar",
+	components: {
+		thermalLogo,
+		windowsButton
+	},
 	data() {
 		return {
 			menu: {
@@ -132,10 +253,6 @@ export default {
 				}
 			}
 		}
-	},
-	components: {
-		thermalLogo,
-		windowsButton
 	},
 	computed: {
 		currentRepository() {
@@ -233,6 +350,7 @@ export default {
 				&__item
 					cursor: pointer
 					padding: 8px 15px
+					user-select: none
 
 					&:hover
 						background-color: rgba(139, 151, 152, .1)

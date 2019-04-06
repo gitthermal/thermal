@@ -1,23 +1,34 @@
 <template>
   <div>
     <a
+      class="history__item d-flex flex-column"
       @mouseenter="showFiles(data.hash)"
       @mouseleave="hideFiles()"
-      class="history__item d-flex flex-column"
     >
-      <div :title="data.message" class="history__item__title">{{ data.message }}</div>
+      <div
+        :title="data.message"
+        class="history__item__title"
+      >{{ data.message }}</div>
       <div class="history__item__author d-flex flex-row align-items-center">
-        <img class="history__item__author__image" src="../../../../static/image/user_avatar.png">
+        <img
+          class="history__item__author__image"
+          src="../../../../static/image/user_avatar.png"
+        >
         {{ data.author_name }} committed {{ data.date | moment("from", "now") }}
       </div>
     </a>
-    <div v-show="this.files.isActive" class="history__files">
+    <div
+      v-show="this.files.isActive"
+      class="history__files"
+    >
       <div class="history__files__dropdown">
         <div
-          class="history__files__dropdown__item"
           v-for="item in this.files.list"
           :key="item"
-        >{{ item.replace(/\|.*/, "").trim() }}</div>
+          class="history__files__dropdown__item"
+        >
+          {{ item.replace(/\|.*/, "").trim() }}
+        </div>
       </div>
     </div>
   </div>
@@ -28,18 +39,18 @@ import git from "simple-git/promise"
 import * as Sentry from "@sentry/electron"
 
 export default {
-	name: "commitHistoryItem",
+	name: "CommitHistoryItem",
+	props: {
+		data: {
+			type: Object
+		}
+	},
 	data() {
 		return {
 			files: {
 				isActive: false,
 				list: []
 			}
-		}
-	},
-	props: {
-		data: {
-			type: Object
 		}
 	},
 	computed: {

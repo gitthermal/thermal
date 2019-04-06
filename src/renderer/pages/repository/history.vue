@@ -13,24 +13,34 @@
           </div>
         </VueScrollbar>
       </div>
-      <div v-else class="history__logs__detail">
+      <div
+        v-else
+        class="history__logs__detail"
+      >
         <div class="history__logs__detail__buttons">
-          <div @click="toggleCommitDetail()" class="history__logs__detail__buttons__back">Back</div>
           <div
-            @click="exportCommitDetail()"
-            class="history__logs__detail__buttons__export d-flex ml-auto"
+            class="history__logs__detail__buttons__back"
+            @click="toggleCommitDetail()"
           >
-            <fileIcon/>
+            Back
+          </div>
+          <div
+            class="history__logs__detail__buttons__export d-flex ml-auto"
+            @click="exportCommitDetail()"
+          >
+            <fileIcon />
           </div>
         </div>
-        <commitInformation/>
+        <commitInformation />
       </div>
     </div>
     <div class="history__preview">
       <div v-if="this.$store.state.history.filePreview.isActive">
-        <commitHistoryPreview/>
+        <commitHistoryPreview />
       </div>
-      <div v-else>No content to show</div>
+      <div v-else>
+        No content to show
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +55,7 @@ import * as Sentry from "@sentry/electron"
 import VueScrollbar from "vue2-scrollbar"
 
 export default {
-	name: "history",
+	name: "History",
 	components: {
 		commitHistoryItem,
 		commitInformation,
@@ -60,6 +70,9 @@ export default {
 		currentRepository() {
 			return this.$store.getters["workspace/currentRepository"]
 		}
+	},
+	mounted() {
+		this.getLogs()
 	},
 	methods: {
 		async getLogs() {
@@ -92,9 +105,6 @@ export default {
 		exportCommitDetail() {
 			this.$store.dispatch("model/showExportCommitData")
 		}
-	},
-	mounted() {
-		this.getLogs()
 	}
 }
 </script>
