@@ -1,43 +1,72 @@
 <template>
-  <div class="workspace__navbar">
-    <div v-show="getFeatureValue.commit" @click="openCommitPage()" class="workspace__navbar__item">
-      <commitIcon/>
+  <div class="navbar">
+    <div
+      v-show="getFeatureValue.commit"
+      class="navbar__item"
+      @click="openCommitPage()"
+    >
+      <commitIcon />
       <p>Commit</p>
     </div>
-    <div v-show="getFeatureValue.remote" v-if="!!getRemoteUrl" class="workspace__navbar__group">
-      <div @click="gitPull()" class="workspace__navbar__item">
-        <pullIcon/>
+    <div
+      v-show="getFeatureValue.remote"
+      v-if="!!getRemoteUrl"
+      class="navbar__group"
+    >
+      <div
+        class="navbar__item"
+        @click="gitPull()"
+      >
+        <pullIcon />
         <p>Pull</p>
       </div>
-      <div @click="gitPush()" class="workspace__navbar__item">
-        <pushIcon/>
+      <div
+        class="navbar__item"
+        @click="gitPush()"
+      >
+        <pushIcon />
         <p>Push</p>
       </div>
-      <div class="workspace__navbar__item">
-        <fetchIcon/>
+      <div class="navbar__item">
+        <fetchIcon />
         <p>Fetch</p>
       </div>
-		</div>
-		<div @click="newRemote()" v-else v-show="getFeatureValue.remote" :class="!!getRemoteUrl === false ? 'workspace__navbar__group' : ''" class="workspace__navbar__item">
-      <publishIcon/>
+    </div>
+    <div
+      v-else
+      v-show="getFeatureValue.remote"
+      :class="!!getRemoteUrl === false ? 'navbar__group' : ''"
+      class="navbar__item"
+      @click="newRemote()"
+    >
+      <publishIcon />
       <p>Publish</p>
     </div>
-    <div class="workspace__navbar__group ml-auto">
-      <div class="workspace__navbar__item">
-        <terminalIcon/>
+    <div class="navbar__group ml-auto">
+      <div class="navbar__item">
+        <terminalIcon />
         <p>Terminal</p>
       </div>
-      <div @click="openFileExplorer()" class="workspace__navbar__item">
-        <folderIcon/>
+      <div
+        class="navbar__item"
+        @click="openFileExplorer()"
+      >
+        <folderIcon />
         <p>Explorer</p>
       </div>
-      <div @click="openRepositorySettings()" class="workspace__navbar__item">
-        <settingsIcon/>
+      <div
+        class="navbar__item"
+        @click="openRepositorySettings()"
+      >
+        <settingsIcon />
         <p>Settings</p>
       </div>
     </div>
-    <div @click="switchRepository()" class="workspace__navbar__item">
-      <switchRepositoryIcon/>
+    <div
+      class="navbar__item"
+      @click="switchRepository()"
+    >
+      <switchRepositoryIcon />
       <p>Switch repo</p>
     </div>
   </div>
@@ -119,41 +148,39 @@ export default {
 </script>
 
 <style lang='sass'>
-.workspace
+.navbar
+	background-color: #EFEFEF
+	border-bottom: 1px solid #DEE0E3
+	padding: 12px 20px
+	z-index: 8
+	position: relative
 
-	&__navbar
-		background-color: #EFEFEF
-		border-bottom: 1px solid #DEE0E3
-		padding: 12px 20px
-		z-index: 8
-		position: relative
+	&__item
+		flex-direction: column
+		align-items: center
+		user-select: none
 
-		&__item
-			flex-direction: column
-			align-items: center
-			user-select: none
+		&:hover
+			cursor: pointer
 
-			&:hover
-				cursor: pointer
+		svg
+			width: 20px
+			height: 20px
+			stroke: #A1A5AC
+			margin-bottom: 5px
 
-			svg
-				width: 20px
-				height: 20px
-				stroke: #A1A5AC
-				margin-bottom: 5px
+		p
+			color: #7A7D84
+			font-size: 12px
+	
+	&__group
+		padding-left: 30px
+		padding-right: 30px
 
-			p
-				color: #7A7D84
-				font-size: 12px
-		
-		&__group
-			padding-left: 30px
-			padding-right: 30px
+		.navbar__item
+			&:not(:last-child)
+				margin-right: 15px
 
-			.navbar__item
-				&:not(:last-child)
-					margin-right: 15px
-
-	.workspace__navbar, .workspace__navbar__item, .workspace__navbar__group
-		display: flex
+.navbar, .navbar__item, .navbar__group
+	display: flex
 </style>
