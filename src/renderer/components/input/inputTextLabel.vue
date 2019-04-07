@@ -1,23 +1,23 @@
 <template>
-  <div>
-    <p
-      class="input__label"
-      :for="labelName"
-    >
-      {{ label }}
-    </p>
-    <inputText
-      :name="name"
-      :placeholder="placeholder"
-      :value="value"
-      :disable="disable"
-      @input="$emit('input', $event)"
-    />
-  </div>
+	<div>
+		<p
+			class="input__label"
+			:for="labelName"
+		>
+			{{ label }}
+		</p>
+		<inputText
+			:name="name"
+			:placeholder="placeholder"
+			:value="value"
+			:disable="disable"
+			@input="$emit('input', $event)"
+		/>
+	</div>
 </template>
 
 <script>
-import inputText from "./inputText"
+import inputText from "./inputText";
 
 export default {
 	name: "InputTextLabel",
@@ -26,32 +26,36 @@ export default {
 	},
 	props: {
 		name: {
-			type: String
+			type: String,
+			required: true
 		},
 		placeholder: {
-			type: String
+			type: String,
+			required: true
 		},
 		value: {
-			type: String
+			type: String,
+			default: ""
 		},
 		disable: {
 			type: Boolean,
 			default: false
 		},
 		label: {
-			type: String
+			type: String,
+			required: true
 		}
 	},
 	computed: {
 		labelName() {
-			return this.label.toLowerCase().replace(" ", "_")
+			return this.label.toLowerCase().replace(" ", "_");
 		}
 	}
-}
+};
 </script>
 
-<style lang='sass'>
-	.input__label
-		font-size: 12px
-		margin-bottom: .2rem
+<style lang="sass">
+.input__label
+	font-size: 12px
+	margin-bottom: .2rem
 </style>

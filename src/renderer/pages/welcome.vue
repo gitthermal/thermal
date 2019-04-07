@@ -1,127 +1,130 @@
 <template>
-  <div class="welcome d-flex align-items-center">
-    <div class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto">
-      <h1>Welcome to Thermal</h1>
-      <p class="welcome__introduction__description">
-        One stop for all of your Git repository.
-      </p>
-      <div class="welcome__introduction__item d-flex">
-        <div
-          class="welcome__introduction__item__icon"
-          @click="websiteURL()"
-        >
-          <linkIcon />
-        </div>
-        <div
-          class="welcome__introduction__item__icon"
-          @click="twitterURL()"
-        >
-          <twitterIcon />
-        </div>
-        <div
-          class="welcome__introduction__item__icon"
-          @click="coffeeURL()"
-        >
-          <coffeeIcon />
-        </div>
-        <div
-          class="welcome__introduction__item__icon"
-          @click="discordURL()"
-        >
-          <helpIcon />
-        </div>
-      </div>
-    </div>
-    <div class="welcome__seperate" />
-    <div class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto">
-      <div class="welcome__repository__list">
-        <VueScrollbar class="welcome__repository__scrollbar">
-          <div>
-            <div v-if="getAllRepository.length > 0">
-              <div
-                v-for="(repo, index) in getAllRepository"
-                :key="repo.path"
-                class="welcome__repository__list__item d-flex align-items-center"
-              >
-                <h6>{{ repo.name | truncateFilter(30) }}</h6>
-                <primaryButton
-                  text="Select"
-                  class="welcome__repository__list__item__select ml-auto"
-                  @click.native="selectCurrentRepository(index)"
-                />
-                <div
-                  class="welcome__repository__list__item__settings"
-                  @click="openRepositorySettings(index)"
-                >
-                  <settingsIcon />
-                </div>
-              </div>
-            </div>
-            <div
-              v-else
-              @mouseenter="toggleRepositoryExampleModel"
-              @mouseleave="toggleRepositoryExampleModel"
-            >
-              <div>
-                <div
-                  v-for="repo in this.repositoryList"
-                  :key="repo"
-                  class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
-                >
-                  <h6>{{ repo }}</h6>
-                  <primaryButton
-                    text="Select"
-                    class="welcome__repository__list__item__select ml-auto"
-                  />
-                  <div class="welcome__repository__list__item__settings">
-                    <settingsIcon />
-                  </div>
-                </div>
-              </div>
-              <div
-                v-show="exampleRepositoryModel"
-                class="welcome__repository__example__model"
-              >
-                <primaryButton
-                  class="welcome__cta"
-                  text="Add Repository"
-                  @click.native="addLocalRepository()"
-                />
-              </div>
-            </div>
-          </div>
-        </VueScrollbar>
-      </div>
-      <primaryButton
-        v-show="getAllRepository.length > 0"
-        class="welcome__cta"
-        text="Add Repository"
-        @click.native="addLocalRepository()"
-      />
-    </div>
-    <div class="appMetaData">
-      Version: {{ appVersion }}
-    </div>
-  </div>
+	<div class="welcome d-flex align-items-center">
+		<div
+			class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto"
+		>
+			<h1>Welcome to Thermal</h1>
+			<p class="welcome__introduction__description">
+				One stop for all of your Git repository.
+			</p>
+			<div class="welcome__introduction__item d-flex">
+				<div
+					class="welcome__introduction__item__icon"
+					@click="websiteURL()"
+				>
+					<linkIcon />
+				</div>
+				<div
+					class="welcome__introduction__item__icon"
+					@click="twitterURL()"
+				>
+					<twitterIcon />
+				</div>
+				<div
+					class="welcome__introduction__item__icon"
+					@click="coffeeURL()"
+				>
+					<coffeeIcon />
+				</div>
+				<div 
+					class="welcome__introduction__item__icon"
+					@click="discordURL()"
+				>
+					<helpIcon />
+				</div>
+			</div>
+		</div>
+		<div class="welcome__seperate" />
+		<div
+			class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto"
+		>
+			<div class="welcome__repository__list">
+				<VueScrollbar class="welcome__repository__scrollbar">
+					<div>
+						<div v-if="getAllRepository.length > 0">
+							<div
+								v-for="(repo, index) in getAllRepository"
+								:key="repo.path"
+								class="welcome__repository__list__item d-flex align-items-center"
+							>
+								<h6>{{ repo.name | truncateFilter(30) }}</h6>
+								<primaryButton
+									text="Select"
+									class="welcome__repository__list__item__select ml-auto"
+									@click.native="selectCurrentRepository(index)"
+								/>
+								<div
+									class="welcome__repository__list__item__settings"
+									@click="openRepositorySettings(index)"
+								>
+									<settingsIcon />
+								</div>
+							</div>
+						</div>
+						<div
+							v-else
+							@mouseenter="toggleRepositoryExampleModel"
+							@mouseleave="toggleRepositoryExampleModel"
+						>
+							<div>
+								<div
+									v-for="repo in repositoryList"
+									:key="repo"
+									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
+								>
+									<h6>{{ repo }}</h6>
+									<primaryButton
+										text="Select"
+										class="welcome__repository__list__item__select ml-auto"
+									/>
+									<div class="welcome__repository__list__item__settings">
+										<settingsIcon />
+									</div>
+								</div>
+							</div>
+							<div
+								v-show="exampleRepositoryModel"
+								class="welcome__repository__example__model"
+							>
+								<primaryButton
+									class="welcome__cta"
+									text="Add Repository"
+									@click.native="addLocalRepository()"
+								/>
+							</div>
+						</div>
+					</div>
+				</VueScrollbar>
+			</div>
+			<primaryButton
+				v-show="getAllRepository.length > 0"
+				class="welcome__cta"
+				text="Add Repository"
+				@click.native="addLocalRepository()"
+			/>
+		</div>
+		<div class="appMetaData">
+			Version: {{ appVersion }}
+		</div>
+	</div>
 </template>
 
 <script>
-import linkIcon from "../components/icon/link"
-import twitterIcon from "../components/icon/twitter"
-import coffeeIcon from "../components/icon/coffee"
-import helpIcon from "../components/icon/help"
-import settingsIcon from "../components/icon/settings"
-import primaryButton from "../components/buttons/primaryButton"
-import outlineButton from "../components/buttons/outlineButton"
-import packageJson from "../../../package.json"
-import * as Sentry from "@sentry/electron"
-import VueScrollbar from "vue2-scrollbar"
-import truncateFilter from "../filters/truncate"
-const { shell } = require("electron")
+import linkIcon from "../components/icon/link";
+import twitterIcon from "../components/icon/twitter";
+import coffeeIcon from "../components/icon/coffee";
+import helpIcon from "../components/icon/help";
+import settingsIcon from "../components/icon/settings";
+import primaryButton from "../components/buttons/primaryButton";
+import packageJson from "../../../package.json";
+import * as Sentry from "@sentry/electron";
+import VueScrollbar from "vue2-scrollbar";
+import truncateFilter from "../filters/truncate";
+const { shell } = require("electron");
 
-Sentry.configureScope((scope) => {
-	scope.setTag("appVersion", this.appVersion)
-})
+Sentry.configureScope(scope => {
+	scope.setTag("appVersion", this.appVersion);
+});
 
 export default {
 	name: "WelcomePage",
@@ -132,7 +135,6 @@ export default {
 		helpIcon,
 		settingsIcon,
 		primaryButton,
-		outlineButton,
 		VueScrollbar
 	},
 	filters: {
@@ -140,148 +142,144 @@ export default {
 	},
 	data() {
 		return {
-			repositoryList: [
-				"thermal-app",
-				"gatsbyjs",
-				"awesome-vuejs"
-			],
+			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
 			exampleRepositoryModel: false
-		}
+		};
 	},
 	computed: {
 		getAllRepository() {
-			return this.$store.getters["repository/listAllRepository"]
+			return this.$store.getters["repository/listAllRepository"];
 		},
 		appVersion() {
-			return packageJson.version
+			return packageJson.version;
 		}
 	},
 	methods: {
 		websiteURL() {
-			shell.openExternal("https://thermal.netlify.com/")
+			shell.openExternal("https://thermal.netlify.com/");
 		},
 		twitterURL() {
-			shell.openExternal("https://www.twitter.com/@gitthermal")
+			shell.openExternal("https://www.twitter.com/@gitthermal");
 		},
 		coffeeURL() {
-			shell.openExternal("https://www.patreon.com/join/mittalyashu")
+			shell.openExternal("https://www.patreon.com/join/mittalyashu");
 		},
 		discordURL() {
-			shell.openExternal("https://discord.gg/f5mYum8")
+			shell.openExternal("https://discord.gg/f5mYum8");
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showAddLocalRepositoryModel")
+			this.$store.dispatch("model/showAddLocalRepositoryModel");
 		},
 		toggleRepositoryExampleModel() {
-			this.exampleRepositoryModel = !this.exampleRepositoryModel
+			this.exampleRepositoryModel = !this.exampleRepositoryModel;
 		},
 		updateCurrentRepository(index) {
 			this.$store.dispatch({
 				type: "workspace/updateWorkspaceRepository",
 				index: index
-			})
+			});
 		},
 		selectCurrentRepository(index) {
-			this.updateCurrentRepository(index)
-			this.$router.push({ name: "repositoryWorkspace" })
+			this.updateCurrentRepository(index);
+			this.$router.push({ name: "repositoryWorkspace" });
 		},
 		openRepositorySettings(index) {
-			this.updateCurrentRepository(index)
-			this.$router.push({ name: "repositorySettings" })
-		}		
+			this.updateCurrentRepository(index);
+			this.$router.push({ name: "repositorySettings" });
+		}
 	}
-}
+};
 </script>
 
-<style lang='sass'>
-	.welcome
-		width: 100%
-		height: 100vh
+<style lang="sass">
+.welcome
+	width: 100%
+	height: 100vh
 
-		&__introduction
+	&__introduction
 
-			&__description
-				margin-bottom: 1rem
+		&__description
+			margin-bottom: 1rem
+
+		&__item
+			margin-bottom: 1rem
+
+			&__icon
+				cursor: pointer
+
+				svg
+					width: 30px
+					height: 30px
+					stroke: #222831
+
+				&:not(:last-child)
+					margin-right: 20px
+
+	&__cta
+		margin-top: 1rem
+
+	&__seperate
+		width: 1px
+		height: 480px
+		background-color: #DEE0E3
+
+	&__repository
+
+		&__scrollbar
+			max-height: 400px
+			padding: 1rem
+
+		&__example
+			user-select: none
+
+			&__model
+				position: absolute
+				bottom: 0
+				align-items: center
+				flex-direction: column
+				justify-content: center
+				display: flex
+				opacity: 1
+				transition: opacity .2s ease-in-out
+				width: 93%
+				height: 100%
+				padding: 0 16px
+				background-color: rgba(#fff, .8)
+
+		&__list
+			border: 1px solid #EFEFEF
+			width: 450px
+			border-radius: 1rem
 
 			&__item
-				margin-bottom: 1rem
+				&:not(:last-child)
+					margin-bottom: .5rem
 
-				&__icon
-					cursor: pointer
-			
-					svg
-						width: 30px
-						height: 30px
-						stroke: #222831
+				h6
+					padding-right: 5px
+					margin-bottom: 0
 
-					&:not(:last-child)
-						margin-right: 20px
-			
-		&__cta
-			margin-top: 1rem
+				p
+					color: #6C6F75
+					font-size: 14px
 
-		&__seperate
-			width: 1px
-			height: 480px
-			background-color: #DEE0E3
-	
-		&__repository
-			
-			&__scrollbar
-				max-height: 400px
-				padding: 1rem
-
-			&__example
-				user-select: none
-
-				&__model
-					position: absolute
-					bottom: 0
-					align-items: center
-					flex-direction: column
-					justify-content: center
+				&__settings
+					margin-left: .5rem
+					border: 1px solid #00adb5
+					padding: .5rem
+					border-radius: 5rem
 					display: flex
-					opacity: 1
-					transition: opacity .2s ease-in-out
-					width: 93%
-					height: 100%
-					padding: 0 16px
-					background-color: rgba(#fff, .8)
+					cursor: pointer
 
-			&__list
-				border: 1px solid #EFEFEF
-				width: 450px
-				border-radius: 1rem
+					svg
+						width: 20px
+						height: 20px
+						stroke: #00adb5
 
-				&__item
-					&:not(:last-child)
-						margin-bottom: .5rem
-
-					h6
-						padding-right: 5px
-						margin-bottom: 0
-
-					p
-						color: #6C6F75
-						font-size: 14px
-
-					&__settings
-						margin-left: .5rem
-						border: 1px solid #00adb5
-						padding: .5rem
-						border-radius: 5rem
-						display: flex
-						cursor: pointer
-
-						svg
-							width: 20px
-							height: 20px
-							stroke: #00adb5
-						
-	.appMetaData
-		font-size: 10px
-		position: absolute
-		bottom: 3px
-		width: 100%
-		text-align: center	
+.appMetaData
+	font-size: 10px
+	position: absolute
+	bottom: 3px
+	width: 100%
+	text-align: center
 </style>

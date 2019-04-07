@@ -1,27 +1,27 @@
 <template>
-  <div class="repository__sidebar d-flex">
-    <div class="repository__sidebar__group d-flex flex-column">
-      <router-link
-        class="repository__sidebar__item d-flex align-items-center"
-        :to="{ name: 'repositoryWorkspace' }"
-      >
-        <folderIcon />
-        <p>Workspace</p>
-      </router-link>
-      <router-link
-        class="repository__sidebar__item d-flex align-items-center"
-        :to="{ name: 'repositoryHistory' }"
-      >
-        <clockIcon />
-        <p>History</p>
-      </router-link>
-    </div>
-  </div>
+	<div class="repository__sidebar d-flex">
+		<div class="repository__sidebar__group d-flex flex-column">
+			<router-link
+				class="repository__sidebar__item d-flex align-items-center"
+				:to="{ name: 'repositoryWorkspace' }"
+			>
+				<folderIcon />
+				<p>Workspace</p>
+			</router-link>
+			<router-link
+				class="repository__sidebar__item d-flex align-items-center"
+				:to="{ name: 'repositoryHistory' }"
+			>
+				<clockIcon />
+				<p>History</p>
+			</router-link>
+		</div>
+	</div>
 </template>
 
 <script>
-import folderIcon from "./icon/folder"
-import clockIcon from "./icon/clock"
+import folderIcon from "./icon/folder";
+import clockIcon from "./icon/clock";
 
 export default {
 	name: "Sidebar",
@@ -29,10 +29,10 @@ export default {
 		folderIcon,
 		clockIcon
 	}
-}
+};
 </script>
 
-<style lang='sass'>
+<style lang="sass">
 .repository
 
 	&__sidebar

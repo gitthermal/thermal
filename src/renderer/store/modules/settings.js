@@ -9,19 +9,19 @@ const state = {
 	experimental: {
 		fileChanges: true
 	}
-}
+};
 
 const getters = {
 	getExperimental: state => state.experimental
-}
+};
 
 const mutations = {
 	toggleFileChanges(state, payload) {
-		state.experimental.fileChanges = payload.fileChanges
+		state.experimental.fileChanges = payload.fileChanges;
 	}
-}
+};
 
-const actions = {}
+const actions = {};
 
 export default {
 	namespaced: true,
@@ -29,4 +29,4 @@ export default {
 	getters,
 	mutations,
 	actions
-}
+};

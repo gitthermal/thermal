@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <navbar />
-    <div class="col__view">
-      <sidebar />
-      <router-view />
-    </div>
-  </div>
+	<div>
+		<navbar />
+		<div class="col__view">
+			<sidebar />
+			<router-view />
+		</div>
+	</div>
 </template>
 
 <script>
-import navbar from "../../components/navbar"
-import sidebar from "../../components/sidebar"
+import navbar from "../../components/navbar";
+import sidebar from "../../components/sidebar";
 
 export default {
 	name: "RepositoryIndex",
@@ -18,10 +18,10 @@ export default {
 		navbar,
 		sidebar
 	}
-}
+};
 </script>
 
-<style lang='sass'>
+<style lang="sass">
 .col__view
 	display: flex
 	height: 86vh

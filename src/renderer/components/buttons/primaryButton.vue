@@ -1,5 +1,5 @@
 <template>
-  <a class="button button--primary">{{ text }}</a>
+	<a class="button button--primary">{{ text }}</a>
 </template>
 
 <script>
@@ -10,11 +10,11 @@ export default {
 			required: true
 		}
 	}
-}
+};
 </script>
 
-<style lang='sass'>
-	.button--primary
-		color: white
-		background-color: #00adb5
+<style lang="sass">
+.button--primary
+	color: white
+	background-color: #00adb5
 </style>

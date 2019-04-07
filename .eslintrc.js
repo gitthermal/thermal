@@ -1,7 +1,7 @@
 module.exports = {
 	root: true,
-	parser: "babel-eslint",
 	parserOptions: {
+		parser: "babel-eslint",
 		sourceType: "module",
 		ecmaVersion: 8
 	},
@@ -9,31 +9,31 @@ module.exports = {
 		browser: true,
 		node: true
 	},
-	extends: ["standard", "prettier", "prettier/vue"],
+	extends: [
+		"plugin:vue/base",
+		"plugin:vue/essential",
+		"plugin:vue/strongly-recommended",
+		"plugin:vue/recommended",
+		"standard",
+	],
 	globals: {
 		__static: true
 	},
-	plugins: ["html", "prettier"],
 	rules: {
 		// allow debugger during development
-		"no-debugger": process.env.NODE_ENV === "production" ? 2 : 0,
-		// allow paren-less arrow functions
-		"arrow-parens": 0,
-		// allow async-await
-		"generator-star-spacing": 0,
-		// enforce consistent single quotes
-		quotes: [1, "double"],
-		// enforce consistent indentation
-		indent: [1, "tab"],
-		// disallow semicolons instead of ASI
-		semi: [1, "never"],
-		// require camelCase
-		camelcase: 1,
-		// consistent line endings
-		"linebreak-style": 1,
+		"no-debugger": process.env.NODE_ENV === "testing" ? 2 : 0,
+		// enable semicolons instead of ASI
+		semi: [1, "always"],
 		// disable console log
-		"no-console": process.env.NODE_ENV === "production" ? 2 : 1,
-		// disallow unused variables
-		"no-unused-vars": 1
+		"no-console": 1,
+		// enforce consistent indentation
+		"vue/html-indent": [2, "tab"]
+	},
+	"overrides": {
+		"files": ["src/renderer/components/icon/**"],
+		"rules": {
+			"vue/max-attributes-per-line": 0,
+			"vue/html-indent": 0
+		}
 	}
 }
