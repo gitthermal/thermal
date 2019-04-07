@@ -1,12 +1,12 @@
-import workspace from "./workspace"
+import workspace from "./workspace";
 
 const state = {
 	repositoryList: []
-}
+};
 
 const getters = {
 	listAllRepository: state => state.repositoryList
-}
+};
 
 const mutations = {
 	addLocalRepository(state, payload) {
@@ -18,29 +18,29 @@ const mutations = {
 				commit: payload.commits,
 				remote: payload.remotes
 			}
-		}
-		state.repositoryList.push(repositoryData)
-	},	
+		};
+		state.repositoryList.push(repositoryData);
+	},
 	removeLocalRepository(state) {
-		state.repositoryList.splice(workspace.state.workspaceRepository.index, 1)
+		state.repositoryList.splice(workspace.state.workspaceRepository.index, 1);
 	},
 	editLocalRepositoryName(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].name = payload.name
+		// eslint-disable-next-line prettier/prettier
+		state.repositoryList[workspace.state.workspaceRepository.index].name = payload.name;
 	},
 	localRepositoryRemote(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].remote = payload.remote
+		state.repositoryList[workspace.state.workspaceRepository.index].remote =
+			payload.remote;
 	},
 	toggleCommitFeature(state, payload) {
-		console.log(state.repositoryList[workspace.state.workspaceRepository.index].features.commit)
-		state.repositoryList[workspace.state.workspaceRepository.index].features.commit = payload.commits
+		state.repositoryList[workspace.state.workspaceRepository.index].features.commit = payload.commits;
 	},
 	toggleRemoteFeature(state, payload) {
-		console.log(state.repositoryList[workspace.state.workspaceRepository.index].features.remote)
-		state.repositoryList[workspace.state.workspaceRepository.index].features.remote = payload.remotes
+		state.repositoryList[workspace.state.workspaceRepository.index].features.remote = payload.remotes;
 	}
-}
+};
 
-const actions = {}
+const actions = {};
 
 export default {
 	namespaced: true,
@@ -48,4 +48,4 @@ export default {
 	getters,
 	mutations,
 	actions
-}
+};

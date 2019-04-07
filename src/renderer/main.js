@@ -1,28 +1,30 @@
-import Vue from "vue"
-import axios from "axios"
-import { init, getIntegrations } from "@sentry/electron"
+import Vue from "vue";
+import axios from "axios";
+import { init, getIntegrations } from "@sentry/electron";
 
-import App from "./App"
-import router from "./router"
-import store from "./store"
+import App from "./App";
+import router from "./router";
+import store from "./store";
 // vue2-scrollbar styles
-import "vue2-scrollbar/dist/style/vue2-scrollbar.css"
-import "./assets/css/all.sass"
+import "vue2-scrollbar/dist/style/vue2-scrollbar.css";
+import "./assets/css/all.sass";
 
-const VueIntegration = getIntegrations().browser.Vue
+const VueIntegration = getIntegrations().browser.Vue;
 init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
-	integrations: [new VueIntegration({
-		Vue,
-		attachProps: true
-	})],
+	integrations: [
+		new VueIntegration({
+			Vue,
+			attachProps: true
+		})
+	],
 	environment: process.env.NODE_ENV
-})
+});
 
-if (!process.env.IS_WEB) Vue.use(require("vue-electron"))
-Vue.http = Vue.prototype.$http = axios
-Vue.config.productionTip = false
-Vue.use(require("vue-moment"))
+if (!process.env.IS_WEB) Vue.use(require("vue-electron"));
+Vue.http = Vue.prototype.$http = axios;
+Vue.config.productionTip = false;
+Vue.use(require("vue-moment"));
 
 /* eslint-disable no-new */
 new Vue({
@@ -30,4 +32,4 @@ new Vue({
 	router,
 	store,
 	template: "<App/>"
-}).$mount("#app")
+}).$mount("#app");

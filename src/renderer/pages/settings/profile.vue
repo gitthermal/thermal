@@ -1,15 +1,11 @@
 <template>
-  <div>
-    Profile
-  </div>
+	<div>
+		Profile
+	</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style lang='sass'>
-
-</style>
+<style lang="sass"></style>

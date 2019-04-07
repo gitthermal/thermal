@@ -1,45 +1,45 @@
 <template>
-  <div class="settings__sidebar">
-    <div class="settings__sidebar__title d-flex align-items-center">
-      <h5>Settings</h5>
-      <div
-        class="settings__sidebar__title__close d-flex ml-auto"
-        @click="previousPage()"
-      >
-        <closeIcon />
-      </div>
-    </div>
-    <div class="settings__sidebar__group d-flex flex-column">
-      <router-link
-        :to="{ name: 'profileSettings' }"
-        class="settings__sidebar__group__item d-flex align-items-center"
-      >
-        <userIcon />
-        <p>Profile</p>
-      </router-link>
-      <router-link
-        :to="{ name: 'experimentalFeatures' }"
-        class="settings__sidebar__group__item d-flex align-items-center"
-      >
-        <flagIcon />
-        <p>Experimental</p>
-      </router-link>
-      <router-link
-        :to="{ name: 'appInformation' }"
-        class="settings__sidebar__group__item d-flex align-items-center"
-      >
-        <infoIcon />
-        <p>Information</p>
-      </router-link>
-    </div>		
-  </div>
+	<div class="settings__sidebar">
+		<div class="settings__sidebar__title d-flex align-items-center">
+			<h5>Settings</h5>
+			<div
+				class="settings__sidebar__title__close d-flex ml-auto"
+				@click="previousPage()"
+			>
+				<closeIcon />
+			</div>
+		</div>
+		<div class="settings__sidebar__group d-flex flex-column">
+			<router-link
+				:to="{ name: 'profileSettings' }"
+				class="settings__sidebar__group__item d-flex align-items-center"
+			>
+				<userIcon />
+				<p>Profile</p>
+			</router-link>
+			<router-link
+				:to="{ name: 'experimentalFeatures' }"
+				class="settings__sidebar__group__item d-flex align-items-center"
+			>
+				<flagIcon />
+				<p>Experimental</p>
+			</router-link>
+			<router-link
+				:to="{ name: 'appInformation' }"
+				class="settings__sidebar__group__item d-flex align-items-center"
+			>
+				<infoIcon />
+				<p>Information</p>
+			</router-link>
+		</div>
+	</div>
 </template>
 
 <script>
-import closeIcon from "../icon/close"
-import userIcon from "../icon/user"
-import flagIcon from "../icon/flag"
-import infoIcon from "../icon/info"
+import closeIcon from "../icon/close";
+import userIcon from "../icon/user";
+import flagIcon from "../icon/flag";
+import infoIcon from "../icon/info";
 
 export default {
 	name: "SettingsSidebar",
@@ -51,13 +51,13 @@ export default {
 	},
 	methods: {
 		previousPage() {
-			this.$router.push({ name: "welcome" })
+			this.$router.push({ name: "welcome" });
 		}
 	}
-}
+};
 </script>
 
-<style lang='sass'>
+<style lang="sass">
 .settings
 
 	&__sidebar

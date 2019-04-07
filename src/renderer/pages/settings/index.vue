@@ -1,21 +1,21 @@
 <template>
-  <div class="settings d-flex">
-    <settingsSidebar />
-    <div class="w-100">
-      <VueScrollbar class="settings__scrollbar">
-        <div class="container">
-          <div class="settings__content">
-            <router-view />
-          </div>
-        </div>
-      </VueScrollbar>
-    </div>
-  </div>
+	<div class="settings d-flex">
+		<settingsSidebar />
+		<div class="w-100">
+			<VueScrollbar class="settings__scrollbar">
+				<div class="container">
+					<div class="settings__content">
+						<router-view />
+					</div>
+				</div>
+			</VueScrollbar>
+		</div>
+	</div>
 </template>
 
 <script>
-import settingsSidebar from "../../components/sidebar/settings"
-import VueScrollbar from "vue2-scrollbar"
+import settingsSidebar from "../../components/sidebar/settings";
+import VueScrollbar from "vue2-scrollbar";
 
 export default {
 	name: "Settings",
@@ -23,10 +23,10 @@ export default {
 		settingsSidebar,
 		VueScrollbar
 	}
-}
+};
 </script>
 
-<style lang='sass'>
+<style lang="sass">
 .settings
 	height: 95vh
 

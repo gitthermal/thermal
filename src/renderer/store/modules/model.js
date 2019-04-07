@@ -7,62 +7,62 @@ const state = {
 		exportCommitData: false,
 		newRemote: false
 	}
-}
+};
 
-const getters = {}
+const getters = {};
 
 const mutations = {
 	toggleModelPlaceholder(state) {
-		state.isActive = !state.isActive
+		state.isActive = !state.isActive;
 	},
 	toggleAddLocalRepositoryModel(state) {
-		state.model.addLocalRepository = !state.model.addLocalRepository
+		state.model.addLocalRepository = !state.model.addLocalRepository;
 	},
 	toggleAboutModel(state) {
-		state.model.about = !state.model.about
+		state.model.about = !state.model.about;
 	},
 	toggleExportCommitData(state) {
-		state.model.exportCommitData = !state.model.exportCommitData
+		state.model.exportCommitData = !state.model.exportCommitData;
 	},
 	toggleNewRemote(state) {
-		state.model.newRemote = !state.model.newRemote
-	},
-}
+		state.model.newRemote = !state.model.newRemote;
+	}
+};
 
 const actions = {
 	showAddLocalRepositoryModel: ({ commit }) => {
 		commit({
 			type: "toggleModelPlaceholder"
-		})
+		});
 		commit({
 			type: "toggleAddLocalRepositoryModel"
-		})
+		});
 	},
 	showAboutModel: ({ commit }) => {
 		commit({
 			type: "toggleModelPlaceholder"
-		})
+		});
 		commit({
 			type: "toggleAboutModel"
-		})
+		});
 	},
 	showExportCommitData: ({ commit }) => {
 		commit({
 			type: "toggleModelPlaceholder"
-		})
+		});
 		commit({
 			type: "toggleExportCommitData"
-		})
+		});
 	},
 	showNewRemote: ({ commit }) => {
 		commit({
 			type: "toggleModelPlaceholder"
-		})
+		});
 		commit({
 			type: "toggleNewRemote"
-		})
+		});
 	}
-}
+};
 
 export default {
 	namespaced: true,
@@ -70,4 +70,4 @@ export default {
 	getters,
 	mutations,
 	actions
-}
+};

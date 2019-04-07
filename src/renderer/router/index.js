@@ -1,7 +1,7 @@
-import Vue from "vue"
-import Router from "vue-router"
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 let routes = [
 	{
@@ -54,14 +54,14 @@ let routes = [
 	{
 		path: "*",
 		name: "pageNotFound",
-		redirect: "/",
+		redirect: "/"
 	}
-]
+];
 
 const router = new Router({
 	base: "/",
 	mode: "history",
 	routes
-})
+});
 
-export default router
+export default router;
