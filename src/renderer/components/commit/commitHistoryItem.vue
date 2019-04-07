@@ -78,25 +78,6 @@ export default {
 			]);
 			try {
 				let output = files.split("\n");
-				let additionDeletion = output[output.length - 2].split(", ");
-				additionDeletion.shift();
-				let addition;
-				let deletion;
-
-				for (let i = 0; i < additionDeletion.length; i++) {
-					let commitMetaType = additionDeletion[i].slice(
-						additionDeletion[i].length - 2,
-						additionDeletion[i].length - 1
-					);
-					let additionDeletionNumber = additionDeletion[i].split(" ");
-					if (commitMetaType === "+") {
-						addition = additionDeletionNumber[0];
-					}
-					if (commitMetaType === "-") {
-						deletion = additionDeletionNumber[0];
-					}
-				}
-
 				this.files.list = output.slice(1, output.length - 2);
 			} catch (error) {
 				Sentry.captureException(error);
