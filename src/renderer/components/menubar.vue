@@ -73,7 +73,7 @@
 					<div class="menubar__list__item__dropdown__item">
 						Go to summary
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div @click="fullScreenView()" class="menubar__list__item__dropdown__item">
 						Toggle full screen
 					</div>
 					<div class="menubar__list__item__dropdown__item">
@@ -224,6 +224,7 @@
 import thermalLogo from "./icon/logo";
 import windowsButton from "./windowsButton";
 const { shell, remote } = require("electron");
+const win = remote.getCurrentWindow();
 
 export default {
 	name: "Menubar",
@@ -293,6 +294,13 @@ export default {
 		},
 		exitApp() {
 			remote.getCurrentWindow().close();
+		},
+		fullScreenView() {
+			if (!win.isMaximized()) {
+				win.maximize();
+			} else {
+				win.unmaximize();
+			}
 		},
 		openDevTools() {
 			let currentWindow = remote.getCurrentWindow();
