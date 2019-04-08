@@ -282,6 +282,7 @@ export default {
 		helpDropdown() {
 			this.menu.help.isActive = !this.menu.help.isActive;
 		},
+		// File
 		addLocalRepository() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
 		},
@@ -295,6 +296,7 @@ export default {
 		exitApp() {
 			remote.getCurrentWindow().close();
 		},
+		// View
 		fullScreenView() {
 			if (!win.isMaximized()) {
 				win.maximize();
@@ -306,6 +308,9 @@ export default {
 			let currentWindow = remote.getCurrentWindow();
 			currentWindow.openDevTools();
 		},
+		// Repository
+		// Branch
+		// Help
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");
 		},
