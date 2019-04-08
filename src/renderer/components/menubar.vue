@@ -120,7 +120,10 @@
 					<div class="menubar__list__item__dropdown__item">
 						Open in PowerShell
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="openFileExplorer()"
+					>
 						Show in Explorer
 					</div>
 					<div
@@ -322,6 +325,9 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openFileExplorer() {
+			shell.openItem(this.currentRepository.path);
+		},
 		openEditor() {
 			childProcess.exec("code .", { cwd: this.currentRepository.path });
 		},
