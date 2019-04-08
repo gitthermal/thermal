@@ -123,7 +123,10 @@
 					<div class="menubar__list__item__dropdown__item">
 						Show in Explorer
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="openEditor()"
+					>
 						Open in Code editor
 					</div>
 					<div class="menubar__list__item__dropdown__item">
@@ -233,6 +236,7 @@
 import thermalLogo from "./icon/logo";
 import windowsButton from "./windowsButton";
 const { shell, remote } = require("electron");
+const childProcess = require("child_process");
 const win = remote.getCurrentWindow();
 
 export default {
@@ -318,6 +322,9 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openEditor() {
+			childProcess.exec("code .", { cwd: this.currentRepository.path });
+		},
 		// Branch
 		// Help
 		contactSupport() {
