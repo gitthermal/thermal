@@ -93,7 +93,10 @@
 					</div>
 				</div>
 			</div>
-			<div @click="repositoryDropdown()">
+			<div 
+				v-if="!!currentRepository"
+				@click="repositoryDropdown()"
+			>
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -128,7 +131,10 @@
 					</div>
 				</div>
 			</div>
-			<div @click="branchDropdown()">
+			<div
+				v-if="!!currentRepository"
+				@click="branchDropdown()"
+			>
 				<div class="menubar__list__item">
 					Branch
 				</div>
