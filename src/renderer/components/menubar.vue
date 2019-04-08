@@ -85,7 +85,10 @@
 					<div class="menubar__list__item__dropdown__item">
 						Zoom out
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="openDevTools()"
+					>
 						Toggle developer tools
 					</div>
 				</div>
@@ -290,6 +293,10 @@ export default {
 		},
 		exitApp() {
 			remote.getCurrentWindow().close();
+		},
+		openDevTools() {
+			let currentWindow = remote.getCurrentWindow();
+			currentWindow.openDevTools();
 		},
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");
