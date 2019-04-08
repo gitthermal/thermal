@@ -172,7 +172,10 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave="helpDropdown()"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="switchRepository()"
+					>
 						Welcome
 					</div>
 					<div class="menubar__list__item__dropdown__item">
