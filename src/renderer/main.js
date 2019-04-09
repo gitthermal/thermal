@@ -8,6 +8,7 @@ import store from "./store";
 // vue2-scrollbar styles
 import "vue2-scrollbar/dist/style/vue2-scrollbar.css";
 import "./assets/css/all.sass";
+import packageJson from "../../package.json";
 
 const VueIntegration = getIntegrations().browser.Vue;
 init({
@@ -18,7 +19,8 @@ init({
 			attachProps: true
 		})
 	],
-	environment: process.env.NODE_ENV
+	environment: process.env.NODE_ENV,
+	release: `thermal@${packageJson.version}`
 });
 
 if (!process.env.IS_WEB) Vue.use(require("vue-electron"));

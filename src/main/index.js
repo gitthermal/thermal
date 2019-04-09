@@ -2,10 +2,12 @@
 
 import { app, BrowserWindow } from "electron";
 import * as Sentry from "@sentry/electron";
+import packageJson from "../../package.json";
 
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
-	environment: process.env.NODE_ENV
+	environment: process.env.NODE_ENV,
+	release: `thermal@${packageJson.version}`
 });
 
 /**
