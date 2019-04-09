@@ -71,15 +71,7 @@ export default {
 			return this.$store.getters["workspace/currentRepository"];
 		}
 	},
-	mounted() {
-		this.getLogs();
-	},
 	methods: {
-		getLogs() {
-			this.$store.dispatch("history/getRepositoryLogs", {
-				logs: this.$data
-			});
-		},
 		toggleCommitDetail() {
 			this.$store.commit("history/toggleCommitInformation");
 			this.$store.commit({
