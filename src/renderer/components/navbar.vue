@@ -43,7 +43,10 @@
 			<p>Publish</p>
 		</div>
 		<div class="navbar__group ml-auto">
-			<div class="navbar__item">
+			<div 
+				class="navbar__item"
+				@click="openTerminal()"
+			>
 				<terminalIcon />
 				<p>Terminal</p>
 			</div>
@@ -84,6 +87,7 @@ import folderIcon from "./icon/folder";
 import settingsIcon from "./icon/settings";
 import switchRepositoryIcon from "./icon/switch";
 const { shell } = require("electron");
+const childProcess = require("child_process");
 
 export default {
 	name: "Navbar",
@@ -135,6 +139,8 @@ export default {
 		},
 		newRemote() {
 			this.$store.dispatch("model/showNewRemote");
+		openTerminal() {
+			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
 		},
 		openFileExplorer() {
 			shell.openItem(this.currentRepository.path);
