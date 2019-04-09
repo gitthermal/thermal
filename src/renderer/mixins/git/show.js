@@ -7,7 +7,7 @@ const show = async (repository, params) => {
 		return data;
 	} catch (error) {
 		Sentry.captureException(error);
-		let errorMessage = "Unable to fetch logs.";
+		let errorMessage = "Unable to run git show command.";
 		console.log(errorMessage);
 		Sentry.captureMessage(errorMessage, data);
 	}
