@@ -70,7 +70,7 @@ export default {
 			this.files.isActive = false;
 			this.files.list = [];
 		},
-		async getFilesDetail(hash) {
+		getFilesDetail(hash) {
 			const params = [hash, "--oneline", "--stat"];
 			showMixin(this.currentRepository, params)
 				.then(result => {

@@ -156,7 +156,7 @@ export default {
 			this.getCommitMeta(this.commitHash);
 			this.getFilesDetail(this.commitHash);
 		},
-		async getAuthorDetail(hash) {
+		getAuthorDetail(hash) {
 			const params = [
 				hash,
 				"--format=%an %n %ae %n %ad"
@@ -171,7 +171,7 @@ export default {
 				});
 			});
 		},
-		async getCommitBody(hash) {
+		getCommitBody(hash) {
 			const params = [
 				hash,
 				"--format=%s %n << %n %b %n >>"
@@ -203,7 +203,7 @@ export default {
 				});
 			});
 		},
-		async getCommitMeta(hash) {
+		getCommitMeta(hash) {
 			const params = [
 				hash,
 				"--format=%cn %n %ce %n %cd %n %d %n %H %n %T %n %P"
@@ -222,7 +222,7 @@ export default {
 				});
 			});
 		},
-		async getFilesDetail(hash) {
+		getFilesDetail(hash) {
 			const params = [
 				hash,
 				"--oneline",
@@ -257,7 +257,7 @@ export default {
 				});
 			});
 		},
-		async commitHistoryPreview(hash, path) {
+		commitHistoryPreview(hash, path) {
 			if (this.$store.state.settings.experimental.fileChanges) {
 				this.$store.commit({
 					type: "history/toggleFilePreview",
