@@ -1,17 +1,17 @@
 <template>
 	<div class="navbar">
 		<div
-			v-show="getFeatureValue.commit"
 			class="navbar__item"
+			:class="getCommitFeature"
 			@click="openCommitPage()"
 		>
 			<commitIcon />
 			<p>Commit</p>
 		</div>
 		<div
-			v-show="getFeatureValue.remote"
 			v-if="!!getRemoteUrl"
 			class="navbar__group"
+			:class="getRemoteFeature"
 		>
 			<div
 				class="navbar__item"
@@ -34,8 +34,7 @@
 		</div>
 		<div
 			v-else
-			v-show="getFeatureValue.remote"
-			:class="!!getRemoteUrl === false ? 'navbar__group' : ''"
+			:class="[getRemoteFeature, !!getRemoteUrl === false ? 'navbar__group' : '']"
 			class="navbar__item"
 			@click="newRemote()"
 		>
@@ -109,36 +108,64 @@ export default {
 		getRemoteUrl() {
 			return this.currentRepository.remote;
 		},
-		getFeatureValue() {
-			return this.currentRepository.features;
-		}
+		getCommitFeature() {
+			if (!this.currentRepository.features.commit) {
+				return "opacity-5 cursor";
+			} else {
+				return "cursor-pointer";
+			}
+		},
+		getRemoteFeature() {
+			if (!this.currentRepository.features.remote) {
+				return "opacity-5 cursor";
+			} else {
+				return "cursor-pointer";
+			}
+		},
 	},
 	methods: {
-		openCommitPage() {
-			this.$router.push({ name: "repositoryWorkspace" });
-		},
-		async gitPull() {
-			let pull = await git(this.currentRepository.path).pull();
-			try {
-				console.log(pull);
-			} catch (error) {
-				console.log(error);
+		openCommitPage(event) {
+			if (this.currentRepository.features.commit) {
+				this.$router.push({ name: "repositoryWorkspace" });
+			} else {
+				event.preventDefault();
 			}
 		},
-		async gitPush() {
-			let activeBranch = this.$store.state.commit.activeBranch;
-			await git(this.currentRepository.path).push([
-				this.currentRepository.remote,
-				activeBranch
-			]);
-			try {
-				console.log("Push changes to remote repository");
-			} catch (error) {
-				console.log(error);
+		async gitPull(event) {
+			if (this.currentRepository.features.remote) {
+				let pull = await git(this.currentRepository.path).pull();
+				try {
+					console.log(pull);
+				} catch (error) {
+					console.log(error);
+				}
+			} else {
+				event.preventDefault();
 			}
 		},
-		newRemote() {
-			this.$store.dispatch("model/showNewRemote");
+		async gitPush(event) {
+			if (this.currentRepository.features.remote) {
+				let activeBranch = this.$store.state.commit.activeBranch;
+				await git(this.currentRepository.path).push([
+					this.currentRepository.remote,
+					activeBranch
+				]);
+				try {
+					console.log("Push changes to remote repository");
+				} catch (error) {
+					console.log(error);
+				}
+			} else {
+				event.preventDefault();
+			}
+		},
+		newRemote(event) {
+			if (this.currentRepository.features.remote) {
+				this.$store.dispatch("model/showNewRemote");
+			} else {
+				event.preventDefault();
+			}
+		},
 		openTerminal() {
 			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
 		},
