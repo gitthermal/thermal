@@ -129,8 +129,7 @@
 </template>
 
 <script>
-import git from "simple-git/promise";
-import * as Sentry from "@sentry/electron";
+import showMixin from "../../mixins/git/show";
 
 export default {
 	name: "CommitInformation",
@@ -156,32 +155,27 @@ export default {
 			this.getFilesDetail(this.commitHash);
 		},
 		async getAuthorDetail(hash) {
-			let author = await git(this.currentRepository.path).show([
+			const params = [
 				hash,
 				"--format=%an %n %ae %n %ad"
-			]);
-			try {
-				let output = author.split("\n");
+			];
+			showMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
 				this.$store.dispatch({
 					type: "history/updateCommitInformationAuthor",
 					author_name: output[0].trim(),
 					author_email: output[1].trim(),
 					author_date: output[2].trim()
 				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch commit author details.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, author);
-			}
+			});
 		},
 		async getCommitBody(hash) {
-			let body = await git(this.currentRepository.path).show([
+			const params = [
 				hash,
 				"--format=%s %n << %n %b %n >>"
-			]);
-			try {
-				let output = body.split("\n");
+			];
+			showMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
 				let title = output[0].trim();
 				let description;
 				let commitDescriptionStart;
@@ -205,20 +199,15 @@ export default {
 					title: title,
 					description: description
 				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch commit title/description.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, body);
-			}
+			});
 		},
 		async getCommitMeta(hash) {
-			let meta = await git(this.currentRepository.path).show([
+			const params = [
 				hash,
 				"--format=%cn %n %ce %n %cd %n %d %n %H %n %T %n %P"
-			]);
-			try {
-				let output = meta.split("\n");
+			];
+			showMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
 				this.$store.dispatch({
 					type: "history/updateCommitInformationMeta",
 					committer_name: output[0].trim(),
@@ -229,21 +218,16 @@ export default {
 					tree_hash: output[5].trim(),
 					parent_hash: output[6].trim()
 				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch commit meta data.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, meta);
-			}
+			});
 		},
 		async getFilesDetail(hash) {
-			let files = await git(this.currentRepository.path).show([
+			const params = [
 				hash,
 				"--oneline",
 				"--stat"
-			]);
-			try {
-				let output = files.split("\n");
+			];
+			showMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
 				let additionDeletion = output[output.length - 2].split(", ");
 				additionDeletion.shift();
 				let addition;
@@ -269,13 +253,6 @@ export default {
 					files_deletion: deletion,
 					files_list: output.slice(1, output.length - 2)
 				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch commit files.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, files);
-			}
-		},
 		trimFilePath(path) {
 			return path.replace(/\|.*/, "").trim();
 		},
