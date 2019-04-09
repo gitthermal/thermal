@@ -62,12 +62,11 @@
 </template>
 
 <script>
-import git from "simple-git/promise";
+import statusMixin from "../../mixins/git/status";
 import VueScrollbar from "vue2-scrollbar";
 import branchIcon from "../../components/icon/branch";
 import inputText from "../../components/input/inputText";
 import primaryButton from "../../components/buttons/primaryButton";
-import * as Sentry from "@sentry/electron";
 
 export default {
 	name: "Workspace",
@@ -115,23 +114,18 @@ export default {
 		this.gitStatus();
 	},
 	methods: {
-		async gitStatus() {
-			let status = await git(this.currentRepository.path).status();
-			try {
+		gitStatus() {
+			statusMixin(this.currentRepository).then(result => {
+				console.log(result);
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
-					branch: status.current
+					branch: result.current
 				});
 				this.$store.dispatch({
 					type: "commit/updateFiles",
-					files: status.files
+					files: result.files
 				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Error fetching git status.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, status);
-			}
+			});
 		},
 		fileType(file) {
 			switch (file.working_dir) {
