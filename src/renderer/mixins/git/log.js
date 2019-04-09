@@ -12,7 +12,7 @@ const log = {
 			Sentry.captureException(error);
 			let errorMessage = "Unable to fetch logs.";
 			console.log(errorMessage);
-			Sentry.captureMessage(errorMessage, gitLog.all);
+			Sentry.captureMessage(errorMessage, gitLog);
 		}
 	}
 };
