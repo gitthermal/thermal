@@ -51,7 +51,7 @@ import commitInformation from "../../components/commit/commitInformation";
 import commitHistoryPreview from "../../components/commit/commitHistoryPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
-import gitLog from "../../mixins/git/log";
+import logMixin from "../../mixins/git/log";
 
 export default {
 	name: "History",
@@ -62,7 +62,6 @@ export default {
 		VueScrollbar,
 		fileIcon
 	},
-	mixins: [gitLog],
 	computed: {
 		repositoryLogs() {
 			return this.$store.getters["history/allLogs"];
@@ -71,7 +70,18 @@ export default {
 			return this.$store.getters["workspace/currentRepository"];
 		}
 	},
+	mounted() {
+		this.gitLog();
+	},
 	methods: {
+		gitLog() {
+			logMixin(this.currentRepository)
+			.then(result => {
+				this.$store.dispatch("history/getRepositoryLogs", {
+					logs: result
+				});			
+			});
+		},
 		toggleCommitDetail() {
 			this.$store.commit("history/toggleCommitInformation");
 			this.$store.commit({
