@@ -63,6 +63,7 @@
 
 <script>
 import statusMixin from "../../mixins/git/status";
+import commitMixin from "../../mixins/git/commit";
 import VueScrollbar from "vue2-scrollbar";
 import branchIcon from "../../components/icon/branch";
 import inputText from "../../components/input/inputText";
@@ -169,22 +170,11 @@ export default {
 					}
 			}
 		},
-		async commitMessageButton() {
-			git(this.currentRepository.path).add(
-				this.$store.getters["commit/allStagedFiles"]
-			);
-			let commit = git(this.currentRepository.path).commit(
-				this.commitMessageTitle
-			);
-			try {
-				console.log(commit);
-				this.commitMessageTitle = "";
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to make commit.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, commit);
-			}
+		commitMessageButton() {
+			commitMixin(this.currentRepository, this.$store.getters["commit/allStagedFiles"], this.commitMessageTitle).then(result => {
+				console.log(result);
+				this.gitStatus();
+			});
 		},
 		filePath(path) {
 			if (path.lastIndexOf("/").toString() !== "-1") {
