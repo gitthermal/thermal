@@ -113,16 +113,16 @@
 			</div>
 			<div
 				v-for="file in commitInformation.files.list"
-				:key="trimFilePath(file)"
+				:key="file"
 				class="commit__detail__files__list"
 				@click="
 					commitHistoryPreview(
 						commitInformation.meta.commit_hash,
-						trimFilePath(file)
+						file
 					)
 				"
 			>
-				{{ trimFilePath(file) }}
+				{{ file }}
 			</div>
 		</div>
 	</div>
@@ -130,6 +130,7 @@
 
 <script>
 import showMixin from "../../mixins/git/show";
+import trimFilePathMixin from "../../mixins/trimFilePath";
 
 export default {
 	name: "CommitInformation",
@@ -251,10 +252,9 @@ export default {
 					type: "history/updateCommitInformationFiles",
 					files_additions: addition,
 					files_deletion: deletion,
-					files_list: output.slice(1, output.length - 2)
+					files_list: trimFilePathMixin(output.slice(1, output.length - 2))
 				});
-		trimFilePath(path) {
-			return path.replace(/\|.*/, "").trim();
+			});
 		},
 		async commitHistoryPreview(hash, path) {
 			if (this.$store.state.settings.experimental.fileChanges) {
