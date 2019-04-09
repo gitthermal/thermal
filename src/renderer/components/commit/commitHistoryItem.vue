@@ -35,8 +35,7 @@
 </template>
 
 <script>
-import git from "simple-git/promise";
-import * as Sentry from "@sentry/electron";
+import showMixin from "../../mixins/git/show";
 
 export default {
 	name: "CommitHistoryItem",
@@ -71,20 +70,12 @@ export default {
 			this.files.list = [];
 		},
 		async getFilesDetail(hash) {
-			let files = await git(this.currentRepository.path).show([
-				hash,
-				"--oneline",
-				"--stat"
-			]);
-			try {
-				let output = files.split("\n");
-				this.files.list = output.slice(1, output.length - 2);
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch commit files.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, files);
-			}
+			const params = [hash, "--oneline", "--stat"];
+			showMixin(this.currentRepository, params)
+				.then(result => {
+					let output = result.split("\n");
+					this.files.list = output.slice(1, output.length - 2);
+				});
 		}
 	}
 };
