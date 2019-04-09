@@ -27,7 +27,7 @@
 					:key="item"
 					class="history__files__dropdown__item"
 				>
-					{{ item.replace(/\|.*/, "").trim() }}
+					{{ item }}
 				</div>
 			</div>
 		</div>
@@ -36,6 +36,7 @@
 
 <script>
 import showMixin from "../../mixins/git/show";
+import trimFilePathMixin from "../../mixins/trimFilePath";
 
 export default {
 	name: "CommitHistoryItem",
@@ -74,7 +75,7 @@ export default {
 			showMixin(this.currentRepository, params)
 				.then(result => {
 					let output = result.split("\n");
-					this.files.list = output.slice(1, output.length - 2);
+					this.files.list = trimFilePathMixin(output.slice(1, output.length - 2));
 				});
 		}
 	}
