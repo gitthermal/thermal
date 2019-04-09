@@ -46,13 +46,12 @@
 </template>
 
 <script>
-import git from "simple-git/promise";
 import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
 import commitHistoryPreview from "../../components/commit/commitHistoryPreview";
 import fileIcon from "../../components/icon/file";
-import * as Sentry from "@sentry/electron";
 import VueScrollbar from "vue2-scrollbar";
+import gitLog from "../../mixins/git/log";
 
 export default {
 	name: "History",
@@ -63,6 +62,7 @@ export default {
 		VueScrollbar,
 		fileIcon
 	},
+	mixins: [gitLog],
 	computed: {
 		repositoryLogs() {
 			return this.$store.getters["history/allLogs"];
@@ -75,18 +75,10 @@ export default {
 		this.getLogs();
 	},
 	methods: {
-		async getLogs() {
-			const gitLog = await git(this.currentRepository.path).log();
-			try {
-				this.$store.dispatch("history/getRepositoryLogs", {
-					logs: gitLog.all
-				});
-			} catch (error) {
-				Sentry.captureException(error);
-				let errorMessage = "Unable to fetch logs.";
-				console.log(errorMessage);
-				Sentry.captureMessage(errorMessage, gitLog);
-			}
+		getLogs() {
+			this.$store.dispatch("history/getRepositoryLogs", {
+				logs: this.$data
+			});
 		},
 		toggleCommitDetail() {
 			this.$store.commit("history/toggleCommitInformation");
