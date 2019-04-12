@@ -31,7 +31,9 @@
 						<fileIcon />
 					</div>
 				</div>
-				<commitInformation />
+				<VueScrollbar class="history__logs__detail__scrollbar">
+					<commitInformation />
+				</VueScrollbar>
 			</div>
 		</div>
 		<div class="history__preview">
@@ -135,6 +137,9 @@ export default {
 						stroke: #6C6F75
 						width: 18px
 						height: 18px
+
+			&__scrollbar
+				max-height: 80.6vh
 
 		&__scrollbar
 			max-height: 90vh
