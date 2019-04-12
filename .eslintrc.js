@@ -15,6 +15,7 @@ module.exports = {
 		"plugin:vue/strongly-recommended",
 		"plugin:vue/recommended",
 		"standard",
+		"plugin:prettier/recommended"
 	],
 	globals: {
 		__static: true
