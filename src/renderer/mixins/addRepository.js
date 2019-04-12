@@ -2,8 +2,10 @@ import git from "simple-git/promise";
 
 export default {
 	methods: {
+		getRepositoryName(path) {
+			return path.split("/")[this.repositoryPath.split("/").length - 1];
+		},
 		async addLocalRepository(path) {
-			let repositoryName = this.pathToRepository.split("/")[this.pathToRepository.split("/").length - 1];
 			let validateGitRepo = git(path);
 			let validateGit = await validateGitRepo.checkIsRepo();
 			let listRemote;
@@ -22,7 +24,7 @@ export default {
 				if (validateGit) {
 					this.$store.commit({
 						type: "repository/addLocalRepository",
-						name: repositoryName,
+						name: this.getRepositoryName(path),
 						path: path,
 						remote: listRemote,
 						commits: true,
