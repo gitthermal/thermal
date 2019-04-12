@@ -38,7 +38,11 @@
 		<div
 			class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto"
 		>
-			<div class="welcome__repository__list">
+			<div
+				class="welcome__repository__list"
+				@drop.prevent="dropHandler($event)"
+				@dragover.prevent="dropHandler()"
+			>
 				<VueScrollbar class="welcome__repository__scrollbar">
 					<div>
 						<div v-if="getAllRepository.length > 0">
@@ -143,7 +147,8 @@ export default {
 	data() {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
-			exampleRepositoryModel: false
+			exampleRepositoryModel: false,
+			repositoryPath: ""
 		};
 	},
 	computed: {
@@ -186,6 +191,9 @@ export default {
 		openRepositorySettings(index) {
 			this.updateCurrentRepository(index);
 			this.$router.push({ name: "repositorySettings" });
+		},
+		dropHandler(event) {
+			this.repositoryPath = event.dataTransfer.files[0].path.split("\\").join("/");
 		}
 	}
 };
