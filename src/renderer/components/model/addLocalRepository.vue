@@ -45,7 +45,7 @@
 import closeIcon from "../icon/close";
 import inputText from "../input/inputText";
 import primaryButton from "../buttons/primaryButton";
-import git from "simple-git/promise";
+import addRepository from "../../mixins/addRepository";
 
 export default {
 	name: "AddLocalRepository",
@@ -61,6 +61,7 @@ export default {
 			}
 		}
 	},
+	mixins: [addRepository],
 	data() {
 		return {
 			pathToRepository: "",
@@ -68,40 +69,10 @@ export default {
 		};
 	},
 	methods: {
-		async addRepository() {
-			let repositoryName = this.pathToRepository.split("/")[ this.pathToRepository.split("/").length - 1 ];
-			let gitRepositoryPath = git(this.pathToRepository);
-			let validateGit = await gitRepositoryPath.checkIsRepo();
-			let listRemote;
-			try {
-				listRemote = await git(this.pathToRepository).listRemote(["--get-url"]);
-				if (listRemote.slice(-4, -1) === "git") {
-					this.$store.commit({
-						type: "repository/localRepositoryRemote",
-						remote: listRemote
-					});
-				}
-			} catch (error) {
-				console.log(error);
-			}
-			try {
-				if (validateGit) {
-					this.$store.commit({
-						type: "repository/addLocalRepository",
-						name: repositoryName,
-						path: this.pathToRepository,
-						remote: listRemote,
-						commits: true,
-						remotes: true
-					});
-					this.pathToRepository = "";
-					this.closeModel();
-				} else {
-					this.showError = true;
-				}
-			} catch (error) {
-				console.log(error);
-			}
+		addRepository() {
+			this.localRepository(this.pathToRepository);
+			this.pathToRepository = "";
+			this.closeModel();
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
