@@ -124,6 +124,7 @@ import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
 import VueScrollbar from "vue2-scrollbar";
 import truncateFilter from "../filters/truncate";
+import addRepository from "../mixins/addRepository";
 const { shell } = require("electron");
 
 Sentry.configureScope(scope => {
@@ -144,6 +145,7 @@ export default {
 	filters: {
 		truncateFilter
 	},
+	mixins: [addRepository],
 	data() {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
@@ -194,6 +196,7 @@ export default {
 		},
 		dropHandler(event) {
 			this.repositoryPath = event.dataTransfer.files[0].path.split("\\").join("/");
+			this.addLocalRepository(this.repositoryPath);
 		}
 	}
 };
