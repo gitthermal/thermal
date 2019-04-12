@@ -5,7 +5,7 @@ export default {
 		getRepositoryName(path) {
 			return path.split("/")[this.repositoryPath.split("/").length - 1];
 		},
-		async addLocalRepository(path) {
+		async localRepository(path) {
 			let validateGitRepo = git(path);
 			let validateGit = await validateGitRepo.checkIsRepo();
 			let listRemote;

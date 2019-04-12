@@ -196,7 +196,7 @@ export default {
 		},
 		dropHandler(event) {
 			this.repositoryPath = event.dataTransfer.files[0].path.split("\\").join("/");
-			this.addLocalRepository(this.repositoryPath);
+			this.localRepository(this.repositoryPath);
 		}
 	}
 };
