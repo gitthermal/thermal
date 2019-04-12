@@ -21,6 +21,7 @@ module.exports = {
 		__static: true
 	},
 	rules: {
+		"prettier/prettier": "off",
 		// allow debugger during development
 		"no-debugger": process.env.NODE_ENV === "testing" ? 2 : 0,
 		// enable semicolons instead of ASI
