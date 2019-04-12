@@ -3,7 +3,7 @@ import git from "simple-git/promise";
 export default {
 	methods: {
 		getRepositoryName(path) {
-			return path.split("/")[this.repositoryPath.split("/").length - 1];
+			return path.split("/")[path.split("/").length - 1];
 		},
 		async localRepository(path) {
 			let validateGitRepo = git(path);
