@@ -73,7 +73,10 @@
 					<div class="menubar__list__item__dropdown__item">
 						Go to summary
 					</div>
-					<div @click="fullScreenView()" class="menubar__list__item__dropdown__item">
+					<div 
+						class="menubar__list__item__dropdown__item"
+						@click="fullScreenView()"
+					>
 						Toggle full screen
 					</div>
 					<div class="menubar__list__item__dropdown__item">
