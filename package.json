@@ -31,13 +31,17 @@
   "build": {
     "productName": "Thermal",
     "appId": "com.netlify.thermal",
+    "artifactName": "${name}-${arch}-${version}.${ext}",
     "directories": {
-      "output": "build"
+      "output": "dist"
     },
     "files": [
       "dist/electron/**/*"
     ],
     "dmg": {
+      "title": "${name}",
+      "background": "build/appDmgBackground.png",
+      "icon": "build/icon.icns",
       "contents": [
         {
           "x": 410,
@@ -53,13 +57,39 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icons/icon.icns",
+      "electronLanguages": [
+        "en"
+      ]
     },
     "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "publisherName": "CodeCarrot, Inc.",
+      "shortcutName": "Thermal",
       "icon": "build/icons/icon.ico"
     },
     "linux": {
-      "icon": "build/icons"
+      "synopsis": "One stop. Git repository",
+      "category": "development;git;gui",
+      "target": [
+        "deb",
+        "zip",
+        "AppImage",
+        "snap"
+      ],
+      "icon": "build/icons",
+      "directories": {
+        "output": "dist/linux"
+      }
     }
   },
   "dependencies": {
