@@ -2,6 +2,7 @@
   "name": "thermal",
   "license": "null",
   "version": "0.0.1-alpha.4",
+  "copyright": "Copyright © 2019 CodeCarrot",
   "author": {
     "name": "CodeCarrot, Inc.",
     "email": "contact@codecarrot.net"
