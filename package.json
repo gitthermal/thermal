@@ -86,10 +86,7 @@
         "AppImage",
         "snap"
       ],
-      "icon": "build/icons",
-      "directories": {
-        "output": "dist/linux"
-      }
+      "icon": "build/icons"
     }
   },
   "dependencies": {

@@ -57,7 +57,7 @@ linux:
     - yarn build:linux
   artifacts:
     paths:
-     - dist/linux
+     - dist
 
 mac:
   stage: test
