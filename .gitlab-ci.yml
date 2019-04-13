@@ -1,6 +1,6 @@
 image: node:11.14.0
-# Install yarn 
 before_script:
+  # install yarn
   - curl -o- -L https://yarnpkg.com/install.sh | bash
 
 stages:
@@ -8,72 +8,53 @@ stages:
   - test
   - deploy
 
-.cache-electron-yarn: &cache-electron-yarn
+.test-os: &test-os
+  stage: test
   cache:
+    key: "$CI_COMMIT_SHORT_SHA-test"
     paths:
       - .electron-vue/
-      - ~/.yarn
     policy: pull
+  artifacts:
+    paths:
+     - dist/
 
 lint:
   stage: lint
   cache:
+    key: lint
     paths:
       - node_modules/
       - ~/.yarn
-    policy: pull
   script:
     - yarn
     - yarn lint
   allow_failure: true
 
-windows 0 2:
-  image: node:11.14.0
-  stage: test
-  <<: *cache-electron-yarn
+windows:
+  image: electronuserland/builder:wine
+  <<: *test-os
   script: 
     - yarn
     - yarn build:win
-  artifacts:
-    paths:
-     - dist/
-
-windows 1 2:
-  image: node:8
-  stage: test
-  extends: .cache-electron-yarn
-  script: 
-    - yarn
-    - yarn build:win
-  artifacts:
-    paths:
-     - dist/
 
 linux:
-  stage: test
-  extends: .cache-electron-yarn
+  <<: *test-os
   script: 
     - yarn
     - yarn build:linux
-  artifacts:
-    paths:
-     - dist
 
-mac:
-  stage: test
-  extends: .cache-electron-yarn
+.mac:
+  <<: *test-os
+  before_script:
+    - curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install
+    - brew install rpm
   script: 
     - yarn
     - yarn build:mac
-  artifacts:
-    paths:
-     - dist/
 
 deploy:
   stage: deploy
-  cache:
-    paths:
-      - ~/.yarn
   environment: production
   when: manual
   script:
