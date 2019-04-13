@@ -7,6 +7,10 @@
     "email": "contact@codecarrot.net"
   },
   "description": "Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/gitthermal/thermal.git"
+  },
   "main": "./dist/electron/main.js",
   "scripts": {
     "build:win": "node .electron-vue/build.js && electron-builder --win",
