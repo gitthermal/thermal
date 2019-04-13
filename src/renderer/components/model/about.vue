@@ -20,7 +20,7 @@
 					interface.
 				</p>
 				<p class="about__content__para">
-					This application is copyright and build by Yashu Mittal.
+					This application is copyright and build by CodeCarrot.
 				</p>
 			</div>
 		</div>
