@@ -1,0 +1,83 @@
+image: node:11.14.0
+# Install yarn 
+before_script:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+
+stages:
+  - lint
+  - test
+  - deploy
+
+.cache-electron-yarn: &cache-electron-yarn
+  cache:
+    paths:
+      - .electron-vue/
+      - ~/.yarn
+    policy: pull
+
+lint:
+  stage: lint
+  cache:
+    paths:
+      - node_modules/
+      - ~/.yarn
+    policy: pull
+  script:
+    - yarn
+    - yarn lint
+  allow_failure: true
+
+windows 0 2:
+  image: node:11.14.0
+  stage: test
+  <<: *cache-electron-yarn
+  script: 
+    - yarn
+    - yarn build:win
+  artifacts:
+    paths:
+     - dist/
+
+windows 1 2:
+  image: node:8
+  stage: test
+  extends: .cache-electron-yarn
+  script: 
+    - yarn
+    - yarn build:win
+  artifacts:
+    paths:
+     - dist/
+
+linux:
+  stage: test
+  extends: .cache-electron-yarn
+  script: 
+    - yarn
+    - yarn build:linux
+  artifacts:
+    paths:
+     - dist/linux
+
+mac:
+  stage: test
+  extends: .cache-electron-yarn
+  script: 
+    - yarn
+    - yarn build:mac
+  artifacts:
+    paths:
+     - dist/
+
+deploy:
+  stage: deploy
+  cache:
+    paths:
+      - ~/.yarn
+  environment: production
+  when: manual
+  script:
+    - yarn
+    - yarn build
+  only:
+    - master
