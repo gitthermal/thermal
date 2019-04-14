@@ -83,8 +83,7 @@
         "deb",
         "zip",
         "AppImage",
-				"snap",
-				"pacman"
+				"snap"
       ],
       "icon": "build/icons"
     }
