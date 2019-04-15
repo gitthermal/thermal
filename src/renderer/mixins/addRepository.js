@@ -6,8 +6,6 @@ export default {
 			return path.split("/")[path.split("/").length - 1];
 		},
 		async localRepository(path) {
-			let validateGitRepo = git(path);
-			let validateGit = await validateGitRepo.checkIsRepo();
 			let listRemote;
 			try {
 				listRemote = await git(path).listRemote(["--get-url"]);
@@ -20,8 +18,6 @@ export default {
 			} catch (error) {
 				console.log(error);
 			}
-			try {
-				if (validateGit) {
 					this.$store.commit({
 						type: "repository/addLocalRepository",
 						name: this.getRepositoryName(path),
@@ -30,10 +26,6 @@ export default {
 						commits: true,
 						remotes: true
 					});
-				}
-			} catch (error) {
-				console.log(error);
-			}
 		}
 	}
 };
