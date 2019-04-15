@@ -4,9 +4,46 @@ Copyright 2019, CodeCarrot, Inc.
 
 This License applies to any program or other work which CodeCarrot, Inc. ("CodeCarrot") makes publicly available and which contains a notice placed by CodeCarrot, Inc.
 
-The Thermal application is available for you to use for free of cost.
+The Thermal application is available for you to use for free of cost, along with that it comes with certain set of Permissions, Limitations and Conditions
 
-1. You are allowed to use this application for commercial or private use.
-2. You are not allowed to modify or remix the source code of the application without the premission from Copyright holder.
-3. You are restricted on distributing the source code in parts.
-4. You are not allowed to sell/re-sell the application.
+1. Permissions
+
+1.1 Commercial use
+
+This software and derivatives maybe used for commercial purposes.
+
+1.2 Distributiion
+
+This software can/maybe be distrubited as packaged.
+
+1.3 Private use
+
+This software maybe used for private purposes.
+
+2. Limitations
+
+2.1 Liability
+
+This license includes a limitation of liability.
+
+2.2 Modification
+
+You are not allowed to modify or remix the source code of the application without the premission from Copyright holder.
+
+2.3 Trademark use
+
+This license explicitly states that it does NOT grant trademark rights, even though licenses without such a statement probably do not grant any implicit trademark rights.
+
+2.4 Warranty
+
+The license explicitly states that it does NOT provide any warranty.
+
+3. Conditions
+
+3.1 License and copyright notice
+
+A copy of the license and copyright notice must be included with the software.
+
+3.2 Same license (file)
+
+If permisison is granted, modifications of existing files must be released under the same license when distributing the software.
