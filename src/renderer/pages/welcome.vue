@@ -53,7 +53,7 @@
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<primaryButton
-									text="Select"
+									text="Open"
 									class="welcome__repository__list__item__select ml-auto"
 									@click.native="selectCurrentRepository(index)"
 								/>
@@ -78,7 +78,7 @@
 								>
 									<h6>{{ repo }}</h6>
 									<primaryButton
-										text="Select"
+										text="Open"
 										class="welcome__repository__list__item__select ml-auto"
 									/>
 									<div class="welcome__repository__list__item__settings">
