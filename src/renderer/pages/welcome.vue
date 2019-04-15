@@ -195,8 +195,11 @@ export default {
 			this.$router.push({ name: "repositorySettings" });
 		},
 		dropHandler(event) {
-			this.repositoryPath = event.dataTransfer.files[0].path.split("\\").join("/");
-			this.localRepository(this.repositoryPath);
+			const dropDataTransfer = event.dataTransfer.files;
+			for (let i = 0; i < dropDataTransfer.length; i++) {
+				this.repositoryPath = event.dataTransfer.files[i].path.split("\\").join("/");
+				this.localRepository(this.repositoryPath);
+			}
 		}
 	}
 };
