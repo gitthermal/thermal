@@ -9,6 +9,11 @@ const getters = {
 };
 
 const mutations = {
+	getRepositoryList(state) {
+		if (localStorage.getItem("repository")) {
+			state.repositoryList = JSON.parse(localStorage.getItem("repository"));
+		}
+	},
 	addLocalRepository(state, payload) {
 		let repositoryData = {
 			path: payload.path,
