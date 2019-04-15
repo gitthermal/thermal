@@ -31,7 +31,10 @@ export default {
 		about,
 		exportCommitData,
 		newRemote
-	}
+	},
+	beforeCreate() {
+		this.$store.commit("repository/getRepositoryList");
+	},
 };
 </script>
 
