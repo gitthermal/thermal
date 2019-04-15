@@ -25,9 +25,11 @@ const mutations = {
 			}
 		};
 		state.repositoryList.push(repositoryData);
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	removeLocalRepository(state) {
 		state.repositoryList.splice(workspace.state.workspaceRepository.index, 1);
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	editLocalRepositoryName(state, payload) {
 		// eslint-disable-next-line prettier/prettier
