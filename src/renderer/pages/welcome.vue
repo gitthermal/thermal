@@ -44,7 +44,7 @@
 				@dragover.prevent="dropHandler()"
 			>
 				<VueScrollbar class="welcome__repository__scrollbar">
-					<div>
+					<div class="welcome__repository__list__container">
 						<div v-if="getAllRepository.length > 0">
 							<div
 								v-for="(repo, index) in getAllRepository"
@@ -241,7 +241,6 @@ export default {
 
 		&__scrollbar
 			max-height: 400px
-			padding: 1rem
 
 		&__example
 			user-select: none
@@ -264,6 +263,9 @@ export default {
 			border: 1px solid #EFEFEF
 			width: 450px
 			border-radius: 1rem
+
+			&__container
+				padding: 1rem
 
 			&__item
 				&:not(:last-child)
