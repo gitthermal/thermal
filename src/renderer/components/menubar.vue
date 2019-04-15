@@ -193,7 +193,10 @@
 					>
 						Welcome
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="reportIssue()"
+					>
 						Report issue
 					</div>
 					<div
@@ -336,6 +339,9 @@ export default {
 		},
 		// Branch
 		// Help
+		reportIssue() {
+			shell.openExternal("https://thermal.netlify.com/issue/");
+		},
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");
 		},
