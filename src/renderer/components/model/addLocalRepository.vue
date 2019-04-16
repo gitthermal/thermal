@@ -23,13 +23,7 @@
 				@keyup.esc.native="closeModel"
 				@keyup.enter.native="addRepository"
 			/>
-			<div
-				v-show="showError"
-				class="model__error"
 			>
-				This directoy does not appear to be a Git repository. Would you like to
-				create a repositroy here instead?
-			</div>
 		</div>
 		<div class="model__section model__footer">
 			<primaryButton
@@ -64,8 +58,7 @@ export default {
 	mixins: [addRepository],
 	data() {
 		return {
-			pathToRepository: "",
-			showError: false
+			pathToRepository: ""
 		};
 	},
 	methods: {
