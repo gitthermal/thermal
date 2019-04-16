@@ -32,7 +32,7 @@
 		</div>
 		<div class="model__section model__footer">
 			<primaryButton
-				class="ml-auto"
+				margin-left="auto"
 				text="Export"
 				@click.native="exportDetail()"
 			/>

@@ -32,7 +32,7 @@
 			/>
 			<primaryButton
 				text="Release Notes"
-				class="about__footer__button"
+				margin-left=".5rem"
 				@click.native="releaseNotes()"
 			/>
 		</div>
@@ -92,9 +92,4 @@ export default {
 		width: 100%
 		border-top: 1px solid #eee
 		padding: .8rem 1rem
-
-		&__button
-
-			&:not(:first-child)
-				margin-left: .5rem
 </style>

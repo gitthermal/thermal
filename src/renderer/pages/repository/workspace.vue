@@ -52,9 +52,9 @@
 				class="commit-message__title"
 			/>
 			<primaryButton
-				:class="{ 'button--disable': !stagedFileLength > 0 }"
-				class="commit-message__button w-100"
 				:text="'Commit to ' + this.$store.state.commit.activeBranch"
+				width="100%"
+				:disable="!stagedFileLength > 0"
 				@click.native="commitMessageButton()"
 			/>
 		</div>

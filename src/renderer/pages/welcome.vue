@@ -54,7 +54,7 @@
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<primaryButton
 									text="Open"
-									class="welcome__repository__list__item__select ml-auto"
+									margin-left="auto"
 									@click.native="selectCurrentRepository(index)"
 								/>
 								<div
@@ -79,7 +79,7 @@
 									<h6>{{ repo }}</h6>
 									<primaryButton
 										text="Open"
-										class="welcome__repository__list__item__select ml-auto"
+										margin-left="auto"
 									/>
 									<div class="welcome__repository__list__item__settings">
 										<settingsIcon />
@@ -91,7 +91,7 @@
 								class="welcome__repository__example__model"
 							>
 								<primaryButton
-									class="welcome__cta"
+									margin-top="1rem"
 									text="Add Repository"
 									@click.native="addLocalRepository()"
 								/>
@@ -102,7 +102,7 @@
 			</div>
 			<primaryButton
 				v-show="getAllRepository.length > 0"
-				class="welcome__cta"
+				margin-top="1rem"
 				text="Add Repository"
 				@click.native="addLocalRepository()"
 			/>
@@ -228,9 +228,6 @@ export default {
 
 				&:not(:last-child)
 					margin-right: 20px
-
-	&__cta
-		margin-top: 1rem
 
 	&__seperate
 		width: 1px
