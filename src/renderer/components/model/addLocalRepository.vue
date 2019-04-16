@@ -23,13 +23,25 @@
 				@keyup.esc.native="closeModel"
 				@keyup.enter.native="addRepository"
 			/>
+			<input
+				ref="fileInput"
+				type="file"
+				name="folderSelector"
+				webkitdirectory
+				style="display: none"
+				@change="fileSectorInput"
 			>
+			<primaryButton
+				text="Select"
+				:margin-left=".4"
+				@click.native="$refs.fileInput.click()"
+			/>
 		</div>
 		<div class="model__section model__footer">
 			<primaryButton
 				class="ml-auto"
 				text="Add repository"
-				@click.native="addRepository()"
+				@click.native="addRepository(pathToRepository)"
 			/>
 		</div>
 	</div>
@@ -62,8 +74,11 @@ export default {
 		};
 	},
 	methods: {
-		addRepository() {
-			this.localRepository(this.pathToRepository);
+		fileSectorInput(event) {
+			this.pathToRepository = event.target.files[0].path.split("\\").join("/");
+		},
+		addRepository(path) {
+			this.localRepository(path);
 			this.pathToRepository = "";
 			this.closeModel();
 		},
