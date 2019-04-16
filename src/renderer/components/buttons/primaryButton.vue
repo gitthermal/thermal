@@ -1,14 +1,14 @@
 <template>
 	<a
 		:style="{
-			marginTop: marginTop + 'rem',
-			marginBottom: marginBottom + 'rem',
-			marginLeft: marginLeft + 'rem',
-			marginRight: marginRight + 'rem',
-			paddingTop: paddingTop + 'rem',
-			paddingBottom: paddingBottom + 'rem',
-			paddingLeft: paddingLeft + 'rem',
-			paddingRight: paddingRight + 'rem',
+			marginTop: marginTop,
+			marginBottom: marginBottom,
+			marginLeft: marginLeft,
+			marginRight: marginRight,
+			paddingTop: paddingTop,
+			paddingBottom: paddingBottom,
+			paddingLeft: paddingLeft,
+			paddingRight: paddingRight,
 			cursor: cursor,
 			fontSize: fontSize + 'rem',
 			fontWeight: fontWeight,
@@ -43,36 +43,36 @@ export default {
 			default: false
 		},
 		marginTop: {
-			type: Number,
+			type: String,
 			default: null
 		},
 		marginBottom: {
-			type: Number,
+			type: String,
 			default: null
 		},
 		marginLeft: {
-			type: Number,
+			type: String,
 			default: null
 		},
 		marginRight: {
-			type: Number,
+			type: String,
 			default: null
 		},
 		paddingTop: {
-			type: Number,
-			default: 0.5
+			type: String,
+			default: "0.5rem"
 		},
 		paddingBottom: {
-			type: Number,
-			default: 0.5
+			type: String,
+			default: "0.5rem"
 		},
 		paddingLeft: {
-			type: Number,
-			default: 1
+			type: String,
+			default: "1rem"
 		},
 		paddingRight: {
-			type: Number,
-			default: 1
+			type: String,
+			default: "1rem"
 		},
 		fontSize: {
 			type: Number,

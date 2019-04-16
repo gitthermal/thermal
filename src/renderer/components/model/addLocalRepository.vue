@@ -33,7 +33,7 @@
 			>
 			<primaryButton
 				text="Select"
-				:margin-left=".4"
+				margin-left=".4rem"
 				@click.native="$refs.fileInput.click()"
 			/>
 		</div>
