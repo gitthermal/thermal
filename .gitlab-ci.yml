@@ -19,7 +19,7 @@ stages:
     paths:
      - dist/
 
-lint:
+eslint:
   stage: lint
   cache:
     key: lint
