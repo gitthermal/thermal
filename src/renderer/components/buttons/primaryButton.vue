@@ -15,7 +15,9 @@
 			color: color,
 			backgroundColor: backgroundColor,
 			borderRadius: borderRadius + 'rem',
-			opacity: opacity
+			opacity: opacity,
+			width: width,
+			height: height
 		}"
 		style="{
 			user-select: none
@@ -85,6 +87,14 @@ export default {
 		borderRadius: {
 			type: Number,
 			default: 5
+		},
+		width: {
+			type: String,
+			default: null
+		},
+		height: {
+			type: String,
+			default: null
 		}
 	},
 	computed: {
