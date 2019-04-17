@@ -19,6 +19,7 @@ const mutations = {
 			path: payload.path,
 			name: payload.name,
 			remote: payload.remote,
+			isGit: payload.isGit,
 			features: {
 				commit: payload.commits,
 				remote: payload.remotes

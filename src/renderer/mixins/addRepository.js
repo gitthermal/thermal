@@ -23,6 +23,7 @@ export default {
 				name: this.getRepositoryName(path),
 				path: path,
 				remote: listRemote,
+				isGit: false,
 				commits: true,
 				remotes: true
 			});
