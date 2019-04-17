@@ -20,6 +20,8 @@
 			height: height
 		}"
 		style="{
+			display: inline-block
+			text-align: center
 			user-select: none
 		}"
 	>{{ text }}</a>
