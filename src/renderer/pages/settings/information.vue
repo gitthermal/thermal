@@ -24,59 +24,10 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="information__section">
-			<h5>Commit</h5>
-			<table class="table">
-				<tbody class="table__item-container">
-					<tr class="table__item">
-						<td class="table__item-line">
-							Hash
-						</td>
-						<td class="table__item-line">
-							{{ commitData.hash }}
-						</td>
-					</tr>
-					<tr class="table__item">
-						<td class="table__item-line">
-							Branch
-						</td>
-						<td class="table__item-line">
-							{{ commitData.notes }}
-						</td>
-					</tr>
-					<tr class="table__item">
-						<td class="table__item-line">
-							Tag
-						</td>
-						<td class="table__item-line">
-							{{ packageVersion }}
-						</td>
-					</tr>
-					<tr class="table__item">
-						<td class="table__item-line">
-							Author
-						</td>
-						<td class="table__item-line">
-							{{ commitData.author.name }}
-						</td>
-					</tr>
-					<tr class="table__item">
-						<td class="table__item-line">
-							Subject
-						</td>
-						<td class="table__item-line">
-							{{ commitData.subject }}
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</div>
 </template>
 
 <script>
-const glc = require("git-last-commit");
-
 export default {
 	data() {
 		let opsys = process.platform;
@@ -115,13 +66,6 @@ export default {
 		packageVersion() {
 			return process.env.npm_package_version;
 		}
-	},
-	created() {
-		glc.getLastCommit((err, commit) => {
-			this.commitData = commit;
-			if (err) 
-			console.log(err);
-		});
 	}
 };
 </script>
