@@ -14,7 +14,7 @@
 				<closeIcon />
 			</div>
 		</div>
-		<div class="model__section model__body flex-column">
+		<div class="model__section model__body">
 			<inputText
 				v-model.trim="pathToRepository"
 				v-focus
@@ -97,8 +97,4 @@ export default {
 
 	&__body
 		border-bottom: 1px solid #eee
-
-	&__error
-		font-size: 11px
-		margin-top: 10px
 </style>
