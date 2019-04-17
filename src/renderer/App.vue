@@ -11,6 +11,7 @@
 				<about />
 				<exportCommitData />
 				<newRemote />
+				<initalizeGitRepository />
 			</div>
 		</div>
 	</div>
@@ -22,6 +23,7 @@ import addLocalRepository from "./components/model/addLocalRepository";
 import about from "./components/model/about";
 import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
+import initalizeGitRepository from "./components/model/initalizeGitRepository";
 
 export default {
 	name: "App",
@@ -30,11 +32,12 @@ export default {
 		addLocalRepository,
 		about,
 		exportCommitData,
-		newRemote
+		newRemote,
+		initalizeGitRepository
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
-	},
+	}
 };
 </script>
 
