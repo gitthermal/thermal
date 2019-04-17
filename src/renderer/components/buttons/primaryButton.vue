@@ -18,7 +18,8 @@
 			borderRadius: borderRadius + 'rem',
 			opacity: opacity,
 			width: width,
-			height: height
+			height: height,
+			border: borderWidth + 'px ' + borderStyle + ' #' + borderColor
 		}"
 	>{{ text }}</a>
 </template>
@@ -86,6 +87,18 @@ export default {
 			type: Number,
 			default: 5
 		},
+		borderWidth: {
+			type: Number,
+			default: null
+		},
+		borderStyle: {
+			type: String,
+			default: "solid"
+		},
+		borderColor: {
+			type: String,
+			default: null
+		},
 		width: {
 			type: String,
 			default: null
@@ -109,12 +122,16 @@ export default {
 			switch (this.appearance) {
 				case "primary":
 					return "#ffffff";
+				case "outline":
+					return "#00adb5";
 				default:
 					return "#00adb5";
 			}
 		},
 		backgroundColor() {
 			switch (this.appearance) {
+				case "outline":
+					return "#ffffff";
 				default:
 					return "#00adb5";
 			}
