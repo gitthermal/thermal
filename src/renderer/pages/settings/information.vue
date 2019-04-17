@@ -41,7 +41,7 @@
 							Branch
 						</td>
 						<td class="table__item-line">
-							{{ commitData.gitBranch }}
+							{{ commitData.notes }}
 						</td>
 					</tr>
 					<tr class="table__item">
@@ -75,8 +75,7 @@
 </template>
 
 <script>
-const LCL = require('last-commit-log');
-const lcl = new LCL();
+const glc = require("git-last-commit");
 
 export default {
 	data() {
@@ -118,8 +117,10 @@ export default {
 		}
 	},
 	created() {
-		lcl.getLastCommit().then(commit => {
+		glc.getLastCommit((err, commit) => {
 			this.commitData = commit;
+			if (err) 
+			console.log(err);
 		});
 	}
 };
