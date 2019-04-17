@@ -18,14 +18,14 @@ export default {
 			} catch (error) {
 				console.log(error);
 			}
-					this.$store.commit({
-						type: "repository/addLocalRepository",
-						name: this.getRepositoryName(path),
-						path: path,
-						remote: listRemote,
-						commits: true,
-						remotes: true
-					});
+			this.$store.commit({
+				type: "repository/addLocalRepository",
+				name: this.getRepositoryName(path),
+				path: path,
+				remote: listRemote,
+				commits: true,
+				remotes: true
+			});
 		}
 	}
 };
