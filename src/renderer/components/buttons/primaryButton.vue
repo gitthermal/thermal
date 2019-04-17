@@ -1,6 +1,7 @@
 <template>
 	<a
 		:style="{
+			...defaultStyle,
 			marginTop: marginTop,
 			marginBottom: marginBottom,
 			marginLeft: marginLeft,
@@ -18,11 +19,6 @@
 			opacity: opacity,
 			width: width,
 			height: height
-		}"
-		style="{
-			display: inline-block
-			text-align: center
-			user-select: none
 		}"
 	>{{ text }}</a>
 </template>
@@ -98,6 +94,15 @@ export default {
 			type: String,
 			default: null
 		}
+	},
+	data() {
+		return {
+			defaultStyle: {
+				display: "inline-block",
+				textAlign: "center",
+				userSelect: "none"
+			}
+		};
 	},
 	computed: {
 		color() {
