@@ -27,7 +27,8 @@
 		<div class="about__footer d-flex">
 			<outlineButton
 				text="Close"
-				class="about__footer__button ml-auto"
+				appearance="outline"
+				margin-left="auto"
 				@click.native="closeModel()"
 			/>
 			<primaryButton
