@@ -28,7 +28,17 @@ const mutations = {
 	}
 };
 
-const actions = {};
+const actions = {
+	updateFileChanges: ({ commit }, payload) => {
+		commit({
+			type: "toggleFileChanges",
+			fileChanges: payload.fileChanges
+		});
+		commit({
+			type: "setSettings"
+		});
+	}
+};
 
 export default {
 	namespaced: true,
