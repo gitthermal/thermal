@@ -39,9 +39,13 @@ export default {
 		},
 			type: String,
 		},
+		color: {
 			type: String,
+			default: "ffffff",
 		},
+		backgroundColor: {
 			type: String,
+			default: "00adb5",
 		},
 		},
 		fontSize: {
@@ -79,24 +83,6 @@ export default {
 		};
 	},
 	computed: {
-		color() {
-			switch (this.appearance) {
-				case "primary":
-					return "#ffffff";
-				case "outline":
-					return "#00adb5";
-				default:
-					return "#00adb5";
-			}
-		},
-		backgroundColor() {
-			switch (this.appearance) {
-				case "outline":
-					return "#ffffff";
-				default:
-					return "#00adb5";
-			}
-		},
 		cursor() {
 			if (!this.disable) {
 				return "pointer";
