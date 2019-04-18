@@ -2,7 +2,7 @@ const state = {
 	profile: {
 		author: {
 			name: "",
-			username: "",
+			email: "",
 			imageUrl: ""
 		}
 	},
