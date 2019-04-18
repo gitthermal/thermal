@@ -33,6 +33,7 @@
 			/>
 			<primaryButton
 				text="Release Notes"
+				appearance="primary"
 				margin-left=".5rem"
 				@click.native="releaseNotes()"
 			/>

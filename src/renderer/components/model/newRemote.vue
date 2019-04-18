@@ -28,6 +28,7 @@
 			<primaryButton
 				margin-left="auto"
 				text="Publish repository"
+				appearance="primary"
 				@click.native="addRemoteUrl()"
 			/>
 		</div>

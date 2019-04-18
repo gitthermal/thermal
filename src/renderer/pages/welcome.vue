@@ -54,6 +54,7 @@
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<primaryButton
 									text="Open"
+									appearance="primary"
 									margin-left="auto"
 									@click.native="selectCurrentRepository(index)"
 								/>
@@ -79,6 +80,7 @@
 									<h6>{{ repo }}</h6>
 									<primaryButton
 										text="Open"
+										appearance="primary"
 										margin-left="auto"
 									/>
 									<div class="welcome__repository__list__item__settings">
@@ -92,6 +94,7 @@
 							>
 								<primaryButton
 									margin-top="1rem"
+									appearance="primary"
 									text="Add Repository"
 									@click.native="addLocalRepository()"
 								/>
@@ -103,6 +106,7 @@
 			<primaryButton
 				v-show="getAllRepository.length > 0"
 				margin-top="1rem"
+				appearance="primary"
 				text="Add Repository"
 				@click.native="addLocalRepository()"
 			/>

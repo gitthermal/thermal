@@ -33,6 +33,7 @@
 			>
 			<primaryButton
 				text="Select"
+				appearance="primary"
 				margin-left=".4rem"
 				@click.native="$refs.fileInput.click()"
 			/>
@@ -40,6 +41,7 @@
 		<div class="model__section model__footer">
 			<primaryButton
 				margin-left="auto"
+				appearance="primary"
 				text="Add repository"
 				@click.native="addRepository(pathToRepository)"
 			/>

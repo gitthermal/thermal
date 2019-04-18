@@ -54,6 +54,7 @@
 			<primaryButton
 				:text="'Commit to ' + this.$store.state.commit.activeBranch"
 				width="100%"
+				appearance="primary"
 				:disable="!stagedFileLength > 0"
 				@click.native="commitMessageButton()"
 			/>

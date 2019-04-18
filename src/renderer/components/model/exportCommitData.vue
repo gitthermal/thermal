@@ -34,6 +34,7 @@
 			<primaryButton
 				margin-left="auto"
 				text="Export"
+				appearance="primary"
 				@click.native="exportDetail()"
 			/>
 		</div>
