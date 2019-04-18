@@ -2,14 +2,7 @@
 	<a
 		:style="{
 			...defaultStyle,
-			marginTop: marginTop,
-			marginBottom: marginBottom,
-			marginLeft: marginLeft,
-			marginRight: marginRight,
-			paddingTop: paddingTop,
-			paddingBottom: paddingBottom,
-			paddingLeft: paddingLeft,
-			paddingRight: paddingRight,
+			...spacingProps,
 			cursor: cursor,
 			fontSize: fontSize + 'rem',
 			fontWeight: fontWeight,
@@ -17,15 +10,16 @@
 			backgroundColor: backgroundColor,
 			borderRadius: borderRadius + 'rem',
 			opacity: opacity,
-			width: width,
-			height: height,
 			border: borderWidth + 'px ' + borderStyle + ' #' + borderColor
 		}"
 	>{{ text }}</a>
 </template>
 
 <script>
+import spacingProps from "../../mixins/spacingProps";
+
 export default {
+	mixins: [spacingProps],
 	props: {
 		appearance: {
 			type: String,
@@ -43,37 +37,12 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		marginTop: {
 			type: String,
-			default: null
 		},
-		marginBottom: {
 			type: String,
-			default: null
 		},
-		marginLeft: {
 			type: String,
-			default: null
 		},
-		marginRight: {
-			type: String,
-			default: null
-		},
-		paddingTop: {
-			type: String,
-			default: "0.5rem"
-		},
-		paddingBottom: {
-			type: String,
-			default: "0.5rem"
-		},
-		paddingLeft: {
-			type: String,
-			default: "1rem"
-		},
-		paddingRight: {
-			type: String,
-			default: "1rem"
 		},
 		fontSize: {
 			type: Number,
@@ -96,14 +65,6 @@ export default {
 			default: "solid"
 		},
 		borderColor: {
-			type: String,
-			default: null
-		},
-		width: {
-			type: String,
-			default: null
-		},
-		height: {
 			type: String,
 			default: null
 		}
