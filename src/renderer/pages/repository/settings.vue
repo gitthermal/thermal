@@ -68,8 +68,9 @@
 									<h6>Remove this repository</h6>
 									<p>Once you remove the repository, you can add again.</p>
 								</div>
-								<outlineButton
-									class="ml-auto"
+								<primaryButton
+									margin-left="auto"
+									appearance="outline"
 									type="danger"
 									text="Remove"
 									@click.native="removeCurrentRepository()"
@@ -85,7 +86,7 @@
 
 <script>
 import inputTextLabel from "../../components/input/inputTextLabel";
-import outlineButton from "../../components/buttons/outlineButton";
+import primaryButton from "../../components/buttons/primaryButton";
 import { ToggleButton } from "vue-js-toggle-button";
 import VueScrollbar from "vue2-scrollbar";
 
@@ -93,7 +94,7 @@ export default {
 	name: "RepositorySettings",
 	components: {
 		inputTextLabel,
-		outlineButton,
+		primaryButton,
 		ToggleButton,
 		VueScrollbar
 	},

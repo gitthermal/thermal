@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div class="about__footer d-flex">
-			<outlineButton
+			<primaryButton
 				text="Close"
 				appearance="outline"
 				margin-left="auto"
@@ -44,15 +44,13 @@
 import thermalLogo from "../icon/logo";
 import packageJson from "../../../../package.json";
 import primaryButton from "../buttons/primaryButton";
-import outlineButton from "../buttons/outlineButton";
 const { shell } = require("electron");
 
 export default {
 	name: "About",
 	components: {
 		thermalLogo,
-		primaryButton,
-		outlineButton
+		primaryButton
 	},
 	computed: {
 		appVersion() {
