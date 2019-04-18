@@ -12,6 +12,7 @@ const state = {
 };
 
 const getters = {
+	getProfile: state => state.profile,
 	getExperimental: state => state.experimental
 };
 
