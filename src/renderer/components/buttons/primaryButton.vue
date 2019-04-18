@@ -64,7 +64,7 @@ export default {
 		},
 		borderWidth: {
 			type: Number,
-			default: null
+			default: 1
 		},
 		borderStyle: {
 			type: String,
