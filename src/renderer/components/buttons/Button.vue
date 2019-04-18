@@ -73,6 +73,22 @@ export default {
 		borderColor: {
 			type: String,
 			default: null
+		},
+		paddingTop: {
+			type: String,
+			default: "0.5rem"
+		},
+		paddingBottom: {
+			type: String,
+			default: "0.5rem"
+		},
+		paddingLeft: {
+			type: String,
+			default: "1rem"
+		},
+		paddingRight: {
+			type: String,
+			default: "1rem"
 		}
 	},
 	data() {
