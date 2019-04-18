@@ -31,7 +31,7 @@
 				style="display: none"
 				@change="fileSectorInput"
 			>
-			<button
+			<Button
 				text="Select"
 				appearance="primary"
 				margin-left=".4rem"
@@ -39,7 +39,7 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<button
+			<Button
 				margin-left="auto"
 				appearance="primary"
 				text="Add repository"
@@ -52,7 +52,7 @@
 <script>
 import closeIcon from "../icon/close";
 import inputText from "../input/inputText";
-import button from "../buttons/button";
+import Button from "../buttons/Button";
 import addRepository from "../../mixins/addRepository";
 
 export default {
@@ -60,7 +60,7 @@ export default {
 	components: {
 		closeIcon,
 		inputText,
-		button
+		Button
 	},
 	directives: {
 		focus: {

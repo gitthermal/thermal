@@ -25,7 +25,7 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<button
+			<Button
 				margin-left="auto"
 				text="Publish repository"
 				appearance="primary"
@@ -38,7 +38,7 @@
 <script>
 import inputText from "../input/inputText";
 import closeIcon from "../icon/close";
-import button from "../buttons/button";
+import Button from "../buttons/Button";
 import git from "simple-git/promise";
 
 export default {
@@ -46,7 +46,7 @@ export default {
 	components: {
 		inputText,
 		closeIcon,
-		button
+		Button
 	},
 	directives: {
 		focus: {

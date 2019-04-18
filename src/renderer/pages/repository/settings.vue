@@ -68,7 +68,7 @@
 									<h6>Remove this repository</h6>
 									<p>Once you remove the repository, you can add again.</p>
 								</div>
-								<button
+								<Button
 									margin-left="auto"
 									appearance="outline"
 									type="danger"
@@ -86,7 +86,7 @@
 
 <script>
 import inputTextLabel from "../../components/input/inputTextLabel";
-import button from "../../components/buttons/button";
+import Button from "../../components/buttons/Button";
 import { ToggleButton } from "vue-js-toggle-button";
 import VueScrollbar from "vue2-scrollbar";
 
@@ -94,7 +94,7 @@ export default {
 	name: "RepositorySettings",
 	components: {
 		inputTextLabel,
-		button,
+		Button,
 		ToggleButton,
 		VueScrollbar
 	},
