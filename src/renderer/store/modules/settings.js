@@ -16,6 +16,12 @@ const getters = {
 };
 
 const mutations = {
+	getSettingsList(state) {
+		if (localStorage.getItem("settings")) {
+			state.profile = JSON.parse(localStorage.getItem("settings")).profile;
+			state.experimental = JSON.parse(localStorage.getItem("settings")).experimental;
+		}
+	},
 	toggleFileChanges(state, payload) {
 		state.experimental.fileChanges = payload.fileChanges;
 	}
