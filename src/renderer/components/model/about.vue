@@ -25,13 +25,13 @@
 			</div>
 		</div>
 		<div class="about__footer d-flex">
-			<primaryButton
+			<button
 				text="Close"
 				appearance="outline"
 				margin-left="auto"
 				@click.native="closeModel()"
 			/>
-			<primaryButton
+			<button
 				text="Release Notes"
 				appearance="primary"
 				margin-left=".5rem"
@@ -44,14 +44,14 @@
 <script>
 import thermalLogo from "../icon/logo";
 import packageJson from "../../../../package.json";
-import primaryButton from "../buttons/primaryButton";
+import button from "../buttons/button";
 const { shell } = require("electron");
 
 export default {
 	name: "About",
 	components: {
 		thermalLogo,
-		primaryButton
+		button
 	},
 	computed: {
 		appVersion() {

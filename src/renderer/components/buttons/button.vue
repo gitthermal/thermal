@@ -19,6 +19,7 @@
 import spacingProps from "../../mixins/spacingProps";
 
 export default {
+	name: "Button",
 	mixins: [spacingProps],
 	props: {
 		appearance: {
@@ -33,10 +34,6 @@ export default {
 			type: String,
 			required: true
 		},
-		disable: {
-			type: Boolean,
-			default: false
-		},
 		type: {
 			type: String,
 			default: "none"
@@ -49,6 +46,9 @@ export default {
 			type: String,
 			default: "00adb5",
 		},
+		disable: {
+			type: Boolean,
+			default: false
 		},
 		fontSize: {
 			type: Number,

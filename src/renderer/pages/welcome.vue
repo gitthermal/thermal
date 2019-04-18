@@ -52,7 +52,7 @@
 								class="welcome__repository__list__item d-flex align-items-center"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<primaryButton
+								<button
 									text="Open"
 									appearance="primary"
 									margin-left="auto"
@@ -78,7 +78,7 @@
 									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
 								>
 									<h6>{{ repo }}</h6>
-									<primaryButton
+									<button
 										text="Open"
 										appearance="primary"
 										margin-left="auto"
@@ -92,7 +92,7 @@
 								v-show="exampleRepositoryModel"
 								class="welcome__repository__example__model"
 							>
-								<primaryButton
+								<button
 									margin-top="1rem"
 									appearance="primary"
 									text="Add Repository"
@@ -103,7 +103,7 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<primaryButton
+			<button
 				v-show="getAllRepository.length > 0"
 				margin-top="1rem"
 				appearance="primary"
@@ -123,7 +123,7 @@ import twitterIcon from "../components/icon/twitter";
 import coffeeIcon from "../components/icon/coffee";
 import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
-import primaryButton from "../components/buttons/primaryButton";
+import button from "../components/buttons/button";
 import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
 import VueScrollbar from "vue2-scrollbar";
@@ -143,7 +143,7 @@ export default {
 		coffeeIcon,
 		helpIcon,
 		settingsIcon,
-		primaryButton,
+		button,
 		VueScrollbar
 	},
 	filters: {

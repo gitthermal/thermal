@@ -31,7 +31,7 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<primaryButton
+			<button
 				margin-left="auto"
 				text="Export"
 				appearance="primary"
@@ -43,7 +43,7 @@
 
 <script>
 import closeIcon from "../icon/close";
-import primaryButton from "../buttons/primaryButton";
+import button from "../buttons/button";
 import inputTextLabel from "../input/inputTextLabel";
 const fs = require("fs");
 
@@ -52,7 +52,7 @@ export default {
 	components: {
 		closeIcon,
 		inputTextLabel,
-		primaryButton
+		button
 	},
 	data() {
 		return {

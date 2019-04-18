@@ -51,7 +51,7 @@
 				placeholder="Summary (required)"
 				class="commit-message__title"
 			/>
-			<primaryButton
+			<button
 				:text="'Commit to ' + this.$store.state.commit.activeBranch"
 				width="100%"
 				appearance="primary"
@@ -68,14 +68,14 @@ import commitMixin from "../../mixins/git/commit";
 import VueScrollbar from "vue2-scrollbar";
 import branchIcon from "../../components/icon/branch";
 import inputText from "../../components/input/inputText";
-import primaryButton from "../../components/buttons/primaryButton";
+import button from "../../components/buttons/button";
 
 export default {
 	name: "Workspace",
 	components: {
 		branchIcon,
 		inputText,
-		primaryButton,
+		button,
 		VueScrollbar
 	},
 	data() {
