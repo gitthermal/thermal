@@ -6,8 +6,8 @@
 			cursor: cursor,
 			fontSize: fontSize + 'rem',
 			fontWeight: fontWeight,
-			color: color,
-			backgroundColor: backgroundColor,
+			color: '#' + color,
+			backgroundColor: '#' + backgroundColor,
 			borderRadius: borderRadius + 'rem',
 			opacity: opacity,
 			border: borderWidth + 'px ' + borderStyle + ' #' + borderColor
