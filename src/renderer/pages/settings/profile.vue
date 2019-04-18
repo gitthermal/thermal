@@ -1,11 +1,64 @@
 <template>
-	<div>
-		Profile
+	<div class="profile">
+		<div class="profile__avatar">
+			<Avatar
+				:src="profileData.author.imageUrl"
+				:title="profileData.author.name"
+				:border-radius="1"
+				:border-width="1"
+				border-style="solid"
+				border-color="eeeeee"
+				width="160px"
+				height="160px"
+			/>
+		</div>
+		<inputTextLabel
+			label="Name"
+			placeholder="Enter your name"
+			name="profile_name"
+			class="profile__field"
+		/>
+		<inputTextLabel
+			label="Email"
+			placeholder="Enter your email address"
+			name="profile_email"
+			class="profile__field"
+		/>
+		<inputTextLabel
+			label="Image"
+			placeholder="Paste your image"
+			name="profile_image"
+			class="profile__field"
+		/>
 	</div>
 </template>
 
 <script>
-export default {};
+import Avatar from "../../components/avatar/Avatar";
+import inputTextLabel from "../../components/input/inputTextLabel";
+
+export default {
+	name: "Profile",
+	components: {
+		Avatar,
+		inputTextLabel
+	},
+	computed: {
+		profileData() {
+			return this.$store.getters["settings/getProfile"];
+		}
+	}
+};
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.profile
+	&__avatar
+		border-radius: 1rem
+		display: inline-block
+		margin-bottom: 1rem
+
+	&__field
+		margin-bottom: 1rem
+</style>
+
