@@ -13,18 +13,21 @@
 			/>
 		</div>
 		<inputTextLabel
+			v-model="authorName"
 			label="Name"
 			placeholder="Enter your name"
 			name="profile_name"
 			class="profile__field"
 		/>
 		<inputTextLabel
+			v-model="authorEmail"
 			label="Email"
 			placeholder="Enter your email address"
 			name="profile_email"
 			class="profile__field"
 		/>
 		<inputTextLabel
+			v-model="authorImage"
 			label="Image"
 			placeholder="Paste your image"
 			name="profile_image"
@@ -46,6 +49,39 @@ export default {
 	computed: {
 		profileData() {
 			return this.$store.getters["settings/getProfile"];
+		},
+		authorName: {
+			get: function() {
+				return this.profileData.author.name;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateAuthorName",
+					name: value
+				});
+			}
+		},
+		authorEmail: {
+			get: function() {
+				return this.profileData.author.email;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateAuthorEmail",
+					email: value
+				});
+			}
+		},
+		authorImage: {
+			get: function() {
+				return this.profileData.author.imageUrl;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateAuthorImage",
+					image: value
+				});
+			}
 		}
 	}
 };

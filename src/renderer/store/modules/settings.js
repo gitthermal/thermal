@@ -23,12 +23,51 @@ const mutations = {
 			state.experimental = JSON.parse(localStorage.getItem("settings")).experimental;
 		}
 	},
+	setSettings(state) {
+		localStorage.setItem("settings", JSON.stringify(state));
+	},
+	authorName(state, payload) {
+		state.profile.author.name = payload.name;
+	},
+	authorEmail(state, payload) {
+		state.profile.author.email = payload.email;
+	},
+	authorImage(state, payload) {
+		state.profile.author.imageUrl = payload.image;
+	},
 	toggleFileChanges(state, payload) {
 		state.experimental.fileChanges = payload.fileChanges;
 	}
 };
 
 const actions = {
+	updateAuthorName: ({ commit }, payload) => {
+		commit({
+			type: "authorName",
+			name: payload.name
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
+	updateAuthorEmail: ({ commit }, payload) => {
+		commit({
+			type: "authorEmail",
+			email: payload.email
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
+	updateAuthorImage: ({ commit }, payload) => {
+		commit({
+			type: "authorImage",
+			image: payload.image
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
 	updateFileChanges: ({ commit }, payload) => {
 		commit({
 			type: "toggleFileChanges",
