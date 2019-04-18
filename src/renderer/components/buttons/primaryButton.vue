@@ -37,7 +37,9 @@ export default {
 			type: Boolean,
 			default: false
 		},
+		type: {
 			type: String,
+			default: "none"
 		},
 		color: {
 			type: String,
@@ -95,6 +97,77 @@ export default {
 				return 0.6;
 			} else {
 				return 1;
+			}
+		}
+	},
+	mounted() {
+		switch (this.appearance) {
+			case "primary":
+				this.primary();
+				break;
+			case "outline":
+				this.outline();
+				break;
+			case "link":
+				this.link();
+				break;
+		}
+	},
+	methods: {
+		primary() {
+			this.color = "ffffff";
+			switch (this.type) {
+				case "success":								
+					this.backgroundColor = "43b581";
+					break;
+				case "warning":
+					this.backgroundColor = "faa61a";
+					break;
+				case "danger":
+					this.backgroundColor = "f04747";
+					break;
+				case "none":
+					this.backgroundColor = "00adb5";
+					break;
+			}
+		},
+		outline() {
+			this.backgroundColor = "ffffff";
+			switch (this.type) {
+				case "success":								
+					this.color = "43b581";
+					this.borderColor = "43b581";
+					break;
+				case "warning":
+					this.color = "faa61a";
+					this.borderColor = "faa61a";
+					break;
+				case "danger":
+					this.color = "f04747";
+					this.borderColor = "f04747";
+					break;
+				case "none":
+					this.color = "00adb5";
+					this.borderColor = "00adb5";
+					break;
+			}
+		},
+		link() {
+			this.backgroundColor = "ffffff";
+			this.borderColor = "ffffff";
+			switch (this.type) {
+				case "success":								
+					this.color = "43b581";
+					break;
+				case "warning":
+					this.color = "faa61a";
+					break;
+				case "danger":
+					this.color = "f04747";
+					break;
+				case "none":
+					this.color = "00adb5";
+					break;
 			}
 		}
 	}
