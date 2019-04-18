@@ -18,19 +18,19 @@ export default {
 		},
 		paddingTop: {
 			type: String,
-			default: "0.5rem"
+			default: null
 		},
 		paddingBottom: {
 			type: String,
-			default: "0.5rem"
+			default: null
 		},
 		paddingLeft: {
 			type: String,
-			default: "1rem"
+			default: null
 		},
 		paddingRight: {
 			type: String,
-			default: "1rem"
+			default: null
 		},
 		width: {
 			type: String,
