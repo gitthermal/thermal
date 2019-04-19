@@ -5,6 +5,16 @@ export default {
 		getRepositoryName(path) {
 			return path.split("/")[path.split("/").length - 1];
 		},
+		async isGitRepository(path) {
+			console.log(path);
+			const validateGitRepository = git(path);
+			const isGit = await validateGitRepository.checkIsRepo();
+			try {
+				console.log(isGit);
+			} catch (error) {
+				console.log(error);
+			}
+		},
 		async localRepository(path) {
 			let listRemote;
 			try {
