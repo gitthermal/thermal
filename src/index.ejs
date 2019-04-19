@@ -10,6 +10,8 @@
 		require('module').globalPaths.push('<%= htmlWebpackPlugin.options.nodeModules.replace(/\\/g, '\\\\') %>')
 	</script>
 	<% } %>
+	<meta http-equiv="Content-Security-Policy"
+		content="report-uri https://sentry.io/api/1422446/security/?sentry_key=c3fb5f4c94aa4921a71b5fb887e1cfac">
 </head>
 
 <body>
