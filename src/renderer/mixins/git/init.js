@@ -1,7 +1,7 @@
 import git from "simple-git/promise";
 
-const init = async (repository) => {
-	let initaliseRepository = git(repository);
+const init = async (path) => {
+	let initaliseRepository = git(path);
 	await initaliseRepository.init();
 };
 
