@@ -2,7 +2,7 @@
 	<VueScrollbar class="diff__preview">
 		<div>
 			<div
-				v-for="(line, index) in filePreview"
+				v-for="(line, index) in preview"
 				:key="index"
 			>
 				{{ line }}
@@ -19,10 +19,11 @@ export default {
 	components: {
 		VueScrollbar
 	},
-	computed: {
-		filePreview: function() {
-			return this.$store.getters["history/getFilePreview"];
-		}
+	props: {
+		preview: {
+			type: Object,
+			required: true
+		}	
 	}
 };
 </script>
