@@ -5,7 +5,7 @@
 		>
 			<h1>Welcome to Thermal</h1>
 			<p class="welcome__introduction__description">
-				One stop for all of your Git repository.
+				One stop. Git repository.
 			</p>
 			<div class="welcome__introduction__item d-flex">
 				<div
