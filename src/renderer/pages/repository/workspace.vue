@@ -132,6 +132,7 @@ export default {
 	},
 	mounted() {
 		this.gitStatus();
+		this.previewFileChange(this.$store.getters['commit/allFiles'][0]);
 	},
 	methods: {
 		gitStatus() {
