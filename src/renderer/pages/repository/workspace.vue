@@ -136,7 +136,6 @@ export default {
 	methods: {
 		gitStatus() {
 			statusMixin(this.currentRepository).then(result => {
-				console.log(result);
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
 					branch: result.current
