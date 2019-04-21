@@ -193,6 +193,10 @@ export default {
 				console.log(result);
 				this.gitStatus();
 			});
+			this.$store.commit({
+				type: "workspace/toggleFilePreview",
+				isActive: false
+			});
 		},
 		filePath(path) {
 			if (path.lastIndexOf("/").toString() !== "-1") {
