@@ -39,6 +39,7 @@
 		<div class="history__preview">
 			<diffPreview
 				v-if="this.$store.state.history.filePreview.isActive"
+				:preview="commitFileDiffPreview"
 			/>
 			<div v-else>
 				No content to show
@@ -70,6 +71,9 @@ export default {
 		},
 		currentRepository() {
 			return this.$store.getters["workspace/currentRepository"];
+		},
+		commitFileDiffPreview() {
+			return this.$store.getters["history/getFilePreview"];
 		}
 	},
 	mounted() {
