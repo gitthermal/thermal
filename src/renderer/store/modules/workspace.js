@@ -6,6 +6,7 @@ const state = {
 	},
 	filePreview: {
 		isActive: false,
+		preview: []
 	}
 };
 
@@ -22,7 +23,7 @@ const mutations = {
 		state.filePreview.isActive = payload.isActive;
 	},
 	filePreview(state, payload) {
-		state.filePreview = payload.preview;
+		state.filePreview.preview = payload.preview;
 	}
 };
 
