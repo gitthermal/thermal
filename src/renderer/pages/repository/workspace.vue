@@ -1,63 +1,68 @@
 <template>
 	<div class="workspace">
-		<div class="workspace__repository">
-			<div class="workspace__branch d-flex align-items-center">
-				<branchIcon />
-				<p>{{ this.$store.state.commit.activeBranch }}</p>
-			</div>
-			<VueScrollbar class="workspace__changes__scrollbar">
-				<div class="workspace__changes">
-					<div
-						v-for="file in this.$store.getters['commit/allFiles']"
-						:key="file.path"
-						class="workspace__changes__item d-flex align-items-center"
-					>
-						<input
-							v-show="getFeatureValue.commit"
-							v-model="stagedFile"
-							class="workspace__changes__item__checkbox"
-							type="checkbox"
-							:value="file.path"
-						>
-						<label
-							class="workspace__changes__item__path"
-							:title="file.path"
-							:for="file.path"
-						>
-							<p class="workspace__changes__item__path__name">
-								{{ filePath(file.path) }}
-							</p>
-							<p class="workspace__changes__item__path__file">
-								{{ fileName(file.path) }}
-							</p>
-						</label>
+		<div class="workspace__files">
+			<div class="workspace__repository">
+				<div class="workspace__branch d-flex align-items-center">
+					<branchIcon />
+					<p>{{ this.$store.state.commit.activeBranch }}</p>
+				</div>
+				<VueScrollbar class="workspace__changes__scrollbar">
+					<div class="workspace__changes">
 						<div
-							:style="'background-color: #' + fileTypeColor(file)"
-							class="workspace__changes__item__type ml-auto"
+							v-for="file in this.$store.getters['commit/allFiles']"
+							:key="file.path"
+							class="workspace__changes__item d-flex align-items-center"
+							@click="previewFileChange(file)"
 						>
-							{{ fileType(file) }}
+							<input
+								v-show="getFeatureValue.commit"
+								v-model="stagedFile"
+								class="workspace__changes__item__checkbox"
+								type="checkbox"
+								:value="file.path"
+							>
+							<label
+								class="workspace__changes__item__path"
+								:title="file.path"
+								:for="file.path"
+							>
+								<p class="workspace__changes__item__path__name">
+									{{ filePath(file.path) }}
+								</p>
+								<p class="workspace__changes__item__path__file">
+									{{ fileName(file.path) }}
+								</p>
+							</label>
+							<div
+								:style="'background-color: #' + fileTypeColor(file)"
+								class="workspace__changes__item__type ml-auto"
+							>
+								{{ fileType(file) }}
+							</div>
 						</div>
 					</div>
-				</div>
-			</VueScrollbar>
+				</VueScrollbar>
+			</div>
+			<div
+				v-show="getFeatureValue.commit"
+				class="commit-message"
+			>
+				<inputText
+					v-model="commitMessageTitle"
+					name="commitMessageTitle"
+					placeholder="Summary (required)"
+					class="commit-message__title"
+				/>
+				<Button
+					:text="'Commit to ' + this.$store.state.commit.activeBranch"
+					width="100%"
+					appearance="primary"
+					:disable="!stagedFileLength > 0"
+					@click.native="commitMessageButton()"
+				/>
+			</div>
 		</div>
-		<div
-			v-show="getFeatureValue.commit"
-			class="commit-message"
-		>
-			<inputText
-				v-model="commitMessageTitle"
-				name="commitMessageTitle"
-				placeholder="Summary (required)"
-				class="commit-message__title"
-			/>
-			<Button
-				:text="'Commit to ' + this.$store.state.commit.activeBranch"
-				width="100%"
-				appearance="primary"
-				:disable="!stagedFileLength > 0"
-				@click.native="commitMessageButton()"
-			/>
+		<div class="workspace__preview">
 		</div>
 	</div>
 </template>
@@ -194,8 +199,12 @@ export default {
 
 <style lang="sass">
 .workspace
-	border-right: 1px solid #DEE0E3
-	width: 400px
+	display: flex
+	flex-direction: row
+
+	&__files
+		border-right: 1px solid #DEE0E3
+		width: 400px
 
 	&__branch
 		background-color: #EFEFEF
@@ -242,6 +251,9 @@ export default {
 
 			&:hover
 				background-color: rgba(#EFEFEF, .4)
+
+	&__preview
+		padding: 1rem
 
 .commit-message
 	padding: 10px
