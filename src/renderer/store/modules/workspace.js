@@ -3,18 +3,21 @@ import repository from "./repository";
 const state = {
 	workspaceRepository: {
 		index: ""
-	}
+	},
+	filePreview: {}
 };
 
 const getters = {
-	currentRepository: state => {
-		return repository.state.repositoryList[state.workspaceRepository.index];
-	}
+	currentRepository: state => repository.state.repositoryList[state.workspaceRepository.index],
+	filePreview: state => state.filePreview
 };
 
 const mutations = {
 	workspaceRepository(state, payload) {
 		state.workspaceRepository.index = payload.index;
+	},
+	filePreview(state, payload) {
+		state.filePreview = payload.preview;
 	}
 };
 
