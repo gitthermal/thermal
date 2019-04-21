@@ -21,7 +21,7 @@ export default {
 	},
 	props: {
 		preview: {
-			type: Object,
+			type: Array,
 			required: true
 		}	
 	}
