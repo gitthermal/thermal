@@ -63,6 +63,13 @@
 			</div>
 		</div>
 		<div class="workspace__preview">
+			<diffPreview
+				v-if="this.$store.state.workspace.filePreview.isActive"
+				:preview="fileDiffPreview"
+			/>
+			<div v-else>
+				No file selected.
+			</div>
 		</div>
 	</div>
 </template>
@@ -70,10 +77,12 @@
 <script>
 import statusMixin from "../../mixins/git/status";
 import commitMixin from "../../mixins/git/commit";
+import diffMixin from '../../mixins/git/diff';
 import VueScrollbar from "vue2-scrollbar";
 import branchIcon from "../../components/icon/branch";
 import inputText from "../../components/input/inputText";
 import Button from "../../components/buttons/Button";
+import diffPreview from '../../components/diff/diffPreview';
 
 export default {
 	name: "Workspace",
@@ -81,7 +90,8 @@ export default {
 		branchIcon,
 		inputText,
 		Button,
-		VueScrollbar
+		VueScrollbar,
+		diffPreview
 	},
 	data() {
 		return {
@@ -115,6 +125,9 @@ export default {
 		},
 		getFeatureValue() {
 			return this.currentRepository.features;
+		},
+		fileDiffPreview() {
+			return this.$store.state.workspace.filePreview.preview;
 		}
 	},
 	mounted() {
@@ -192,6 +205,25 @@ export default {
 				return path.slice(path.lastIndexOf("/"), path.length);
 			}
 			return path;
+		},
+		previewFileChange(file) {
+			this.$store.commit({
+				type: "workspace/toggleFilePreview",
+				isActive: true
+			});
+			const params = [
+				'HEAD',
+				'--',
+				`:${file.path}`
+			];
+			diffMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
+				output.splice(0, 3);
+				this.$store.commit({
+					type: "workspace/filePreview",
+					preview: output
+				});
+			});
 		}
 	}
 };
