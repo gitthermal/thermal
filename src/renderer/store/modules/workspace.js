@@ -4,17 +4,22 @@ const state = {
 	workspaceRepository: {
 		index: ""
 	},
-	filePreview: {}
+	filePreview: {
+		isActive: false,
+	}
 };
 
 const getters = {
 	currentRepository: state => repository.state.repositoryList[state.workspaceRepository.index],
-	filePreview: state => state.filePreview
+	filePreview: state => state.filePreview.preview
 };
 
 const mutations = {
 	workspaceRepository(state, payload) {
 		state.workspaceRepository.index = payload.index;
+	},
+	toggleFilePreview(state, payload) {
+		state.filePreview.isActive = payload.isActive;
 	},
 	filePreview(state, payload) {
 		state.filePreview = payload.preview;
