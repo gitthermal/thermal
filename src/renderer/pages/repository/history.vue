@@ -37,9 +37,9 @@
 			</div>
 		</div>
 		<div class="history__preview">
-			<div v-if="this.$store.state.history.filePreview.isActive">
-				<commitHistoryPreview />
-			</div>
+			<diffPreview
+				v-if="this.$store.state.history.filePreview.isActive"
+			/>
 			<div v-else>
 				No content to show
 			</div>
@@ -50,7 +50,7 @@
 <script>
 import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
-import commitHistoryPreview from "../../components/commit/commitHistoryPreview";
+import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
 import logMixin from "../../mixins/git/log";
@@ -60,7 +60,7 @@ export default {
 	components: {
 		commitHistoryItem,
 		commitInformation,
-		commitHistoryPreview,
+		diffPreview,
 		VueScrollbar,
 		fileIcon
 	},

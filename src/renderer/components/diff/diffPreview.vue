@@ -1,5 +1,5 @@
 <template>
-	<VueScrollbar class="commit__preview">
+	<VueScrollbar class="diff__preview">
 		<div>
 			<div
 				v-for="(line, index) in filePreview"
@@ -15,7 +15,7 @@
 import VueScrollbar from "vue2-scrollbar";
 
 export default {
-	name: "CommitHistoryPreivew",
+	name: "DiffPreview",
 	components: {
 		VueScrollbar
 	},
@@ -28,6 +28,6 @@ export default {
 </script>
 
 <style lang="sass">
-.commit__preview
+.diff__preview
 	max-height: 90vh
 </style>
