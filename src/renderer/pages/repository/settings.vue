@@ -21,7 +21,7 @@
 							name="repositoryPath"
 							label="Directory path"
 							placeholder="Path"
-							:disable="true"
+							:disabled="true"
 							class="settings__input"
 						/>
 						<inputTextLabel
@@ -29,7 +29,7 @@
 							name="repositoryRemoteUrl"
 							label="Remote URL"
 							placeholder="Path"
-							:disable="true"
+							:disabled="true"
 							class="settings__input"
 						/>
 					</div>

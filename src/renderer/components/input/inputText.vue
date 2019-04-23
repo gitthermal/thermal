@@ -24,7 +24,7 @@ export default {
 			default: "Enter the value",
 			required: true
 		},
-		disable: {
+		disabled: {
 			type: Boolean,
 			default: false
 		}

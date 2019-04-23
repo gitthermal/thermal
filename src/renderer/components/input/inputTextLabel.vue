@@ -10,7 +10,7 @@
 			:name="name"
 			:placeholder="placeholder"
 			:value="value"
-			:disable="disable"
+			:disabled="disabled"
 			@input="$emit('input', $event)"
 		/>
 	</div>
@@ -37,7 +37,7 @@ export default {
 			type: String,
 			default: ""
 		},
-		disable: {
+		disabled: {
 			type: Boolean,
 			default: false
 		},
