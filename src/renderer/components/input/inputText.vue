@@ -2,8 +2,11 @@
 	<input
 		type="text"
 		:name="name"
-		class="input__text"
-		:class="disabled"
+		class="text__input"
+		:class="{
+			'text__input-disable': disabled,
+			'text__input-invalid': isInvalid
+		}"
 		:placeholder="placeholder"
 		:disabled="disabled"
 		:style="{
@@ -72,23 +75,21 @@ export default {
 </script>
 
 <style lang="sass">
-.input
+.text__input
+	font-family: inherit
+	outline: none
+	border-color: #eeeeee
 
-	&__text
-		border-radius: .3rem
-		padding: .5rem .8rem
-		border: 1px solid #eeeeee
-		font-family: inherit
-		outline: none
-		width: 100%
+	&-disable
+		background-color: #eeeeee
+		color: #222831
+		cursor: not-allowed
+		user-select: none
 
-		&:focus
-			border: 1px solid #00adb5
-			box-shadow: rgba(#00adb5, .2) 0 0 0 3px
+	&-invalid
+		border-color: #f04747
 
-		&__disable
-			background-color: #eee
-			color: #222831
-			cursor: not-allowed
-			user-select: none
+	&:focus
+		box-shadow: rgba(#00adb5, .2) 0 0 0 3px
+		border-color: #00adb5
 </style>
