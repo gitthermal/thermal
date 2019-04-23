@@ -21,7 +21,9 @@ export default {
 		return {
 			borderProps: {
 				borderRadius: this.borderRadius + "rem",
-				border: this.borderWidth + " " + this.borderStyle + " #" + this.borderColor
+				borderWidth: this.borderWidth,
+				borderStyle: this.borderStyle,
+				borderColor: "#" + this.borderColor
 			}
 		};
 	}
