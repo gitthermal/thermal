@@ -16,7 +16,10 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave="fileDropdown()"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="newRepository()"
+					>
 						New repository
 					</div>
 					<div
@@ -305,6 +308,9 @@ export default {
 			this.menu.help.isActive = !this.menu.help.isActive;
 		},
 		// File
+		newRepository() {
+			this.$store.dispatch("model/showNewRepository");
+		},
 		addLocalRepository() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
 		},
