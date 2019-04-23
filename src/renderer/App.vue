@@ -7,6 +7,7 @@
 			class="model__placeholder"
 		>
 			<div class="model__container">
+				<newRepository />
 				<addLocalRepository />
 				<about />
 				<exportCommitData />
@@ -18,6 +19,7 @@
 
 <script>
 import menubar from "./components/menubar";
+import newRepository from "./components/model/newRepository";
 import addLocalRepository from "./components/model/addLocalRepository";
 import about from "./components/model/about";
 import exportCommitData from "./components/model/exportCommitData";
@@ -27,6 +29,7 @@ export default {
 	name: "App",
 	components: {
 		menubar,
+		newRepository,
 		addLocalRepository,
 		about,
 		exportCommitData,
