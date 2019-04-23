@@ -1,5 +1,9 @@
 <template>
-	<div>
+	<div
+		:style="{
+			...spacingProps
+		}"
+	>
 		<p
 			class="input__label"
 			:for="labelName"
@@ -17,6 +21,7 @@
 </template>
 
 <script>
+import spacingProps from "../../mixins/spacingProps";
 import inputText from "./inputText";
 
 export default {
@@ -24,6 +29,9 @@ export default {
 	components: {
 		inputText
 	},
+	mixins: [
+		spacingProps
+	],
 	props: {
 		name: {
 			type: String,
