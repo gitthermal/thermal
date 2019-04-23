@@ -26,6 +26,9 @@ const mutations = {
 	},
 	toggleNewRemote(state) {
 		state.model.newRemote = !state.model.newRemote;
+	},
+	toggleNewRepository(state) {
+		state.model.newRepository = !state.model.newRepository;
 	}
 };
 
@@ -60,6 +63,14 @@ const actions = {
 		});
 		commit({
 			type: "toggleNewRemote"
+		});
+	},
+	showNewRepository: ({ commit }) => {
+		commit({
+			type: "toggleModelPlaceholder"
+		});
+		commit({
+			type: "toggleNewRepository"
 		});
 	}
 };
