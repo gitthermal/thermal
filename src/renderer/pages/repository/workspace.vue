@@ -43,24 +43,12 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<div
-				v-show="getFeatureValue.commit"
-				class="commit-message"
-			>
-				<inputText
-					v-model="commitMessageTitle"
-					name="commitMessageTitle"
-					placeholder="Summary (required)"
-					class="commit-message__title"
-				/>
-				<Button
-					:text="'Commit to ' + this.$store.state.commit.activeBranch"
-					width="100%"
-					appearance="primary"
-					:disable="!stagedFileLength > 0"
-					@click.native="commitMessageButton()"
-				/>
-			</div>
+			<commitMessage
+				padding-top="10px"
+				padding-bottom="10px"
+				padding-left="10px"
+				padding-right="10px"
+			/>
 		</div>
 		<div class="workspace__preview">
 			<diffPreview
@@ -76,21 +64,18 @@
 
 <script>
 import statusMixin from "../../mixins/git/status";
-import commitMixin from "../../mixins/git/commit";
 import diffMixin from '../../mixins/git/diff';
 import VueScrollbar from "vue2-scrollbar";
+import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
-import inputText from "../../components/input/inputText";
-import Button from "../../components/buttons/Button";
 import diffPreview from '../../components/diff/diffPreview';
 
 export default {
 	name: "Workspace",
 	components: {
 		branchIcon,
-		inputText,
-		Button,
 		VueScrollbar,
+		commitMessage,
 		diffPreview
 	},
 	data() {
@@ -119,9 +104,6 @@ export default {
 					staged: value
 				});
 			}
-		},
-		stagedFileLength() {
-			return this.$store.state.commit.staged.length;
 		},
 		getFeatureValue() {
 			return this.currentRepository.features;
@@ -188,16 +170,6 @@ export default {
 							return this.fileColors.new;
 					}
 			}
-		},
-		commitMessageButton() {
-			commitMixin(this.currentRepository, this.$store.getters["commit/allStagedFiles"], this.commitMessageTitle).then(result => {
-				console.log(result);
-				this.gitStatus();
-			});
-			this.$store.commit({
-				type: "workspace/toggleFilePreview",
-				isActive: false
-			});
 		},
 		filePath(path) {
 			if (path.lastIndexOf("/").toString() !== "-1") {
@@ -290,11 +262,4 @@ export default {
 
 	&__preview
 		padding: 1rem
-
-.commit-message
-	padding: 10px
-	border-top: 1px solid #DEE0E3
-
-	&__title
-		margin-bottom: 15px
 </style>
