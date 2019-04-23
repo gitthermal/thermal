@@ -5,14 +5,25 @@
 		class="input__text"
 		:class="disabled"
 		:placeholder="placeholder"
-		:disabled="disable"
+		:disabled="disabled"
+		:style="{
+			...spacingProps,
+			...borderProps
+		}"
 		@input="$emit('input', $event.target.value)"
 	>
 </template>
 
 <script>
+import spacingProps from "../../mixins/spacingProps";
+import borderProps from "../../mixins/borderProps";
+
 export default {
 	name: "InputText",
+	mixins: [
+		spacingProps,
+		borderProps
+	],
 	props: {
 		name: {
 			type: String,
@@ -27,15 +38,34 @@ export default {
 		disabled: {
 			type: Boolean,
 			default: false
-		}
-	},
-	computed: {
-		disabled() {
-			if (this.disable) {
-				return "input__text__disable";
-			} else {
-				return "";
-			}
+		},
+		isInvalid: {
+			type: Boolean,
+			default: false
+		},
+		borderRadius: {
+			type: String,
+			default: ".3"
+		},
+		paddingTop: {
+			type: String,
+			default: ".5rem"
+		},
+		paddingBottom: {
+			type: String,
+			default: ".5rem"
+		},
+		paddingLeft: {
+			type: String,
+			default: ".8rem"
+		},
+		paddingRight: {
+			type: String,
+			default: ".8rem"
+		},
+		width: {
+			type: String,
+			default: "100%"
 		}
 	}
 };
