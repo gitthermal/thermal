@@ -12,6 +12,7 @@
 				<about />
 				<exportCommitData />
 				<newRemote />
+				<cloneRepository />
 			</div>
 		</div>
 	</div>
@@ -24,6 +25,7 @@ import addLocalRepository from "./components/model/addLocalRepository";
 import about from "./components/model/about";
 import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
+import cloneRepository from './components/model/cloneRepository';
 
 export default {
 	name: "App",
@@ -33,7 +35,8 @@ export default {
 		addLocalRepository,
 		about,
 		exportCommitData,
-		newRemote
+		newRemote,
+		cloneRepository
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
