@@ -29,3 +29,15 @@
     <img src="https://img.shields.io/twitter/follow/gitthermal.svg?label=Follow%20@gitthermal" alt="Follow @gitthermal" />
   </a>
 </p>
+
+<h3 align="center">
+  <a href="https://thermal.netlify.com/win/guide/">Guide</a>
+  <span> · </span>
+  <a href="https://thermal.netlify.com/download/">Download</a>
+  <span> · </span>
+  <a href="https://thermal.netlify.com/issue/">Issues</a>
+  <span> · </span>
+  <a href="https://www.notion.so/gitthermal/Contribute-9d82f521342f4573b853d1bc793bdf02">Contribute</a>
+  <span> · </span>
+  <a href="https://discord.gg/DcSNmts">Discord</a>
+</h3>
