@@ -22,12 +22,13 @@
 				placeholder="Repository name"
 				margin-bottom="1rem"
 			/>
-			<div style="display: inline-block;">
+			<div style="display: flex; align-items: flex-end">
 				<inputTextLabel
 					v-model="repositoryLocation"
 					name="repositoryLocation"
 					label="Path"
 					placeholder="Path to local repostiory"
+					style="flex-grow: 2"
 				/>
 				<input
 					ref="folderSelector"
