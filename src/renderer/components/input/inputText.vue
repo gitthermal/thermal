@@ -11,7 +11,8 @@
 		:disabled="disabled"
 		:style="{
 			...spacingProps,
-			...borderProps
+			...borderProps,
+			...fontProps
 		}"
 		@input="$emit('input', $event.target.value)"
 	>
@@ -20,12 +21,14 @@
 <script>
 import spacingProps from "../../mixins/spacingProps";
 import borderProps from "../../mixins/borderProps";
+import fontProps from "../../mixins/fontProps";
 
 export default {
 	name: "InputText",
 	mixins: [
 		spacingProps,
-		borderProps
+		borderProps,
+		fontProps
 	],
 	props: {
 		name: {
@@ -49,6 +52,10 @@ export default {
 		borderRadius: {
 			type: String,
 			default: ".3"
+		},
+		fontSize: {
+			type: Number,
+			default: .833
 		},
 		paddingTop: {
 			type: String,
@@ -76,7 +83,6 @@ export default {
 
 <style lang="sass">
 .text__input
-	font-family: inherit
 	outline: none
 	border-color: #eeeeee
 
