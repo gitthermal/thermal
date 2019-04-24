@@ -8,5 +8,7 @@
 	"prettier.eslintIntegration": true,
 	"search.exclude": {
 		"**/node_modules": true
-	}
+	},
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 5000
 }
