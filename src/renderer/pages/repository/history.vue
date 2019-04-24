@@ -91,7 +91,7 @@ export default {
 		gitLog() {
 			gitLog(this.currentRepository)
 			.then(result => {
-				this.$store.dispatch("history/getRepositoryLogs", {
+				this.$store.commit("history/updateLogs", {
 					logs: result
 				});			
 			});
