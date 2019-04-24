@@ -20,7 +20,7 @@
 				name="name"
 				label="Name"
 				placeholder="Repository name"
-				margin-bottom="1rem"
+				margin-bottom=".8rem"
 			/>
 			<div style="display: flex; align-items: flex-end">
 				<inputTextLabel
