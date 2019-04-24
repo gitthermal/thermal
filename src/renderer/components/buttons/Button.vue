@@ -24,11 +24,7 @@ export default {
 	props: {
 		appearance: {
 			type: String,
-			required: true,
-			validator: function(value) {
-				const appearance = ["primary", "outline", "link"];
-				return appearance.filter(type => type === value);
-			}
+			required: true
 		},
 		text: {
 			type: String,
