@@ -54,7 +54,7 @@ import commitInformation from "../../components/commit/commitInformation";
 import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
-import logMixin from "../../mixins/git/log";
+import gitLog from "../../git/log";
 
 export default {
 	name: "History",
@@ -81,7 +81,7 @@ export default {
 	},
 	methods: {
 		gitLog() {
-			logMixin(this.currentRepository)
+			gitLog(this.currentRepository)
 			.then(result => {
 				this.$store.dispatch("history/getRepositoryLogs", {
 					logs: result
