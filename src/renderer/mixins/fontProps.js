@@ -23,7 +23,7 @@ export default {
 	},
 	data() {
 		return {
-			borderProps: {
+			fontProps: {
 				fontFamily: this.fontFamily,
 				fontSize: this.fontSize + "rem",
 				fontWeight: this.fontWeight,
