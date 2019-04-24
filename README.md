@@ -8,5 +8,7 @@
 </h1>
 
 
-Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.
+<p align="center">
+	Thermal is an free and open source Electron-based app. It is written in JavaScript and uses Vue.js.
+</p>
 
