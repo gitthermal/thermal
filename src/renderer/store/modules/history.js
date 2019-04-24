@@ -1,5 +1,5 @@
 const state = {
-	logs: {},
+	logs: [],
 	commitInformation: {
 		isActive: false,
 		title: "",
