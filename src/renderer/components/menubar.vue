@@ -28,7 +28,10 @@
 					>
 						Add local repository
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="cloneRepository"
+					>
 						Clone repository
 					</div>
 					<div
@@ -313,6 +316,9 @@ export default {
 		},
 		addLocalRepository() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
+		},
+		cloneRepository() {
+			this.$store.dispatch("model/showCloneRepository");
 		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
