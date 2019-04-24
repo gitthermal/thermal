@@ -46,7 +46,7 @@ export default {
 			type: String,
 			default: "00adb5",
 		},
-		disable: {
+		disabled: {
 			type: Boolean,
 			default: false
 		},
