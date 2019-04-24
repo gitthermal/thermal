@@ -81,12 +81,6 @@ const mutations = {
 };
 
 const actions = {
-	getRepositoryLogs: ({ commit }, payload) => {
-		commit({
-			type: "updateLogs",
-			logs: payload.logs
-		});
-	},
 	updateCommitInformationBody: ({ commit }, payload) => {
 		commit({
 			type: "commitInformationBody",
