@@ -2,17 +2,25 @@
 	<a
 		class="button"
 		:style="{
+			...borderProps,
 			...spacingProps,
+			...fontProps
 		}"
 	>{{ text }}</a>
 </template>
 
 <script>
+import borderProps from "../../mixins/borderProps";
 import spacingProps from "../../mixins/spacingProps";
+import fontProps from "../../mixins/fontProps";
 
 export default {
 	name: "Button",
-	mixins: [spacingProps],
+	mixins: [
+		spacingProps,
+		borderProps,
+		fontProps
+	],
 	props: {
 		appearance: {
 			type: String,
@@ -42,29 +50,21 @@ export default {
 			type: Boolean,
 			default: false
 		},
-		fontSize: {
-			type: Number,
-			default: 0.875
-		},
-		fontWeight: {
-			type: Number,
-			default: 400
-		},
 		borderRadius: {
 			type: Number,
 			default: 5
 		},
-		borderWidth: {
-			type: Number,
-			default: 1
-		},
-		borderStyle: {
-			type: String,
-			default: "solid"
-		},
 		borderColor: {
 			type: String,
 			default: null
+		},
+		fontSize: {
+			type: Number,
+			default: .875
+		},
+		lineHeight: {
+			type: Number,
+			default: 1.2
 		},
 		paddingTop: {
 			type: String,
