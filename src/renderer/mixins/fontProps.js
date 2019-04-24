@@ -19,6 +19,11 @@ export default {
 		lineHeight: {
 			type: Number,
 			default: 1
+		},
+		// styled with a normal, italic, or oblique face
+		fontStyle: {
+			type: String,
+			default: 'normal'
 		}
 	},
 	data() {
@@ -27,7 +32,8 @@ export default {
 				fontFamily: this.fontFamily,
 				fontSize: this.fontSize + "rem",
 				fontWeight: this.fontWeight,
-				lineHeight: this.lineHeight
+				lineHeight: this.lineHeight,
+				fontStyle: this.fontStyle
 			}
 		};
 	}
