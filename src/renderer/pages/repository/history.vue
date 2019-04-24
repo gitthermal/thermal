@@ -2,7 +2,13 @@
 	<div class="history">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
-				<VueScrollbar class="history__logs__scrollbar">
+				<logSkeletion 
+					v-if="repositoryLogs.length < 1"
+				/>
+				<VueScrollbar
+					v-else
+					class="history__logs__scrollbar"
+				>
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -55,6 +61,7 @@ import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
+import logSkeletion from "../../components/logs/logSkeleton";
 
 export default {
 	name: "History",
@@ -63,7 +70,8 @@ export default {
 		commitInformation,
 		diffPreview,
 		VueScrollbar,
-		fileIcon
+		fileIcon,
+		logSkeletion
 	},
 	computed: {
 		repositoryLogs() {
