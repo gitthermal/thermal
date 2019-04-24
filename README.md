@@ -1,10 +1,10 @@
 <p align="center">
 	<p align="center">
-		<img src="https://thermal.netlify.com/images/logo.png" alt="Thermal" height="72"
-	</p>
-	<p align="center">
 		One stop. Git Repository
 	</p>
+	<a href="https://thermal.netlify.com">
+		<img src="https://thermal.netlify.com/images/logo.png" alt="Thermal" height="72" />
+	</a>
 </p>
 
 ---
