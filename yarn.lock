@@ -1356,6 +1356,11 @@ babel-helper-to-multiple-sequence-expressions@^0.1.1:
   resolved "https://registry.yarnpkg.com/babel-helper-to-multiple-sequence-expressions/-/babel-helper-to-multiple-sequence-expressions-0.1.1.tgz#5f1b832b39e4acf954e9137f0251395c71196b35"
   integrity sha1-XxuDKznkrPlU6RN/AlE5XHEZazU=
 
+babel-helper-vue-jsx-merge-props@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
+  integrity sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==
+
 babel-helpers@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-helpers/-/babel-helpers-6.24.1.tgz#3471de9caec388e5c850e597e58a26ddf37602b2"
@@ -8436,6 +8441,13 @@ vm-browserify@0.0.4:
   integrity sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=
   dependencies:
     indexof "0.0.1"
+
+vue-content-loader@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-content-loader/-/vue-content-loader-0.2.1.tgz#0eb332e2a72643d57fb209d72d6526573b191f5a"
+  integrity sha1-DrMy4qcmQ9V/sgnXLWUmVzsZH1o=
+  dependencies:
+    babel-helper-vue-jsx-merge-props "^2.0.3"
 
 vue-electron@^1.0.6:
   version "1.0.6"
