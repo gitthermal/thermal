@@ -47,14 +47,6 @@ export default {
 			type: String,
 			default: "none"
 		},
-		color: {
-			type: String,
-			default: "ffffff",
-		},
-		backgroundColor: {
-			type: String,
-			default: "00adb5",
-		},
 		disabled: {
 			type: Boolean,
 			default: false
