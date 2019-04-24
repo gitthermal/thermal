@@ -178,6 +178,10 @@ export default {
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
+			this.$store.commit({
+				type: "history/updateLogs",
+				logs: []
+			});
 		}
 	}
 };
