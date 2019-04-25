@@ -220,7 +220,7 @@ export default {
 
 	&__files
 		border-right: 1px solid #DEE0E3
-		width: 400px
+		width: 300px
 
 	&__branch
 		background-color: #EFEFEF
