@@ -131,8 +131,8 @@ export default {
 					type: "commit/updateActiveBranch",
 					branch: result.current
 				});
-				this.$store.dispatch({
-					type: "commit/updateFiles",
+				this.$store.commit({
+					type: "commit/files",
 					files: result.files
 				});
 			});
