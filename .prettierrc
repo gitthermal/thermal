@@ -4,6 +4,5 @@
 	"singleQuote": false,
 	"quoteProps": "consistent",
 	"trailingComma": "none",
-	"proseWrap": "never",
-	"parser": "vue"
+	"proseWrap": "never"
 }
