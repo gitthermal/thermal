@@ -10,16 +10,20 @@ module.exports = {
 		node: true
 	},
 	extends: [
+		"standard",
+		"prettier",
+		"prettier/vue",
 		"plugin:vue/base",
 		"plugin:vue/essential",
-		"plugin:vue/strongly-recommended",
 		"plugin:vue/recommended",
-		"standard",
-		"plugin:prettier/recommended"
+		"plugin:vue/strongly-recommended"
 	],
 	globals: {
 		__static: true
 	},
+	plugins: [
+		"prettier"
+	],
 	rules: {
 		"prettier/prettier": [
 			1,
