@@ -10,7 +10,8 @@
 			:style="{
 				backgroundColor: '#' + color,
 				height: height + 'rem',
-				width: value + '%'
+				width: value + '%',
+				animation: '2s infinite linear'
 			}"
 			class="progress__bar-progress"
 		/>
