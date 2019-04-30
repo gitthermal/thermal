@@ -7,14 +7,15 @@
 			<thermalLogo />
 		</div>
 		<div class="menubar__list d-flex align-items-center">
-			<div @click="fileDropdown()">
+			<!-- File -->
+			<div @click="dropdown('file', true)">
 				<div class="menubar__list__item">
 					File
 				</div>
 				<div
 					v-show="menu.file.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="fileDropdown()"
+					@mouseleave="dropdown('file', false)"
 				>
 					<div
 						class="menubar__list__item__dropdown__item"
@@ -28,7 +29,10 @@
 					>
 						Add local repository
 					</div>
-					<div class="menubar__list__item__dropdown__item">
+					<div
+						class="menubar__list__item__dropdown__item"
+						@click="cloneRepository"
+					>
 						Clone repository
 					</div>
 					<div
@@ -52,14 +56,15 @@
 					</div>
 				</div>
 			</div>
-			<div @click="viewDropdown()">
+			<!-- View -->
+			<div @click="dropdown('view', true)">
 				<div class="menubar__list__item">
 					View
 				</div>
 				<div
 					v-show="menu.view.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="viewDropdown()"
+					@mouseleave="dropdown('view', false)"
 				>
 					<div class="menubar__list__item__dropdown__item">
 						Changes
@@ -76,7 +81,7 @@
 					<div class="menubar__list__item__dropdown__item">
 						Go to summary
 					</div>
-					<div 
+					<div
 						class="menubar__list__item__dropdown__item"
 						@click="fullScreenView()"
 					>
@@ -99,9 +104,10 @@
 					</div>
 				</div>
 			</div>
-			<div 
+			<!-- Repository -->
+			<div
 				v-if="!!currentRepository"
-				@click="repositoryDropdown()"
+				@click="dropdown('repository', true)"
 			>
 				<div class="menubar__list__item">
 					Repository
@@ -109,7 +115,7 @@
 				<div
 					v-show="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="repositoryDropdown()"
+					@mouseleave="dropdown('repository', false)"
 				>
 					<div class="menubar__list__item__dropdown__item">
 						Push
@@ -143,9 +149,10 @@
 					</div>
 				</div>
 			</div>
+			<!-- Branch -->
 			<div
 				v-if="!!currentRepository"
-				@click="branchDropdown()"
+				@click="dropdown('branch', true)"
 			>
 				<div class="menubar__list__item">
 					Branch
@@ -153,7 +160,7 @@
 				<div
 					v-show="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="branchDropdown()"
+					@mouseleave="dropdown('branch', false)"
 				>
 					<div class="menubar__list__item__dropdown__item">
 						New branch
@@ -181,14 +188,15 @@
 					</div>
 				</div>
 			</div>
-			<div @click="helpDropdown()">
+			<!-- Help -->
+			<div @click="dropdown('help', true)">
 				<div class="menubar__list__item">
 					Help
 				</div>
 				<div
 					v-show="menu.help.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="helpDropdown()"
+					@mouseleave="dropdown('help', false)"
 				>
 					<div
 						class="menubar__list__item__dropdown__item"
@@ -292,20 +300,29 @@ export default {
 		homepage() {
 			this.$router.push({ name: "welcome" });
 		},
-		fileDropdown() {
-			this.menu.file.isActive = !this.menu.file.isActive;
-		},
-		viewDropdown() {
-			this.menu.view.isActive = !this.menu.view.isActive;
-		},
-		repositoryDropdown() {
-			this.menu.repository.isActive = !this.menu.repository.isActive;
-		},
-		branchDropdown() {
-			this.menu.branch.isActive = !this.menu.branch.isActive;
-		},
-		helpDropdown() {
-			this.menu.help.isActive = !this.menu.help.isActive;
+		dropdown(type, status) {
+			this.menu.file.isActive = false;
+			this.menu.view.isActive = false;
+			this.menu.repository.isActive = false;
+			this.menu.branch.isActive = false;
+			this.menu.help.isActive = false;
+			switch (type) {
+				case "file":
+					this.menu.file.isActive = status;
+					break;
+				case "view":
+					this.menu.view.isActive = status;
+					break;
+				case "repository":
+					this.menu.repository.isActive = status;
+					break;
+				case "branch":
+					this.menu.branch.isActive = status;
+					break;
+				case "help":
+					this.menu.help.isActive = status;
+					break;
+			}
 		},
 		// File
 		newRepository() {
@@ -379,16 +396,13 @@ export default {
 			height: 20px
 
 	&__list
-		padding: 8px 10px
 
 		&__item
+			padding: 10px
 			color: #8B9798
 			cursor: pointer
 			font-size: .8rem
 			user-select: none
-
-			&:not(:last-child)
-				margin-right: 1rem
 
 			&:hover
 				color: #222831
