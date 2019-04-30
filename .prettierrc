@@ -1,0 +1,9 @@
+{
+	"tabWidth": 2,
+	"useTabs": true,
+	"singleQuote": false,
+	"quoteProps": "consistent",
+	"trailingComma": "none",
+	"proseWrap": "never",
+	"parser": "vue"
+}
