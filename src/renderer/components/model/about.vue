@@ -10,7 +10,7 @@
 				</div>
 				<h6>Thermal</h6>
 				<p class="about__header__version">
-					Version {{ appVersion }}
+					{{ appVersion }}
 				</p>
 			</div>
 			<div class="about__content">
@@ -55,7 +55,7 @@ export default {
 	},
 	computed: {
 		appVersion() {
-			return packageJson.version;
+			return `Version ${packageJson.version}`;
 		}
 	},
 	methods: {

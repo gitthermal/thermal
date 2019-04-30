@@ -112,7 +112,7 @@
 			/>
 		</div>
 		<div class="appMetaData">
-			Version: {{ appVersion }}
+			{{ appVersion }}
 		</div>
 	</div>
 </template>
@@ -162,7 +162,7 @@ export default {
 			return this.$store.getters["repository/listAllRepository"];
 		},
 		appVersion() {
-			return packageJson.version;
+			return `Version: ${packageJson.version}`;
 		}
 	},
 	methods: {
