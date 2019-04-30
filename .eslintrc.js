@@ -35,12 +35,5 @@ module.exports = {
 		"no-console": 1,
 		// enforce consistent indentation
 		"vue/html-indent": [2, "tab"]
-	},
-	"overrides": {
-		"files": ["src/renderer/components/icon/**"],
-		"rules": {
-			"vue/max-attributes-per-line": 0,
-			"vue/html-indent": 0
-		}
 	}
 }
