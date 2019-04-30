@@ -34,7 +34,10 @@
 		</div>
 		<div
 			v-else
-			:class="[getRemoteFeature, !!getRemoteUrl === false ? 'navbar__group' : '']"
+			:class="[
+				getRemoteFeature,
+				!!getRemoteUrl === false ? 'navbar__group' : ''
+			]"
 			class="navbar__item"
 			@click="newRemote()"
 		>
@@ -42,7 +45,7 @@
 			<p>Publish</p>
 		</div>
 		<div class="navbar__group ml-auto">
-			<div 
+			<div
 				class="navbar__item"
 				@click="openTerminal()"
 			>
@@ -121,7 +124,7 @@ export default {
 			} else {
 				return "cursor-pointer";
 			}
-		},
+		}
 	},
 	methods: {
 		openCommitPage(event) {

@@ -5,19 +5,21 @@
 			@mouseenter="showFiles(data.hash)"
 			@mouseleave="hideFiles()"
 		>
-			<div 
+			<div
 				:title="data.message"
 				class="history__item__title"
-			>{{ data.message }}</div>
+			>
+				{{ data.message }}
+			</div>
 			<div class="history__item__author d-flex flex-row align-items-center">
-				<img 
+				<img
 					class="history__item__author__image"
 					src="../../../../static/image/user_avatar.png"
 				>
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
 			</div>
 		</a>
-		<div 
+		<div
 			v-show="files.isActive"
 			class="history__files"
 		>
@@ -72,11 +74,10 @@ export default {
 		},
 		getFilesDetail(hash) {
 			const params = [hash, "--oneline", "--stat"];
-			showMixin(this.currentRepository, params)
-				.then(result => {
-					let output = result.split("\n");
-					this.files.list = trimFilePathMixin(output.slice(1, output.length - 2));
-				});
+			showMixin(this.currentRepository, params).then(result => {
+				let output = result.split("\n");
+				this.files.list = trimFilePathMixin(output.slice(1, output.length - 2));
+			});
 		}
 	}
 };
@@ -84,7 +85,6 @@ export default {
 
 <style lang="sass">
 .history
-
 	&__item
 		padding: 10px
 		font-size: 12px

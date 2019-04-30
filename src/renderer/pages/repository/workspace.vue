@@ -70,11 +70,11 @@
 
 <script>
 import statusMixin from "../../mixins/git/status";
-import diffMixin from '../../mixins/git/diff';
+import diffMixin from "../../mixins/git/diff";
 import VueScrollbar from "vue2-scrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
-import diffPreview from '../../components/diff/diffPreview';
+import diffPreview from "../../components/diff/diffPreview";
 import fileChangesSkeleton from "../../components/commit/fileChangesSkeleton";
 
 export default {
@@ -122,7 +122,7 @@ export default {
 	},
 	mounted() {
 		this.gitStatus();
-		this.previewFileChange(this.$store.getters['commit/allFiles'][0]);
+		this.previewFileChange(this.$store.getters["commit/allFiles"][0]);
 	},
 	methods: {
 		gitStatus() {
@@ -195,11 +195,7 @@ export default {
 				type: "workspace/toggleFilePreview",
 				isActive: true
 			});
-			const params = [
-				'HEAD',
-				'--',
-				`:${file.path}`
-			];
+			const params = ["HEAD", "--", `:${file.path}`];
 			diffMixin(this.currentRepository, params).then(result => {
 				let output = result.split("\n");
 				output.splice(0, 3);

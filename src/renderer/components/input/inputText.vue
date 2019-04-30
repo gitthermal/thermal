@@ -25,11 +25,7 @@ import fontProps from "../../mixins/fontProps";
 
 export default {
 	name: "InputText",
-	mixins: [
-		spacingProps,
-		borderProps,
-		fontProps
-	],
+	mixins: [spacingProps, borderProps, fontProps],
 	props: {
 		name: {
 			type: String,
@@ -55,7 +51,7 @@ export default {
 		},
 		fontSize: {
 			type: Number,
-			default: .833
+			default: 0.833
 		},
 		paddingTop: {
 			type: String,

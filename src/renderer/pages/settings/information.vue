@@ -1,8 +1,8 @@
 <template>
 	<div class="information">
-		<div 
+		<div
 			v-for="section in information"
-			:key="section.name" 
+			:key="section.name"
 			class="information__section"
 		>
 			<h5>{{ section.name }}</h5>
@@ -13,7 +13,7 @@
 						:key="item.info"
 						class="table__item"
 					>
-						<td 
+						<td
 							v-for="info in item"
 							:key="info"
 							class="table__item-line"

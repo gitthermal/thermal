@@ -34,7 +34,6 @@ export default {
 
 <style lang="sass">
 .repository
-
 	&__sidebar
 		background-color: #EFEFEF
 		padding-top: 20px

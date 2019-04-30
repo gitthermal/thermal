@@ -26,7 +26,7 @@
 				>
 					<coffeeIcon />
 				</div>
-				<div 
+				<div
 					class="welcome__introduction__item__icon"
 					@click="discordURL()"
 				>
@@ -201,7 +201,9 @@ export default {
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
 			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.repositoryPath = event.dataTransfer.files[i].path.split("\\").join("/");
+				this.repositoryPath = event.dataTransfer.files[i].path
+					.split("\\")
+					.join("/");
 				this.localRepository(this.repositoryPath);
 			}
 		}
@@ -215,7 +217,6 @@ export default {
 	height: 100vh
 
 	&__introduction
-
 		&__description
 			margin-bottom: 1rem
 
@@ -239,7 +240,6 @@ export default {
 		background-color: #DEE0E3
 
 	&__repository
-
 		&__scrollbar
 			max-height: 400px
 

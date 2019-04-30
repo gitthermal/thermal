@@ -17,7 +17,7 @@
 				ry="0"
 				width="280"
 				height="15"
-			/> 
+			/>
 			<rect
 				x="10"
 				y="35"
@@ -25,7 +25,7 @@
 				ry="0"
 				width="15"
 				height="15"
-			/> 
+			/>
 			<rect
 				x="32"
 				y="38"
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { ContentLoader } from 'vue-content-loader';
+import { ContentLoader } from "vue-content-loader";
 
 export default {
 	name: "LogSkeleton",

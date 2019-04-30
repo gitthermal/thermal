@@ -23,7 +23,7 @@ export default {
 		preview: {
 			type: Array,
 			required: true
-		}	
+		}
 	}
 };
 </script>

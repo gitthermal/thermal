@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import spacingProps from '../../mixins/spacingProps';
+import spacingProps from "../../mixins/spacingProps";
 
 export default {
 	name: "ProgressBar",
-	mixins: [ spacingProps ],
+	mixins: [spacingProps],
 	props: {
 		color: {
 			type: String,
@@ -36,12 +36,12 @@ export default {
 			type: Number,
 			default: 0,
 			required: true
-		},
+		}
 	}
 };
 </script>
 
-<style lang='sass'>
+<style lang="sass">
 .progress__bar
 	background-color: #eeeeee
 	border-radius: .3rem

@@ -97,4 +97,3 @@ export default {
 	&__field
 		margin-bottom: 1rem
 </style>
-

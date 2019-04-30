@@ -2,12 +2,9 @@
 	<div class="history">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
-				<logSkeletion 
-					v-if="repositoryLogs.length < 1"
-				/>
+				<logSkeletion v-if="repositoryLogs.length < 1" />
 				<VueScrollbar
-					v-else
-					class="history__logs__scrollbar"
+					v-else class="history__logs__scrollbar"
 				>
 					<div>
 						<commitHistoryItem
@@ -89,11 +86,10 @@ export default {
 	},
 	methods: {
 		gitLog() {
-			gitLog(this.currentRepository)
-			.then(result => {
+			gitLog(this.currentRepository).then(result => {
 				this.$store.commit("history/updateLogs", {
 					logs: result
-				});			
+				});
 			});
 		},
 		toggleCommitDetail() {
