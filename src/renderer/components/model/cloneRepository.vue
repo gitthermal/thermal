@@ -99,9 +99,9 @@ export default {
 	},
 	data() {
 		return {
-			repositoryName: "test",
+			repositoryName: "",
 			remoteUrl: "",
-			repositoryLocation: "C:/Users/YASHU/Desktop",
+			repositoryLocation: "",
 			cloning: false,
 			cloneProgress: 0
 		};
