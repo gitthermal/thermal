@@ -5,7 +5,7 @@
 	>	
 		<div class="model__section model__header">
 			<h6 class="model__header__title">
-				Git not found...
+				Git not found
 			</h6>
 		</div>
 		<div class="model__section model__body">
