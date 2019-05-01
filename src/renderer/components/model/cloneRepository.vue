@@ -88,6 +88,7 @@ import closeIcon from "../icon/close";
 import Button from "../buttons/Button";
 import progressBar from "../progress/progressBar";
 import gitClone from "../../git/clone";
+import addRepository from "../../mixins/addRepository";
 
 export default {
 	name: "CloneRepository",
@@ -97,6 +98,7 @@ export default {
 		progressBar,
 		closeIcon
 	},
+	mixins: [addRepository],
 	data() {
 		return {
 			repositoryName: "",
@@ -124,6 +126,9 @@ export default {
 				}
 				this.addRepository(repositoryPath);
 			});
+		},
+		addRepository(path) {
+			this.localRepository(path);
 		},
 		closeModel() {
 			this.$store.dispatch("model/showCloneRepository");
