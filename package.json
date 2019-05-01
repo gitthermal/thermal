@@ -91,8 +91,10 @@
   "dependencies": {
     "@sentry/electron": "^0.17.0",
     "axios": "^0.18.0",
+    "chart.js": "^2.8.0",
     "simple-git": "1.110.0",
     "vue": "2.6.10",
+    "vue-chartjs": "^3.4.2",
     "vue-electron": "^1.0.6",
     "vue-router": "3.0.2",
     "vuex": "^3.0.1"
