@@ -31,7 +31,7 @@
 
 <script>
 import primaryButton from '../buttons/primaryButton';
-import gitInitMixin from "../../mixins/git/init";
+import gitInit from "../../git/init";
 
 export default {
 	name: "InitalizeGitRepository",
@@ -53,7 +53,7 @@ export default {
 			this.$router.push({ name: "welcome" });
 		},
 		initalizeGit() {
-			gitInitMixin(this.currentRepository.path);
+			gitInit(this.currentRepository.path);
 		}
 	}
 };
