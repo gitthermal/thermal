@@ -13,6 +13,7 @@ module.exports = {
 		"standard",
 		"prettier",
 		"prettier/vue",
+		"prettier/standard",
 		"plugin:vue/base",
 		"plugin:vue/essential",
 		"plugin:vue/recommended",
