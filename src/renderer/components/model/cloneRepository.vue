@@ -115,11 +115,15 @@ export default {
 		cloneRepository() {
 			const repositoryPath =
 				this.repositoryLocation + "/" + this.repositoryName;
+			this.cloning = true;
 			gitClone(this.remoteUrl, repositoryPath)
 			.then(result => {
-				console.log(result);
+				if (result) {
+					this.cloning = false;
+					this.closeModel();
+				}
+				this.addRepository(repositoryPath);
 			});
-			this.cloning = true;
 		},
 		closeModel() {
 			this.$store.dispatch("model/showCloneRepository");
