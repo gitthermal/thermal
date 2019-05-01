@@ -54,6 +54,11 @@ export default {
 		},
 		initalizeGit() {
 			gitInit(this.currentRepository.path);
+			this.$store.commit("model/toggleModelPlaceholder");
+			this.$store.dispatch({
+				type: "repository/updateIsGit",
+				isGit: true
+			});
 		}
 	}
 };

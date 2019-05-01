@@ -45,10 +45,21 @@ const mutations = {
 	},
 	toggleRemoteFeature(state, payload) {
 		state.repositoryList[workspace.state.workspaceRepository.index].features.remote = payload.remotes;
+	},
+	toggleIsGit(state, payload) {
+		state.repositoryList[workspace.state.workspaceRepository.index].isGit = payload.isGit;
 	}
 };
 
-const actions = {};
+const actions = {
+	updateIsGit: ({ commit }, payload) => {
+		commit({
+			type: "toggleIsGit",
+			isGit: payload.isGit
+		});
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
+	}
+};
 
 export default {
 	namespaced: true,
