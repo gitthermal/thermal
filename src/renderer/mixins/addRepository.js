@@ -6,17 +6,20 @@ export default {
 			return path.split("/")[path.split("/").length - 1];
 		},
 		async isGitRepository(path) {
-			console.log(path);
 			const validateGitRepository = git(path);
 			const isGit = await validateGitRepository.checkIsRepo();
 			try {
-				console.log(isGit);
+				return isGit;
 			} catch (error) {
 				console.log(error);
 			}
 		},
 		async localRepository(path) {
 			let listRemote;
+			let isGitRepo;
+			this.isGitRepository(path).then(result => {
+				isGitRepo = result;
+			});
 			try {
 				listRemote = await git(path).listRemote(["--get-url"]);
 				if (listRemote.slice(-4, -1) === "git") {
@@ -33,7 +36,7 @@ export default {
 				name: this.getRepositoryName(path),
 				path: path,
 				remote: listRemote,
-				isGit: false,
+				isGit: isGitRepo,
 				commits: true,
 				remotes: true
 			});
