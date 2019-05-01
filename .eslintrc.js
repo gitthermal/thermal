@@ -40,6 +40,7 @@ module.exports = {
 		"no-console": 1,
 		// enforce consistent indentation
 		"vue/html-indent": [2, "tab"],
-		"vue/max-attributes-per-line": 1
+		"vue/max-attributes-per-line": 0,
+		"vue/html-self-closing": 0
 	}
 }
