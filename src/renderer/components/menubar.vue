@@ -1,9 +1,6 @@
 <template>
 	<div class="menubar d-flex">
-		<div
-			class="menubar__logo d-flex"
-			@click="homepage()"
-		>
+		<div class="menubar__logo d-flex" @click="homepage()">
 			<thermalLogo />
 		</div>
 		<div class="menubar__list d-flex align-items-center">
@@ -48,10 +45,7 @@
 					>
 						Options
 					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="exitApp()"
-					>
+					<div class="menubar__list__item__dropdown__item" @click="exitApp()">
 						Exit
 					</div>
 				</div>
@@ -105,10 +99,7 @@
 				</div>
 			</div>
 			<!-- Repository -->
-			<div
-				v-if="!!currentRepository"
-				@click="dropdown('repository', true)"
-			>
+			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -150,10 +141,7 @@
 				</div>
 			</div>
 			<!-- Branch -->
-			<div
-				v-if="!!currentRepository"
-				@click="dropdown('branch', true)"
-			>
+			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
@@ -222,10 +210,7 @@
 					<div class="menubar__list__item__dropdown__item">
 						Show logs in Explorer
 					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="about()"
-					>
+					<div class="menubar__list__item__dropdown__item" @click="about()">
 						About
 					</div>
 				</div>
@@ -233,10 +218,7 @@
 		</div>
 		<div class="menubar__drag" />
 		<div class="menubar__title">
-			<div
-				v-if="!!currentRepository"
-				class="menubar__title__repository d-flex"
-			>
+			<div v-if="!!currentRepository" class="menubar__title__repository d-flex">
 				{{ currentRepository.name }}
 				<div style="padding: 0 5px">
 					-

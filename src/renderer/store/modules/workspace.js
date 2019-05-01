@@ -11,7 +11,8 @@ const state = {
 };
 
 const getters = {
-	currentRepository: state => repository.state.repositoryList[state.workspaceRepository.index],
+	currentRepository: state =>
+		repository.state.repositoryList[state.workspaceRepository.index],
 	filePreview: state => state.filePreview.preview
 };
 

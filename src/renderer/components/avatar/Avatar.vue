@@ -7,7 +7,7 @@
 			...borderProps
 		}"
 		class="avatar__image"
-	>
+	/>
 </template>
 
 <script>

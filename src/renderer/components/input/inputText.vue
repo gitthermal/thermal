@@ -15,7 +15,7 @@
 			...fontProps
 		}"
 		@input="$emit('input', $event.target.value)"
-	>
+	/>
 </template>
 
 <script>

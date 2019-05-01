@@ -5,24 +5,18 @@
 			@mouseenter="showFiles(data.hash)"
 			@mouseleave="hideFiles()"
 		>
-			<div
-				:title="data.message"
-				class="history__item__title"
-			>
+			<div :title="data.message" class="history__item__title">
 				{{ data.message }}
 			</div>
 			<div class="history__item__author d-flex flex-row align-items-center">
 				<img
 					class="history__item__author__image"
 					src="../../../../static/image/user_avatar.png"
-				>
+				/>
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
 			</div>
 		</a>
-		<div
-			v-show="files.isActive"
-			class="history__files"
-		>
+		<div v-show="files.isActive" class="history__files">
 			<div class="history__files__dropdown">
 				<div
 					v-for="item in files.list"

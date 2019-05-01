@@ -9,10 +9,7 @@
 				<fileChangesSkeleton
 					v-if="this.$store.getters['commit/allFiles'] > 1"
 				/>
-				<VueScrollbar
-					v-else
-					class="workspace__changes__scrollbar"
-				>
+				<VueScrollbar v-else class="workspace__changes__scrollbar">
 					<div class="workspace__changes">
 						<div
 							v-for="file in this.$store.getters['commit/allFiles']"

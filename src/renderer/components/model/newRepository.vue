@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Create a new repository
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -37,7 +34,7 @@
 					webkitdirectory
 					style="display: none"
 					@change="folderSelectorInput"
-				>
+				/>
 				<Button
 					text="Select"
 					appearance="primary"

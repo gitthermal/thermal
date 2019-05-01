@@ -1,16 +1,10 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.newRemote"
-		class="model--small"
-	>
+	<div v-show="this.$store.state.model.model.newRemote" class="model--small">
 		<div class="model__section model__header">
 			<h6 class="model__header__title">
 				Add remote url
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>

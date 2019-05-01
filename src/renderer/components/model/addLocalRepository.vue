@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Add local repository
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -30,7 +27,7 @@
 				webkitdirectory
 				style="display: none"
 				@change="fileSectorInput"
-			>
+			/>
 			<Button
 				text="Select"
 				appearance="primary"

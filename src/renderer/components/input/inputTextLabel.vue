@@ -4,10 +4,7 @@
 			...spacingProps
 		}"
 	>
-		<p
-			class="input__label"
-			:for="labelName"
-		>
+		<p class="input__label" :for="labelName">
 			{{ label }}
 		</p>
 		<inputText

@@ -8,28 +8,16 @@
 				One stop. Git repository.
 			</p>
 			<div class="welcome__introduction__item d-flex">
-				<div
-					class="welcome__introduction__item__icon"
-					@click="websiteURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="websiteURL()">
 					<linkIcon />
 				</div>
-				<div
-					class="welcome__introduction__item__icon"
-					@click="twitterURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="twitterURL()">
 					<twitterIcon />
 				</div>
-				<div
-					class="welcome__introduction__item__icon"
-					@click="coffeeURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="coffeeURL()">
 					<coffeeIcon />
 				</div>
-				<div
-					class="welcome__introduction__item__icon"
-					@click="discordURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="discordURL()">
 					<helpIcon />
 				</div>
 			</div>
@@ -78,11 +66,7 @@
 									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
 								>
 									<h6>{{ repo }}</h6>
-									<Button
-										text="Open"
-										appearance="primary"
-										margin-left="auto"
-									/>
+									<Button text="Open" appearance="primary" margin-left="auto" />
 									<div class="welcome__repository__list__item__settings">
 										<settingsIcon />
 									</div>

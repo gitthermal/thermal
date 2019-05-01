@@ -3,9 +3,7 @@
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
 				<logSkeletion v-if="repositoryLogs.length < 1" />
-				<VueScrollbar
-					v-else class="history__logs__scrollbar"
-				>
+				<VueScrollbar v-else class="history__logs__scrollbar">
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -16,10 +14,7 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<div
-				v-else
-				class="history__logs__detail"
-			>
+			<div v-else class="history__logs__detail">
 				<div class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"

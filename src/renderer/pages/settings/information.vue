@@ -8,16 +8,8 @@
 			<h5>{{ section.name }}</h5>
 			<table class="table">
 				<tbody class="table__item-container">
-					<tr
-						v-for="item in section.data"
-						:key="item.info"
-						class="table__item"
-					>
-						<td
-							v-for="info in item"
-							:key="info"
-							class="table__item-line"
-						>
+					<tr v-for="item in section.data" :key="item.info" class="table__item">
+						<td v-for="info in item" :key="info" class="table__item-line">
 							{{ info }}
 						</td>
 					</tr>

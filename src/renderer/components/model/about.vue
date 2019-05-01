@@ -1,8 +1,5 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.about"
-		class="model--medium"
-	>
+	<div v-show="this.$store.state.model.model.about" class="model--medium">
 		<div class="about">
 			<div class="about__header d-flex flex-column align-items-center">
 				<div class="about__header__logo">

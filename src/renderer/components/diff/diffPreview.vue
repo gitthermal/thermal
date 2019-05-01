@@ -1,10 +1,7 @@
 <template>
 	<VueScrollbar class="diff__preview">
 		<div>
-			<div
-				v-for="(line, index) in preview"
-				:key="index"
-			>
+			<div v-for="(line, index) in preview" :key="index">
 				{{ line }}
 			</div>
 		</div>
