@@ -41,3 +41,5 @@
   <span> · </span>
   <a href="https://discord.gg/DcSNmts">Discord</a>
 </h3>
+
+![Thermal app screenshots](https://thermal.netlify.com/images/win/appScreenshots.png)
