@@ -9,211 +9,180 @@
 				<div class="menubar__list__item">
 					File
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.file.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="dropdown('file', false)"
+					@mouseleave="console.log('hello')"
 				>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="newRepository()"
-					>
+					<dropdown-item @click="newRepository()">
 						New repository
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="addLocalRepository()"
-					>
+					</dropdown-item>
+					<dropdown-item @click="addLocalRepository()">
 						Add local repository
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="cloneRepository"
-					>
+					</dropdown-item>
+					<dropdown-item @click="cloneRepository">
 						Clone repository
-					</div>
-					<div
-						v-if="!!currentRepository"
-						class="menubar__list__item__dropdown__item"
-						@click="switchRepository()"
-					>
+					</dropdown-item>
+					<dropdown-item v-if="!!currentRepository" @click="switchRepository()">
 						Switch repository
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="appOptions()"
-					>
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item @click="appOptions()">
 						Options
-					</div>
-					<div class="menubar__list__item__dropdown__item" @click="exitApp()">
+					</dropdown-item>
+					<dropdown-item @click="exitApp()">
 						Exit
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 			<!-- View -->
 			<div @click="dropdown('view', true)">
 				<div class="menubar__list__item">
 					View
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.view.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave="dropdown('view', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<!-- <dropdown-item>
 						Changes
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						History
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Repository list
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Branches list
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Go to summary
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="fullScreenView()"
-					>
+					</dropdown-item>
+					<dropdown-divider /> -->
+					<dropdown-item @click="fullScreenView()">
 						Toggle full screen
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<!-- <dropdown-item>
 						Reset zoom
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Zoom in
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Zoom out
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openDevTools()"
-					>
+					</dropdown-item> -->
+					<dropdown-item @click="openDevTools()">
 						Toggle developer tools
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 			<!-- Repository -->
 			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave="dropdown('repository', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<!-- <dropdown-item>
 						Push
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Pull
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Remove
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider /> -->
+					<dropdown-item>
 						View on GitHub
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Open in PowerShell
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openFileExplorer()"
-					>
+					</dropdown-item>
+					<dropdown-item @click="openFileExplorer">
 						Show in Explorer
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openEditor()"
-					>
+					</dropdown-item>
+					<dropdown-item @click="openEditor">
 						Open in Code editor
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Repository settings
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 			<!-- Branch -->
 			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave="dropdown('branch', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<dropdown-item>
 						New branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Rename branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Delete branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Update to master
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Compare to master
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Merge into current branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Compare on GitHub
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Create pull request
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 			<!-- Help -->
 			<div @click="dropdown('help', true)">
 				<div class="menubar__list__item">
 					Help
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.help.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave="dropdown('help', false)"
 				>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="switchRepository()"
-					>
+					<dropdown-item @click="switchRepository()">
 						Welcome
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="reportIssue()"
-					>
+					</dropdown-item>
+					<dropdown-item @click="reportIssue()">
 						Report issue
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="contactSupport()"
-					>
+					</dropdown-item>
+					<dropdown-item @click="contactSupport()">
 						Contact support
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Show User Guides
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Show logs in Explorer
-					</div>
-					<div class="menubar__list__item__dropdown__item" @click="about()">
+					</dropdown-item>
+					<dropdown-item @click="about()">
 						About
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 		</div>
 		<div class="menubar__drag" />
@@ -236,6 +205,9 @@
 
 <script>
 import thermalLogo from "./icon/logo";
+import dropdownList from "./dropdown/dropdownList";
+import dropdownItem from "./dropdown/dropdownItem";
+import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
@@ -245,6 +217,9 @@ export default {
 	name: "Menubar",
 	components: {
 		thermalLogo,
+		dropdownList,
+		dropdownItem,
+		dropdownDivider,
 		windowsButton
 	},
 	data() {
@@ -393,22 +368,6 @@ export default {
 
 			&__dropdown
 				top: 32px
-				position: absolute
-				background-color: white
-				border-radius: 3px
-				box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px
-				display: flex
-				font-size: .8rem
-				flex-direction: column
-				z-index: 10
-
-				&__item
-					cursor: pointer
-					padding: 8px 15px
-					user-select: none
-
-					&:hover
-						background-color: rgba(139, 151, 152, .1)
 
 	&__title
 		position: absolute
