@@ -77,9 +77,11 @@ export default {
 			this.pathToRepository = event.target.files[0].path.split("\\").join("/");
 		},
 		addRepository(path) {
-			this.localRepository(path);
-			this.pathToRepository = "";
-			this.closeModel();
+			if (this.pathToRepository !== "") {
+				this.localRepository(path);
+				this.pathToRepository = "";
+				this.closeModel();
+			}
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
