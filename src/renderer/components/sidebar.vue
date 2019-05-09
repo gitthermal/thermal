@@ -15,6 +15,13 @@
 				<clockIcon />
 				<p>History</p>
 			</router-link>
+			<router-link
+				class="repository__sidebar__item d-flex align-items-center"
+				:to="{ name: 'repositoryStats' }"
+			>
+				<barIcon />
+				<p>Stats</p>
+			</router-link>
 		</div>
 	</div>
 </template>
@@ -22,12 +29,14 @@
 <script>
 import folderIcon from "./icon/folder";
 import clockIcon from "./icon/clock";
+import barIcon from "./icon/bar";
 
 export default {
 	name: "Sidebar",
 	components: {
 		folderIcon,
-		clockIcon
+		clockIcon,
+		barIcon
 	}
 };
 </script>
