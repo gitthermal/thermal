@@ -37,4 +37,3 @@ steps:
       tag: $(tagName)
       assets: $(Build.ArtifactStagingDirectory)/*
       isDraft: true
-      addChangeLog: true
