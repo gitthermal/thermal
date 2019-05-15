@@ -29,7 +29,7 @@ steps:
       target: $(Build.SourceVersion)
       # Required when action == Create
       # Options: auto, manual
-      tagSource: "auto"
+      tagSource: "manual"
       tag: $(tagName)
       assets: $(Build.ArtifactStagingDirectory)/*
       isDraft: true
