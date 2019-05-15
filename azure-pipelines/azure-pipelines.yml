@@ -48,6 +48,11 @@ jobs:
       - template: mac.yml
 
   - job: github_releases
+    dependsOn: |
+      win
+      linux
+      mac
+    condition: succeeded()
     steps:
       - script: |
           echo Name
