@@ -24,7 +24,7 @@ steps:
       # Required when action == Create
       # Options: auto, manual
       tagSource: "auto"
-      tag: $(Build.BuildId)
+      tag: $(tagName)
       assets: $(Build.ArtifactStagingDirectory)/*
       isDraft: true
       addChangeLog: true
