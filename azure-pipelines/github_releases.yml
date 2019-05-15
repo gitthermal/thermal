@@ -42,7 +42,7 @@ steps:
     inputs:
       sourceFolder: $(System.ArtifactsDirectory)/dist
       contents: |
-        - thermal+[win|linux|mac]?
+        - **
         - !electron
         - !linux-unpacked
         - !mac
