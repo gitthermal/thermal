@@ -47,7 +47,7 @@ jobs:
     steps:
       - template: mac.yml
 
-  - job: GitHub release
+  - job: github_releases
     steps:
       - script: |
           $(Build.Repository.Name)
