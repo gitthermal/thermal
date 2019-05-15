@@ -4,14 +4,20 @@ steps:
       echo $(Build.Repository.Name)
       echo Source Version
       echo $(Build.SourceVersion)
+
+  - script: |
       echo Artifact Staging Directory
       echo $(Build.ArtifactStagingDirectory)/*
       cd $(Build.ArtifactStagingDirectory)
       ls
+    displayName: "Artifact Staging Directory"
+
+  - script: |
       echo Artifact Directory
       echo $(System.ArtifactsDirectory)
       cd $(System.ArtifactsDirectory)
       ls
+    displayName: "Artifact Directory"
 
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
