@@ -9,8 +9,6 @@ jobs:
 
     strategy:
       matrix:
-        node_8_x:
-          node_version: ">=8.12.x"
         node_10_x:
           node_version: "10.x"
 
@@ -24,8 +22,6 @@ jobs:
 
     strategy:
       matrix:
-        node_8_x:
-          node_version: ">=8.12.x"
         node_10_x:
           node_version: "10.x"
 
