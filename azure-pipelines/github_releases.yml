@@ -23,6 +23,19 @@ steps:
       ls
     displayName: "Artifact Directory"
 
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName:
+        - win
+        - linux
+        - mac
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
     inputs:
