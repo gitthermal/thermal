@@ -9,7 +9,7 @@ steps:
       echo Artifact Staging Directory
       echo $(Build.ArtifactStagingDirectory)/*
       echo change dir
-      cd $(Build.ArtifactStagingDirectory)
+      cd "$(Build.ArtifactStagingDirectory)"
       echo list items
       ls
     displayName: "Artifact Staging Directory"
@@ -18,7 +18,7 @@ steps:
       echo Artifact Directory
       echo $(System.ArtifactsDirectory)
       echo change dir
-      cd $(System.ArtifactsDirectory)
+      cd "$(System.ArtifactsDirectory)"
       echo list items
       ls
     displayName: "Artifact Directory"
