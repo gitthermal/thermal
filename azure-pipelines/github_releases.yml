@@ -6,8 +6,6 @@ steps:
       echo $(Build.SourceVersion)
       echo Artifact Staging Directory
       echo $(Build.ArtifactStagingDirectory)/*
-      echo Build id
-      echo $(Build.BuildId)
 
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
@@ -20,6 +18,7 @@ steps:
       # Required when action == Create
       # Options: auto, manual
       tagSource: "auto"
+      tag: $(Build.BuildId)
       assets: $(Build.ArtifactStagingDirectory)/*
       isDraft: true
       addChangeLog: true
