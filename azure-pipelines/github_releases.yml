@@ -6,6 +6,8 @@ steps:
       echo $(Build.SourceVersion)
       echo Artifact Staging Directory
       echo $(Build.ArtifactStagingDirectory)/*
+      echo Build id
+      echo $(Build.BuildId)
 
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
