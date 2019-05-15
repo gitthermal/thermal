@@ -29,10 +29,27 @@ steps:
       buildType: "current"
       specificBuildWithTriggering: false
       buildVersionToDownload: "latestFromBranch"
-      artifactName:
-        - win
-        - linux
-        - mac
+      artifactName: "win"
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName: "linux"
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName: "mac"
       targetPath: $(Build.ArtifactStagingDirectory)
       downloadPath: $(System.ArtifactsDirectory)
 
