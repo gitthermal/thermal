@@ -16,8 +16,8 @@
   <a href="https://www.patreon.com/join/mittalyashu">
     <img src="https://img.shields.io/badge/become%20a-patron-blue.svg?style=flat&colorA=555555&colorB=F86754" alt="Become a Patron" />
   </a>
-  <a href="https://gitlab.com/gitthermal/thermal/pipelines">
-    <img src="https://gitlab.com/gitthermal/thermal/badges/master/pipeline.svg" alt="GitLab pipeline" />
+  <a href="https://dev.azure.com/codecarrot/Thermal/_build/latest?definitionId=3&branchName=master">
+    <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/pipeline?branchName=master" alt="Azure pipeline" />
   </a>
   <a href="https://discord.gg/DcSNmts">
     <img src="https://img.shields.io/discord/556376419886825509.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord invite" />
