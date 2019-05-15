@@ -53,6 +53,10 @@ steps:
       targetPath: $(Build.ArtifactStagingDirectory)
       downloadPath: $(System.ArtifactsDirectory)
 
+  - script: |
+      cd $(System.ArtifactsDirectory)
+      ls
+
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
     inputs:
