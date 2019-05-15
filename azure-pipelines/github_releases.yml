@@ -1,7 +1,7 @@
 steps:
 
   - task: DownloadPipelineArtifact@1
-    displayName: "Download pipeline artifact"
+    displayName: "Download windows pipeline artifact"
     inputs:
       buildType: "current"
       specificBuildWithTriggering: false
@@ -11,7 +11,7 @@ steps:
       downloadPath: $(System.ArtifactsDirectory)
 
   - task: DownloadPipelineArtifact@1
-    displayName: "Download pipeline artifact"
+    displayName: "Download linux pipeline artifact"
     inputs:
       buildType: "current"
       specificBuildWithTriggering: false
@@ -21,7 +21,7 @@ steps:
       downloadPath: $(System.ArtifactsDirectory)
 
   - task: DownloadPipelineArtifact@1
-    displayName: "Download pipeline artifact"
+    displayName: "Download mac pipeline artifact"
     inputs:
       buildType: "current"
       specificBuildWithTriggering: false
