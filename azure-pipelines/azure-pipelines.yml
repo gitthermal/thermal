@@ -48,10 +48,10 @@ jobs:
       - template: mac.yml
 
   - job: github_releases
-    dependsOn: |
-      win
-      linux
-      mac
+    dependsOn:
+      - win
+      - linux
+      - mac
     condition: succeeded()
     steps:
       - template: github_releases.yml
