@@ -63,5 +63,5 @@ steps:
       # Options: auto, manual
       tagSource: "manual"
       tag: $(tagName)
-      assets: $(System.ArtifactsDirectory)/deploy
+      assets: $(System.ArtifactsDirectory)/deploy/**
       isDraft: true
