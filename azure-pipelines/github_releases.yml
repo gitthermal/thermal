@@ -54,8 +54,25 @@ steps:
       downloadPath: $(System.ArtifactsDirectory)
 
   - script: |
-      cd $(System.ArtifactsDirectory)/dist
+      cd $(System.ArtifactsDirectory)
       ls
+      mkdir deploy
+      ls
+    displayName: "Create deploy folder"
+
+  - task: CopyFiles@2
+    displayName: "Copy files"
+    inputs:
+      sourceFolder: $(System.ArtifactsDirectory)/dist
+      contents: |
+        - thermal+[win|linux|mac]?
+        - !electron
+        - !linux-unpacked
+        - !mac
+        - !win-ia32-unpacked
+        - !win-unpacked
+      targetFolder: "$(System.ArtifactsDirectory)/deploy"
+      cleanTargetFolder: true
 
   - task: GitHubRelease@0
     displayName: "Create GitHub Release"
@@ -69,5 +86,5 @@ steps:
       # Options: auto, manual
       tagSource: "manual"
       tag: $(tagName)
-      assets: $(System.ArtifactsDirectory)/**
+      assets: $(System.ArtifactsDirectory)/deploy
       isDraft: true
