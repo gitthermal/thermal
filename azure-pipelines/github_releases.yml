@@ -42,12 +42,12 @@ steps:
     inputs:
       sourceFolder: $(System.ArtifactsDirectory)/dist
       contents: |
-        - **
-        - !electron
-        - !linux-unpacked
-        - !mac
-        - !win-ia32-unpacked
-        - !win-unpacked
+        **
+        !electron
+        !linux-unpacked
+        !mac
+        !win-ia32-unpacked
+        !win-unpacked
       targetFolder: "$(System.ArtifactsDirectory)/deploy"
       cleanTargetFolder: true
 
