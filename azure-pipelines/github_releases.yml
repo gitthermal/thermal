@@ -54,7 +54,7 @@ steps:
       downloadPath: $(System.ArtifactsDirectory)
 
   - script: |
-      cd $(System.ArtifactsDirectory)
+      cd $(System.ArtifactsDirectory)/dist
       ls
 
   - task: GitHubRelease@0
