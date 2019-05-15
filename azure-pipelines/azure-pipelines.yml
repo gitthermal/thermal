@@ -50,9 +50,12 @@ jobs:
   - job: github_releases
     steps:
       - script: |
-          $(Build.Repository.Name)
-          $(Build.SourceVersion)
-          $(Build.ArtifactStagingDirectory)/*
+          echo Name
+          echo $(Build.Repository.Name)
+          echo Source Version
+          echo $(Build.SourceVersion)
+          echo Artifact Staging Directory
+          echo $(Build.ArtifactStagingDirectory)/*
       - task: GitHubRelease@0
         displayName: "Create GitHub Release"
         inputs:
