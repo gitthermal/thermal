@@ -46,6 +46,6 @@ jobs:
       - win
       - linux
       - mac
-    condition: succeeded()
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     steps:
       - template: github_releases.yml
