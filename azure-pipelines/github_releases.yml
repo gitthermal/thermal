@@ -31,6 +31,11 @@ steps:
       downloadPath: $(System.ArtifactsDirectory)
 
   - script: |
+      cd $(System.ArtifactsDirectory)/dist
+      ls
+    displayName: "List files from dist"
+
+  - script: |
       cd $(System.ArtifactsDirectory)
       ls
       mkdir deploy
