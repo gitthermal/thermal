@@ -53,6 +53,7 @@ steps:
         !mac
         !win-ia32-unpacked
         !win-unpacked
+        !*.blockmap
       targetFolder: "$(System.ArtifactsDirectory)/deploy"
       cleanTargetFolder: true
 
