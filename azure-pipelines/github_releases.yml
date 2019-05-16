@@ -47,7 +47,7 @@ steps:
     inputs:
       sourceFolder: $(System.ArtifactsDirectory)/dist
       contents: |
-        **
+        *
         !electron
         !linux-unpacked
         !mac
