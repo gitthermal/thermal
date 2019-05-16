@@ -27,8 +27,8 @@ steps:
       targetFolder: $(Build.ArtifactStagingDirectory)
     displayName: "Copying files"
 
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@0
     inputs:
       pathtoPublish: "$(Build.ArtifactStagingDirectory)"
       artifactName: linux
-    displayName: "Publish artifacts"
+    displayName: "Publish pipeline artifact"

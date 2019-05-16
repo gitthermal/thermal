@@ -9,8 +9,6 @@ jobs:
 
     strategy:
       matrix:
-        node_8_x:
-          node_version: ">=8.12.x"
         node_10_x:
           node_version: "10.x"
 
@@ -24,8 +22,6 @@ jobs:
 
     strategy:
       matrix:
-        node_8_x:
-          node_version: ">=8.12.x"
         node_10_x:
           node_version: "10.x"
 
@@ -39,10 +35,17 @@ jobs:
 
     strategy:
       matrix:
-        node_8_x:
-          node_version: ">=8.12.x"
         node_10_x:
           node_version: "10.x"
 
     steps:
       - template: mac.yml
+
+  - job: github_releases
+    dependsOn:
+      - win
+      - linux
+      - mac
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    steps:
+      - template: github_releases.yml

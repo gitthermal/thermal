@@ -1,0 +1,70 @@
+steps:
+
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download windows pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName: "win"
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download linux pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName: "linux"
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
+  - task: DownloadPipelineArtifact@1
+    displayName: "Download mac pipeline artifact"
+    inputs:
+      buildType: "current"
+      specificBuildWithTriggering: false
+      buildVersionToDownload: "latestFromBranch"
+      artifactName: "mac"
+      targetPath: $(Build.ArtifactStagingDirectory)
+      downloadPath: $(System.ArtifactsDirectory)
+
+  - script: |
+      cd $(System.ArtifactsDirectory)/dist
+      ls
+    displayName: "List files from dist"
+
+  - script: |
+      cd $(System.ArtifactsDirectory)
+      ls
+      mkdir deploy
+      ls
+    displayName: "Create deploy folder"
+
+  - task: CopyFiles@2
+    displayName: "Copy files"
+    inputs:
+      sourceFolder: $(System.ArtifactsDirectory)/dist
+      contents: |
+        *
+        !electron
+        !linux-unpacked
+        !mac
+        !win-ia32-unpacked
+        !win-unpacked
+        !*.blockmap
+      targetFolder: "$(System.ArtifactsDirectory)/deploy"
+      cleanTargetFolder: true
+
+  - task: GitHubRelease@0
+    displayName: "Create GitHub Release"
+    inputs:
+      gitHubConnection: thermal
+      repositoryName: $(Build.Repository.Name)
+      action: "create"
+      target: $(Build.SourceVersion)
+      tagSource: "manual"
+      tag: $(tagName)
+      assets: $(System.ArtifactsDirectory)/deploy/**
+      isDraft: true
