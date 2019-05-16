@@ -1,3 +1,6 @@
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/gitthermal/thermal.svg)](https://greenkeeper.io/)
+
 <p align="center">
 	<a href="https://thermal.netlify.com">
 		<img src="https://thermal.netlify.com/images/logo.png" alt="Thermal" height="72" />
