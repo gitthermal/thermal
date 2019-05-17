@@ -1,24 +1,28 @@
 <template>
-	<div class="stats">
-		<div class="container">
-			<div class="stats__content">
-				<div class="stats__group">
-					<p>Commits per day</p>
-					<ApexCharts type="area" :options="options" :series="series" />
+	<div class="stats w-100">
+		<VueScrollbar class="stats__scrollbar">
+			<div class="container">
+				<div class="stats__content">
+					<div class="stats__content-group">
+						<p>Commits per day</p>
+						<ApexCharts type="area" :options="options" :series="series" />
+					</div>
 				</div>
 			</div>
-		</div>
+		</VueScrollbar>
 	</div>
 </template>
 
 <script>
 import gitLog from "../../git/log";
 import ApexCharts from "vue-apexcharts";
+import VueScrollbar from "vue2-scrollbar";
 
 export default {
 	name: "RepositoryStats",
 	components: {
-		ApexCharts
+		ApexCharts,
+		VueScrollbar
 	},
 	data() {
 		return {
@@ -102,16 +106,20 @@ export default {
 
 <style lang="sass">
 .stats
-	margin-top: 2rem
-	width: 100%
+	&__scrollbar
+		max-height: 86vh
 
-	&__group
-		border: 1px solid #eee
-		border-radius: .3rem
-		padding: 1rem
+	&__content
+		margin-top: 2rem
+		margin-bottom: 4rem
 
-		p
-			font-size: 0.875rem
-			text-align: center
-			margin-bottom: .3rem
+		&-group
+			border: 1px solid #eee
+			border-radius: .3rem
+			padding: 1rem
+
+			p
+				font-size: 0.875rem
+				text-align: center
+				margin-bottom: .3rem
 </style>
