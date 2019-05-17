@@ -12,7 +12,7 @@
 				<dropdown-list
 					v-show="menu.file.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="console.log('hello')"
+					@mouseleave.native="dropdown('file', false)"
 				>
 					<dropdown-item @click.native="newRepository()">
 						New repository
@@ -46,7 +46,7 @@
 				<dropdown-list
 					v-show="menu.view.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="dropdown('view', false)"
+					@mouseleave.native="dropdown('view', false)"
 				>
 					<!-- <dropdown-item>
 						Changes
@@ -92,7 +92,7 @@
 				<dropdown-list
 					v-show="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="dropdown('repository', false)"
+					@mouseleave.native="dropdown('repository', false)"
 				>
 					<!-- <dropdown-item>
 						Push
@@ -133,7 +133,7 @@
 				<dropdown-list
 					v-show="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="dropdown('branch', false)"
+					@mouseleave.native="dropdown('branch', false)"
 				>
 					<dropdown-item>
 						New branch
@@ -170,7 +170,7 @@
 				<dropdown-list
 					v-show="menu.help.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="dropdown('help', false)"
+					@mouseleave.native="dropdown('help', false)"
 				>
 					<dropdown-item @click.native="switchRepository()">
 						Welcome
