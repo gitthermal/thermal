@@ -1,6 +1,6 @@
 <template>
 	<div class="menubar d-flex">
-		<div class="menubar__logo d-flex" @click="homepage()">
+		<div class="menubar__logo d-flex" @click.native="homepage()">
 			<thermalLogo />
 		</div>
 		<div class="menubar__list d-flex align-items-center">
@@ -14,23 +14,26 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave="console.log('hello')"
 				>
-					<dropdown-item @click="newRepository()">
+					<dropdown-item @click.native="newRepository()">
 						New repository
 					</dropdown-item>
-					<dropdown-item @click="addLocalRepository()">
+					<dropdown-item @click.native="addLocalRepository()">
 						Add local repository
 					</dropdown-item>
-					<dropdown-item @click="cloneRepository">
+					<dropdown-item @click.native="cloneRepository">
 						Clone repository
 					</dropdown-item>
-					<dropdown-item v-if="!!currentRepository" @click="switchRepository()">
+					<dropdown-item
+						v-if="!!currentRepository"
+						@click.native="switchRepository()"
+					>
 						Switch repository
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item @click="appOptions()">
+					<dropdown-item @click.native="appOptions()">
 						Options
 					</dropdown-item>
-					<dropdown-item @click="exitApp()">
+					<dropdown-item @click.native="exitApp()">
 						Exit
 					</dropdown-item>
 				</dropdown-list>
@@ -61,7 +64,7 @@
 						Go to summary
 					</dropdown-item>
 					<dropdown-divider /> -->
-					<dropdown-item @click="fullScreenView()">
+					<dropdown-item @click.native="fullScreenView()">
 						Toggle full screen
 					</dropdown-item>
 					<!-- <dropdown-item>
@@ -73,13 +76,16 @@
 					<dropdown-item>
 						Zoom out
 					</dropdown-item> -->
-					<dropdown-item @click="openDevTools()">
+					<dropdown-item @click.native="openDevTools()">
 						Toggle developer tools
 					</dropdown-item>
 				</dropdown-list>
 			</div>
 			<!-- Repository -->
-			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
+			<div
+				v-if="!!currentRepository"
+				@click="dropdown('repository', true)"
+			>
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -104,10 +110,10 @@
 					<dropdown-item>
 						Open in PowerShell
 					</dropdown-item>
-					<dropdown-item @click="openFileExplorer">
+					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
 					</dropdown-item>
-					<dropdown-item @click="openEditor">
+					<dropdown-item @click.native="openEditor">
 						Open in Code editor
 					</dropdown-item>
 					<dropdown-divider />
@@ -117,7 +123,10 @@
 				</dropdown-list>
 			</div>
 			<!-- Branch -->
-			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
+			<div
+				v-if="!!currentRepository"
+				@click="dropdown('branch', true)"
+			>
 				<div class="menubar__list__item">
 					Branch
 				</div>
@@ -163,13 +172,13 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave="dropdown('help', false)"
 				>
-					<dropdown-item @click="switchRepository()">
+					<dropdown-item @click.native="switchRepository()">
 						Welcome
 					</dropdown-item>
-					<dropdown-item @click="reportIssue()">
+					<dropdown-item @click.native="reportIssue()">
 						Report issue
 					</dropdown-item>
-					<dropdown-item @click="contactSupport()">
+					<dropdown-item @click.native="contactSupport()">
 						Contact support
 					</dropdown-item>
 					<dropdown-divider />
@@ -179,7 +188,7 @@
 					<dropdown-item>
 						Show logs in Explorer
 					</dropdown-item>
-					<dropdown-item @click="about()">
+					<dropdown-item @click.native="about()">
 						About
 					</dropdown-item>
 				</dropdown-list>
