@@ -1,6 +1,6 @@
 <template>
 	<div class="menubar d-flex">
-		<div class="menubar__logo d-flex" @click.native="homepage()">
+		<div class="menubar__logo d-flex" @click="homepage()">
 			<thermalLogo />
 		</div>
 		<div class="menubar__list d-flex align-items-center">
