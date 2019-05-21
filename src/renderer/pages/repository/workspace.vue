@@ -23,7 +23,7 @@
 								class="workspace__changes__item__checkbox"
 								type="checkbox"
 								:value="file.path"
-							>
+							/>
 							<label
 								class="workspace__changes__item__path"
 								:title="file.path"
@@ -188,6 +188,7 @@ export default {
 			return path;
 		},
 		previewFileChange(file) {
+			console.log(file);
 			this.$store.commit({
 				type: "workspace/toggleFilePreview",
 				isActive: true
