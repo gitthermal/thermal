@@ -12,10 +12,9 @@
 			By default git will be initalized at the root of the project.
 		</div>
 		<div class="model__section model__footer">
-			<primaryButton
+			<outlineButton
 				text="Go back"
 				appearance="outline"
-				:border-width="1"
 				border-color="00adb5"
 				margin-left="auto"
 				@click.native="switchRepository"
@@ -31,12 +30,14 @@
 
 <script>
 import primaryButton from '../buttons/primaryButton';
+import outlineButton from '../buttons/outlineButton';
 import gitInit from "../../git/init";
 
 export default {
 	name: "InitalizeGitRepository",
 	components: {
-		primaryButton
+		primaryButton,
+		outlineButton
 	},
 	computed: {
 		currentRepository() {
