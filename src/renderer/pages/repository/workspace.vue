@@ -6,11 +6,11 @@
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</div>
-				<fileChangesSkeleton
-					v-if="this.$store.getters['commit/allFiles'] > 1"
-				/>
-				<VueScrollbar v-else class="workspace__changes__scrollbar">
-					<div class="workspace__changes">
+				<VueScrollbar class="workspace__changes__scrollbar">
+					<fileChangesSkeleton
+						v-if="this.$store.getters['commit/allFiles'].length < 1"
+					/>
+					<div v-else class="workspace__changes">
 						<div
 							v-for="file in this.$store.getters['commit/allFiles']"
 							:key="file.path"
@@ -72,7 +72,7 @@ import VueScrollbar from "vue2-scrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
-import fileChangesSkeleton from "../../components/commit/fileChangesSkeleton";
+import fileChangesSkeleton from "../../components/skeleton/fileChanges";
 
 export default {
 	name: "Workspace",
