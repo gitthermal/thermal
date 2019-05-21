@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Export commit data
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -31,9 +28,10 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<primaryButton
+			<Button
 				margin-left="auto"
 				text="Export"
+				appearance="primary"
 				@click.native="exportDetail()"
 			/>
 		</div>
@@ -42,7 +40,7 @@
 
 <script>
 import closeIcon from "../icon/close";
-import primaryButton from "../buttons/primaryButton";
+import Button from "../buttons/Button";
 import inputTextLabel from "../input/inputTextLabel";
 const fs = require("fs");
 
@@ -51,7 +49,7 @@ export default {
 	components: {
 		closeIcon,
 		inputTextLabel,
-		primaryButton
+		Button
 	},
 	data() {
 		return {

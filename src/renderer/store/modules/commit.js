@@ -47,12 +47,6 @@ const actions = {
 			type: "stagedFiles",
 			staged: payload.staged
 		});
-	},
-	updateFiles: ({ commit }, payload) => {
-		commit({
-			type: "files",
-			files: payload.files
-		});
 	}
 };
 

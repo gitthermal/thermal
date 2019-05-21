@@ -8,22 +8,12 @@
 			<commitIcon />
 			<p>Commit</p>
 		</div>
-		<div
-			v-if="!!getRemoteUrl"
-			class="navbar__group"
-			:class="getRemoteFeature"
-		>
-			<div
-				class="navbar__item"
-				@click="gitPull()"
-			>
+		<div v-if="!!getRemoteUrl" class="navbar__group" :class="getRemoteFeature">
+			<div class="navbar__item" @click="gitPull()">
 				<pullIcon />
 				<p>Pull</p>
 			</div>
-			<div
-				class="navbar__item"
-				@click="gitPush()"
-			>
+			<div class="navbar__item" @click="gitPush()">
 				<pushIcon />
 				<p>Push</p>
 			</div>
@@ -34,7 +24,10 @@
 		</div>
 		<div
 			v-else
-			:class="[getRemoteFeature, !!getRemoteUrl === false ? 'navbar__group' : '']"
+			:class="[
+				getRemoteFeature,
+				!!getRemoteUrl === false ? 'navbar__group' : ''
+			]"
 			class="navbar__item"
 			@click="newRemote()"
 		>
@@ -42,32 +35,20 @@
 			<p>Publish</p>
 		</div>
 		<div class="navbar__group ml-auto">
-			<div 
-				class="navbar__item"
-				@click="openTerminal()"
-			>
+			<div class="navbar__item" @click="openTerminal()">
 				<terminalIcon />
 				<p>Terminal</p>
 			</div>
-			<div
-				class="navbar__item"
-				@click="openFileExplorer()"
-			>
+			<div class="navbar__item" @click="openFileExplorer()">
 				<folderIcon />
 				<p>Explorer</p>
 			</div>
-			<div
-				class="navbar__item"
-				@click="openRepositorySettings()"
-			>
+			<div class="navbar__item" @click="openRepositorySettings()">
 				<settingsIcon />
 				<p>Settings</p>
 			</div>
 		</div>
-		<div
-			class="navbar__item"
-			@click="switchRepository()"
-		>
+		<div class="navbar__item" @click="switchRepository()">
 			<switchRepositoryIcon />
 			<p>Switch repo</p>
 		</div>
@@ -121,7 +102,7 @@ export default {
 			} else {
 				return "cursor-pointer";
 			}
-		},
+		}
 	},
 	methods: {
 		openCommitPage(event) {
@@ -178,6 +159,14 @@ export default {
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
+			this.$store.commit({
+				type: "history/updateLogs",
+				logs: []
+			});
+			this.$store.commit({
+				type: "commit/files",
+				files: []
+			});
 		}
 	}
 };

@@ -2,7 +2,8 @@
 	<div class="history">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
-				<VueScrollbar class="history__logs__scrollbar">
+				<logSkeleton v-if="repositoryLogs.length < 1" />
+				<VueScrollbar v-else class="history__logs__scrollbar">
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -13,10 +14,7 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<div
-				v-else
-				class="history__logs__detail"
-			>
+			<div v-else class="history__logs__detail">
 				<div class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"
@@ -37,9 +35,10 @@
 			</div>
 		</div>
 		<div class="history__preview">
-			<div v-if="this.$store.state.history.filePreview.isActive">
-				<commitHistoryPreview />
-			</div>
+			<diffPreview
+				v-if="this.$store.state.history.filePreview.isActive"
+				:preview="commitFileDiffPreview"
+			/>
 			<div v-else>
 				No content to show
 			</div>
@@ -50,19 +49,21 @@
 <script>
 import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
-import commitHistoryPreview from "../../components/commit/commitHistoryPreview";
+import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
-import logMixin from "../../mixins/git/log";
+import gitLog from "../../git/log";
+import logSkeleton from "../../components/skeleton/logs";
 
 export default {
 	name: "History",
 	components: {
 		commitHistoryItem,
 		commitInformation,
-		commitHistoryPreview,
+		diffPreview,
 		VueScrollbar,
-		fileIcon
+		fileIcon,
+		logSkeleton
 	},
 	computed: {
 		repositoryLogs() {
@@ -70,6 +71,9 @@ export default {
 		},
 		currentRepository() {
 			return this.$store.getters["workspace/currentRepository"];
+		},
+		commitFileDiffPreview() {
+			return this.$store.getters["history/getFilePreview"];
 		}
 	},
 	mounted() {
@@ -77,11 +81,10 @@ export default {
 	},
 	methods: {
 		gitLog() {
-			logMixin(this.currentRepository)
-			.then(result => {
-				this.$store.dispatch("history/getRepositoryLogs", {
+			gitLog(this.currentRepository).then(result => {
+				this.$store.commit("history/updateLogs", {
 					logs: result
-				});			
+				});
 			});
 		},
 		toggleCommitDetail() {

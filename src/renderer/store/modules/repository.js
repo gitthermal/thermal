@@ -41,13 +41,19 @@ const mutations = {
 			payload.remote;
 	},
 	toggleCommitFeature(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].features.commit = payload.commits;
+		state.repositoryList[
+			workspace.state.workspaceRepository.index
+		].features.commit = payload.commits;
 	},
 	toggleRemoteFeature(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].features.remote = payload.remotes;
+		state.repositoryList[
+			workspace.state.workspaceRepository.index
+		].features.remote = payload.remotes;
 	},
 	toggleIsGit(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].isGit = payload.isGit;
+		state.repositoryList[
+      workspace.state.workspaceRepository.index
+    ].isGit = payload.isGit;
 	}
 };
 

@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Add local repository
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -30,16 +27,18 @@
 				webkitdirectory
 				style="display: none"
 				@change="fileSectorInput"
-			>
-			<primaryButton
+			/>
+			<Button
 				text="Select"
+				appearance="primary"
 				margin-left=".4rem"
 				@click.native="$refs.fileInput.click()"
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<primaryButton
+			<Button
 				margin-left="auto"
+				appearance="primary"
 				text="Add repository"
 				@click.native="addRepository(pathToRepository)"
 			/>
@@ -50,7 +49,7 @@
 <script>
 import closeIcon from "../icon/close";
 import inputText from "../input/inputText";
-import primaryButton from "../buttons/primaryButton";
+import Button from "../buttons/Button";
 import addRepository from "../../mixins/addRepository";
 
 export default {
@@ -58,7 +57,7 @@ export default {
 	components: {
 		closeIcon,
 		inputText,
-		primaryButton
+		Button
 	},
 	directives: {
 		focus: {
@@ -78,9 +77,11 @@ export default {
 			this.pathToRepository = event.target.files[0].path.split("\\").join("/");
 		},
 		addRepository(path) {
-			this.localRepository(path);
-			this.pathToRepository = "";
-			this.closeModel();
+			if (this.pathToRepository !== "") {
+				this.localRepository(path);
+				this.pathToRepository = "";
+				this.closeModel();
+			}
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");

@@ -2,17 +2,30 @@
 	<input
 		type="text"
 		:name="name"
-		class="input__text"
-		:class="disabled"
+		class="text__input"
+		:class="{
+			'text__input-disable': disabled,
+			'text__input-invalid': isInvalid
+		}"
 		:placeholder="placeholder"
-		:disabled="disable"
+		:disabled="disabled"
+		:style="{
+			...spacingProps,
+			...borderProps,
+			...fontProps
+		}"
 		@input="$emit('input', $event.target.value)"
-	>
+	/>
 </template>
 
 <script>
+import spacingProps from "../../mixins/spacingProps";
+import borderProps from "../../mixins/borderProps";
+import fontProps from "../../mixins/fontProps";
+
 export default {
 	name: "InputText",
+	mixins: [spacingProps, borderProps, fontProps],
 	props: {
 		name: {
 			type: String,
@@ -24,41 +37,61 @@ export default {
 			default: "Enter the value",
 			required: true
 		},
-		disable: {
+		disabled: {
 			type: Boolean,
 			default: false
-		}
-	},
-	computed: {
-		disabled() {
-			if (this.disable) {
-				return "input__text__disable";
-			} else {
-				return "";
-			}
+		},
+		isInvalid: {
+			type: Boolean,
+			default: false
+		},
+		borderRadius: {
+			type: String,
+			default: ".3"
+		},
+		fontSize: {
+			type: Number,
+			default: 0.833
+		},
+		paddingTop: {
+			type: String,
+			default: ".5rem"
+		},
+		paddingBottom: {
+			type: String,
+			default: ".5rem"
+		},
+		paddingLeft: {
+			type: String,
+			default: ".8rem"
+		},
+		paddingRight: {
+			type: String,
+			default: ".8rem"
+		},
+		width: {
+			type: String,
+			default: "100%"
 		}
 	}
 };
 </script>
 
 <style lang="sass">
-.input
+.text__input
+	outline: none
+	border-color: #eeeeee
 
-	&__text
-		border-radius: .3rem
-		padding: .5rem .8rem
-		border: 1px solid #eeeeee
-		font-family: inherit
-		outline: none
-		width: 100%
+	&-disable
+		background-color: #eeeeee
+		color: #222831
+		cursor: not-allowed
+		user-select: none
 
-		&:focus
-			border: 1px solid #00adb5
-			box-shadow: rgba(#00adb5, .2) 0 0 0 3px
+	&-invalid
+		border-color: #f04747
 
-		&__disable
-			background-color: #eee
-			color: #222831
-			cursor: not-allowed
-			user-select: none
+	&:focus
+		box-shadow: rgba(#00adb5, .2) 0 0 0 3px
+		border-color: #00adb5
 </style>

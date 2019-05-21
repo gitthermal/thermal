@@ -4,7 +4,7 @@
 			<img
 				class="commit__detail__author__image"
 				src="../../../../static/image/user_avatar.png"
-			>
+			/>
 			<div>
 				<h6 class="commit__detail__author__name">
 					{{ commitInformation.author.name }}
@@ -32,11 +32,9 @@
 			>
 				Author:
 				<p>
-					{{ commitInformation.author.name }} 
+					{{ commitInformation.author.name }}
 					<!-- eslint-disable-next-line vue/no-parsing-error -->
-					<{{
-						commitInformation.author.email
-					}}>
+					<{{ commitInformation.author.email }}>
 				</p>
 			</div>
 			<div
@@ -54,9 +52,7 @@
 				<p>
 					{{ commitInformation.committer.name }}
 					<!-- eslint-disable-next-line vue/no-parsing-error -->
-					<{{
-						commitInformation.committer.email
-					}}>
+					<{{ commitInformation.committer.email }}>
 				</p>
 			</div>
 			<div
@@ -115,12 +111,7 @@
 				v-for="file in commitInformation.files.list"
 				:key="file"
 				class="commit__detail__files__list"
-				@click="
-					commitHistoryPreview(
-						commitInformation.meta.commit_hash,
-						file
-					)
-				"
+				@click="commitHistoryPreview(commitInformation.meta.commit_hash, file)"
 			>
 				{{ file }}
 			</div>
@@ -157,10 +148,7 @@ export default {
 			this.getFilesDetail(this.commitHash);
 		},
 		getAuthorDetail(hash) {
-			const params = [
-				hash,
-				"--format=%an %n %ae %n %ad"
-			];
+			const params = [hash, "--format=%an %n %ae %n %ad"];
 			showMixin(this.currentRepository, params).then(result => {
 				let output = result.split("\n");
 				this.$store.dispatch({
@@ -172,10 +160,7 @@ export default {
 			});
 		},
 		getCommitBody(hash) {
-			const params = [
-				hash,
-				"--format=%s %n << %n %b %n >>"
-			];
+			const params = [hash, "--format=%s %n << %n %b %n >>"];
 			showMixin(this.currentRepository, params).then(result => {
 				let output = result.split("\n");
 				let title = output[0].trim();
@@ -223,11 +208,7 @@ export default {
 			});
 		},
 		getFilesDetail(hash) {
-			const params = [
-				hash,
-				"--oneline",
-				"--stat"
-			];
+			const params = [hash, "--oneline", "--stat"];
 			showMixin(this.currentRepository, params).then(result => {
 				let output = result.split("\n");
 				let additionDeletion = output[output.length - 2].split(", ");
@@ -263,12 +244,7 @@ export default {
 					type: "history/toggleFilePreview",
 					isActive: true
 				});
-				const params = [
-					hash + "^1",
-					hash,
-					"--",
-					path
-				];
+				const params = [hash + "^1", hash, "--", path];
 				diffMixin(this.currentRepository, params).then(result => {
 					let output = result.split("\n");
 					output.splice(0, 4);
