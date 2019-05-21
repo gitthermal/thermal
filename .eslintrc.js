@@ -10,18 +10,28 @@ module.exports = {
 		node: true
 	},
 	extends: [
+		"standard",
+		"prettier",
+		"prettier/vue",
+		"prettier/standard",
 		"plugin:vue/base",
 		"plugin:vue/essential",
-		"plugin:vue/strongly-recommended",
 		"plugin:vue/recommended",
-		"standard",
-		"plugin:prettier/recommended"
+		"plugin:vue/strongly-recommended"
 	],
 	globals: {
 		__static: true
 	},
+	plugins: [
+		"prettier"
+	],
 	rules: {
-		"prettier/prettier": "off",
+		"prettier/prettier": [
+			1,
+			{
+				"usePrettierrc": true
+			}
+		],
 		// allow debugger during development
 		"no-debugger": process.env.NODE_ENV === "testing" ? 2 : 0,
 		// enable semicolons instead of ASI
@@ -29,13 +39,8 @@ module.exports = {
 		// disable console log
 		"no-console": 1,
 		// enforce consistent indentation
-		"vue/html-indent": [2, "tab"]
-	},
-	"overrides": {
-		"files": ["src/renderer/components/icon/**"],
-		"rules": {
-			"vue/max-attributes-per-line": 0,
-			"vue/html-indent": 0
-		}
+		"vue/html-indent": [2, "tab"],
+		"vue/max-attributes-per-line": 0,
+		"vue/html-self-closing": 0
 	}
 }

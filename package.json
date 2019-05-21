@@ -1,7 +1,7 @@
 {
   "name": "thermal",
   "license": "null",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1",
   "copyright": "Copyright © 2019 CodeCarrot",
   "author": {
     "name": "CodeCarrot, Inc.",
@@ -14,7 +14,7 @@
   },
   "main": "./dist/electron/main.js",
   "scripts": {
-    "build:win": "node .electron-vue/build.js && electron-builder --win",
+    "build:window": "node .electron-vue/build.js && electron-builder --win",
     "build:mac": "node .electron-vue/build.js && electron-builder --mac",
     "build:linux": "node .electron-vue/build.js && electron-builder --linux",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
@@ -31,7 +31,7 @@
   "build": {
     "productName": "Thermal",
     "appId": "com.netlify.thermal",
-    "artifactName": "${name}-${arch}-${version}.${ext}",
+    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
     "directories": {
       "output": "dist"
     },
@@ -41,7 +41,7 @@
     "dmg": {
       "title": "${name}",
       "background": "build/appDmgBackground.png",
-      "icon": "build/icon.icns",
+      "icon": "build/icons/icon.icns",
       "contents": [
         {
           "x": 410,
@@ -91,8 +91,10 @@
   "dependencies": {
     "@sentry/electron": "^0.17.0",
     "axios": "^0.18.0",
+    "chart.js": "^2.8.0",
     "simple-git": "1.110.0",
     "vue": "2.6.10",
+    "vue-chartjs": "^3.4.2",
     "vue-electron": "^1.0.6",
     "vue-router": "3.0.2",
     "vuex": "^3.0.1"
@@ -104,6 +106,7 @@
     "@babel/register": "^7.4.0",
     "@babel/runtime": "^7.4.3",
     "ajv": "^6.5.0",
+    "apexcharts": "^3.6.10",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.5",
     "babili-webpack-plugin": "^0.1.2",
@@ -139,6 +142,8 @@
     "sass-loader": "^7.0.3",
     "style-loader": "0.23.1",
     "url-loader": "^1.0.1",
+    "vue-apexcharts": "^1.3.5",
+    "vue-content-loader": "^0.2.1",
     "vue-html-loader": "^1.2.4",
     "vue-js-toggle-button": "^1.3.2",
     "vue-loader": "^15.2.4",

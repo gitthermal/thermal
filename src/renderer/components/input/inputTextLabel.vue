@@ -1,22 +1,24 @@
 <template>
-	<div>
-		<p
-			class="input__label"
-			:for="labelName"
-		>
+	<div
+		:style="{
+			...spacingProps
+		}"
+	>
+		<p class="input__label" :for="labelName">
 			{{ label }}
 		</p>
 		<inputText
 			:name="name"
 			:placeholder="placeholder"
 			:value="value"
-			:disable="disable"
+			:disabled="disabled"
 			@input="$emit('input', $event)"
 		/>
 	</div>
 </template>
 
 <script>
+import spacingProps from "../../mixins/spacingProps";
 import inputText from "./inputText";
 
 export default {
@@ -24,6 +26,7 @@ export default {
 	components: {
 		inputText
 	},
+	mixins: [spacingProps],
 	props: {
 		name: {
 			type: String,
@@ -37,7 +40,7 @@ export default {
 			type: String,
 			default: ""
 		},
-		disable: {
+		disabled: {
 			type: Boolean,
 			default: false
 		},

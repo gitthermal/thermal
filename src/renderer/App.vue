@@ -2,16 +2,15 @@
 	<div id="app">
 		<menubar />
 		<router-view />
-		<div
-			v-if="this.$store.state.model.isActive"
-			class="model__placeholder"
-		>
+		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
+				<newRepository />
 				<addLocalRepository />
 				<about />
 				<exportCommitData />
 				<newRemote />
 				<initalizeGitRepository />
+				<cloneRepository />
 			</div>
 		</div>
 	</div>
@@ -19,24 +18,29 @@
 
 <script>
 import menubar from "./components/menubar";
+import newRepository from "./components/model/newRepository";
 import addLocalRepository from "./components/model/addLocalRepository";
 import about from "./components/model/about";
 import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
 import initalizeGitRepository from "./components/model/initalizeGitRepository";
+import cloneRepository from './components/model/cloneRepository';
 
 export default {
 	name: "App",
 	components: {
 		menubar,
+		newRepository,
 		addLocalRepository,
 		about,
 		exportCommitData,
 		newRemote,
-		initalizeGitRepository
+		initalizeGitRepository,
+    cloneRepository
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
+		this.$store.commit("settings/getSettingsList");
 	}
 };
 </script>

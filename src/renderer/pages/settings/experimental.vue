@@ -40,8 +40,8 @@ export default {
 				return this.$store.state.settings.experimental.fileChanges;
 			},
 			set: function(value) {
-				this.$store.commit({
-					type: "settings/toggleFileChanges",
+				this.$store.dispatch({
+					type: "settings/updateFileChanges",
 					fileChanges: value
 				});
 			}

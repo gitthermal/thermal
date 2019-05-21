@@ -1,231 +1,196 @@
 <template>
 	<div class="menubar d-flex">
-		<div
-			class="menubar__logo d-flex"
-			@click="homepage()"
-		>
+		<div class="menubar__logo d-flex" @click="homepage()">
 			<thermalLogo />
 		</div>
 		<div class="menubar__list d-flex align-items-center">
-			<div @click="fileDropdown()">
+			<!-- File -->
+			<div @click="dropdown('file', true)">
 				<div class="menubar__list__item">
 					File
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.file.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="fileDropdown()"
+					@mouseleave.native="dropdown('file', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<dropdown-item @click.native="newRepository()">
 						New repository
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="addLocalRepository()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="addLocalRepository()">
 						Add local repository
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item @click.native="cloneRepository">
 						Clone repository
-					</div>
-					<div
+					</dropdown-item>
+					<dropdown-item
 						v-if="!!currentRepository"
-						class="menubar__list__item__dropdown__item"
-						@click="switchRepository()"
+						@click.native="switchRepository()"
 					>
 						Switch repository
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="appOptions()"
-					>
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item @click.native="appOptions()">
 						Options
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="exitApp()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="exitApp()">
 						Exit
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
-			<div @click="viewDropdown()">
+			<!-- View -->
+			<div @click="dropdown('view', true)">
 				<div class="menubar__list__item">
 					View
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.view.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="viewDropdown()"
+					@mouseleave.native="dropdown('view', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<!-- <dropdown-item>
 						Changes
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						History
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Repository list
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Branches list
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Go to summary
-					</div>
-					<div 
-						class="menubar__list__item__dropdown__item"
-						@click="fullScreenView()"
-					>
+					</dropdown-item>
+					<dropdown-divider /> -->
+					<dropdown-item @click.native="fullScreenView()">
 						Toggle full screen
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<!-- <dropdown-item>
 						Reset zoom
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Zoom in
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Zoom out
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openDevTools()"
-					>
+					</dropdown-item> -->
+					<dropdown-item @click.native="openDevTools()">
 						Toggle developer tools
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
-			<div 
-				v-if="!!currentRepository"
-				@click="repositoryDropdown()"
-			>
+			<!-- Repository -->
+			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="repositoryDropdown()"
+					@mouseleave.native="dropdown('repository', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<!-- <dropdown-item>
 						Push
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Pull
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Remove
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider /> -->
+					<dropdown-item>
 						View on GitHub
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Open in PowerShell
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openFileExplorer()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="openEditor()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="openEditor">
 						Open in Code editor
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Repository settings
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
-			<div
-				v-if="!!currentRepository"
-				@click="branchDropdown()"
-			>
+			<!-- Branch -->
+			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="branchDropdown()"
+					@mouseleave.native="dropdown('branch', false)"
 				>
-					<div class="menubar__list__item__dropdown__item">
+					<dropdown-item>
 						New branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Rename branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Delete branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Update to master
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Compare to master
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Merge into current branch
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Compare on GitHub
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Create pull request
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
-			<div @click="helpDropdown()">
+			<!-- Help -->
+			<div @click="dropdown('help', true)">
 				<div class="menubar__list__item">
 					Help
 				</div>
-				<div
+				<dropdown-list
 					v-show="menu.help.isActive"
 					class="menubar__list__item__dropdown"
-					@mouseleave="helpDropdown()"
+					@mouseleave.native="dropdown('help', false)"
 				>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="switchRepository()"
-					>
+					<dropdown-item @click.native="switchRepository()">
 						Welcome
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="reportIssue()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="reportIssue()">
 						Report issue
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="contactSupport()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="contactSupport()">
 						Contact support
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-divider />
+					<dropdown-item>
 						Show User Guides
-					</div>
-					<div class="menubar__list__item__dropdown__item">
+					</dropdown-item>
+					<dropdown-item>
 						Show logs in Explorer
-					</div>
-					<div
-						class="menubar__list__item__dropdown__item"
-						@click="about()"
-					>
+					</dropdown-item>
+					<dropdown-item @click.native="about()">
 						About
-					</div>
-				</div>
+					</dropdown-item>
+				</dropdown-list>
 			</div>
 		</div>
 		<div class="menubar__drag" />
 		<div class="menubar__title">
-			<div
-				v-if="!!currentRepository"
-				class="menubar__title__repository d-flex"
-			>
+			<div v-if="!!currentRepository" class="menubar__title__repository d-flex">
 				{{ currentRepository.name }}
 				<div style="padding: 0 5px">
 					-
@@ -243,6 +208,9 @@
 
 <script>
 import thermalLogo from "./icon/logo";
+import dropdownList from "./dropdown/dropdownList";
+import dropdownItem from "./dropdown/dropdownItem";
+import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
@@ -252,6 +220,9 @@ export default {
 	name: "Menubar",
 	components: {
 		thermalLogo,
+		dropdownList,
+		dropdownItem,
+		dropdownDivider,
 		windowsButton
 	},
 	data() {
@@ -289,24 +260,39 @@ export default {
 		homepage() {
 			this.$router.push({ name: "welcome" });
 		},
-		fileDropdown() {
-			this.menu.file.isActive = !this.menu.file.isActive;
-		},
-		viewDropdown() {
-			this.menu.view.isActive = !this.menu.view.isActive;
-		},
-		repositoryDropdown() {
-			this.menu.repository.isActive = !this.menu.repository.isActive;
-		},
-		branchDropdown() {
-			this.menu.branch.isActive = !this.menu.branch.isActive;
-		},
-		helpDropdown() {
-			this.menu.help.isActive = !this.menu.help.isActive;
+		dropdown(type, status) {
+			this.menu.file.isActive = false;
+			this.menu.view.isActive = false;
+			this.menu.repository.isActive = false;
+			this.menu.branch.isActive = false;
+			this.menu.help.isActive = false;
+			switch (type) {
+				case "file":
+					this.menu.file.isActive = status;
+					break;
+				case "view":
+					this.menu.view.isActive = status;
+					break;
+				case "repository":
+					this.menu.repository.isActive = status;
+					break;
+				case "branch":
+					this.menu.branch.isActive = status;
+					break;
+				case "help":
+					this.menu.help.isActive = status;
+					break;
+			}
 		},
 		// File
+		newRepository() {
+			this.$store.dispatch("model/showNewRepository");
+		},
 		addLocalRepository() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");
+		},
+		cloneRepository() {
+			this.$store.dispatch("model/showCloneRepository");
 		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
@@ -373,38 +359,18 @@ export default {
 			height: 20px
 
 	&__list
-		padding: 8px 10px
-
 		&__item
+			padding: 10px
 			color: #8B9798
 			cursor: pointer
 			font-size: .8rem
 			user-select: none
-
-			&:not(:last-child)
-				margin-right: 1rem
 
 			&:hover
 				color: #222831
 
 			&__dropdown
 				top: 32px
-				position: absolute
-				background-color: white
-				border-radius: 3px
-				box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px
-				display: flex
-				font-size: .8rem
-				flex-direction: column
-				z-index: 10
-
-				&__item
-					cursor: pointer
-					padding: 8px 15px
-					user-select: none
-
-					&:hover
-						background-color: rgba(139, 151, 152, .1)
 
 	&__title
 		position: absolute

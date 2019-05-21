@@ -1,16 +1,10 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.newRemote"
-		class="model--small"
-	>
+	<div v-show="this.$store.state.model.model.newRemote" class="model--small">
 		<div class="model__section model__header">
 			<h6 class="model__header__title">
 				Add remote url
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -25,9 +19,10 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<primaryButton
+			<Button
 				margin-left="auto"
 				text="Publish repository"
+				appearance="primary"
 				@click.native="addRemoteUrl()"
 			/>
 		</div>
@@ -37,7 +32,7 @@
 <script>
 import inputText from "../input/inputText";
 import closeIcon from "../icon/close";
-import primaryButton from "../buttons/primaryButton";
+import Button from "../buttons/Button";
 import git from "simple-git/promise";
 
 export default {
@@ -45,7 +40,7 @@ export default {
 	components: {
 		inputText,
 		closeIcon,
-		primaryButton
+		Button
 	},
 	directives: {
 		focus: {

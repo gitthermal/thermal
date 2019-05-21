@@ -1,8 +1,5 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.about"
-		class="model--medium"
-	>
+	<div v-show="this.$store.state.model.model.about" class="model--medium">
 		<div class="about">
 			<div class="about__header d-flex flex-column align-items-center">
 				<div class="about__header__logo">
@@ -10,7 +7,7 @@
 				</div>
 				<h6>Thermal</h6>
 				<p class="about__header__version">
-					Version {{ appVersion }}
+					{{ appVersion }}
 				</p>
 			</div>
 			<div class="about__content">
@@ -25,14 +22,15 @@
 			</div>
 		</div>
 		<div class="about__footer d-flex">
-			<outlineButton
+			<Button
 				text="Close"
 				appearance="outline"
 				margin-left="auto"
 				@click.native="closeModel()"
 			/>
-			<primaryButton
+			<Button
 				text="Release Notes"
+				appearance="primary"
 				margin-left=".5rem"
 				@click.native="releaseNotes()"
 			/>
@@ -43,20 +41,18 @@
 <script>
 import thermalLogo from "../icon/logo";
 import packageJson from "../../../../package.json";
-import primaryButton from "../buttons/primaryButton";
-import outlineButton from "../buttons/outlineButton";
+import Button from "../buttons/Button";
 const { shell } = require("electron");
 
 export default {
 	name: "About",
 	components: {
 		thermalLogo,
-		primaryButton,
-		outlineButton
+		Button
 	},
 	computed: {
 		appVersion() {
-			return packageJson.version;
+			return `Version ${packageJson.version}`;
 		}
 	},
 	methods: {
