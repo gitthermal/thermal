@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Export commit data
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>

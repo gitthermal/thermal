@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Create a new repository
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -37,7 +34,7 @@
 					webkitdirectory
 					style="display: none"
 					@change="folderSelectorInput"
-				>
+				/>
 				<Button
 					text="Select"
 					appearance="primary"
@@ -69,7 +66,7 @@ import closeIcon from "../icon/close";
 import Button from "../buttons/Button";
 import git from "simple-git/promise";
 import addRepository from "../../mixins/addRepository";
-const fs = require('fs');
+const fs = require("fs");
 
 export default {
 	name: "NewRepository",
@@ -87,10 +84,13 @@ export default {
 	},
 	methods: {
 		folderSelectorInput(event) {
-			this.repositoryLocation = event.target.files[0].path.split("\\").join("/");
+			this.repositoryLocation = event.target.files[0].path
+				.split("\\")
+				.join("/");
 		},
 		createNewRepository() {
-			const repositoryPath = this.repositoryLocation + '/' + this.repositoryName;
+			const repositoryPath =
+				this.repositoryLocation + "/" + this.repositoryName;
 			if (!fs.existsSync(repositoryPath)) {
 				fs.mkdirSync(repositoryPath);
 			}
@@ -108,7 +108,3 @@ export default {
 	}
 };
 </script>
-
-<style lang='sass'>
-
-</style>

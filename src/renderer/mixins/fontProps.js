@@ -1,9 +1,9 @@
 export default {
 	props: {
-		// a prioritized list of one or more font family names 
+		// a prioritized list of one or more font family names
 		fontFamily: {
 			type: String,
-			default: 'inherit'
+			default: "inherit"
 		},
 		// size of the font in rems
 		fontSize: {
@@ -23,7 +23,7 @@ export default {
 		// styled with a normal, italic, or oblique face
 		fontStyle: {
 			type: String,
-			default: 'normal'
+			default: "normal"
 		}
 	},
 	data() {

@@ -7,10 +7,7 @@
 			<h6 class="model__header__title">
 				Add local repository
 			</h6>
-			<div
-				class="model__header__close"
-				@click="closeModel()"
-			>
+			<div class="model__header__close" @click="closeModel()">
 				<closeIcon />
 			</div>
 		</div>
@@ -30,7 +27,7 @@
 				webkitdirectory
 				style="display: none"
 				@change="fileSectorInput"
-			>
+			/>
 			<Button
 				text="Select"
 				appearance="primary"
@@ -80,9 +77,11 @@ export default {
 			this.pathToRepository = event.target.files[0].path.split("\\").join("/");
 		},
 		addRepository(path) {
-			this.localRepository(path);
-			this.pathToRepository = "";
-			this.closeModel();
+			if (this.pathToRepository !== "") {
+				this.localRepository(path);
+				this.pathToRepository = "";
+				this.closeModel();
+			}
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAddLocalRepositoryModel");

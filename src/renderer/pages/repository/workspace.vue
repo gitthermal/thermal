@@ -7,7 +7,10 @@
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</div>
 				<VueScrollbar class="workspace__changes__scrollbar">
-					<div class="workspace__changes">
+					<fileChangesSkeleton
+						v-if="this.$store.getters['commit/allFiles'].length < 1"
+					/>
+					<div v-else class="workspace__changes">
 						<div
 							v-for="file in this.$store.getters['commit/allFiles']"
 							:key="file.path"
@@ -20,7 +23,7 @@
 								class="workspace__changes__item__checkbox"
 								type="checkbox"
 								:value="file.path"
-							>
+							/>
 							<label
 								class="workspace__changes__item__path"
 								:title="file.path"
@@ -64,11 +67,12 @@
 
 <script>
 import statusMixin from "../../mixins/git/status";
-import diffMixin from '../../mixins/git/diff';
+import diffMixin from "../../mixins/git/diff";
 import VueScrollbar from "vue2-scrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
-import diffPreview from '../../components/diff/diffPreview';
+import diffPreview from "../../components/diff/diffPreview";
+import fileChangesSkeleton from "../../components/skeleton/fileChanges";
 
 export default {
 	name: "Workspace",
@@ -76,8 +80,12 @@ export default {
 		branchIcon,
 		VueScrollbar,
 		commitMessage,
-		diffPreview
+		diffPreview,
+		fileChangesSkeleton
 	},
+	mixins: [
+		diffMixin
+	],
 	data() {
 		return {
 			commitMessageTitle: "",
@@ -114,7 +122,7 @@ export default {
 	},
 	mounted() {
 		this.gitStatus();
-		this.previewFileChange(this.$store.getters['commit/allFiles'][0]);
+		this.previewFileChange(this.$store.getters["commit/allFiles"][0]);
 	},
 	methods: {
 		gitStatus() {
@@ -123,8 +131,8 @@ export default {
 					type: "commit/updateActiveBranch",
 					branch: result.current
 				});
-				this.$store.dispatch({
-					type: "commit/updateFiles",
+				this.$store.commit({
+					type: "commit/files",
 					files: result.files
 				});
 			});
@@ -187,11 +195,7 @@ export default {
 				type: "workspace/toggleFilePreview",
 				isActive: true
 			});
-			const params = [
-				'HEAD',
-				'--',
-				`:${file.path}`
-			];
+			const params = ["HEAD", "--", `:${file.path}`];
 			diffMixin(this.currentRepository, params).then(result => {
 				let output = result.split("\n");
 				output.splice(0, 3);
@@ -212,7 +216,7 @@ export default {
 
 	&__files
 		border-right: 1px solid #DEE0E3
-		width: 400px
+		width: 300px
 
 	&__branch
 		background-color: #EFEFEF

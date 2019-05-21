@@ -3,23 +3,25 @@
 		class="button"
 		:class="{
 			'button-disable': disabled,
-			'button__primary': appearance === 'primary',
-			'button__primary-default': (appearance === 'primary' && type === 'default'),
-			'button__primary-success': (appearance === 'primary' && type === 'success'),
-			'button__primary-warning': (appearance === 'primary' && type === 'warning'),
-			'button__primary-danger': (appearance === 'primary' && type === 'danger'),
-			'button__outline': appearance === 'outline',
-			'button__outline-default': (appearance === 'outline' && type === 'default'),
-			'button__outline-success': (appearance === 'outline' && type === 'success'),
-			'button__outline-warning': (appearance === 'outline' && type === 'warning'),
-			'button__outline-danger': (appearance === 'outline' && type === 'danger')
+			button__primary: appearance === 'primary',
+			'button__primary-default': appearance === 'primary' && type === 'default',
+			'button__primary-success': appearance === 'primary' && type === 'success',
+			'button__primary-warning': appearance === 'primary' && type === 'warning',
+			'button__primary-danger': appearance === 'primary' && type === 'danger',
+			button__outline: appearance === 'outline',
+			'button__outline-default': appearance === 'outline' && type === 'default',
+			'button__outline-success': appearance === 'outline' && type === 'success',
+			'button__outline-warning': appearance === 'outline' && type === 'warning',
+			'button__outline-danger': appearance === 'outline' && type === 'danger'
 		}"
 		:style="{
 			...borderProps,
 			...spacingProps,
 			...fontProps
 		}"
-	>{{ text }}</a>
+	>
+		{{ text }}
+	</a>
 </template>
 
 <script>
@@ -29,11 +31,7 @@ import fontProps from "../../mixins/fontProps";
 
 export default {
 	name: "Button",
-	mixins: [
-		spacingProps,
-		borderProps,
-		fontProps
-	],
+	mixins: [spacingProps, borderProps, fontProps],
 	props: {
 		appearance: {
 			type: String,
@@ -61,7 +59,7 @@ export default {
 		},
 		fontSize: {
 			type: Number,
-			default: .875
+			default: 0.875
 		},
 		lineHeight: {
 			type: Number,

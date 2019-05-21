@@ -8,28 +8,16 @@
 				One stop. Git repository.
 			</p>
 			<div class="welcome__introduction__item d-flex">
-				<div
-					class="welcome__introduction__item__icon"
-					@click="websiteURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="websiteURL()">
 					<linkIcon />
 				</div>
-				<div
-					class="welcome__introduction__item__icon"
-					@click="twitterURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="twitterURL()">
 					<twitterIcon />
 				</div>
-				<div
-					class="welcome__introduction__item__icon"
-					@click="coffeeURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="coffeeURL()">
 					<coffeeIcon />
 				</div>
-				<div 
-					class="welcome__introduction__item__icon"
-					@click="discordURL()"
-				>
+				<div class="welcome__introduction__item__icon" @click="discordURL()">
 					<helpIcon />
 				</div>
 			</div>
@@ -78,11 +66,7 @@
 									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
 								>
 									<h6>{{ repo }}</h6>
-									<Button
-										text="Open"
-										appearance="primary"
-										margin-left="auto"
-									/>
+									<Button text="Open" appearance="primary" margin-left="auto" />
 									<div class="welcome__repository__list__item__settings">
 										<settingsIcon />
 									</div>
@@ -112,7 +96,7 @@
 			/>
 		</div>
 		<div class="appMetaData">
-			Version: {{ appVersion }}
+			{{ appVersion }}
 		</div>
 	</div>
 </template>
@@ -162,7 +146,7 @@ export default {
 			return this.$store.getters["repository/listAllRepository"];
 		},
 		appVersion() {
-			return packageJson.version;
+			return `Version: ${packageJson.version}`;
 		}
 	},
 	methods: {
@@ -201,7 +185,9 @@ export default {
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
 			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.repositoryPath = event.dataTransfer.files[i].path.split("\\").join("/");
+				this.repositoryPath = event.dataTransfer.files[i].path
+					.split("\\")
+					.join("/");
 				this.localRepository(this.repositoryPath);
 			}
 		}
@@ -215,7 +201,6 @@ export default {
 	height: 100vh
 
 	&__introduction
-
 		&__description
 			margin-bottom: 1rem
 
@@ -239,7 +224,6 @@ export default {
 		background-color: #DEE0E3
 
 	&__repository
-
 		&__scrollbar
 			max-height: 400px
 

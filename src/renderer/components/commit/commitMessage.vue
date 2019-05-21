@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import inputText from '../input/inputText';
-import Button from '../buttons/Button';
+import inputText from "../input/inputText";
+import Button from "../buttons/Button";
 import commitMixin from "../../mixins/git/commit";
 import spacingProps from "../../mixins/spacingProps";
 
@@ -37,7 +37,7 @@ export default {
 	mixins: [spacingProps],
 	data() {
 		return {
-			commitMessageTitle: ""	
+			commitMessageTitle: ""
 		};
 	},
 	computed: {
@@ -53,7 +53,11 @@ export default {
 	},
 	methods: {
 		commitMessageButton() {
-			commitMixin(this.currentRepository, this.$store.getters["commit/allStagedFiles"], this.commitMessageTitle).then(result => {
+			commitMixin(
+				this.currentRepository,
+				this.$store.getters["commit/allStagedFiles"],
+				this.commitMessageTitle
+			).then(result => {
 				console.log(result);
 				this.gitStatus();
 			});

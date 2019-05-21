@@ -4,10 +4,7 @@
 			...spacingProps
 		}"
 	>
-		<p
-			class="input__label"
-			:for="labelName"
-		>
+		<p class="input__label" :for="labelName">
 			{{ label }}
 		</p>
 		<inputText
@@ -29,9 +26,7 @@ export default {
 	components: {
 		inputText
 	},
-	mixins: [
-		spacingProps
-	],
+	mixins: [spacingProps],
 	props: {
 		name: {
 			type: String,

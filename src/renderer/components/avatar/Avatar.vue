@@ -7,12 +7,12 @@
 			...borderProps
 		}"
 		class="avatar__image"
-	>
+	/>
 </template>
 
 <script>
-import spacingProps from '../../mixins/spacingProps';
-import borderProps from '../../mixins/borderProps';
+import spacingProps from "../../mixins/spacingProps";
+import borderProps from "../../mixins/borderProps";
 
 export default {
 	name: "Avatar",

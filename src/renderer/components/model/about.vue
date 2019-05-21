@@ -1,8 +1,5 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.about"
-		class="model--medium"
-	>
+	<div v-show="this.$store.state.model.model.about" class="model--medium">
 		<div class="about">
 			<div class="about__header d-flex flex-column align-items-center">
 				<div class="about__header__logo">
@@ -10,7 +7,7 @@
 				</div>
 				<h6>Thermal</h6>
 				<p class="about__header__version">
-					Version {{ appVersion }}
+					{{ appVersion }}
 				</p>
 			</div>
 			<div class="about__content">
@@ -55,7 +52,7 @@ export default {
 	},
 	computed: {
 		appVersion() {
-			return packageJson.version;
+			return `Version ${packageJson.version}`;
 		}
 	},
 	methods: {
