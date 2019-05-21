@@ -82,10 +82,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Repository -->
-			<div
-				v-if="!!currentRepository"
-				@click="dropdown('repository', true)"
-			>
+			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -123,10 +120,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Branch -->
-			<div
-				v-if="!!currentRepository"
-				@click="dropdown('branch', true)"
-			>
+			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
