@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import primaryButton from '../buttons/primaryButton';
-import outlineButton from '../buttons/outlineButton';
+import primaryButton from "../buttons/primaryButton";
+import outlineButton from "../buttons/outlineButton";
 import gitInit from "../../git/init";
 
 export default {
