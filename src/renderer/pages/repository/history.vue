@@ -53,7 +53,7 @@ import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
-import logSkeleton from "../../components/logs/logSkeleton";
+import logSkeleton from "../../components/skeleton/logs";
 
 export default {
 	name: "History",
