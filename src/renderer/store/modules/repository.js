@@ -19,6 +19,7 @@ const mutations = {
 			path: payload.path,
 			name: payload.name,
 			remote: payload.remote,
+			isGit: payload.isGit,
 			features: {
 				commit: payload.commits,
 				remote: payload.remotes
@@ -48,10 +49,23 @@ const mutations = {
 		state.repositoryList[
 			workspace.state.workspaceRepository.index
 		].features.remote = payload.remotes;
+	},
+	toggleIsGit(state, payload) {
+		state.repositoryList[
+      workspace.state.workspaceRepository.index
+    ].isGit = payload.isGit;
 	}
 };
 
-const actions = {};
+const actions = {
+	updateIsGit: ({ commit }, payload) => {
+		commit({
+			type: "toggleIsGit",
+			isGit: payload.isGit
+		});
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
+	}
+};
 
 export default {
 	namespaced: true,
