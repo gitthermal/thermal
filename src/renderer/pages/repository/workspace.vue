@@ -83,6 +83,9 @@ export default {
 		diffPreview,
 		fileChangesSkeleton
 	},
+	mixins: [
+		diffMixin
+	],
 	data() {
 		return {
 			commitMessageTitle: "",
@@ -188,7 +191,6 @@ export default {
 			return path;
 		},
 		previewFileChange(file) {
-			console.log(file);
 			this.$store.commit({
 				type: "workspace/toggleFilePreview",
 				isActive: true
