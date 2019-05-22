@@ -2,7 +2,7 @@
 	<div
 		v-if="isGitRepository"
 		class="model--small isgit"
-	>	
+	>
 		<div class="model__section model__header">
 			<h6 class="model__header__title">
 				Git not found
@@ -12,15 +12,16 @@
 			By default git will be initalized at the root of the project.
 		</div>
 		<div class="model__section model__footer">
-			<outlineButton
+			<Button
 				text="Go back"
 				appearance="outline"
 				border-color="00adb5"
 				margin-left="auto"
 				@click.native="switchRepository"
 			/>
-			<primaryButton
+			<Button
 				text="Initalize git"
+				appearance="primary"
 				margin-left=".5rem"
 				@click.native="initalizeGit"
 			/>
@@ -29,15 +30,13 @@
 </template>
 
 <script>
-import primaryButton from "../buttons/primaryButton";
-import outlineButton from "../buttons/outlineButton";
+import Button from "../buttons/Button";
 import gitInit from "../../git/init";
 
 export default {
 	name: "InitalizeGitRepository",
 	components: {
-		primaryButton,
-		outlineButton
+		Button
 	},
 	computed: {
 		currentRepository() {
