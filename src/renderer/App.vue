@@ -24,7 +24,7 @@ import about from "./components/model/about";
 import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
 import initalizeGitRepository from "./components/model/initalizeGitRepository";
-import cloneRepository from './components/model/cloneRepository';
+import cloneRepository from "./components/model/cloneRepository";
 
 export default {
 	name: "App",
@@ -36,7 +36,7 @@ export default {
 		exportCommitData,
 		newRemote,
 		initalizeGitRepository,
-    cloneRepository
+		cloneRepository
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");

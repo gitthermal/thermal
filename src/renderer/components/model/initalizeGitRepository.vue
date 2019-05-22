@@ -1,8 +1,5 @@
 <template>
-	<div
-		v-if="isGitRepository"
-		class="model--small isgit"
-	>
+	<div v-if="isGitRepository" class="model--small isgit">
 		<div class="model__section model__header">
 			<h6 class="model__header__title">
 				Git not found
@@ -43,7 +40,10 @@ export default {
 			return this.$store.getters["workspace/currentRepository"];
 		},
 		isGitRepository() {
-			return (this.$router.history.current.matched[0].path.slice(1) === "repository") && (this.currentRepository.isGit === false);
+			return (
+				this.$router.history.current.matched[0].path.slice(1) ===
+					"repository" && this.currentRepository.isGit === false
+			);
 		}
 	},
 	methods: {

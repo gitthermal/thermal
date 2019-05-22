@@ -8,10 +8,7 @@
 				<h6 class="model__header__title">
 					Clone a repository
 				</h6>
-				<div
-					class="model__header__close"
-					@click="closeModel"
-				>
+				<div class="model__header__close" @click="closeModel">
 					<closeIcon />
 				</div>
 			</div>
@@ -45,7 +42,7 @@
 						webkitdirectory
 						style="display: none"
 						@change="folderSelectorInput"
-					>
+					/>
 					<Button
 						text="Select"
 						appearance="primary"
@@ -69,15 +66,9 @@
 				/>
 			</div>
 		</div>
-		<div
-			v-else
-			class="clone__progress"
-		>
+		<div v-else class="clone__progress">
 			<h1>Cloning the repository</h1>
-			<progressBar
-				:value="cloneProgress"
-				margin-top="2rem"
-			/>
+			<progressBar :value="cloneProgress" margin-top="2rem" />
 		</div>
 	</div>
 </template>
@@ -118,8 +109,7 @@ export default {
 			const repositoryPath =
 				this.repositoryLocation + "/" + this.repositoryName;
 			this.cloning = true;
-			gitClone(this.remoteUrl, repositoryPath)
-			.then(result => {
+			gitClone(this.remoteUrl, repositoryPath).then(result => {
 				if (result) {
 					this.cloning = false;
 					this.closeModel();
@@ -137,7 +127,7 @@ export default {
 };
 </script>
 
-<style lang='sass' scoped>
+<style lang="sass" scoped>
 .clone__progress
 	padding: 3rem
 	text-align: center

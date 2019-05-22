@@ -51,9 +51,8 @@ const mutations = {
 		].features.remote = payload.remotes;
 	},
 	toggleIsGit(state, payload) {
-		state.repositoryList[
-      workspace.state.workspaceRepository.index
-    ].isGit = payload.isGit;
+		state.repositoryList[workspace.state.workspaceRepository.index].isGit =
+			payload.isGit;
 	}
 };
 

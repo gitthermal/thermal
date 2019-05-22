@@ -17,7 +17,7 @@ export default {
 		async localRepository(path) {
 			let listRemote;
 			let isGitRepo;
-			this.isGitRepository(path).then((result) => {
+			this.isGitRepository(path).then(result => {
 				isGitRepo = result;
 			});
 			try {

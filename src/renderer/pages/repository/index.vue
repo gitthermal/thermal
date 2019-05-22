@@ -19,7 +19,10 @@ export default {
 		sidebar
 	},
 	mounted() {
-		if ((this.$router.history.current.matched[0].path.slice(1) === "repository") && (this.$store.getters["workspace/currentRepository"].isGit === false)) {
+		if (
+			this.$router.history.current.matched[0].path.slice(1) === "repository" &&
+			this.$store.getters["workspace/currentRepository"].isGit === false
+		) {
 			this.$store.commit("model/toggleModelPlaceholder");
 		}
 	}
