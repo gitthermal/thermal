@@ -83,9 +83,6 @@ export default {
 		diffPreview,
 		fileChangesSkeleton
 	},
-	mixins: [
-		diffMixin
-	],
 	data() {
 		return {
 			commitMessageTitle: "",
