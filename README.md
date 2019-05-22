@@ -1,6 +1,6 @@
 <p align="center">
 	<a href="https://thermal.netlify.com">
-		<img src="https://thermal.netlify.com/images/logo.png" alt="Thermal" height="72" />
+		<img src="https://thermal.codecarrot.net/images/thermal-logo-square.png" alt="Thermal" height="72" />
 	</a>
 </p>
 <h1 align="center">
@@ -42,4 +42,4 @@
   <a href="https://discord.gg/DcSNmts">Discord</a>
 </h3>
 
-![Thermal app screenshots](https://thermal.netlify.com/images/win/appScreenshots.png)
+![Thermal app screenshots](https://thermal.codecarrot.net/images/app-screenshot-2x.png)
