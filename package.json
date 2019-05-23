@@ -108,7 +108,7 @@
     "ajv": "^6.5.0",
     "apexcharts": "^3.6.12",
     "babel-eslint": "10.0.1",
-    "babel-loader": "8.0.5",
+    "babel-loader": "8.0.6",
     "babili-webpack-plugin": "^0.1.2",
     "cfonts": "^2.1.2",
     "chalk": "^2.4.2",
