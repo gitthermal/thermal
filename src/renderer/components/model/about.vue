@@ -12,9 +12,8 @@
 			</div>
 			<div class="about__content">
 				<p class="about__content__para">
-					Thermal is an electron.js & vue.js based application using by which
-					you can use Git with this application with a nice graphic user
-					interface.
+					Thermal is an electron.js & vue.js based application by which you can
+					use Git with a nice graphic user interface.
 				</p>
 				<p class="about__content__para">
 					This application is copyright and build by CodeCarrot.
