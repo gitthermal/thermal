@@ -1,6 +1,7 @@
 "use strict";
 
 import { app, BrowserWindow } from "electron";
+import { autoUpdater } from "electron-updater";
 import * as Sentry from "@sentry/electron";
 import packageJson from "../../package.json";
 
@@ -64,22 +65,10 @@ app.on("activate", () => {
 	}
 });
 
-/**
- * Auto Updater
- *
- * Uncomment the following code below and install `electron-updater` to
- * support auto updating. Code Signing with a valid certificate is required.
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
- */
+autoUpdater.on("update-downloaded", () => {
+	autoUpdater.quitAndInstall();
+});
 
-/*
-import { autoUpdater } from 'electron-updater'
-
-autoUpdater.on('update-downloaded', () => {
-  autoUpdater.quitAndInstall()
-})
-
-app.on('ready', () => {
-  if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
-})
- */
+app.on("ready", () => {
+	if (process.env.NODE_ENV === "production") autoUpdater.checkForUpdates();
+});
