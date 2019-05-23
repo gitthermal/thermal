@@ -89,7 +89,7 @@
     }
   },
   "dependencies": {
-    "@sentry/electron": "^0.17.0",
+    "@sentry/electron": "^0.17.1",
     "axios": "^0.18.0",
     "chart.js": "^2.8.0",
     "simple-git": "1.110.0",
