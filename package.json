@@ -86,7 +86,17 @@
         "snap"
       ],
       "icon": "build/icons"
-    }
+		},
+		"publish": {
+			"provider": "github",
+			"repo": "thermal",
+			"owner": "gitthermal",
+			"vPrefixedTagName": true,
+			"host": "github.com",
+			"protocol": "https",
+			"token": "$GH_TOKEN",
+			"releaseType": "release"
+		}
   },
   "dependencies": {
     "@sentry/electron": "^0.17.0",
