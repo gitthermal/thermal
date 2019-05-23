@@ -66,7 +66,7 @@
 							<div class="settings__section__group__item">
 								<div>
 									<h6>Remove this repository</h6>
-									<p>Once you remove the repository, you can add again.</p>
+									<p>You can add it again</p>
 								</div>
 								<Button
 									margin-left="auto"
