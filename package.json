@@ -103,7 +103,7 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.0",
+    "@babel/register": "^7.4.4",
     "@babel/runtime": "^7.4.3",
     "ajv": "^6.5.0",
     "apexcharts": "^3.6.12",
