@@ -34,7 +34,7 @@
 				</VueScrollbar>
 			</div>
 		</div>
-		<div class="history__preview">
+		<div>
 			<diffPreview
 				v-if="this.$store.state.history.filePreview.isActive"
 				:preview="commitFileDiffPreview"
@@ -146,7 +146,4 @@ export default {
 
 		&__scrollbar
 			max-height: 90vh
-
-	&__preview
-		padding: 10px
 </style>
