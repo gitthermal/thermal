@@ -1,8 +1,9 @@
 <template>
 	<VueScrollbar class="diff__preview">
 		<div>
-			<div v-for="(line, index) in preview" :key="index">
-				{{ line }}
+			<div v-for="(data, index) in preview" :key="index">
+				<diff-line
+				/>
 			</div>
 		</div>
 	</VueScrollbar>
@@ -10,11 +11,13 @@
 
 <script>
 import VueScrollbar from "vue2-scrollbar";
+import DiffLine from "./diffLine";
 
 export default {
 	name: "DiffPreview",
 	components: {
-		VueScrollbar
+		VueScrollbar,
+		DiffLine
 	},
 	props: {
 		preview: {
