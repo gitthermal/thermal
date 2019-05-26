@@ -3,6 +3,9 @@
 		<div>
 			<div v-for="(data, index) in preview" :key="index">
 				<diff-line
+					:color="codeColor(data)"
+					:status="codeStatus(data)"
+					:code="codeLine(data)"
 				/>
 			</div>
 		</div>
@@ -23,6 +26,41 @@ export default {
 		preview: {
 			type: Array,
 			required: true
+		}
+		codeStatus(code) {
+			if (code.charAt(0) !== ("@" || " ")) {
+				return code.charAt(0);
+			}
+		},
+		codeLine(code) {
+			if (code.charAt(0) === "@") return code;
+			return code.slice(1, code.length);
+		},
+		codeColor(code) {
+			switch (code.charAt(0)) {
+				case "@":
+					return {
+						code: "F1F8FF",
+						gutter: "DBEDFF",
+						border: "C8E1FF"
+					};
+				case "+":
+					return {
+						code: "E6FFED",
+						gutter: "CDFFD8",
+						border: "85E89D"
+					};
+				case "-":
+					return {
+						code: "FFEEF0",
+						gutter: "FFDCE0",
+						border: "FDAEB7"
+					};
+				case " ":
+					return {
+						border: "E1E4E8"
+					};
+			}
 		}
 	}
 };
