@@ -14,8 +14,10 @@
 		</div>
 		<div :style="{ backgroundColor: '#' + color.code }" class="diff__code">
 			<div class="diff__code-status">
+				{{ status }}
 			</div>
 			<div class="diff__code-line">
+				{{ code }}
 			</div>
 		</div>
 	</div>
