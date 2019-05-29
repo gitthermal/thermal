@@ -151,7 +151,7 @@ export default {
 	},
 	methods: {
 		websiteURL() {
-			shell.openExternal("https://thermal.netlify.com/");
+			shell.openExternal("https://thermal.codecarrot.net/");
 		},
 		twitterURL() {
 			shell.openExternal("https://www.twitter.com/@gitthermal");
