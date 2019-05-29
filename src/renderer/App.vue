@@ -17,6 +17,9 @@
 			?
 		</div>
 		<dropdown-list class="help__widget-dropdown">
+			<div class="help__widget-version">
+				{{ appVersion }}
+			</div>
 		</dropdown-list>
 	</div>
 </template>
@@ -30,6 +33,7 @@ import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
 import initalizeGitRepository from "./components/model/initalizeGitRepository";
 import cloneRepository from "./components/model/cloneRepository";
+import packageJson from "../../package.json";
 import DropdownList from "./components/dropdown/dropdownList";
 
 export default {
@@ -44,6 +48,11 @@ export default {
 		initalizeGitRepository,
 		cloneRepository,
 		DropdownList,
+	},
+	computed: {
+		appVersion() {
+			return `Version: ${packageJson.version}`;
+		}
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
@@ -68,6 +77,12 @@ export default {
 	&-dropdown
 		bottom: 60px
 		right: 16px
+
+	&-version
+		color: rgba(55, 53, 47, 0.4)
+		font-size: 12px
+		padding: 6px 15px
+
 .model
 	&__placeholder
 		position: fixed

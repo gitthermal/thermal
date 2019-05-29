@@ -95,9 +95,6 @@
 				@click.native="addLocalRepository()"
 			/>
 		</div>
-		<div class="appMetaData">
-			{{ appVersion }}
-		</div>
 	</div>
 </template>
 
@@ -108,7 +105,6 @@ import dollarIcon from "../components/icon/dollar";
 import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
 import Button from "../components/buttons/Button";
-import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
 import VueScrollbar from "vue2-scrollbar";
 import truncateFilter from "../filters/truncate";
@@ -144,9 +140,6 @@ export default {
 	computed: {
 		getAllRepository() {
 			return this.$store.getters["repository/listAllRepository"];
-		},
-		appVersion() {
-			return `Version: ${packageJson.version}`;
 		}
 	},
 	methods: {
@@ -276,11 +269,4 @@ export default {
 						width: 20px
 						height: 20px
 						stroke: #00adb5
-
-.appMetaData
-	font-size: 10px
-	position: absolute
-	bottom: 3px
-	width: 100%
-	text-align: center
 </style>
