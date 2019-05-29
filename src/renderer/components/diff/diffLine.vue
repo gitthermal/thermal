@@ -5,11 +5,13 @@
 				:style="{ borderRightColor: '#' + color.border }"
 				class="diff__gutter-left"
 			>
+				{{ gutter[0] }}
 			</div>
 			<div
 				:style="{ borderRightColor: '#' + color.border }"
 				class="diff__gutter-right"
 			>
+				{{ gutter[1] }}
 			</div>
 		</div>
 		<div :style="{ backgroundColor: '#' + color.code }" class="diff__code">
@@ -32,7 +34,7 @@ export default {
 			required: true
 		},
 		gutter: {
-			type: String,
+			type: Array,
 			required: true
 		},
 		status: {
