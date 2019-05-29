@@ -13,16 +13,16 @@
 </p>
 
 <p align="center">
-  <a href="https://www.patreon.com/join/mittalyashu">
-    <img src="https://img.shields.io/badge/become%20a-patron-blue.svg?style=flat&colorA=555555&colorB=F86754" alt="Become a Patron" />
+  <a href="https://thermal.codecarrot.net/sponsor/">
+    <img src="https://img.shields.io/badge/become%20a-sponsor-blue.svg" alt="Become a Sponsor" />
   </a>
   <a href="https://dev.azure.com/codecarrot/Thermal/_build/latest?definitionId=3&branchName=master">
-    <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/Thermal?branchName=master" alt="Azure pipeline" />
+    <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/pipeline?branchName=master" alt="Azure pipeline" />
   </a>
   <a href="https://discord.gg/DcSNmts">
     <img src="https://img.shields.io/discord/556376419886825509.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord invite" />
   </a>
-  <a href="https://www.notion.so/gitthermal/Contribute-9d82f521342f4573b853d1bc793bdf02">
+  <a href="https://thermal.codecarrot.net/docs/how-to-contribute">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
   <a href="https://twitter.com/intent/follow?screen_name=gitthermal">
@@ -31,13 +31,13 @@
 </p>
 
 <h3 align="center">
-  <a href="https://thermal.netlify.com/win/guide/">Guide</a>
+  <a href="https://thermal.codecarrot.net/docs/">Guide</a>
   <span> · </span>
-  <a href="https://thermal.netlify.com/download/">Download</a>
+  <a href="https://thermal.codecarrot.net/download/">Download</a>
   <span> · </span>
-  <a href="https://thermal.netlify.com/issue/">Issues</a>
+  <a href="https://github.com/gitthermal/thermal/issues">Issues</a>
   <span> · </span>
-  <a href="https://www.notion.so/gitthermal/Contribute-9d82f521342f4573b853d1bc793bdf02">Contribute</a>
+  <a href="https://thermal.codecarrot.net/docs/how-to-contribute">Contribute</a>
   <span> · </span>
   <a href="https://discord.gg/DcSNmts">Discord</a>
 </h3>
