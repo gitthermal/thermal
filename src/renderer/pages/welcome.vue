@@ -15,7 +15,7 @@
 					<twitterIcon />
 				</div>
 				<div class="welcome__introduction__item__icon" @click="coffeeURL()">
-					<coffeeIcon />
+					<dollarIcon />
 				</div>
 				<div class="welcome__introduction__item__icon" @click="discordURL()">
 					<helpIcon />
@@ -104,7 +104,7 @@
 <script>
 import linkIcon from "../components/icon/link";
 import twitterIcon from "../components/icon/twitter";
-import coffeeIcon from "../components/icon/coffee";
+import dollarIcon from "../components/icon/dollar";
 import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
 import Button from "../components/buttons/Button";
@@ -124,7 +124,7 @@ export default {
 	components: {
 		linkIcon,
 		twitterIcon,
-		coffeeIcon,
+		dollarIcon,
 		helpIcon,
 		settingsIcon,
 		Button,
@@ -157,7 +157,7 @@ export default {
 			shell.openExternal("https://www.twitter.com/@gitthermal");
 		},
 		coffeeURL() {
-			shell.openExternal("https://www.patreon.com/join/mittalyashu");
+			shell.openExternal("https://thermal.codecarrot.net/sponsor/");
 		},
 		discordURL() {
 			shell.openExternal("https://discord.gg/f5mYum8");
