@@ -13,6 +13,11 @@
 				<cloneRepository />
 			</div>
 		</div>
+		<div class="help__widget-icon">
+			?
+		</div>
+		<dropdown-list class="help__widget-dropdown">
+		</dropdown-list>
 	</div>
 </template>
 
@@ -25,6 +30,7 @@ import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
 import initalizeGitRepository from "./components/model/initalizeGitRepository";
 import cloneRepository from "./components/model/cloneRepository";
+import DropdownList from "./components/dropdown/dropdownList";
 
 export default {
 	name: "App",
@@ -36,7 +42,8 @@ export default {
 		exportCommitData,
 		newRemote,
 		initalizeGitRepository,
-		cloneRepository
+		cloneRepository,
+		DropdownList,
 	},
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
@@ -46,6 +53,21 @@ export default {
 </script>
 
 <style lang="sass">
+.help__widget
+	&-icon
+		position: absolute
+		bottom: 16px
+		right: 16px
+		box-shadow: rgba(#dddddd, 0.5) 0px 0px 0px 1px, rgba(#dddddd, 0.5) 0px 2px 4px
+		cursor: pointer
+		user-select: none
+		padding: 6px 12px
+		transition: opacity 700ms ease 0s, color 700ms ease 0s
+		border-radius: 50px
+
+	&-dropdown
+		bottom: 60px
+		right: 16px
 .model
 	&__placeholder
 		position: fixed
