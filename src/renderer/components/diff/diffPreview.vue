@@ -3,6 +3,7 @@
 		<div>
 			<div v-for="(data, index) in preview" :key="index">
 				<diff-line
+					:gutter="codeGutter(data, index)"
 					:color="codeColor(data)"
 					:status="codeStatus(data)"
 					:code="codeLine(data)"
@@ -27,6 +28,23 @@ export default {
 			type: Array,
 			required: true
 		}
+	},
+	data() {
+		return {
+			gutterChunk: []
+		};
+	},
+	methods: {
+		codeGutter(code, index) {
+			let gutterData = [];
+			if (code.charAt(0) === "@") {
+				let gutterString = code.split(/@@(.*?)@@/)[1].trim();
+				gutterData = gutterString.split(" ");
+				this.gutterChunk = gutterData;
+				return ["", ""];
+			}
+			return this.gutterChunk;
+		},
 		codeStatus(code) {
 			if (code.charAt(0) !== ("@" || " ")) {
 				return code.charAt(0);
