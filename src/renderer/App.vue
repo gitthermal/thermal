@@ -13,10 +13,10 @@
 				<cloneRepository />
 			</div>
 		</div>
-		<div class="help__widget-icon">
+		<div class="help__widget-icon" @click="toggleHelpWidget">
 			?
 		</div>
-		<dropdown-list class="help__widget-dropdown">
+		<dropdown-list v-show="helpWidget" class="help__widget-dropdown">
 			<div class="help__widget-version">
 				{{ appVersion }}
 			</div>
@@ -49,6 +49,11 @@ export default {
 		cloneRepository,
 		DropdownList,
 	},
+	data() {
+		return {
+			helpWidget: false
+		};
+	},
 	computed: {
 		appVersion() {
 			return `Version: ${packageJson.version}`;
@@ -57,6 +62,11 @@ export default {
 	beforeCreate() {
 		this.$store.commit("repository/getRepositoryList");
 		this.$store.commit("settings/getSettingsList");
+	},
+	methods: {
+		toggleHelpWidget() {
+			this.helpWidget = !this.helpWidget;
+		}
 	}
 };
 </script>
