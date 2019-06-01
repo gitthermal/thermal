@@ -11,6 +11,7 @@
 				<newRemote />
 				<initalizeGitRepository />
 				<cloneRepository />
+				<feedback />
 			</div>
 		</div>
 		<div class="help__widget-icon" @click="toggleHelpWidget">
@@ -40,6 +41,8 @@ import exportCommitData from "./components/model/exportCommitData";
 import newRemote from "./components/model/newRemote";
 import initalizeGitRepository from "./components/model/initalizeGitRepository";
 import cloneRepository from "./components/model/cloneRepository";
+import feedback from "./components/model/feedback";
+
 import packageJson from "../../package.json";
 import DropdownList from "./components/dropdown/dropdownList";
 import DropdownItem from "./components/dropdown/dropdownItem";
@@ -57,6 +60,7 @@ export default {
 		newRemote,
 		initalizeGitRepository,
 		cloneRepository,
+		feedback,
 		DropdownList,
 		DropdownItem,
 		DropdownDivider
