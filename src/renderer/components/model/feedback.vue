@@ -23,7 +23,6 @@
 					name="feedback message"
 					placeholder="Enter your message"
 				/>
-				<img :src="image" />
 			</div>
 			<div v-show="!feedbackForm.toggle" class="model__body-thankyou">
 				Thank you for sharing the feedback :)
@@ -54,12 +53,6 @@ export default {
 		inputTextLabel,
 		TextArea,
 		Button
-	},
-	props: {
-		image: {
-			type: String,
-			default: ""
-		}
 	},
 	data() {
 		return {
