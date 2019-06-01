@@ -13,6 +13,8 @@
 			...borderProps,
 			...fontProps
 		}"
+		:rows="rows"
+		:cols="cols"
 		@input="$emit('input', $event.target.value)"
 	></textarea>
 </template>
@@ -43,6 +45,14 @@ export default {
 		isInvalid: {
 			type: Boolean,
 			default: false
+		},
+		cols: {
+			type: Number,
+			default: 5
+		},
+		rows: {
+			type: Number,
+			default: 5
 		},
 		borderRadius: {
 			type: String,
