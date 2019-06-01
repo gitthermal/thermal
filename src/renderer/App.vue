@@ -20,6 +20,9 @@
 			<dropdown-item @click.native="reportIssue">
 				Report a bug
 			</dropdown-item>
+			<dropdown-item @click.native="shareFeedback">
+				Share feedback
+			</dropdown-item>
 			<dropdown-divider />
 			<div class="help__widget-version">
 				{{ appVersion }}
@@ -77,6 +80,10 @@ export default {
 			shell.openExternal(
 				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
 			);
+			this.toggleHelpWidget();
+		},
+		shareFeedback() {
+			this.$store.dispatch("model/showFeedback");
 			this.toggleHelpWidget();
 		},
 		toggleHelpWidget() {
