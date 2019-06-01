@@ -92,7 +92,6 @@
     "@sentry/electron": "^0.17.1",
     "axios": "^0.18.0",
     "chart.js": "^2.8.0",
-    "dom-to-image": "^2.6.0",
     "simple-git": "1.113.0",
     "vue": "2.6.10",
     "vue-chartjs": "^3.4.2",
