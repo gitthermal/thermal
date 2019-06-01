@@ -17,6 +17,10 @@
 			?
 		</div>
 		<dropdown-list v-show="helpWidget" class="help__widget-dropdown">
+			<dropdown-item @click.native="reportIssue">
+				Report a bug
+			</dropdown-item>
+			<dropdown-divider />
 			<div class="help__widget-version">
 				{{ appVersion }}
 			</div>
@@ -35,6 +39,9 @@ import initalizeGitRepository from "./components/model/initalizeGitRepository";
 import cloneRepository from "./components/model/cloneRepository";
 import packageJson from "../../package.json";
 import DropdownList from "./components/dropdown/dropdownList";
+import DropdownItem from "./components/dropdown/dropdownItem";
+import DropdownDivider from "./components/dropdown/dropdownDivider";
+const { shell } = require("electron");
 
 export default {
 	name: "App",
@@ -48,6 +55,8 @@ export default {
 		initalizeGitRepository,
 		cloneRepository,
 		DropdownList,
+		DropdownItem,
+		DropdownDivider
 	},
 	data() {
 		return {
@@ -64,6 +73,12 @@ export default {
 		this.$store.commit("settings/getSettingsList");
 	},
 	methods: {
+		reportIssue() {
+			shell.openExternal(
+				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+			);
+			this.toggleHelpWidget();
+		},
 		toggleHelpWidget() {
 			this.helpWidget = !this.helpWidget;
 		}
