@@ -35,6 +35,7 @@ const mutations = {
 	toggleCloneRepository(state) {
 		state.model.cloneRepository = !state.model.cloneRepository;
 	},
+	toggleFeedback(state) {
 		state.model.feedback = !state.model.feedback;
 	}
 };
