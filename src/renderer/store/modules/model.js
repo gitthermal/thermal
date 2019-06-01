@@ -6,7 +6,8 @@ const state = {
 		about: false,
 		exportCommitData: false,
 		newRemote: false,
-		cloneRepository: false
+		cloneRepository: false,
+		feedback: false
 	}
 };
 
@@ -33,6 +34,8 @@ const mutations = {
 	},
 	toggleCloneRepository(state) {
 		state.model.cloneRepository = !state.model.cloneRepository;
+	},
+		state.model.feedback = !state.model.feedback;
 	}
 };
 
@@ -83,6 +86,14 @@ const actions = {
 		});
 		commit({
 			type: "toggleCloneRepository"
+		});
+	},
+	showFeedback: ({ commit }) => {
+		commit({
+			type: "toggleModelPlaceholder"
+		});
+		commit({
+			type: "toggleFeedback"
 		});
 	}
 };
