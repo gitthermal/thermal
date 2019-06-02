@@ -56,9 +56,7 @@ export default {
 	},
 	methods: {
 		releaseNotes() {
-			shell.openExternal(
-				"https://www.notion.so/gitthermal/Release-notes-7d77751a39484413b7ca8564b3f390a9#7d77751a39484413b7ca8564b3f390a9"
-			);
+			shell.openExternal("https://thermal.codecarrot.net/releases");
 		},
 		closeModel() {
 			this.$store.dispatch("model/showAboutModel");
