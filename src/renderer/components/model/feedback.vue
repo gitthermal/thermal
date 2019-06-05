@@ -90,7 +90,7 @@ export default {
 					{
 						description: message,
 						author: {
-							name: name
+							name
 						},
 						timestamp: new Date().toISOString(),
 						footer: {
