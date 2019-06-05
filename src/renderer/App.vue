@@ -26,6 +26,9 @@
 			<dropdown-item @click.native="docsUrl">
 				Documentation 📚
 			</dropdown-item>
+			<dropdown-item @click.native="buyMeACoffeeUrl">
+				Buy me a Coffee ☕
+			</dropdown-item>
 			<dropdown-item @click.native="chatWithUs">
 				Chat with Us 💬
 			</dropdown-item>
@@ -100,6 +103,10 @@ export default {
 			shell.openExternal(
 				"https://thermal.codecarrot.net/docs/?utm_source=electron&utm_medium=help_widget"
 			);
+			this.toggleHelpWidget();
+		},
+		buyMeACoffeeUrl() {
+			shell.openExternal("https://www.buymeacoffee.com/mittalyashu");
 			this.toggleHelpWidget();
 		},
 		chatWithUs() {
