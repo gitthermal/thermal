@@ -17,11 +17,12 @@
 					placeholder="Enter your name"
 					margin-bottom=".8rem"
 				/>
-				<text-area
+				<text-area-label
 					v-model.trim="feedbackForm.message"
 					:rows="8"
 					name="feedback message"
 					placeholder="Enter your message"
+					label="Message"
 				/>
 			</div>
 			<div v-show="!feedbackForm.toggle" class="model__body-thankyou">
@@ -42,7 +43,7 @@
 
 <script>
 import inputTextLabel from "../input/inputTextLabel";
-import TextArea from "../input/textarea";
+import TextAreaLabel from "../input/textareaLabel";
 import closeIcon from "../icon/close";
 import Button from "../buttons/Button";
 
@@ -51,7 +52,7 @@ export default {
 	components: {
 		closeIcon,
 		inputTextLabel,
-		TextArea,
+		TextAreaLabel,
 		Button
 	},
 	data() {
