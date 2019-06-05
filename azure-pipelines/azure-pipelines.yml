@@ -1,6 +1,6 @@
 variables:
   system.debug: true
-  DISCORD_FEEDBACK_WEBHOOK: $(DISCORD_FEEDBACK_WEBHOOK)
+  DISCORD_FEEDBACK_WEBHOOK_URL: $(DISCORD_FEEDBACK_WEBHOOK)
 
 jobs:
   - job: win

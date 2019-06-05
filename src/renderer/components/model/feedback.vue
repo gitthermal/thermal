@@ -100,7 +100,7 @@ export default {
 				]
 			};
 			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.open("POST", process.env.DISCORD_FEEDBACK_WEBHOOK, true);
+			xmlhttp.open("POST", process.env.DISCORD_FEEDBACK_WEBHOOK_URL, true);
 			xmlhttp.setRequestHeader(
 				"Content-type",
 				"application/json; charset=UTF-8"
