@@ -46,6 +46,7 @@ import inputTextLabel from "../input/inputTextLabel";
 import TextAreaLabel from "../input/textareaLabel";
 import closeIcon from "../icon/close";
 import Button from "../buttons/Button";
+require("dotenv").config();
 
 export default {
 	name: "FeedbackForm",
@@ -77,6 +78,34 @@ export default {
 			this.$store.dispatch("model/showFeedback");
 		},
 		submitFeedback() {
+			this.postToDiscord(this.feedbackForm.name, this.feedbackForm.message);
+			this.feedbackForm.toggle = !this.feedbackForm.toggle;
+			setTimeout(() => {
+				this.closeModel();
+			}, 1500);
+		},
+		postToDiscord(name, message) {
+			let data = {
+				embeds: [
+					{
+						description: message,
+						author: {
+							name: name
+						},
+						timestamp: new Date().toISOString(),
+						footer: {
+							text: window.location.href
+						}
+					}
+				]
+			};
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.open("POST", process.env.DISCORD_FEEDBACK_WEBHOOK, true);
+			xmlhttp.setRequestHeader(
+				"Content-type",
+				"application/json; charset=UTF-8"
+			);
+			xmlhttp.send(JSON.stringify(data));
 		}
 	}
 };
