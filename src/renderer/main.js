@@ -9,6 +9,7 @@ import store from "./store";
 import "vue2-scrollbar/dist/style/vue2-scrollbar.css";
 import "./assets/css/all.sass";
 import packageJson from "../../package.json";
+console.log(process.env);
 
 const VueIntegration = getIntegrations().browser.Vue;
 init({
