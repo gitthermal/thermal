@@ -17,6 +17,10 @@
 			?
 		</div>
 		<dropdown-list v-show="helpWidget" class="help__widget-dropdown">
+			<dropdown-item @click.native="chatWithUs">
+				Chat with Us 💬
+			</dropdown-item>
+			<dropdown-divider />
 			<dropdown-item @click.native="reportIssue">
 				Report a bug
 			</dropdown-item>
@@ -77,6 +81,10 @@ export default {
 			shell.openExternal(
 				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
 			);
+			this.toggleHelpWidget();
+		},
+		chatWithUs() {
+			shell.openExternal("https://discord.gg/f5mYum8");
 			this.toggleHelpWidget();
 		},
 		toggleHelpWidget() {
