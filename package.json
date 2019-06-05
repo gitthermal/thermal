@@ -153,7 +153,7 @@
     "vue2-scrollbar": "^0.0.3",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1",
+    "webpack-dev-server": "^3.5.1",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.1.3"
   }
