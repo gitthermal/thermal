@@ -20,6 +20,9 @@
 			<dropdown-item @click.native="websiteUrl">
 				Website 💻
 			</dropdown-item>
+			<dropdown-item @click.native="twitterUrl">
+				Twitter 🐤
+			</dropdown-item>
 			<dropdown-item @click.native="chatWithUs">
 				Chat with Us 💬
 			</dropdown-item>
@@ -84,6 +87,10 @@ export default {
 			shell.openExternal(
 				"https://thermal.codecarrot.net/?utm_source=electron&utm_medium=help_widget"
 			);
+			this.toggleHelpWidget();
+		},
+		twitterUrl() {
+			shell.openExternal("https://twitter.com/gitthermal/");
 			this.toggleHelpWidget();
 		},
 			);
