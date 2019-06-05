@@ -25,7 +25,7 @@
 			</dropdown-item>
 			<dropdown-divider />
 			<dropdown-item @click.native="reportIssue">
-				Report a bug
+				Report a bug 🐛
 			</dropdown-item>
 			<dropdown-divider />
 			<div class="help__widget-version">
@@ -91,6 +91,12 @@ export default {
 		},
 		chatWithUs() {
 			shell.openExternal("https://discord.gg/f5mYum8");
+			this.toggleHelpWidget();
+		},
+		reportIssue() {
+			shell.openExternal(
+				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+			);
 			this.toggleHelpWidget();
 		},
 		toggleHelpWidget() {
