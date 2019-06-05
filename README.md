@@ -28,6 +28,9 @@
   <a href="https://twitter.com/intent/follow?screen_name=gitthermal">
     <img src="https://img.shields.io/twitter/follow/gitthermal.svg?label=Follow%20@gitthermal" alt="Follow @gitthermal" />
   </a>
+  <a href="https://stackshare.io/codecarrot/thermal">
+    <img src="https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat" alt="StackShare" />
+  </a>
 </p>
 
 <h3 align="center">
