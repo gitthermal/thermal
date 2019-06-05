@@ -17,6 +17,9 @@
 			?
 		</div>
 		<dropdown-list v-show="helpWidget" class="help__widget-dropdown">
+			<dropdown-item @click.native="websiteUrl">
+				Website 💻
+			</dropdown-item>
 			<dropdown-item @click.native="chatWithUs">
 				Chat with Us 💬
 			</dropdown-item>
@@ -77,9 +80,12 @@ export default {
 		this.$store.commit("settings/getSettingsList");
 	},
 	methods: {
-		reportIssue() {
+		websiteUrl() {
 			shell.openExternal(
-				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+				"https://thermal.codecarrot.net/?utm_source=electron&utm_medium=help_widget"
+			);
+			this.toggleHelpWidget();
+		},
 			);
 			this.toggleHelpWidget();
 		},
