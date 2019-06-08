@@ -163,7 +163,7 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8");
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showAddLocalRepositoryModel");
+			this.$store.commit("modal/toggleAddLocalRepositoryModal", true);
 		},
 		toggleRepositoryExampleModel() {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel;

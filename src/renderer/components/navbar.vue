@@ -142,7 +142,7 @@ export default {
 		},
 		newRemote(event) {
 			if (this.currentRepository.features.remote) {
-				this.$store.dispatch("model/showNewRemote");
+				this.$store.commit("modal/toggleNewRemoteModal", true);
 			} else {
 				event.preventDefault();
 			}
