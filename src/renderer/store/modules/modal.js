@@ -4,7 +4,8 @@ const state = {
 	about: false,
 	exportCommitData: false,
 	newRemote: false,
-	cloneRepository: false
+	cloneRepository: false,
+	initalizeGitRepository: false
 };
 
 const getters = {};
@@ -27,6 +28,9 @@ const mutations = {
 	},
 	toggleCloneRepositoryModal(state, status) {
 		state.cloneRepository = status;
+	},
+	toggleInitalizeGitRepositoryModal(state, status) {
+		state.initalizeGitRepository = status;
 	}
 };
 
