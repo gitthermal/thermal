@@ -10,23 +10,23 @@ const state = {
 const getters = {};
 
 const mutations = {
-	toggleAddLocalRepositoryModal(state) {
-		state.addLocalRepository = !state.addLocalRepository;
+	toggleAddLocalRepositoryModal(state, status) {
+		state.addLocalRepository = status;
 	},
-	toggleAboutModal(state) {
-		state.about = !state.about;
+	toggleAboutModal(state, status) {
+		state.about = status;
 	},
-	toggleExportCommitDataModal(state) {
-		state.exportCommitData = !state.exportCommitData;
+	toggleExportCommitDataModal(state, status) {
+		state.exportCommitData = status;
 	},
-	toggleNewRemoteModal(state) {
-		state.newRemote = !state.newRemote;
+	toggleNewRemoteModal(state, status) {
+		state.newRemote = status;
 	},
-	toggleNewRepositoryModal(state) {
-		state.newRepository = !state.newRepository;
+	toggleNewRepositoryModal(state, status) {
+		state.newRepository = status;
 	},
-	toggleCloneRepositoryModal(state) {
-		state.cloneRepository = !state.cloneRepository;
+	toggleCloneRepositoryModal(state, status) {
+		state.cloneRepository = status;
 	}
 };
 
