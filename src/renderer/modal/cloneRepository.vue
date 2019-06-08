@@ -1,18 +1,11 @@
 <template>
-	<div
-		v-show="this.$store.state.model.model.cloneRepository"
-		class="model--medium"
-	>
+	<t-card width="small">
 		<div v-if="!cloning">
-			<div class="model__section model__header">
-				<h6 class="model__header__title">
-					Clone a repository
-				</h6>
-				<div class="model__header__close" @click="closeModel">
-					<closeIcon />
-				</div>
-			</div>
-			<div class="model__section model__body flex-column">
+			<t-card-header>
+				<t-card-header-heading heading="Clone a repository" />
+				<t-card-header-close modal-name="CloneRepository" />
+			</t-card-header>
+			<t-card-body style="flex-direction: column">
 				<inputTextLabel
 					v-model="repositoryName"
 					name="repositoryName"
@@ -50,46 +43,61 @@
 						@click.native="$refs.folderSelector.click()"
 					/>
 				</div>
-			</div>
-			<div class="model__section model__footer">
-				<Button
-					margin-left="auto"
-					text="Clone"
-					appearance="primary"
-					@click.native="cloneRepository"
-				/>
+			</t-card-body>
+			<t-card-footer>
 				<Button
 					text="Cancel"
 					appearance="outline"
-					margin-left=".5rem"
-					@click.native="closeModel"
+					margin-left="auto"
+					@click.native="closeModel('CloneRepository')"
 				/>
-			</div>
+				<Button
+					text="Clone"
+					appearance="primary"
+					margin-left=".5rem"
+					@click.native="cloneRepository"
+				/>
+			</t-card-footer>
 		</div>
 		<div v-else class="clone__progress">
 			<h1>Cloning the repository</h1>
 			<progressBar :value="cloneProgress" margin-top="2rem" />
 		</div>
-	</div>
+	</t-card>
 </template>
 
 <script>
-import inputTextLabel from "../input/inputTextLabel";
-import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
-import progressBar from "../progress/progressBar";
-import gitClone from "../../git/clone";
-import addRepository from "../../mixins/addRepository";
+// components
+import TCard from "../components/TCard/TCard";
+import TCardHeader from "../components/TCard/TCardHeader";
+import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
+import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
+import TCardBody from "../components/TCard/TCardBody";
+import TCardFooter from "../components/TCard/TCardFooter";
+import inputTextLabel from "../components/input/inputTextLabel";
+import Button from "../components/buttons/Button";
+import progressBar from "../components/progress/progressBar";
+
+// mixins
+import closeModalMixin from "../mixins/closeModal";
+import addRepository from "../mixins/addRepository";
+
+import gitClone from "../git/clone";
 
 export default {
 	name: "CloneRepository",
 	components: {
+		TCard,
+		TCardHeader,
+		TCardHeaderHeading,
+		TCardHeaderClose,
+		TCardBody,
+		TCardFooter,
 		inputTextLabel,
 		Button,
-		progressBar,
-		closeIcon
+		progressBar
 	},
-	mixins: [addRepository],
+	mixins: [closeModalMixin, addRepository],
 	data() {
 		return {
 			repositoryName: "",
@@ -112,16 +120,13 @@ export default {
 			gitClone(this.remoteUrl, repositoryPath).then(result => {
 				if (result) {
 					this.cloning = false;
-					this.closeModel();
+					this.closeModal("CloneRepository");
 				}
 				this.addRepository(repositoryPath);
 			});
 		},
 		addRepository(path) {
 			this.localRepository(path);
-		},
-		closeModel() {
-			this.$store.dispatch("model/showCloneRepository");
 		}
 	}
 };
