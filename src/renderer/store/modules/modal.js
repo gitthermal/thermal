@@ -1,5 +1,5 @@
 const state = {
-	addLocalRepository: true,
+	addLocalRepository: false,
 	newRepository: false,
 	about: false,
 	exportCommitData: false,
