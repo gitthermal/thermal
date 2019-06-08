@@ -177,7 +177,7 @@ export default {
 	background-color: #EFEFEF
 	border-bottom: 1px solid #DEE0E3
 	padding: 12px 20px
-	z-index: 8
+	z-index: 2
 	position: relative
 
 	&__item
