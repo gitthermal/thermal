@@ -17,7 +17,7 @@ export default {
 	props: {
 		modalName: {
 			type: String,
-			default: null
+			required: true
 		}
 	}
 };
