@@ -1,9 +1,7 @@
 <template>
-	<div>
-		<vue-scrollbar>
-			<slot />
-		</vue-scrollbar>
-	</div>
+	<vue-scrollbar :style="{ height: height }">
+		<slot />
+	</vue-scrollbar>
 </template>
 
 <script>
@@ -13,6 +11,12 @@ export default {
 	name: "TScrollbarLayout",
 	components: {
 		VueScrollbar
+	},
+	props: {
+		height: {
+			type: String,
+			required: true
+		}
 	}
 };
 </script>
