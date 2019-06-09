@@ -31,61 +31,60 @@
 				@drop.prevent="dropHandler($event)"
 				@dragover.prevent="dropHandler()"
 			>
-				<VueScrollbar class="welcome__repository__scrollbar">
-					<div class="welcome__repository__list__container">
-						<div v-if="getAllRepository.length > 0">
-							<div
-								v-for="(repo, index) in getAllRepository"
-								:key="repo.path"
-								class="welcome__repository__list__item d-flex align-items-center"
-							>
-								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<Button
-									text="Open"
-									appearance="primary"
-									margin-left="auto"
-									@click.native="selectCurrentRepository(index)"
-								/>
-								<div
-									class="welcome__repository__list__item__settings"
-									@click="openRepositorySettings(index)"
-								>
-									<settingsIcon />
-								</div>
-							</div>
-						</div>
+				<t-scrollbar v-if="getAllRepository.length > 0" height="400px">
+					<div style="padding: 1rem">
 						<div
-							v-else
-							@mouseenter="toggleRepositoryExampleModel"
-							@mouseleave="toggleRepositoryExampleModel"
+							v-for="(repo, index) in getAllRepository"
+							:key="repo.path"
+							class="welcome__repository__list__item d-flex align-items-center"
 						>
-							<div>
-								<div
-									v-for="repo in repositoryList"
-									:key="repo"
-									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
-								>
-									<h6>{{ repo }}</h6>
-									<Button text="Open" appearance="primary" margin-left="auto" />
-									<div class="welcome__repository__list__item__settings">
-										<settingsIcon />
-									</div>
-								</div>
-							</div>
+							<h6>{{ repo.name | truncateFilter(30) }}</h6>
+							<Button
+								text="Open"
+								appearance="primary"
+								margin-left="auto"
+								@click.native="selectCurrentRepository(index)"
+							/>
 							<div
-								v-show="exampleRepositoryModel"
-								class="welcome__repository__example__model"
+								class="welcome__repository__list__item__settings"
+								@click="openRepositorySettings(index)"
 							>
-								<Button
-									margin-top="1rem"
-									appearance="primary"
-									text="Add Repository"
-									@click.native="addLocalRepository()"
-								/>
+								<settingsIcon />
 							</div>
 						</div>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
+				<div
+					v-else
+					style="padding: 1rem"
+					@mouseenter="toggleRepositoryExampleModel"
+					@mouseleave="toggleRepositoryExampleModel"
+				>
+					<div>
+						<div
+							v-for="repo in repositoryList"
+							:key="repo"
+							class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
+						>
+							<h6>{{ repo }}</h6>
+							<Button text="Open" appearance="primary" margin-left="auto" />
+							<div class="welcome__repository__list__item__settings">
+								<settingsIcon />
+							</div>
+						</div>
+					</div>
+					<div
+						v-show="exampleRepositoryModel"
+						class="welcome__repository__example__model"
+					>
+						<Button
+							margin-top="1rem"
+							appearance="primary"
+							text="Add Repository"
+							@click.native="addLocalRepository()"
+						/>
+					</div>
+				</div>
 			</div>
 			<Button
 				v-show="getAllRepository.length > 0"
@@ -108,9 +107,9 @@ import dollarIcon from "../components/icon/dollar";
 import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
 import Button from "../components/buttons/Button";
+import TScrollbar from "../components/TLayouts/TScrollbar";
 import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
-import VueScrollbar from "vue2-scrollbar";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
 const { shell } = require("electron");
@@ -128,7 +127,7 @@ export default {
 		helpIcon,
 		settingsIcon,
 		Button,
-		VueScrollbar
+		TScrollbar
 	},
 	filters: {
 		truncateFilter
@@ -224,9 +223,6 @@ export default {
 		background-color: #DEE0E3
 
 	&__repository
-		&__scrollbar
-			max-height: 400px
-
 		&__example
 			user-select: none
 
@@ -248,9 +244,6 @@ export default {
 			border: 1px solid #EFEFEF
 			width: 450px
 			border-radius: 1rem
-
-			&__container
-				padding: 1rem
 
 			&__item
 				&:not(:last-child)
