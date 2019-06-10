@@ -8740,10 +8740,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-apexcharts@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/vue-apexcharts/-/vue-apexcharts-1.3.5.tgz#4c98c314ffdb6ea63c9354678bf93a666a859921"
-  integrity sha512-9UeY9013+BQfQbx7JrBjLiQf3wNa041OrfnC3F1onmsIY1z842xGMiRD60PqBSvc3wHzxYtKzj8LngSuDYWaCA==
+vue-apexcharts@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/vue-apexcharts/-/vue-apexcharts-1.3.6.tgz#86417069a98c72f3cdf858245455fb1214d47d5f"
+  integrity sha512-SnThMhrGjBm9vCN0Kz5ToqI4NYj2pRCRNCyFYpu0TQKagV3lb44xSrzNcXx3HaLx7dJysvQy50MJYocsN6o0jQ==
 
 vue-chartjs@^3.4.2:
   version "3.4.2"
