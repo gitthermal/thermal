@@ -65,10 +65,17 @@ export default {
 		border-color: #00adb5
 		background-color: #00adb5
 
+		&-danger
+			background-color: #f04747
+
 	&__outline
 		border-color: #00adb5
 		color: #00adb5
 		background-color: #ffffff
+
+		&-danger
+			border-color: #f04747
+			color: #f04747
 
 	&__disabled
 		opacity: .6
