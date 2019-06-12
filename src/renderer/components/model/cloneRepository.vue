@@ -43,27 +43,25 @@
 						style="display: none"
 						@change="folderSelectorInput"
 					/>
-					<Button
-						text="Select"
-						appearance="primary"
+					<t-button
 						margin-left=".4rem"
 						@click.native="$refs.folderSelector.click()"
-					/>
+					>
+						Select
+					</t-button>
 				</div>
 			</div>
 			<div class="model__section model__footer">
-				<Button
-					margin-left="auto"
-					text="Clone"
-					appearance="primary"
-					@click.native="cloneRepository"
-				/>
-				<Button
-					text="Cancel"
-					appearance="outline"
+				<t-button margin-left="auto" @click.native="cloneRepository">
+					Clone
+				</t-button>
+				<t-button
 					margin-left=".5rem"
+					:outline="true"
 					@click.native="closeModel"
-				/>
+				>
+					Cancel
+				</t-button>
 			</div>
 		</div>
 		<div v-else class="clone__progress">
@@ -76,7 +74,7 @@
 <script>
 import inputTextLabel from "../input/inputTextLabel";
 import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import progressBar from "../progress/progressBar";
 import gitClone from "../../git/clone";
 import addRepository from "../../mixins/addRepository";
@@ -85,7 +83,7 @@ export default {
 	name: "CloneRepository",
 	components: {
 		inputTextLabel,
-		Button,
+		TButton,
 		progressBar,
 		closeIcon
 	},

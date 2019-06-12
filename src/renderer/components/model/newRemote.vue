@@ -19,12 +19,9 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<Button
-				margin-left="auto"
-				text="Publish repository"
-				appearance="primary"
-				@click.native="addRemoteUrl()"
-			/>
+			<t-button margin-left="auto" @click.native="addRemoteUrl()">
+				Publish repository
+			</t-button>
 		</div>
 	</div>
 </template>
@@ -32,7 +29,7 @@
 <script>
 import inputText from "../input/inputText";
 import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import git from "simple-git/promise";
 
 export default {
@@ -40,7 +37,7 @@ export default {
 	components: {
 		inputText,
 		closeIcon,
-		Button
+		TButton
 	},
 	directives: {
 		focus: {

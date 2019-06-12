@@ -28,20 +28,17 @@
 				style="display: none"
 				@change="fileSectorInput"
 			/>
-			<Button
-				text="Select"
-				appearance="primary"
-				margin-left=".4rem"
-				@click.native="$refs.fileInput.click()"
-			/>
+			<t-button margin-left=".4rem" @click.native="$refs.fileInput.click()">
+				Select
+			</t-button>
 		</div>
 		<div class="model__section model__footer">
-			<Button
+			<t-button
 				margin-left="auto"
-				appearance="primary"
-				text="Add repository"
 				@click.native="addRepository(pathToRepository)"
-			/>
+			>
+				Add repository
+			</t-button>
 		</div>
 	</div>
 </template>
@@ -49,7 +46,7 @@
 <script>
 import closeIcon from "../icon/close";
 import inputText from "../input/inputText";
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import addRepository from "../../mixins/addRepository";
 
 export default {
@@ -57,7 +54,7 @@ export default {
 	components: {
 		closeIcon,
 		inputText,
-		Button
+		TButton
 	},
 	directives: {
 		focus: {

@@ -35,27 +35,25 @@
 					style="display: none"
 					@change="folderSelectorInput"
 				/>
-				<Button
-					text="Select"
-					appearance="primary"
+				<t-button
 					margin-left=".4rem"
 					@click.native="$refs.folderSelector.click()"
-				/>
+				>
+					Select
+				</t-button>
 			</div>
 		</div>
 		<div class="model__section model__footer">
-			<Button
-				margin-left="auto"
-				text="Create repository"
-				appearance="primary"
-				@click.native="createNewRepository"
-			/>
-			<Button
-				text="Cancel"
-				appearance="outline"
+			<t-button margin-left="auto" @click.native="createNewRepository">
+				Create repository
+			</t-button>
+			<t-button
+				:outline="true"
 				margin-left=".5rem"
 				@click.native="closeModel()"
-			/>
+			>
+				Cancel
+			</t-button>
 		</div>
 	</div>
 </template>
@@ -63,7 +61,7 @@
 <script>
 import inputTextLabel from "../input/inputTextLabel";
 import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import git from "simple-git/promise";
 import addRepository from "../../mixins/addRepository";
 const fs = require("fs");
@@ -73,7 +71,7 @@ export default {
 	components: {
 		inputTextLabel,
 		closeIcon,
-		Button
+		TButton
 	},
 	mixins: [addRepository],
 	data() {

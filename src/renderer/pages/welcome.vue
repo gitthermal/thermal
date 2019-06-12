@@ -40,12 +40,12 @@
 								class="welcome__repository__list__item d-flex align-items-center"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<Button
-									text="Open"
-									appearance="primary"
+								<t-button
 									margin-left="auto"
 									@click.native="selectCurrentRepository(index)"
-								/>
+								>
+									Open
+								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
 									@click="openRepositorySettings(index)"
@@ -66,7 +66,9 @@
 									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
 								>
 									<h6>{{ repo }}</h6>
-									<Button text="Open" appearance="primary" margin-left="auto" />
+									<t-button margin-left="auto">
+										Open
+									</t-button>
 									<div class="welcome__repository__list__item__settings">
 										<settingsIcon />
 									</div>
@@ -76,24 +78,24 @@
 								v-show="exampleRepositoryModel"
 								class="welcome__repository__example__model"
 							>
-								<Button
+								<t-button
 									margin-top="1rem"
-									appearance="primary"
-									text="Add Repository"
 									@click.native="addLocalRepository()"
-								/>
+								>
+									Add Repository
+								</t-button>
 							</div>
 						</div>
 					</div>
 				</VueScrollbar>
 			</div>
-			<Button
+			<t-button
 				v-show="getAllRepository.length > 0"
 				margin-top="1rem"
-				appearance="primary"
-				text="Add Repository"
 				@click.native="addLocalRepository()"
-			/>
+			>
+				Add Repository
+			</t-button>
 		</div>
 		<div class="appMetaData">
 			{{ appVersion }}
@@ -107,7 +109,7 @@ import twitterIcon from "../components/icon/twitter";
 import dollarIcon from "../components/icon/dollar";
 import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
-import Button from "../components/buttons/Button";
+import TButton from "../components/TButton/TButton";
 import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
 import VueScrollbar from "vue2-scrollbar";
@@ -127,7 +129,7 @@ export default {
 		dollarIcon,
 		helpIcon,
 		settingsIcon,
-		Button,
+		TButton,
 		VueScrollbar
 	},
 	filters: {

@@ -28,19 +28,16 @@
 			/>
 		</div>
 		<div class="model__section model__footer">
-			<Button
-				margin-left="auto"
-				text="Export"
-				appearance="primary"
-				@click.native="exportDetail()"
-			/>
+			<t-button margin-left="auto" @click.native="exportDetail()">
+				Export
+			</t-button>
 		</div>
 	</div>
 </template>
 
 <script>
 import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import inputTextLabel from "../input/inputTextLabel";
 const fs = require("fs");
 
@@ -49,7 +46,7 @@ export default {
 	components: {
 		closeIcon,
 		inputTextLabel,
-		Button
+		TButton
 	},
 	data() {
 		return {

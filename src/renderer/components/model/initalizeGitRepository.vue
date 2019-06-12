@@ -9,31 +9,29 @@
 			By default git will be initalized at the root of the project.
 		</div>
 		<div class="model__section model__footer">
-			<Button
-				text="Go back"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				border-color="00adb5"
 				margin-left="auto"
 				@click.native="switchRepository"
-			/>
-			<Button
-				text="Initalize git"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="initalizeGit"
-			/>
+			>
+				Go back
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="initalizeGit">
+				Initalize git
+			</t-button>
 		</div>
 	</div>
 </template>
 
 <script>
-import Button from "../buttons/Button";
+import TButton from "../TButton/TButton";
 import gitInit from "../../git/init";
 
 export default {
 	name: "InitalizeGitRepository",
 	components: {
-		Button
+		TButton
 	},
 	computed: {
 		currentRepository() {

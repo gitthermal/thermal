@@ -68,13 +68,14 @@
 									<h6>Remove this repository</h6>
 									<p>You can add it again</p>
 								</div>
-								<Button
+								<t-button
 									margin-left="auto"
-									appearance="outline"
+									:outline="true"
 									type="danger"
-									text="Remove"
 									@click.native="removeCurrentRepository()"
-								/>
+								>
+									Remove
+								</t-button>
 							</div>
 						</div>
 					</div>
@@ -86,7 +87,7 @@
 
 <script>
 import inputTextLabel from "../../components/input/inputTextLabel";
-import Button from "../../components/buttons/Button";
+import TButton from "../../components/TButton/TButton";
 import { ToggleButton } from "vue-js-toggle-button";
 import VueScrollbar from "vue2-scrollbar";
 
@@ -94,7 +95,7 @@ export default {
 	name: "RepositorySettings",
 	components: {
 		inputTextLabel,
-		Button,
+		TButton,
 		ToggleButton,
 		VueScrollbar
 	},
