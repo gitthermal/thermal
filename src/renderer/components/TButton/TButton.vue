@@ -1,7 +1,8 @@
 <template>
 	<button
-		class="t-button t-button__primary"
+		class="t-button"
 		:class="{
+			't-button__primary': !outline,
 			't-button__disabled': disabled,
 			't-button__outline': outline
 		}"
