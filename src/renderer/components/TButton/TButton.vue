@@ -2,7 +2,8 @@
 	<button
 		class="t-button t-button__primary"
 		:class="{
-			't-button__disabled': disabled
+			't-button__disabled': disabled,
+			't-button__outline': outline
 		}"
 		:disabled="disabled"
 		:style="{
@@ -60,6 +61,11 @@ export default {
 		color: #ffffff
 		border-color: #00adb5
 		background-color: #00adb5
+
+	&__outline
+		border-color: #00adb5
+		color: #00adb5
+		background-color: #ffffff
 
 	&__disabled
 		opacity: .6
