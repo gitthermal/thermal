@@ -45,7 +45,9 @@ export default {
 .t-button
 	cursor: pointer
 	opacity: 1
-	font-size: 0.875rem
+	font:
+		family: inherit
+		size: 0.875rem
 	outline: none
 	user-select: none
 	text-align: center
