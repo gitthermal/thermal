@@ -8759,10 +8759,10 @@ vue-chartjs@^3.4.2:
   resolved "https://registry.yarnpkg.com/vue-chartjs/-/vue-chartjs-3.4.2.tgz#0323e6a99a10a68f38d426899c3994f48596fd23"
   integrity sha512-EhoXUJ17+9isMLhJpOliS++xE5z5FM8iAVytIqnKofByVMr8AISRL/SCy3zvWbvzhjgQPStd9y6adMF5bnWQdg==
 
-vue-content-loader@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/vue-content-loader/-/vue-content-loader-0.2.1.tgz#0eb332e2a72643d57fb209d72d6526573b191f5a"
-  integrity sha1-DrMy4qcmQ9V/sgnXLWUmVzsZH1o=
+vue-content-loader@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/vue-content-loader/-/vue-content-loader-0.2.2.tgz#c093b656edac3f2a2e3215eaa198ba1852ad6b7b"
+  integrity sha512-8jcb0dJFiVAz7EPwpQjOd/GnswUiSDeKihEABkq/iAYxAI2MHSS7+VWlRblQDH3D1rm3Lewt7fDJoOpJKbYHjw==
   dependencies:
     babel-helper-vue-jsx-merge-props "^2.0.3"
 
