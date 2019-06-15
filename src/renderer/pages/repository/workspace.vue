@@ -9,7 +9,7 @@
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</div>
-				<VueScrollbar class="workspace__changes__scrollbar">
+				<t-scrollbar :height="fileChangesSize">
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
@@ -47,7 +47,7 @@
 							</div>
 						</div>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
 			<commitMessage
 				ref="commitMessage"
@@ -72,7 +72,7 @@
 <script>
 import statusMixin from "../../mixins/git/status";
 import diffMixin from "../../mixins/git/diff";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
@@ -82,7 +82,7 @@ export default {
 	name: "Workspace",
 	components: {
 		branchIcon,
-		VueScrollbar,
+		TScrollbar,
 		commitMessage,
 		diffPreview,
 		fileChangesSkeleton
@@ -119,6 +119,14 @@ export default {
 		},
 		fileDiffPreview() {
 			return this.$store.state.workspace.filePreview.preview;
+		},
+		fileChangesSize() {
+			return (
+				this.$refs.workspaceFiles.clientHeight -
+				this.$refs.branchName.clientHeight -
+				this.$refs.commitMessage.clientHeight +
+				"px"
+			);
 		}
 	},
 	mounted() {
@@ -237,10 +245,6 @@ export default {
 			font-weight: 600
 
 	&__changes
-
-		&__scrollbar
-			height: calc(86vh - (41px + 102px))
-
 		&__item
 			border-bottom: 1px solid #DEE0E3
 			font-size: 12px
