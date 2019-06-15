@@ -1,6 +1,6 @@
 <template>
 	<div class="repository__settings w-100">
-		<VueScrollbar class="repository__settings__scrollbar">
+		<t-scrollbar height="86vh">
 			<div class="repository__settings__content container">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 			</div>
-		</VueScrollbar>
+		</t-scrollbar>
 	</div>
 </template>
 
@@ -88,7 +88,7 @@
 import inputTextLabel from "../../components/input/inputTextLabel";
 import Button from "../../components/buttons/Button";
 import { ToggleButton } from "vue-js-toggle-button";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 
 export default {
 	name: "RepositorySettings",
@@ -96,7 +96,7 @@ export default {
 		inputTextLabel,
 		Button,
 		ToggleButton,
-		VueScrollbar
+		TScrollbar
 	},
 	computed: {
 		currentRepository() {
@@ -155,10 +155,6 @@ export default {
 .repository
 
 	&__settings
-
-		&__scrollbar
-			max-height: 86vh
-
 		&__content
 			padding: 20px
 
