@@ -1,8 +1,11 @@
 <template>
 	<div class="workspace">
-		<div class="workspace__files">
+		<div ref="workspaceFiles" class="workspace__files">
 			<div class="workspace__repository">
-				<div class="workspace__branch d-flex align-items-center">
+				<div
+					ref="branchName"
+					class="workspace__branch d-flex align-items-center"
+				>
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</div>
@@ -47,6 +50,7 @@
 				</VueScrollbar>
 			</div>
 			<commitMessage
+				ref="commitMessage"
 				padding-top="10px"
 				padding-bottom="10px"
 				padding-left="10px"
