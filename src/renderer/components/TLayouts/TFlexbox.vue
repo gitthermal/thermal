@@ -6,7 +6,8 @@
 			justifyContent: justifyContent,
 			flexWrap: flexWrap,
 			alignItems: alignItems,
-			alignSelf: alignSelf
+			alignSelf: alignSelf,
+			flexGrow: flexGrow
 		}"
 	>
 		<slot />
@@ -37,6 +38,10 @@ export default {
 			type: String,
 			default: null
 		},
+		flexGrow: {
+			type: Number,
+			default: null
+		}
 	}
 };
 </script>
