@@ -1,20 +1,22 @@
 <template>
-	<div>
+	<t-flexbox flex-direction="column">
 		<navbar />
-		<div class="col__view">
+		<t-flexbox>
 			<sidebar />
 			<router-view />
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 import navbar from "../../components/navbar";
 import sidebar from "../../components/sidebar";
 
 export default {
 	name: "RepositoryIndex",
 	components: {
+		TFlexbox,
 		navbar,
 		sidebar
 	},
@@ -28,10 +30,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="sass">
-.col__view
-	display: flex
-	height: 86vh
-	flex-direction: row
-</style>

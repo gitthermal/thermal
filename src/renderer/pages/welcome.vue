@@ -1,13 +1,15 @@
 <template>
-	<div class="welcome d-flex align-items-center">
-		<div
-			class="welcome__introduction d-flex flex-column align-items-center ml-auto mr-auto"
-		>
+	<t-flexbox
+		align-items="center"
+		justify-content="space-evenly"
+		class="welcome"
+	>
+		<t-flexbox flex-direction="column" align-items="center">
 			<h1>Welcome to Thermal</h1>
-			<p class="welcome__introduction__description">
+			<p style="margin-bottom: 1rem">
 				One stop. Git repository.
 			</p>
-			<div class="welcome__introduction__item d-flex">
+			<t-flexbox style="margin-bottom: 1rem">
 				<div class="welcome__introduction__item__icon" @click="websiteURL()">
 					<linkIcon />
 				</div>
@@ -20,12 +22,10 @@
 				<div class="welcome__introduction__item__icon" @click="discordURL()">
 					<helpIcon />
 				</div>
-			</div>
-		</div>
+			</t-flexbox>
+		</t-flexbox>
 		<div class="welcome__seperate" />
-		<div
-			class="welcome__repository d-flex flex-column align-items-center ml-auto mr-auto"
-		>
+		<t-flexbox flex-direction="column" align-items="center">
 			<div
 				class="welcome__repository__list"
 				@drop.prevent="dropHandler($event)"
@@ -34,10 +34,11 @@
 				<VueScrollbar class="welcome__repository__scrollbar">
 					<div class="welcome__repository__list__container">
 						<div v-if="getAllRepository.length > 0">
-							<div
+							<t-flexbox
 								v-for="(repo, index) in getAllRepository"
 								:key="repo.path"
-								class="welcome__repository__list__item d-flex align-items-center"
+								align-items="center"
+								class="welcome__repository__list__item"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<Button
@@ -52,7 +53,7 @@
 								>
 									<settingsIcon />
 								</div>
-							</div>
+							</t-flexbox>
 						</div>
 						<div
 							v-else
@@ -60,17 +61,18 @@
 							@mouseleave="toggleRepositoryExampleModel"
 						>
 							<div>
-								<div
+								<t-flexbox
 									v-for="repo in repositoryList"
 									:key="repo"
-									class="welcome__repository__list__item welcome__repository__example d-flex align-items-center"
+									align-items="center"
+									class="welcome__repository__list__item welcome__repository__example"
 								>
 									<h6>{{ repo }}</h6>
 									<Button text="Open" appearance="primary" margin-left="auto" />
 									<div class="welcome__repository__list__item__settings">
 										<settingsIcon />
 									</div>
-								</div>
+								</t-flexbox>
 							</div>
 							<div
 								v-show="exampleRepositoryModel"
@@ -94,11 +96,11 @@
 				text="Add Repository"
 				@click.native="addLocalRepository()"
 			/>
-		</div>
+		</t-flexbox>
 		<div class="appMetaData">
 			{{ appVersion }}
 		</div>
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
@@ -110,6 +112,7 @@ import settingsIcon from "../components/icon/settings";
 import Button from "../components/buttons/Button";
 import packageJson from "../../../package.json";
 import * as Sentry from "@sentry/electron";
+import TFlexbox from "../components/TLayouts/TFlexbox";
 import VueScrollbar from "vue2-scrollbar";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
@@ -126,6 +129,7 @@ export default {
 		twitterIcon,
 		dollarIcon,
 		helpIcon,
+		TFlexbox,
 		settingsIcon,
 		Button,
 		VueScrollbar
@@ -197,16 +201,10 @@ export default {
 
 <style lang="sass">
 .welcome
-	width: 100%
 	height: 100vh
 
 	&__introduction
-		&__description
-			margin-bottom: 1rem
-
 		&__item
-			margin-bottom: 1rem
-
 			&__icon
 				cursor: pointer
 

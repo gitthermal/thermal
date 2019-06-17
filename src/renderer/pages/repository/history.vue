@@ -1,5 +1,5 @@
 <template>
-	<div class="history">
+	<t-flexbox flex-direction="row">
 		<div class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
@@ -14,8 +14,8 @@
 					</div>
 				</VueScrollbar>
 			</div>
-			<div v-else class="history__logs__detail">
-				<div class="history__logs__detail__buttons">
+			<div v-else>
+				<t-flexbox flex-direction="row" class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"
 						@click="toggleCommitDetail()"
@@ -28,7 +28,7 @@
 					>
 						<fileIcon />
 					</div>
-				</div>
+				</t-flexbox>
 				<VueScrollbar class="history__logs__detail__scrollbar">
 					<commitInformation />
 				</VueScrollbar>
@@ -43,7 +43,7 @@
 				No content to show
 			</div>
 		</div>
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
@@ -54,6 +54,7 @@ import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "History",
@@ -63,7 +64,8 @@ export default {
 		diffPreview,
 		VueScrollbar,
 		fileIcon,
-		logSkeleton
+		logSkeleton,
+		TFlexbox
 	},
 	computed: {
 		repositoryLogs() {
@@ -110,19 +112,13 @@ export default {
 
 <style lang="sass">
 .history
-	display: flex
-	flex-direction: row
-
 	&__logs
 		border-right: 1px solid #DEE0E3
 		width: 300px
 
 		&__detail
-
 			&__buttons
-				display: flex
 				padding: 10px
-				flex-direction: row
 				border-bottom: 1px solid #DEE0E3
 
 				&__back

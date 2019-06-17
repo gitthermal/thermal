@@ -1,32 +1,39 @@
 <template>
-	<div class="repository__sidebar d-flex">
-		<div class="repository__sidebar__group d-flex flex-column">
+	<t-flexbox class="repository__sidebar">
+		<t-flexbox flex-direction="column" class="repository__sidebar__group">
 			<router-link
-				class="repository__sidebar__item d-flex align-items-center"
+				class="repository__sidebar__item"
 				:to="{ name: 'repositoryWorkspace' }"
 			>
-				<folderIcon />
-				<p>Workspace</p>
+				<t-flexbox align-items="center">
+					<folderIcon />
+					<p>Workspace</p>
+				</t-flexbox>
 			</router-link>
 			<router-link
-				class="repository__sidebar__item d-flex align-items-center"
+				class="repository__sidebar__item"
 				:to="{ name: 'repositoryHistory' }"
 			>
-				<clockIcon />
-				<p>History</p>
+				<t-flexbox align-items="center">
+					<clockIcon />
+					<p>History</p>
+				</t-flexbox>
 			</router-link>
 			<router-link
-				class="repository__sidebar__item d-flex align-items-center"
+				class="repository__sidebar__item"
 				:to="{ name: 'repositoryStats' }"
 			>
-				<barIcon />
-				<p>Stats</p>
+				<t-flexbox align-items="center">
+					<barIcon />
+					<p>Stats</p>
+				</t-flexbox>
 			</router-link>
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
+import TFlexbox from "./TLayouts/TFlexbox";
 import folderIcon from "./icon/folder";
 import clockIcon from "./icon/clock";
 import barIcon from "./icon/bar";
@@ -34,6 +41,7 @@ import barIcon from "./icon/bar";
 export default {
 	name: "Sidebar",
 	components: {
+		TFlexbox,
 		folderIcon,
 		clockIcon,
 		barIcon
