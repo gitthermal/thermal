@@ -1,7 +1,7 @@
 <template>
 	<div class="history">
 		<div class="history__logs">
-			<div v-if="!this.$store.state.history.commitInformation.isActive">
+			<div v-if="!commitDetail">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
 				<VueScrollbar v-else class="history__logs__scrollbar">
 					<div>
@@ -65,6 +65,11 @@ export default {
 		fileIcon,
 		logSkeleton
 	},
+	data() {
+		return {
+			commitDetail: false
+		};
+	},
 	computed: {
 		repositoryLogs() {
 			return this.$store.getters["history/allLogs"];
@@ -88,7 +93,7 @@ export default {
 			});
 		},
 		toggleCommitDetail() {
-			this.$store.commit("history/toggleCommitInformation");
+			this.commitDetail = !this.commitDetail;
 			this.$store.commit({
 				type: "history/toggleFilePreview",
 				isActive: false
