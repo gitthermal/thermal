@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import showMixin from "../../mixins/git/show";
+import showMixin from "../../git/show";
 import trimFilePathMixin from "../../mixins/trimFilePath";
 
 export default {

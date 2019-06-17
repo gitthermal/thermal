@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import statusMixin from "../../mixins/git/status";
-import diffMixin from "../../mixins/git/diff";
+import statusMixin from "../../git/status";
+import diffMixin from "../../git/diff";
 import VueScrollbar from "vue2-scrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
