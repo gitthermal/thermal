@@ -107,7 +107,7 @@ export default {
 			});
 		},
 		exportCommitDetail() {
-			this.$store.dispatch("model/showExportCommitData");
+			this.$store.commit("modal/toggleExportCommitDataModal", true);
 		}
 	}
 };
