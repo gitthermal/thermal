@@ -1,7 +1,7 @@
 <template>
-	<div class="repository__settings w-100">
+	<t-flexbox :flex-grow="1">
 		<t-scrollbar height="86vh">
-			<div class="repository__settings__content container">
+			<div style="padding: 20px" class="container">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
 					<p>Your local repository settings</p>
@@ -36,7 +36,11 @@
 					<div class="settings__section">
 						<h4>Features</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Commit</h6>
 									<p>Enable/disable commits for this repository</p>
@@ -46,8 +50,12 @@
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
-							<div class="settings__section__group__item">
+							</t-flexbox>
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remote</h6>
 									<p>Pull, push and fetch</p>
@@ -57,13 +65,17 @@
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
+							</t-flexbox>
 						</div>
 					</div>
 					<div class="settings__section">
 						<h4>Danger Zone</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remove this repository</h6>
 									<p>You can add it again</p>
@@ -75,13 +87,13 @@
 									text="Remove"
 									@click.native="removeCurrentRepository()"
 								/>
-							</div>
+							</t-flexbox>
 						</div>
 					</div>
 				</div>
 			</div>
 		</t-scrollbar>
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
@@ -89,6 +101,7 @@ import inputTextLabel from "../../components/input/inputTextLabel";
 import Button from "../../components/buttons/Button";
 import { ToggleButton } from "vue-js-toggle-button";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "RepositorySettings",
@@ -96,7 +109,8 @@ export default {
 		inputTextLabel,
 		Button,
 		ToggleButton,
-		TScrollbar
+		TScrollbar,
+		TFlexbox
 	},
 	computed: {
 		currentRepository() {
@@ -156,8 +170,6 @@ export default {
 
 	&__settings
 		&__content
-			padding: 20px
-
 			&__header
 				margin-bottom: 1rem
 

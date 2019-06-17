@@ -1,22 +1,30 @@
 <template>
-	<div>
+	<t-flexbox flex-direction="column">
 		<a
-			class="history__item d-flex flex-column"
+			class="history__item"
 			@mouseenter="showFiles(data.hash)"
 			@mouseleave="hideFiles()"
 		>
 			<div :title="data.message" class="history__item__title">
 				{{ data.message }}
 			</div>
-			<div class="history__item__author d-flex flex-row align-items-center">
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+				class="history__item__author"
+			>
 				<img
 					class="history__item__author__image"
 					src="../../../../static/image/user_avatar.png"
 				/>
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
-			</div>
+			</t-flexbox>
 		</a>
-		<div v-show="files.isActive" class="history__files">
+		<t-flexbox
+			v-show="files.isActive"
+			flex-direction="column"
+			class="history__files"
+		>
 			<div class="history__files__dropdown">
 				<div
 					v-for="item in files.list"
@@ -26,16 +34,20 @@
 					{{ item }}
 				</div>
 			</div>
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
 import showMixin from "../../mixins/git/show";
 import trimFilePathMixin from "../../mixins/trimFilePath";
+import TFlexbox from "../TLayouts/TFlexbox";
 
 export default {
 	name: "CommitHistoryItem",
+	components: {
+		TFlexbox
+	},
 	props: {
 		data: {
 			type: Object,
@@ -105,9 +117,7 @@ export default {
 			background-color: white
 			border-radius: 3px
 			box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px
-			display: flex
 			font-size: .8rem
-			flex-direction: column
 			position: relative
 			top: -20px
 

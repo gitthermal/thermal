@@ -1,23 +1,25 @@
 <template>
-	<div class="workspace">
+	<t-flexbox flex-direction="row" :flex-grow="1">
 		<div ref="workspaceFiles" class="workspace__files">
-			<div class="workspace__repository">
-				<div
-					ref="branchName"
-					class="workspace__branch d-flex align-items-center"
-				>
+			<t-flexbox flex-direction="column" style="overflow: hidden;">
+				<t-flexbox
+          align-items="center"
+          ref="branchName"
+          class="workspace__branch"
+        >
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
-				</div>
+				</t-flexbox>
 				<t-scrollbar :height="fileChangesSize">
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
-					<div v-else class="workspace__changes">
-						<div
+					<div v-else>
+						<t-flexbox
 							v-for="file in this.$store.getters['commit/allFiles']"
 							:key="file.path"
-							class="workspace__changes__item d-flex align-items-center"
+							class="workspace__changes__item"
+							align-items="center"
 							@click="previewFileChange(file)"
 						>
 							<input
@@ -27,17 +29,15 @@
 								type="checkbox"
 								:value="file.path"
 							/>
-							<label
-								class="workspace__changes__item__path"
-								:title="file.path"
-								:for="file.path"
-							>
-								<p class="workspace__changes__item__path__name">
-									{{ filePath(file.path) }}
-								</p>
-								<p class="workspace__changes__item__path__file">
-									{{ fileName(file.path) }}
-								</p>
+							<label :title="file.path" :for="file.path">
+								<t-flexbox>
+									<p class="workspace__changes__item__path__name">
+										{{ filePath(file.path) }}
+									</p>
+									<p class="workspace__changes__item__path__file">
+										{{ fileName(file.path) }}
+									</p>
+								</t-flexbox>
 							</label>
 							<div
 								:style="'background-color: #' + fileTypeColor(file)"
@@ -45,10 +45,10 @@
 							>
 								{{ fileType(file) }}
 							</div>
-						</div>
+						</t-flexbox>
 					</div>
 				</t-scrollbar>
-			</div>
+			</t-flexbox>
 			<commitMessage
 				ref="commitMessage"
 				padding-top="10px"
@@ -66,7 +66,7 @@
 				No file selected.
 			</div>
 		</div>
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
@@ -77,6 +77,7 @@ import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
 import fileChangesSkeleton from "../../components/skeleton/fileChanges";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "Workspace",
@@ -85,7 +86,8 @@ export default {
 		TScrollbar,
 		commitMessage,
 		diffPreview,
-		fileChangesSkeleton
+		fileChangesSkeleton,
+		TFlexbox
 	},
 	data() {
 		return {
@@ -220,9 +222,6 @@ export default {
 
 <style lang="sass">
 .workspace
-	display: flex
-	flex-direction: row
-
 	&__files
 		border-right: 1px solid #DEE0E3
 		width: 300px
@@ -231,8 +230,6 @@ export default {
 		background-color: #EFEFEF
 		padding: 10px 20px
 		border-bottom: 1px solid #DEE0E3
-		position: sticky
-		top: 0
 
 		svg
 			width: 20px
@@ -256,8 +253,6 @@ export default {
 				margin-right: 5px
 
 			&__path
-				display: flex
-
 				&__name
 					color: #BEBEBE
 
@@ -268,7 +263,4 @@ export default {
 
 			&:hover
 				background-color: rgba(#EFEFEF, .4)
-
-	&__preview
-		padding: 1rem
 </style>
