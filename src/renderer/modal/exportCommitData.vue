@@ -11,6 +11,7 @@
 				label="Name"
 				placeholder="File name"
 				class="model__body__input"
+				margin-right=".8rem"
 			/>
 			<inputTextLabel
 				v-model="exportFilePath"
