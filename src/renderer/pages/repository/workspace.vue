@@ -1,12 +1,16 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
-		<div class="workspace__files">
+		<div ref="workspaceFiles" class="workspace__files">
 			<t-flexbox flex-direction="column" style="overflow: hidden;">
-				<t-flexbox align-items="center" class="workspace__branch">
+				<t-flexbox
+          align-items="center"
+          ref="branchName"
+          class="workspace__branch"
+        >
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
-				<VueScrollbar class="workspace__changes__scrollbar">
+				<t-scrollbar :height="fileChangesSize">
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
@@ -43,9 +47,10 @@
 							</div>
 						</t-flexbox>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
 			</t-flexbox>
 			<commitMessage
+				ref="commitMessage"
 				padding-top="10px"
 				padding-bottom="10px"
 				padding-left="10px"
@@ -67,7 +72,7 @@
 <script>
 import statusMixin from "../../mixins/git/status";
 import diffMixin from "../../mixins/git/diff";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
@@ -78,7 +83,7 @@ export default {
 	name: "Workspace",
 	components: {
 		branchIcon,
-		VueScrollbar,
+		TScrollbar,
 		commitMessage,
 		diffPreview,
 		fileChangesSkeleton,
@@ -116,6 +121,14 @@ export default {
 		},
 		fileDiffPreview() {
 			return this.$store.state.workspace.filePreview.preview;
+		},
+		fileChangesSize() {
+			return (
+				this.$refs.workspaceFiles.clientHeight -
+				this.$refs.branchName.clientHeight -
+				this.$refs.commitMessage.clientHeight +
+				"px"
+			);
 		}
 	},
 	mounted() {
@@ -229,9 +242,6 @@ export default {
 			font-weight: 600
 
 	&__changes
-		&__scrollbar
-			height: calc(86vh - (41px + 102px))
-
 		&__item
 			border-bottom: 1px solid #DEE0E3
 			font-size: 12px

@@ -1,9 +1,9 @@
 <template>
 	<t-flexbox flex-direction="row">
-		<div class="history__logs">
+		<div ref="historyLogs" class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
-				<VueScrollbar v-else class="history__logs__scrollbar">
+				<t-scrollbar v-else :height="historyLogListSize">
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -12,7 +12,7 @@
 							@click.native="gitShow(log.hash)"
 						/>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
 			<div v-else>
 				<t-flexbox flex-direction="row" class="history__logs__detail__buttons">
@@ -29,9 +29,9 @@
 						<fileIcon />
 					</div>
 				</t-flexbox>
-				<VueScrollbar class="history__logs__detail__scrollbar">
+				<t-scrollbar height-type="max" :height="commitInformationPanelSize">
 					<commitInformation />
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
 		</div>
 		<div class="history__preview">
@@ -51,7 +51,7 @@ import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
 import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
@@ -62,7 +62,7 @@ export default {
 		commitHistoryItem,
 		commitInformation,
 		diffPreview,
-		VueScrollbar,
+		TScrollbar,
 		fileIcon,
 		logSkeleton,
 		TFlexbox
@@ -76,6 +76,12 @@ export default {
 		},
 		commitFileDiffPreview() {
 			return this.$store.getters["history/getFilePreview"];
+		},
+		historyLogListSize() {
+			return this.$refs.historyLogs.getBoundingClientRect().height + "px";
+		},
+		commitInformationPanelSize() {
+			return this.$refs.historyLogs.getBoundingClientRect().height - 39 + "px";
 		}
 	},
 	mounted() {
@@ -136,12 +142,6 @@ export default {
 						stroke: #6C6F75
 						width: 18px
 						height: 18px
-
-			&__scrollbar
-				max-height: 80.6vh
-
-		&__scrollbar
-			max-height: 90vh
 
 	&__preview
 		padding: 10px

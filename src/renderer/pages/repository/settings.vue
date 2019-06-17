@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox :flex-grow="1">
-		<VueScrollbar class="repository__settings__scrollbar">
+		<t-scrollbar height="86vh">
 			<div style="padding: 20px" class="container">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 			</div>
-		</VueScrollbar>
+		</t-scrollbar>
 	</t-flexbox>
 </template>
 
@@ -100,7 +100,7 @@
 import inputTextLabel from "../../components/input/inputTextLabel";
 import Button from "../../components/buttons/Button";
 import { ToggleButton } from "vue-js-toggle-button";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
@@ -109,7 +109,7 @@ export default {
 		inputTextLabel,
 		Button,
 		ToggleButton,
-		VueScrollbar,
+		TScrollbar,
 		TFlexbox
 	},
 	computed: {
@@ -169,10 +169,6 @@ export default {
 .repository
 
 	&__settings
-
-		&__scrollbar
-			max-height: 86vh
-
 		&__content
 			&__header
 				margin-bottom: 1rem

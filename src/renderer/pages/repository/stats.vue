@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox :flex-grow="1">
-		<VueScrollbar class="stats__scrollbar">
+		<t-scrollbar height="86vh">
 			<div class="container">
 				<div class="stats__content">
 					<div class="stats__content-group">
@@ -9,21 +9,21 @@
 					</div>
 				</div>
 			</div>
-		</VueScrollbar>
+		</t-scrollbar>
 	</t-flexbox>
 </template>
 
 <script>
 import gitLog from "../../git/log";
 import ApexCharts from "vue-apexcharts";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "RepositoryStats",
 	components: {
 		ApexCharts,
-		VueScrollbar,
+		TScrollbar,
 		TFlexbox
 	},
 	data() {
