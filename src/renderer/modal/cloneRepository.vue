@@ -49,7 +49,7 @@
 					text="Cancel"
 					appearance="outline"
 					margin-left="auto"
-					@click.native="closeModel('CloneRepository')"
+					@click.native="closeModal('CloneRepository')"
 				/>
 				<Button
 					text="Clone"
