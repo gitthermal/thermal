@@ -34,15 +34,11 @@
 				</VueScrollbar>
 			</div>
 		</div>
-		<div class="history__preview">
-			<diffPreview
-				v-if="this.$store.state.history.filePreview.isActive"
-				:preview="commitFileDiffPreview"
-			/>
-			<div v-else>
-				No content to show
-			</div>
-		</div>
+		<diffPreview
+			v-if="this.$store.state.history.filePreview.isActive"
+			:preview="commitFileDiffPreview"
+		/>
+		<blank-slate v-else />
 	</div>
 </template>
 
@@ -54,6 +50,7 @@ import fileIcon from "../../components/icon/file";
 import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
+import BlankSlate from "../../components/BlankSlate";
 
 export default {
 	name: "History",
@@ -63,7 +60,8 @@ export default {
 		diffPreview,
 		VueScrollbar,
 		fileIcon,
-		logSkeleton
+		logSkeleton,
+		BlankSlate
 	},
 	computed: {
 		repositoryLogs() {
@@ -146,7 +144,4 @@ export default {
 
 		&__scrollbar
 			max-height: 90vh
-
-	&__preview
-		padding: 10px
 </style>
