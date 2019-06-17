@@ -12,6 +12,7 @@
 				placeholder="File name"
 				class="model__body__input"
 				margin-right=".8rem"
+				style="flex-grow: 1"
 			/>
 			<inputTextLabel
 				v-model="exportFilePath"
