@@ -1,0 +1,32 @@
+<template>
+	<div class="container">
+		<slot />
+	</div>
+</template>
+
+<script>
+export default {
+	name: "TContainer"
+};
+</script>
+
+<style lang="sass">
+.container
+	width: 100%
+	padding-right: 15px
+	padding-left: 15px
+	margin-right: auto
+	margin-left: auto
+
+@media (min-width: 576px)
+	.container
+		max-width: 540px
+
+@media (min-width: 768px)
+	.container
+		max-width: 720px
+
+@media (min-width: 992px)
+	.container
+		max-width: 960px
+</style>
