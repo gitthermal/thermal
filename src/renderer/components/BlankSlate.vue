@@ -1,6 +1,5 @@
 <template>
 	<t-flexbox
-		flex-direction="column"
 		justify-content="center"
 		align-items="center"
 		class="blankslate"
