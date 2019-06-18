@@ -1,12 +1,23 @@
 <template>
-	<div class="container">
+	<div
+		class="container"
+		:class="{
+			container__fluid: fluid
+		}"
+	>
 		<slot />
 	</div>
 </template>
 
 <script>
 export default {
-	name: "TContainer"
+	name: "TContainer",
+	props: {
+		fluid: {
+			type: Boolean,
+			default: false
+		}
+	}
 };
 </script>
 
@@ -17,6 +28,9 @@ export default {
 	padding-left: 15px
 	margin-right: auto
 	margin-left: auto
+
+.container__fluid
+	min-width: 100%
 
 @media (min-width: 576px)
 	.container
