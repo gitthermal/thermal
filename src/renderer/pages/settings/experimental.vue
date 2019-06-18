@@ -7,7 +7,7 @@
 			<a @click="discordURL()">Thermal Discord server</a>.
 		</div>
 		<div class="settings__section__group">
-			<div class="settings__section__group__item">
+			<t-flexbox align-items="center">
 				<div>
 					<h6>File changes</h6>
 					<p>
@@ -20,18 +20,20 @@
 					color="#00adb5"
 					class="ml-auto"
 				/>
-			</div>
+			</t-flexbox>
 		</div>
 	</div>
 </template>
 
 <script>
 import { ToggleButton } from "vue-js-toggle-button";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 const { shell } = require("electron");
 
 export default {
 	name: "ExperimentalFeatures",
 	components: {
+		TFlexbox,
 		ToggleButton
 	},
 	computed: {
