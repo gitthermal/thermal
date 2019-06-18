@@ -1,7 +1,7 @@
 <template>
 	<t-flexbox :flex-grow="1">
-		<t-scrollbar height="86vh">
-			<div style="padding: 20px" class="container">
+		<t-scrollbar height="86vh" width="100%">
+			<t-container style="padding: 20px">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
 					<p>Your local repository settings</p>
@@ -91,7 +91,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</t-container>
 		</t-scrollbar>
 	</t-flexbox>
 </template>
@@ -102,6 +102,7 @@ import Button from "../../components/buttons/Button";
 import { ToggleButton } from "vue-js-toggle-button";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
+import TContainer from "../../components/TLayouts/TContainer";
 
 export default {
 	name: "RepositorySettings",
@@ -110,7 +111,8 @@ export default {
 		Button,
 		ToggleButton,
 		TScrollbar,
-		TFlexbox
+		TFlexbox,
+		TContainer
 	},
 	computed: {
 		currentRepository() {
