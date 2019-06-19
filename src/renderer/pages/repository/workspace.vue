@@ -3,10 +3,10 @@
 		<div ref="workspaceFiles" class="workspace__files">
 			<t-flexbox flex-direction="column" style="overflow: hidden;">
 				<t-flexbox
-          align-items="center"
-          ref="branchName"
-          class="workspace__branch"
-        >
+					ref="branchName"
+					align-items="center"
+					class="workspace__branch"
+				>
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
