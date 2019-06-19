@@ -10,7 +10,7 @@
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
-				<t-scrollbar :height="fileChangesSize">
+				<t-scrollbar :height="625 - 41 - 104 + 'px'" width="100%">
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
