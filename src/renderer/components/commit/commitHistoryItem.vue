@@ -17,15 +17,11 @@
 			</div>
 		</a>
 		<div v-show="files.isActive" class="history__files">
-			<div class="history__files__dropdown">
-				<div
-					v-for="item in files.list"
-					:key="item"
-					class="history__files__dropdown__item"
-				>
+			<dropdown-list class="history__files__dropdown">
+				<dropdown-item v-for="item in files.list" :key="item">
 					{{ item }}
-				</div>
-			</div>
+				</dropdown-item>
+			</dropdown-list>
 		</div>
 	</div>
 </template>
@@ -33,6 +29,8 @@
 <script>
 import showMixin from "../../git/show";
 import trimFilePathMixin from "../../mixins/trimFilePath";
+import DropdownList from "../dropdown/dropdownList";
+import DropdownItem from "../dropdown/dropdownItem";
 
 export default {
 	name: "CommitHistoryItem",
@@ -49,6 +47,10 @@ export default {
 				list: []
 			}
 		};
+	},
+	components: {
+		DropdownList,
+		DropdownItem
 	},
 	computed: {
 		currentRepository() {
@@ -102,19 +104,6 @@ export default {
 		left: 200px
 
 		&__dropdown
-			background-color: white
-			border-radius: 3px
-			box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px
-			display: flex
-			font-size: .8rem
-			flex-direction: column
 			position: relative
 			top: -20px
-
-			&__item
-				cursor: pointer
-				padding: 8px 15px
-
-				&:hover
-					background-color: rgba(139, 151, 152, .1)
 </style>
