@@ -115,7 +115,7 @@
     "copy-webpack-plugin": "5.0.3",
     "cross-env": "^5.1.6",
     "css-loader": "3.0.0",
-    "del": "4.1.1",
+    "del": "5.0.0",
     "devtron": "^1.4.0",
     "electron": "5.0.3",
     "electron-builder": "20.44.2",
