@@ -41,7 +41,8 @@
 							<t-flexbox
 								v-for="(repo, index) in getAllRepository"
 								:key="repo.path"
-								class="welcome__repository__list__item d-flex align-items-center"
+								align-items="center"
+								class="welcome__repository__list__item"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<Button
