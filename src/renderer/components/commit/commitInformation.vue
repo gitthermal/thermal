@@ -120,8 +120,8 @@
 </template>
 
 <script>
-import showMixin from "../../mixins/git/show";
-import diffMixin from "../../mixins/git/diff";
+import showMixin from "../../git/show";
+import diffMixin from "../../git/diff";
 import trimFilePathMixin from "../../mixins/trimFilePath";
 import TFlexbox from "../TLayouts/TFlexbox";
 

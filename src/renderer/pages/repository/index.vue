@@ -27,11 +27,8 @@ export default {
 		sidebar
 	},
 	mounted() {
-		if (
-			this.$router.history.current.matched[0].path.slice(1) === "repository" &&
-			this.$store.getters["workspace/currentRepository"].isGit === false
-		) {
-			this.$store.commit("model/toggleModelPlaceholder");
+		if (!this.$store.getters["workspace/currentRepository"].isGit) {
+			this.$store.commit("modal/toggleInitalizeGitRepositoryModal", true);
 		}
 	}
 };

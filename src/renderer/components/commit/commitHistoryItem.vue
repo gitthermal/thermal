@@ -21,27 +21,25 @@
 			</t-flexbox>
 		</a>
 		<t-flexbox
-			v-show="files.isActive"
+			v-if="$store.state.settings.experimental.quickFilePreview && files.isActive"
 			flex-direction="column"
 			class="history__files"
 		>
-			<div class="history__files__dropdown">
-				<div
-					v-for="item in files.list"
-					:key="item"
-					class="history__files__dropdown__item"
-				>
+			<dropdown-list class="history__files__dropdown">
+				<dropdown-item v-for="item in files.list" :key="item">
 					{{ item }}
-				</div>
-			</div>
+				</dropdown-item>
+			</dropdown-list>
 		</t-flexbox>
 	</t-flexbox>
 </template>
 
 <script>
-import showMixin from "../../mixins/git/show";
+import showMixin from "../../git/show";
 import trimFilePathMixin from "../../mixins/trimFilePath";
 import TFlexbox from "../TLayouts/TFlexbox";
+import DropdownList from "../dropdown/dropdownList";
+import DropdownItem from "../dropdown/dropdownItem";
 
 export default {
 	name: "CommitHistoryItem",
@@ -61,6 +59,10 @@ export default {
 				list: []
 			}
 		};
+	},
+	components: {
+		DropdownList,
+		DropdownItem
 	},
 	computed: {
 		currentRepository() {
@@ -114,17 +116,6 @@ export default {
 		left: 200px
 
 		&__dropdown
-			background-color: white
-			border-radius: 3px
-			box-shadow: rgba(15, 15, 15, 0.05) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 3px 6px, rgba(15, 15, 15, 0.2) 0px 9px 24px
-			font-size: .8rem
 			position: relative
 			top: -20px
-
-			&__item
-				cursor: pointer
-				padding: 8px 15px
-
-				&:hover
-					background-color: rgba(139, 151, 152, .1)
 </style>

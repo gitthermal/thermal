@@ -286,13 +286,13 @@ export default {
 		},
 		// File
 		newRepository() {
-			this.$store.dispatch("model/showNewRepository");
+			this.$store.commit("modal/toggleNewRepositoryModal", true);
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showAddLocalRepositoryModel");
+			this.$store.commit("modal/toggleAddLocalRepositoryModal", true);
 		},
 		cloneRepository() {
-			this.$store.dispatch("model/showCloneRepository");
+			this.$store.commit("modal/toggleCloneRepositoryModal", true);
 		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
@@ -332,7 +332,7 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8");
 		},
 		about() {
-			this.$store.dispatch("model/showAboutModel");
+			this.$store.commit("modal/toggleAboutModal", true);
 		}
 	}
 };

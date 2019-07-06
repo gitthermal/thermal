@@ -24,6 +24,22 @@
 					class="ml-auto"
 				/>
 			</t-flexbox>
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+			>
+				<div>
+					<h6>Quick file preview</h6>
+					<p>
+						Toggle quick file preview for commit logs.
+					</p>
+				</div>
+				<toggle-button
+					v-model="toggleQuickFilePreview"
+					color="#00adb5"
+					class="ml-auto"
+				/>
+			</t-flexbox>
 		</div>
 	</div>
 </template>
@@ -48,6 +64,17 @@ export default {
 				this.$store.dispatch({
 					type: "settings/updateFileChanges",
 					fileChanges: value
+				});
+			}
+		},
+		toggleQuickFilePreview: {
+			get: function() {
+				return this.$store.state.settings.experimental.quickFilePreview;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateQuickFilePreview",
+					quickFilePreview: value
 				});
 			}
 		}
