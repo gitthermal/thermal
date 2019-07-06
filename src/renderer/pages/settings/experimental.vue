@@ -10,6 +10,7 @@
 			<t-flexbox
 				flex-direction="row"
 				align-items="center"
+				class="settings__section__group__item"
 			>
 				<div>
 					<h6>File changes</h6>
@@ -27,6 +28,7 @@
 			<t-flexbox
 				flex-direction="row"
 				align-items="center"
+				class="settings__section__group__item"
 			>
 				<div>
 					<h6>Quick file preview</h6>
