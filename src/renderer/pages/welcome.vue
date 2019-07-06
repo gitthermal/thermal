@@ -63,7 +63,7 @@
 				</t-scrollbar>
 				<div
 					v-else
-					style="padding: 1rem"
+					style="position: relative; padding: 1rem;"
 					@mouseenter="toggleRepositoryExampleModel"
 					@mouseleave="toggleRepositoryExampleModel"
 				>
@@ -234,14 +234,10 @@ export default {
 				position: absolute
 				bottom: 0
 				align-items: center
-				flex-direction: column
 				justify-content: center
 				display: flex
-				opacity: 1
-				transition: opacity .2s ease-in-out
 				width: 93%
 				height: 100%
-				padding: 0 16px
 				background-color: rgba(#fff, .8)
 
 		&__list
