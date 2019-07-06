@@ -44,7 +44,9 @@ import DropdownItem from "../dropdown/dropdownItem";
 export default {
 	name: "CommitHistoryItem",
 	components: {
-		TFlexbox
+		TFlexbox,
+		DropdownList,
+		DropdownItem
 	},
 	props: {
 		data: {
@@ -59,10 +61,6 @@ export default {
 				list: []
 			}
 		};
-	},
-	components: {
-		DropdownList,
-		DropdownItem
 	},
 	computed: {
 		currentRepository() {
