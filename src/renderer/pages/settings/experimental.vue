@@ -10,7 +10,6 @@
 			<t-flexbox
 				flex-direction="row"
 				align-items="center"
-				class="settings__section__group__item"
 			>
 				<div>
 					<h6>File changes</h6>
