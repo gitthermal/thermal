@@ -3,11 +3,11 @@
 		<settingsSidebar />
 		<div class="w-100">
 			<t-scrollbar height="95vh">
-				<div class="container">
+				<t-container>
 					<div class="settings__content">
 						<router-view />
 					</div>
-				</div>
+				</t-container>
 			</t-scrollbar>
 		</div>
 	</div>
@@ -16,12 +16,14 @@
 <script>
 import settingsSidebar from "../../components/sidebar/settings";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TContainer from "../../components/TLayouts/TContainer";
 
 export default {
 	name: "Settings",
 	components: {
 		settingsSidebar,
-		TScrollbar
+		TScrollbar,
+		TContainer
 	}
 };
 </script>

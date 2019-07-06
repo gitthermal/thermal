@@ -3,7 +3,10 @@
 		<div ref="historyLogs" class="history__logs">
 			<div v-if="!this.$store.state.history.commitInformation.isActive">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
-				<t-scrollbar v-else :height="historyLogListSize">
+				<t-scrollbar
+					v-else
+					:height="$refs.historyLogs.getBoundingClientRect().height + 'px'"
+				>
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -29,7 +32,9 @@
 						<fileIcon />
 					</div>
 				</t-flexbox>
-				<t-scrollbar height-type="max" :height="commitInformationPanelSize">
+				<t-scrollbar
+					:height="$refs.historyLogs.getBoundingClientRect().height - 39 + 'px'"
+				>
 					<commitInformation />
 				</t-scrollbar>
 			</div>
@@ -76,12 +81,6 @@ export default {
 		},
 		commitFileDiffPreview() {
 			return this.$store.getters["history/getFilePreview"];
-		},
-		historyLogListSize() {
-			return this.$refs.historyLogs.getBoundingClientRect().height + "px";
-		},
-		commitInformationPanelSize() {
-			return this.$refs.historyLogs.getBoundingClientRect().height - 39 + "px";
 		}
 	},
 	mounted() {

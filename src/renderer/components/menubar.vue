@@ -10,7 +10,7 @@
 					File
 				</div>
 				<dropdown-list
-					v-show="menu.file.isActive"
+					v-if="menu.file.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('file', false)"
 				>
@@ -44,7 +44,7 @@
 					View
 				</div>
 				<dropdown-list
-					v-show="menu.view.isActive"
+					v-if="menu.view.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('view', false)"
 				>
@@ -87,7 +87,7 @@
 					Repository
 				</div>
 				<dropdown-list
-					v-show="menu.repository.isActive"
+					v-if="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('repository', false)"
 				>
@@ -125,7 +125,7 @@
 					Branch
 				</div>
 				<dropdown-list
-					v-show="menu.branch.isActive"
+					v-if="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('branch', false)"
 				>
@@ -162,7 +162,7 @@
 					Help
 				</div>
 				<dropdown-list
-					v-show="menu.help.isActive"
+					v-if="menu.help.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('help', false)"
 				>

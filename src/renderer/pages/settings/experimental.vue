@@ -7,7 +7,10 @@
 			<a @click="discordURL()">Thermal Discord server</a>.
 		</div>
 		<div class="settings__section__group">
-			<t-flexbox align-items="center">
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+			>
 				<div>
 					<h6>File changes</h6>
 					<p>

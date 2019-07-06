@@ -1,14 +1,12 @@
 <template>
 	<t-flexbox :flex-grow="1">
-		<t-scrollbar height="86vh">
-			<div class="container">
-				<div class="stats__content">
-					<div class="stats__content-group">
-						<p>Commits per day</p>
-						<ApexCharts type="area" :options="options" :series="series" />
-					</div>
+		<t-scrollbar height="86vh" width="100%">
+			<t-container class="stats__content">
+				<div class="stats__content-group">
+					<p>Commits per day</p>
+					<ApexCharts type="area" :options="options" :series="series" />
 				</div>
-			</div>
+			</t-container>
 		</t-scrollbar>
 	</t-flexbox>
 </template>
@@ -18,13 +16,15 @@ import gitLog from "../../git/log";
 import ApexCharts from "vue-apexcharts";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
+import TContainer from "../../components/TLayouts/TContainer";
 
 export default {
 	name: "RepositoryStats",
 	components: {
 		ApexCharts,
 		TScrollbar,
-		TFlexbox
+		TFlexbox,
+		TContainer
 	},
 	data() {
 		return {
@@ -108,9 +108,6 @@ export default {
 
 <style lang="sass">
 .stats
-	&__scrollbar
-		max-height: 86vh
-
 	&__content
 		margin-top: 2rem
 		margin-bottom: 4rem

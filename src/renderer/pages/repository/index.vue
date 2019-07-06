@@ -1,7 +1,13 @@
 <template>
-	<t-flexbox flex-direction="column">
+	<t-flexbox flex-direction="column" :flex-grow="1">
 		<navbar />
-		<t-flexbox>
+		<t-flexbox
+			flex-direction="row"
+			:flex-grow="1"
+			:flex-shrink="1"
+			:flex-basis="0"
+			style="height: 100%"
+		>
 			<sidebar />
 			<router-view />
 		</t-flexbox>

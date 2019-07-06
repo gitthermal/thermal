@@ -1,5 +1,5 @@
 <template>
-	<vue-scrollbar :style="{ height: height }">
+	<vue-scrollbar :style="{ height: height, width: width }">
 		<slot />
 	</vue-scrollbar>
 </template>
@@ -16,6 +16,10 @@ export default {
 		height: {
 			type: String,
 			required: true
+		},
+		width: {
+			type: String,
+			default: null
 		}
 	}
 };

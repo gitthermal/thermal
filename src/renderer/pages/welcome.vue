@@ -33,26 +33,27 @@
 			>
 				<t-scrollbar v-if="getAllRepository.length > 0" height="400px">
 					<div style="padding: 1rem">
-						<t-flexbox
-              v-if="getAllRepository.length > 0"
-							v-for="(repo, index) in getAllRepository"
-							:key="repo.path"
-							class="welcome__repository__list__item d-flex align-items-center"
-						>
-							<h6>{{ repo.name | truncateFilter(30) }}</h6>
-							<Button
-								text="Open"
-								appearance="primary"
-								margin-left="auto"
-								@click.native="selectCurrentRepository(index)"
-							/>
-							<div
-								class="welcome__repository__list__item__settings"
-								@click="openRepositorySettings(index)"
+						<div v-if="getAllRepository.length > 0">
+							<t-flexbox
+								v-for="(repo, index) in getAllRepository"
+								:key="repo.path"
+								class="welcome__repository__list__item d-flex align-items-center"
 							>
-								<settingsIcon />
-							</div>
-  					</t-flexbox>
+								<h6>{{ repo.name | truncateFilter(30) }}</h6>
+								<Button
+									text="Open"
+									appearance="primary"
+									margin-left="auto"
+									@click.native="selectCurrentRepository(index)"
+								/>
+								<div
+									class="welcome__repository__list__item__settings"
+									@click="openRepositorySettings(index)"
+								>
+									<settingsIcon />
+								</div>
+							</t-flexbox>
+						</div>
 					</div>
 				</t-scrollbar>
 				<div
@@ -65,16 +66,16 @@
 						<t-flexbox
 							v-for="repo in repositoryList"
 							:key="repo"
-              align-items="center"
+							align-items="center"
 							class="welcome__repository__list__item welcome__repository__example"
 						>
 							<h6>{{ repo }}</h6>
 							<Button text="Open" appearance="primary" margin-left="auto" />
 							<div class="welcome__repository__list__item__settings">
 								<settingsIcon />
-							<div>
-            </t-flexbox>
-          </div>
+							</div>
+						</t-flexbox>
+					</div>
 					<div
 						v-show="exampleRepositoryModel"
 						class="welcome__repository__example__model"

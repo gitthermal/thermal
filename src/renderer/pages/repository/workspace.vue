@@ -3,14 +3,14 @@
 		<div ref="workspaceFiles" class="workspace__files">
 			<t-flexbox flex-direction="column" style="overflow: hidden;">
 				<t-flexbox
-          align-items="center"
-          ref="branchName"
-          class="workspace__branch"
-        >
+					ref="branchName"
+					align-items="center"
+					class="workspace__branch"
+				>
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
-				<t-scrollbar :height="fileChangesSize">
+				<t-scrollbar :height="625 - 41 - 104 + 'px'" width="100%">
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
