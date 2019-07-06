@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<menubar />
-		<router-view />
+		<router-view style="height: 100%" />
 		<div v-if="this.$store.state.model.isActive" class="model__placeholder">
 			<div class="model__container">
 				<newRepository />
@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style lang="sass">
+html, body, #app
+	width: 100%
+	height: 100%
+
 .model
 	&__placeholder
 		position: fixed
