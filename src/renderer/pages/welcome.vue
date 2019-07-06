@@ -4,7 +4,11 @@
 		justify-content="space-evenly"
 		class="welcome"
 	>
-		<t-flexbox flex-direction="column" align-items="center">
+		<t-flexbox
+			flex-direction="column"
+			align-items="center"
+			style="text-align: center"
+		>
 			<h1>Welcome to Thermal</h1>
 			<p style="margin-bottom: 1rem">
 				One stop. Git repository.
