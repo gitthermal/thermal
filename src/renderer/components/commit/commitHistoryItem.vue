@@ -16,7 +16,12 @@
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
 			</div>
 		</a>
-		<div v-show="files.isActive" class="history__files">
+		<div
+			v-if="
+				$store.state.settings.experimental.quickFilePreview && files.isActive
+			"
+			class="history__files"
+		>
 			<dropdown-list class="history__files__dropdown">
 				<dropdown-item v-for="item in files.list" :key="item">
 					{{ item }}
