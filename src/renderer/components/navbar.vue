@@ -1,58 +1,100 @@
 <template>
-	<div class="navbar">
-		<div
+	<t-flexbox class="navbar">
+		<t-flexbox
+			flex-direction="column"
+			align-items="center"
 			class="navbar__item"
 			:class="getCommitFeature"
-			@click="openCommitPage()"
+			@click.native="openCommitPage()"
 		>
 			<commitIcon />
 			<p>Commit</p>
-		</div>
-		<div v-if="!!getRemoteUrl" class="navbar__group" :class="getRemoteFeature">
-			<div class="navbar__item" @click="gitPull()">
+		</t-flexbox>
+		<t-flexbox
+			v-if="!!getRemoteUrl"
+			class="navbar__group"
+			:class="getRemoteFeature"
+		>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="gitPull()"
+			>
 				<pullIcon />
 				<p>Pull</p>
-			</div>
-			<div class="navbar__item" @click="gitPush()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="gitPush()"
+			>
 				<pushIcon />
 				<p>Push</p>
-			</div>
-			<div class="navbar__item">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+			>
 				<fetchIcon />
 				<p>Fetch</p>
-			</div>
-		</div>
-		<div
+			</t-flexbox>
+		</t-flexbox>
+		<t-flexbox
 			v-else
+			flex-direction="column"
+			align-items="center"
 			:class="[
 				getRemoteFeature,
 				!!getRemoteUrl === false ? 'navbar__group' : ''
 			]"
 			class="navbar__item"
-			@click="newRemote()"
+			@click.native="newRemote()"
 		>
 			<publishIcon />
 			<p>Publish</p>
-		</div>
-		<div class="navbar__group ml-auto">
-			<div class="navbar__item" @click="openTerminal()">
+		</t-flexbox>
+		<t-flexbox class="navbar__group ml-auto">
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openTerminal()"
+			>
 				<terminalIcon />
 				<p>Terminal</p>
-			</div>
-			<div class="navbar__item" @click="openFileExplorer()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openFileExplorer()"
+			>
 				<folderIcon />
 				<p>Explorer</p>
-			</div>
-			<div class="navbar__item" @click="openRepositorySettings()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openRepositorySettings()"
+			>
 				<settingsIcon />
 				<p>Settings</p>
-			</div>
-		</div>
-		<div class="navbar__item" @click="switchRepository()">
+			</t-flexbox>
+		</t-flexbox>
+		<t-flexbox
+			flex-direction="column"
+			align-items="center"
+			class="navbar__item"
+			@click.native="switchRepository()"
+		>
 			<switchRepositoryIcon />
 			<p>Switch repo</p>
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
@@ -66,6 +108,7 @@ import terminalIcon from "./icon/terminal";
 import folderIcon from "./icon/folder";
 import settingsIcon from "./icon/settings";
 import switchRepositoryIcon from "./icon/switch";
+import TFlexbox from "../components/TLayouts/TFlexbox";
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -80,7 +123,8 @@ export default {
 		terminalIcon,
 		folderIcon,
 		settingsIcon,
-		switchRepositoryIcon
+		switchRepositoryIcon,
+		TFlexbox
 	},
 	computed: {
 		currentRepository() {
@@ -142,7 +186,7 @@ export default {
 		},
 		newRemote(event) {
 			if (this.currentRepository.features.remote) {
-				this.$store.dispatch("model/showNewRemote");
+				this.$store.commit("modal/toggleNewRemoteModal", true);
 			} else {
 				event.preventDefault();
 			}
@@ -177,12 +221,10 @@ export default {
 	background-color: #EFEFEF
 	border-bottom: 1px solid #DEE0E3
 	padding: 12px 20px
-	z-index: 8
+	z-index: 2
 	position: relative
 
 	&__item
-		flex-direction: column
-		align-items: center
 		user-select: none
 
 		&:hover
@@ -205,7 +247,4 @@ export default {
 		.navbar__item
 			&:not(:last-child)
 				margin-right: 15px
-
-.navbar, .navbar__item, .navbar__group
-	display: flex
 </style>

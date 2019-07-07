@@ -7,7 +7,11 @@
 			<a @click="discordURL()">Thermal Discord server</a>.
 		</div>
 		<div class="settings__section__group">
-			<div class="settings__section__group__item">
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+				class="settings__section__group__item"
+			>
 				<div>
 					<h6>File changes</h6>
 					<p>
@@ -20,18 +24,37 @@
 					color="#00adb5"
 					class="ml-auto"
 				/>
-			</div>
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+				class="settings__section__group__item"
+			>
+				<div>
+					<h6>Quick file preview</h6>
+					<p>
+						Toggle quick file preview for commit logs.
+					</p>
+				</div>
+				<toggle-button
+					v-model="toggleQuickFilePreview"
+					color="#00adb5"
+					class="ml-auto"
+				/>
+			</t-flexbox>
 		</div>
 	</div>
 </template>
 
 <script>
 import { ToggleButton } from "vue-js-toggle-button";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 const { shell } = require("electron");
 
 export default {
 	name: "ExperimentalFeatures",
 	components: {
+		TFlexbox,
 		ToggleButton
 	},
 	computed: {
@@ -43,6 +66,17 @@ export default {
 				this.$store.dispatch({
 					type: "settings/updateFileChanges",
 					fileChanges: value
+				});
+			}
+		},
+		toggleQuickFilePreview: {
+			get: function() {
+				return this.$store.state.settings.experimental.quickFilePreview;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateQuickFilePreview",
+					quickFilePreview: value
 				});
 			}
 		}

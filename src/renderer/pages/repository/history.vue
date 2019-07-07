@@ -1,9 +1,12 @@
 <template>
-	<div class="history">
-		<div class="history__logs">
-			<div v-if="!this.$store.state.history.commitInformation.isActive">
+	<t-flexbox flex-direction="row">
+		<div ref="historyLogs" class="history__logs">
+			<div v-if="!commitDetail">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
-				<VueScrollbar v-else class="history__logs__scrollbar">
+				<t-scrollbar
+					v-else
+					:height="$refs.historyLogs.getBoundingClientRect().height + 'px'"
+				>
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -12,10 +15,10 @@
 							@click.native="gitShow(log.hash)"
 						/>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
-			<div v-else class="history__logs__detail">
-				<div class="history__logs__detail__buttons">
+			<div v-else>
+				<t-flexbox flex-direction="row" class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"
 						@click="toggleCommitDetail()"
@@ -28,10 +31,12 @@
 					>
 						<fileIcon />
 					</div>
-				</div>
-				<VueScrollbar class="history__logs__detail__scrollbar">
+				</t-flexbox>
+				<t-scrollbar
+					:height="$refs.historyLogs.getBoundingClientRect().height - 39 + 'px'"
+				>
 					<commitInformation />
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
 		</div>
 		<diffPreview
@@ -39,7 +44,7 @@
 			:preview="commitFileDiffPreview"
 		/>
 		<blank-slate v-else />
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
@@ -47,10 +52,11 @@ import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
 import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
 import BlankSlate from "../../components/BlankSlate";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "History",
@@ -58,10 +64,16 @@ export default {
 		commitHistoryItem,
 		commitInformation,
 		diffPreview,
-		VueScrollbar,
+		TScrollbar,
 		fileIcon,
 		logSkeleton,
-		BlankSlate
+		BlankSlate,
+		TFlexbox
+	},
+	data() {
+		return {
+			commitDetail: false
+		};
 	},
 	computed: {
 		repositoryLogs() {
@@ -86,7 +98,7 @@ export default {
 			});
 		},
 		toggleCommitDetail() {
-			this.$store.commit("history/toggleCommitInformation");
+			this.commitDetail = !this.commitDetail;
 			this.$store.commit({
 				type: "history/toggleFilePreview",
 				isActive: false
@@ -100,7 +112,7 @@ export default {
 			});
 		},
 		exportCommitDetail() {
-			this.$store.dispatch("model/showExportCommitData");
+			this.$store.commit("modal/toggleExportCommitDataModal", true);
 		}
 	}
 };
@@ -108,19 +120,13 @@ export default {
 
 <style lang="sass">
 .history
-	display: flex
-	flex-direction: row
-
 	&__logs
 		border-right: 1px solid #DEE0E3
 		width: 300px
 
 		&__detail
-
 			&__buttons
-				display: flex
 				padding: 10px
-				flex-direction: row
 				border-bottom: 1px solid #DEE0E3
 
 				&__back
@@ -138,10 +144,4 @@ export default {
 						stroke: #6C6F75
 						width: 18px
 						height: 18px
-
-			&__scrollbar
-				max-height: 80.6vh
-
-		&__scrollbar
-			max-height: 90vh
 </style>
