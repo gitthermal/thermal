@@ -39,15 +39,11 @@
 				</t-scrollbar>
 			</div>
 		</div>
-		<div class="history__preview">
-			<diffPreview
-				v-if="this.$store.state.history.filePreview.isActive"
-				:preview="commitFileDiffPreview"
-			/>
-			<div v-else>
-				No content to show
-			</div>
-		</div>
+		<diffPreview
+			v-if="this.$store.state.history.filePreview.isActive"
+			:preview="commitFileDiffPreview"
+		/>
+		<blank-slate v-else />
 	</t-flexbox>
 </template>
 
@@ -59,6 +55,7 @@ import fileIcon from "../../components/icon/file";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
+import BlankSlate from "../../components/BlankSlate";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
@@ -70,6 +67,7 @@ export default {
 		TScrollbar,
 		fileIcon,
 		logSkeleton,
+		BlankSlate,
 		TFlexbox
 	},
 	data() {
@@ -146,7 +144,4 @@ export default {
 						stroke: #6C6F75
 						width: 18px
 						height: 18px
-
-	&__preview
-		padding: 10px
 </style>

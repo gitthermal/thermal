@@ -57,15 +57,11 @@
 				padding-right="10px"
 			/>
 		</div>
-		<div class="workspace__preview">
-			<diffPreview
-				v-if="this.$store.state.workspace.filePreview.isActive"
-				:preview="fileDiffPreview"
-			/>
-			<div v-else>
-				No file selected.
-			</div>
-		</div>
+		<diffPreview
+			v-if="this.$store.state.workspace.filePreview.isActive"
+			:preview="fileDiffPreview"
+		/>
+		<blank-slate v-else />
 	</t-flexbox>
 </template>
 
@@ -77,6 +73,7 @@ import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
 import fileChangesSkeleton from "../../components/skeleton/fileChanges";
+import BlankSlate from "../../components/BlankSlate";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
@@ -87,6 +84,7 @@ export default {
 		commitMessage,
 		diffPreview,
 		fileChangesSkeleton,
+		BlankSlate,
 		TFlexbox
 	},
 	data() {
