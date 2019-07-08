@@ -8,7 +8,7 @@
 		<div class="help__widget-icon" @click="toggleHelpWidget">
 			?
 		</div>
-		<dropdown-list v-show="helpWidget" class="help__widget-dropdown">
+		<dropdown-list v-if="helpWidget" class="help__widget-dropdown">
 			<dropdown-item @click.native="websiteUrl">
 				Website 💻
 			</dropdown-item>
