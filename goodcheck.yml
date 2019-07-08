@@ -1,6 +1,6 @@
 rules:
   - id: thermal.vue.import-double-quote
-    pattern: 'vue2-scrollbar';
+    pattern: "'vue2-scrollbar';"
     message: |
       Use double qoutes at the end.
     justification:
@@ -9,9 +9,9 @@ rules:
       - "**/*.vue"
       - "**/*.js"
     pass:
-      - "vue2-scrollbar";
+      - '"vue2-scrollbar";'
     fail:
-      - 'vue2-scrollbar';
+      - "'vue2-scrollbar';"
   - id: thermal.vue.import-semi-colon
     pattern: "vue2-scrollbar"
     message: |
@@ -22,6 +22,6 @@ rules:
       - "**/*.vue"
       - "**/*.js"
     pass:
-      - "vue2-scrollbar";
+      - '"vue2-scrollbar";'
     fail:
       - "vue2-scrollbar"
