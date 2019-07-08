@@ -1,9 +1,9 @@
 <template>
-	<div class="history">
-		<div class="history__logs">
-			<div v-if="!commitDetail">
-				<logSkeleton v-if="repositoryLogs.length < 1" />
-				<VueScrollbar v-else class="history__logs__scrollbar">
+	<t-flexbox flex-direction="row" :flex-grow="1">
+		<div ref="historyLogs" class="history__logs">
+			<logSkeleton v-if="repositoryLogs.length < 1" />
+			<div v-show="!commitDetail">
+				<t-scrollbar style="height: calc(100vh - (65px + 34px))">
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -12,10 +12,10 @@
 							@click.native="gitShow(log.hash)"
 						/>
 					</div>
-				</VueScrollbar>
+				</t-scrollbar>
 			</div>
-			<div v-else class="history__logs__detail">
-				<div class="history__logs__detail__buttons">
+			<div v-if="commitDetail">
+				<t-flexbox flex-direction="row" class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"
 						@click="toggleCommitDetail()"
@@ -28,22 +28,18 @@
 					>
 						<fileIcon />
 					</div>
-				</div>
-				<VueScrollbar class="history__logs__detail__scrollbar">
+				</t-flexbox>
+				<vue-scrollbar style="height: calc(100vh - (64px + 34px + 39px))">
 					<commitInformation />
-				</VueScrollbar>
+				</vue-scrollbar>
 			</div>
 		</div>
-		<div class="history__preview">
-			<diffPreview
-				v-if="this.$store.state.history.filePreview.isActive"
-				:preview="commitFileDiffPreview"
-			/>
-			<div v-else>
-				No content to show
-			</div>
-		</div>
-	</div>
+		<diffPreview
+			v-if="this.$store.state.history.filePreview.isActive"
+			:preview="commitFileDiffPreview"
+		/>
+		<blank-slate v-else />
+	</t-flexbox>
 </template>
 
 <script>
@@ -51,9 +47,12 @@ import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import commitInformation from "../../components/commit/commitInformation";
 import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
+import BlankSlate from "../../components/BlankSlate";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "History",
@@ -61,9 +60,12 @@ export default {
 		commitHistoryItem,
 		commitInformation,
 		diffPreview,
+		TScrollbar,
 		VueScrollbar,
 		fileIcon,
-		logSkeleton
+		logSkeleton,
+		BlankSlate,
+		TFlexbox
 	},
 	data() {
 		return {
@@ -115,19 +117,13 @@ export default {
 
 <style lang="sass">
 .history
-	display: flex
-	flex-direction: row
-
 	&__logs
 		border-right: 1px solid #DEE0E3
-		width: 300px
+		min-width: 300px
 
 		&__detail
-
 			&__buttons
-				display: flex
 				padding: 10px
-				flex-direction: row
 				border-bottom: 1px solid #DEE0E3
 
 				&__back
@@ -145,13 +141,4 @@ export default {
 						stroke: #6C6F75
 						width: 18px
 						height: 18px
-
-			&__scrollbar
-				max-height: 80.6vh
-
-		&__scrollbar
-			max-height: 90vh
-
-	&__preview
-		padding: 10px
 </style>

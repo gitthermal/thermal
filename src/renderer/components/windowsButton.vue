@@ -1,9 +1,6 @@
 <template>
-	<div class="windowsControles d-flex align-items-center">
-		<div
-			class="windowsControles__icon windowsControles__minimize"
-			@click="minimize()"
-		>
+	<t-flexbox align-items="center">
+		<t-flexbox class="windowsControles__icon" @click.native="minimize()">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
@@ -16,11 +13,8 @@
 			>
 				<line x1="5" y1="12" x2="19" y2="12" />
 			</svg>
-		</div>
-		<div
-			class="windowsControles__icon windowsControles__maximize"
-			@click="maximize()"
-		>
+		</t-flexbox>
+		<t-flexbox class="windowsControles__icon" @click.native="maximize()">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
@@ -35,10 +29,10 @@
 					d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
 				/>
 			</svg>
-		</div>
-		<div
+		</t-flexbox>
+		<t-flexbox
 			class="windowsControles__icon windowsControles__close"
-			@click="close()"
+			@click.native="close()"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -53,16 +47,20 @@
 				<line x1="18" y1="6" x2="6" y2="18" />
 				<line x1="6" y1="6" x2="18" y2="18" />
 			</svg>
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
+import TFlexbox from "./TLayouts/TFlexbox";
 const { remote } = require("electron");
 const win = remote.getCurrentWindow();
 
 export default {
 	name: "WindowsButton",
+	components: {
+		TFlexbox
+	},
 	methods: {
 		close() {
 			win.close();
@@ -83,10 +81,8 @@ export default {
 
 <style lang="sass">
 .windowsControles
-
 	&__icon
 		padding: 8px 10px
-		display: flex
 		cursor: pointer
 
 		svg
@@ -98,7 +94,6 @@ export default {
 			background-color: rgba(139, 151, 152, .1)
 
 	&__close
-
 		&:hover
 			background-color: rgb(240, 71, 71)
 			svg

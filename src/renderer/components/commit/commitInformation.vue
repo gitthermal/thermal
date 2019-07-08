@@ -1,6 +1,6 @@
 <template>
 	<div class="commit__detail">
-		<div class="commit__detail__author">
+		<t-flexbox flex-direction="row" class="commit__detail__author">
 			<img
 				class="commit__detail__author__image"
 				src="../../../../static/image/user_avatar.png"
@@ -13,7 +13,7 @@
 					{{ commitInformation.author.email }}
 				</p>
 			</div>
-		</div>
+		</t-flexbox>
 		<div class="commit__detail__summary">
 			<div class="commit__detail__summary__title">
 				{{ commitInformation.title }}
@@ -123,9 +123,13 @@
 import showMixin from "../../git/show";
 import diffMixin from "../../git/diff";
 import trimFilePathMixin from "../../mixins/trimFilePath";
+import TFlexbox from "../TLayouts/TFlexbox";
 
 export default {
 	name: "CommitInformation",
+	components: {
+		TFlexbox
+	},
 	computed: {
 		commitInformation() {
 			return this.$store.getters["history/getCommitInformation"];
@@ -268,8 +272,6 @@ export default {
 	&__author
 		padding: 10px
 		border-bottom: 1px solid #DEE0E3
-		display: flex
-		flex-direction: row
 
 		&__image
 			width: 50px
@@ -306,7 +308,6 @@ export default {
 				color: #2E3034
 
 	&__files
-
 		&__summary
 			padding: 10px
 			color: #BEBEBE

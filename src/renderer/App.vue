@@ -1,8 +1,7 @@
 <template>
 	<div id="app">
 		<menubar />
-		<router-view />
-
+		<router-view style="height: 100%" />
 		<t-modal v-if="activeModal">
 			<components :is="modal"></components>
 		</t-modal>
@@ -66,6 +65,10 @@ export default {
 </script>
 
 <style lang="sass">
+html, body, #app
+	width: 100%
+	height: 100%
+
 .t-overlay
 	position: fixed
 	top: 0
