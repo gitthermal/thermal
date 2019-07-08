@@ -53,29 +53,14 @@
 
 <script>
 import TFlexbox from "./TLayouts/TFlexbox";
-const { remote } = require("electron");
-const win = remote.getCurrentWindow();
+import electronController from "../mixins/electronController";
 
 export default {
 	name: "WindowsButton",
 	components: {
 		TFlexbox
 	},
-	methods: {
-		close() {
-			win.close();
-		},
-		minimize() {
-			win.minimize();
-		},
-		maximize() {
-			if (!win.isMaximized()) {
-				win.maximize();
-			} else {
-				win.unmaximize();
-			}
-		}
-	}
+	mixins: [electronController]
 };
 </script>
 
