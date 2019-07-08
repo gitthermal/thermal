@@ -101,9 +101,6 @@
 				Add Repository
 			</t-button>
 		</t-flexbox>
-		<div class="appMetaData">
-			{{ appVersion }}
-		</div>
 	</t-flexbox>
 </template>
 
@@ -115,16 +112,9 @@ import helpIcon from "../components/icon/help";
 import settingsIcon from "../components/icon/settings";
 import TButton from "../components/TButton/TButton";
 import TScrollbar from "../components/TLayouts/TScrollbar";
-import packageJson from "../../../package.json";
-import * as Sentry from "@sentry/electron";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
-const { shell } = require("electron");
-
-Sentry.configureScope(scope => {
-	scope.setTag("appVersion", this.appVersion);
-});
 
 export default {
 	name: "WelcomePage",
@@ -152,9 +142,6 @@ export default {
 	computed: {
 		getAllRepository() {
 			return this.$store.getters["repository/listAllRepository"];
-		},
-		appVersion() {
-			return `Version: ${packageJson.version}`;
 		}
 	},
 	methods: {
@@ -268,11 +255,4 @@ export default {
 						width: 20px
 						height: 20px
 						stroke: #00adb5
-
-.appMetaData
-	font-size: 10px
-	position: absolute
-	bottom: 3px
-	width: 100%
-	text-align: center
 </style>
