@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox :flex-grow="1">
-		<t-scrollbar height="86vh" width="100%">
+		<t-scrollbar style="height: calc(100vh - (65px + 34px))" width="100%">
 			<t-container class="stats__content">
 				<div class="stats__content-group">
 					<p>Commits per day</p>
