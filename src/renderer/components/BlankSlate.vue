@@ -1,9 +1,5 @@
 <template>
-	<t-flexbox
-		justify-content="center"
-		align-items="center"
-		class="blankslate"
-	>
+	<t-flexbox justify-content="center" align-items="center" class="blankslate">
 		No content to show
 	</t-flexbox>
 </template>

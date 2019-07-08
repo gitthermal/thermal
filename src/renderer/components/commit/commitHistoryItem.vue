@@ -21,7 +21,9 @@
 			</t-flexbox>
 		</a>
 		<t-flexbox
-			v-if="$store.state.settings.experimental.quickFilePreview && files.isActive"
+			v-if="
+				$store.state.settings.experimental.quickFilePreview && files.isActive
+			"
 			flex-direction="column"
 			class="history__files"
 		>
