@@ -15,7 +15,7 @@ export default {
 	props: {
 		height: {
 			type: String,
-			required: true
+			default: null
 		},
 		width: {
 			type: String,
