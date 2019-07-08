@@ -95,7 +95,7 @@
 			"host": "github.com",
 			"protocol": "https",
 			"token": "$GH_TOKEN",
-			"releaseType": "release"
+			"releaseType": "draft"
 		}
   },
   "dependencies": {
