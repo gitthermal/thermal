@@ -51,6 +51,10 @@ function createWindow() {
 
 app.on("ready", () => {
 	createWindow();
+
+	if (process.env.NODE_ENV === "production") {
+		autoUpdater.checkForUpdates();
+	}
 });
 
 app.on("window-all-closed", () => {
@@ -67,8 +71,4 @@ app.on("activate", () => {
 
 autoUpdater.on("update-downloaded", () => {
 	autoUpdater.quitAndInstall();
-});
-
-app.on("ready", () => {
-	if (process.env.NODE_ENV === "production") autoUpdater.checkForUpdates();
 });
