@@ -3,10 +3,7 @@
 		<div ref="historyLogs" class="history__logs">
 			<div v-if="!commitDetail">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
-				<t-scrollbar
-					v-else
-					:height="$refs.historyLogs.getBoundingClientRect().height + 'px'"
-				>
+				<t-scrollbar style="height: calc(100vh - (65px + 34px))">
 					<div>
 						<commitHistoryItem
 							v-for="log in repositoryLogs"
@@ -32,11 +29,9 @@
 						<fileIcon />
 					</div>
 				</t-flexbox>
-				<t-scrollbar
-					:height="$refs.historyLogs.getBoundingClientRect().height - 39 + 'px'"
-				>
+				<vue-scrollbar style="height: calc(100vh - (64px + 34px + 39px))">
 					<commitInformation />
-				</t-scrollbar>
+				</vue-scrollbar>
 			</div>
 		</div>
 		<diffPreview
@@ -53,6 +48,7 @@ import commitInformation from "../../components/commit/commitInformation";
 import diffPreview from "../../components/diff/diffPreview";
 import fileIcon from "../../components/icon/file";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
+import VueScrollbar from "vue2-scrollbar";
 import gitLog from "../../git/log";
 import logSkeleton from "../../components/skeleton/logs";
 import BlankSlate from "../../components/BlankSlate";
@@ -65,6 +61,7 @@ export default {
 		commitInformation,
 		diffPreview,
 		TScrollbar,
+		VueScrollbar,
 		fileIcon,
 		logSkeleton,
 		BlankSlate,
