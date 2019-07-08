@@ -119,7 +119,7 @@ export default {
 .history
 	&__logs
 		border-right: 1px solid #DEE0E3
-		width: 300px
+		min-width: 300px
 
 		&__detail
 			&__buttons
