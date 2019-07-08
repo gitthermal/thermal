@@ -115,6 +115,7 @@ import TScrollbar from "../components/TLayouts/TScrollbar";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
+const { shell } = require("electron");
 
 export default {
 	name: "WelcomePage",
