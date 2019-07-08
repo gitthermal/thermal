@@ -1,0 +1,27 @@
+rules:
+  - id: thermal.vue.import-double-quote
+    pattern: 'vue2-scrollbar';
+    message: |
+      Use double qoutes at the end.
+    justification:
+      - When you import a file or module.
+    glob:
+      - "**/*.vue"
+      - "**/*.js"
+    pass:
+      - "vue2-scrollbar";
+    fail:
+      - 'vue2-scrollbar';
+  - id: thermal.vue.import-semi-colon
+    pattern: "vue2-scrollbar"
+    message: |
+      Use semi-colon at the end.
+    justification:
+      - When you import a file or module.
+    glob:
+      - "**/*.vue"
+      - "**/*.js"
+    pass:
+      - "vue2-scrollbar";
+    fail:
+      - "vue2-scrollbar"
