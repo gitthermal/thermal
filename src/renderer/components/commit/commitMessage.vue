@@ -12,27 +12,27 @@
 			placeholder="Summary (required)"
 			margin-bottom="15px"
 		/>
-		<Button
-			:text="'Commit to ' + this.$store.state.commit.activeBranch"
+		<t-button
 			width="100%"
-			appearance="primary"
 			:disabled="!stagedFileLength > 0"
 			@click.native="commitMessageButton()"
-		/>
+		>
+			Commit to <strong>{{ $store.state.commit.activeBranch }}</strong>
+		</t-button>
 	</div>
 </template>
 
 <script>
 import inputText from "../input/inputText";
-import Button from "../buttons/Button";
-import commitMixin from "../../mixins/git/commit";
+import TButton from "../TButton/TButton";
+import commitMixin from "../../git/commit";
 import spacingProps from "../../mixins/spacingProps";
 
 export default {
 	name: "CommitMessage",
 	components: {
 		inputText,
-		Button
+		TButton
 	},
 	mixins: [spacingProps],
 	data() {
