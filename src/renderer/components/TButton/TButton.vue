@@ -3,8 +3,10 @@
 		class="t-button"
 		:class="{
 			't-button__primary': !outline,
+			't-button__primary-danger': !outline && danger,
 			't-button__disabled': disabled,
-			't-button__outline': outline
+			't-button__outline': outline,
+			't-button__outline-danger': outline && danger
 		}"
 		:disabled="disabled"
 		:style="{
@@ -35,6 +37,10 @@ export default {
 			default: false
 		},
 		loading: {
+			type: Boolean,
+			default: false
+		},
+		danger: {
 			type: Boolean,
 			default: false
 		}

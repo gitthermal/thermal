@@ -71,7 +71,7 @@
 								<t-button
 									margin-left="auto"
 									:outline="true"
-									color="danger"
+									:danger="true"
 									@click.native="removeCurrentRepository()"
 								>
 									Remove
