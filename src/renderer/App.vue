@@ -134,7 +134,7 @@ export default {
 			this.toggleHelpWidget();
 		},
 		chatWithUs() {
-			shell.openExternal("https://discord.gg/f5mYum8");
+			shell.openExternal("https://discord.gg/DcSNmts");
 			this.toggleHelpWidget();
 		},
 		reportIssue() {
