@@ -47,6 +47,9 @@ function createWindow() {
 	mainWindow.on("closed", () => {
 		mainWindow = null;
 	});
+
+	// trigger autoupdate check
+	autoUpdater.checkForUpdates();
 }
 
 app.on("ready", () => {
