@@ -1,20 +1,20 @@
 <template>
-	<VueScrollbar class="diff__preview">
+	<t-scrollbar height="90vh">
 		<div>
 			<div v-for="(line, index) in preview" :key="index">
 				{{ line }}
 			</div>
 		</div>
-	</VueScrollbar>
+	</t-scrollbar>
 </template>
 
 <script>
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../TLayouts/TScrollbar";
 
 export default {
 	name: "DiffPreview",
 	components: {
-		VueScrollbar
+		TScrollbar
 	},
 	props: {
 		preview: {
@@ -24,8 +24,3 @@ export default {
 	}
 };
 </script>
-
-<style lang="sass">
-.diff__preview
-	max-height: 90vh
-</style>

@@ -1,16 +1,16 @@
 <template>
-	<div class="menubar d-flex">
-		<div class="menubar__logo d-flex" @click="homepage()">
+	<t-flexbox class="menubar">
+		<t-flexbox class="menubar__logo" @click="homepage()">
 			<thermalLogo />
-		</div>
-		<div class="menubar__list d-flex align-items-center">
+		</t-flexbox>
+		<t-flexbox align-items="center" class="menubar__list">
 			<!-- File -->
 			<div @click="dropdown('file', true)">
 				<div class="menubar__list__item">
 					File
 				</div>
 				<dropdown-list
-					v-show="menu.file.isActive"
+					v-if="menu.file.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('file', false)"
 				>
@@ -44,7 +44,7 @@
 					View
 				</div>
 				<dropdown-list
-					v-show="menu.view.isActive"
+					v-if="menu.view.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('view', false)"
 				>
@@ -87,7 +87,7 @@
 					Repository
 				</div>
 				<dropdown-list
-					v-show="menu.repository.isActive"
+					v-if="menu.repository.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('repository', false)"
 				>
@@ -125,7 +125,7 @@
 					Branch
 				</div>
 				<dropdown-list
-					v-show="menu.branch.isActive"
+					v-if="menu.branch.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('branch', false)"
 				>
@@ -162,7 +162,7 @@
 					Help
 				</div>
 				<dropdown-list
-					v-show="menu.help.isActive"
+					v-if="menu.help.isActive"
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('help', false)"
 				>
@@ -187,23 +187,21 @@
 					</dropdown-item>
 				</dropdown-list>
 			</div>
-		</div>
+		</t-flexbox>
 		<div class="menubar__drag" />
-		<div class="menubar__title">
-			<div v-if="!!currentRepository" class="menubar__title__repository d-flex">
+		<t-flexbox class="menubar__title">
+			<t-flexbox v-if="!!currentRepository">
 				{{ currentRepository.name }}
 				<div style="padding: 0 5px">
 					-
 				</div>
-			</div>
-			<div class="menubar__title__app">
+			</t-flexbox>
+			<div>
 				Thermal
 			</div>
-		</div>
-		<div class="menubar__controles">
-			<windowsButton />
-		</div>
-	</div>
+		</t-flexbox>
+		<windowsButton />
+	</t-flexbox>
 </template>
 
 <script>
@@ -212,6 +210,7 @@ import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
 import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
+import TFlexbox from "../components/TLayouts/TFlexbox";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
 const win = remote.getCurrentWindow();
@@ -223,7 +222,8 @@ export default {
 		dropdownList,
 		dropdownItem,
 		dropdownDivider,
-		windowsButton
+		windowsButton,
+		TFlexbox
 	},
 	data() {
 		return {
@@ -286,13 +286,13 @@ export default {
 		},
 		// File
 		newRepository() {
-			this.$store.dispatch("model/showNewRepository");
+			this.$store.commit("modal/toggleNewRepositoryModal", true);
 		},
 		addLocalRepository() {
-			this.$store.dispatch("model/showAddLocalRepositoryModel");
+			this.$store.commit("modal/toggleAddLocalRepositoryModal", true);
 		},
 		cloneRepository() {
-			this.$store.dispatch("model/showCloneRepository");
+			this.$store.commit("modal/toggleCloneRepositoryModal", true);
 		},
 		switchRepository() {
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
@@ -332,7 +332,7 @@ export default {
 			shell.openExternal("https://discord.gg/f5mYum8");
 		},
 		about() {
-			this.$store.dispatch("model/showAboutModel");
+			this.$store.commit("modal/toggleAboutModal", true);
 		}
 	}
 };
@@ -340,9 +340,7 @@ export default {
 
 <style lang="sass">
 .menubar
-	width: 100%
 	background-color: white
-	position: relative
 	z-index: 10
 	border-bottom: 1px solid #DEE0E3
 
@@ -374,12 +372,8 @@ export default {
 
 	&__title
 		position: absolute
-		display: flex
 		left: 50%
-		top: 50%
-		transform: translate(-50%, -50%)
+		top: 10px
+		transform: translate(-50%)
 		font-size: 14px
-
-	&__controles
-		margin-left: auto
 </style>

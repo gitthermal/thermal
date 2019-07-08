@@ -1,7 +1,6 @@
 const state = {
 	logs: [],
 	commitInformation: {
-		isActive: false,
 		title: "",
 		description: "",
 		author: {
@@ -41,9 +40,6 @@ const getters = {
 const mutations = {
 	updateLogs(state, payload) {
 		state.logs = payload.logs;
-	},
-	toggleCommitInformation(state) {
-		state.commitInformation.isActive = !state.commitInformation.isActive;
 	},
 	commitInformationCommitHash(state, payload) {
 		state.commitInformation.meta.commit_hash = payload.commit_hash;

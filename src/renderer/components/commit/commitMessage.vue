@@ -25,7 +25,7 @@
 <script>
 import inputText from "../input/inputText";
 import TButton from "../TButton/TButton";
-import commitMixin from "../../mixins/git/commit";
+import commitMixin from "../../git/commit";
 import spacingProps from "../../mixins/spacingProps";
 
 export default {

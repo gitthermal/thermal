@@ -19,6 +19,9 @@
   <a href="https://dev.azure.com/codecarrot/Thermal/_build/latest?definitionId=3&branchName=master">
     <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/Thermal?branchName=master" alt="Azure pipeline" />
   </a>
+  <a href="https://thermal.codecarrot.net/download/">
+    <img src="https://img.shields.io/github/downloads/gitthermal/thermal/total.svg" alt="Total downloads" />
+  </a>
   <a href="https://discord.gg/DcSNmts">
     <img src="https://img.shields.io/discord/556376419886825509.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord invite" />
   </a>

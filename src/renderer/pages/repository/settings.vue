@@ -1,7 +1,7 @@
 <template>
-	<div class="repository__settings w-100">
-		<VueScrollbar class="repository__settings__scrollbar">
-			<div class="repository__settings__content container">
+	<t-flexbox :flex-grow="1">
+		<t-scrollbar height="86vh" width="100%">
+			<t-container style="padding: 20px">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
 					<p>Your local repository settings</p>
@@ -36,7 +36,11 @@
 					<div class="settings__section">
 						<h4>Features</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Commit</h6>
 									<p>Enable/disable commits for this repository</p>
@@ -46,8 +50,12 @@
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
-							<div class="settings__section__group__item">
+							</t-flexbox>
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remote</h6>
 									<p>Pull, push and fetch</p>
@@ -57,13 +65,17 @@
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
+							</t-flexbox>
 						</div>
 					</div>
 					<div class="settings__section">
 						<h4>Danger Zone</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remove this repository</h6>
 									<p>You can add it again</p>
@@ -76,20 +88,22 @@
 								>
 									Remove
 								</t-button>
-							</div>
+							</t-flexbox>
 						</div>
 					</div>
 				</div>
-			</div>
-		</VueScrollbar>
-	</div>
+			</t-container>
+		</t-scrollbar>
+	</t-flexbox>
 </template>
 
 <script>
 import inputTextLabel from "../../components/input/inputTextLabel";
 import TButton from "../../components/TButton/TButton";
 import { ToggleButton } from "vue-js-toggle-button";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
+import TContainer from "../../components/TLayouts/TContainer";
 
 export default {
 	name: "RepositorySettings",
@@ -97,7 +111,9 @@ export default {
 		inputTextLabel,
 		TButton,
 		ToggleButton,
-		VueScrollbar
+		TScrollbar,
+		TFlexbox,
+		TContainer
 	},
 	computed: {
 		currentRepository() {
@@ -156,13 +172,7 @@ export default {
 .repository
 
 	&__settings
-
-		&__scrollbar
-			max-height: 86vh
-
 		&__content
-			padding: 20px
-
 			&__header
 				margin-bottom: 1rem
 
