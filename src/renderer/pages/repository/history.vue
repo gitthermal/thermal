@@ -29,7 +29,7 @@
 						<fileIcon />
 					</div>
 				</t-flexbox>
-				<vue-scrollbar style="height: calc(100vh - (64px + 34px + 39px))">
+				<vue-scrollbar style="height: calc(100vh - (65px + 34px + 40px))">
 					<commitInformation />
 				</vue-scrollbar>
 			</div>
