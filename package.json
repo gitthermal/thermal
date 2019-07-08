@@ -94,6 +94,8 @@
 			"vPrefixedTagName": true,
 			"host": "github.com",
 			"protocol": "https",
+			"token": "GH_TOKEN",
+			"private": false,
 			"releaseType": "draft"
 		}
   },
