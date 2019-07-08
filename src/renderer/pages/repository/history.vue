@@ -1,8 +1,8 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
 		<div ref="historyLogs" class="history__logs">
-			<div v-if="!commitDetail">
-				<logSkeleton v-if="repositoryLogs.length < 1" />
+			<logSkeleton v-if="repositoryLogs.length < 1" />
+			<div v-show="!commitDetail">
 				<t-scrollbar style="height: calc(100vh - (65px + 34px))">
 					<div>
 						<commitHistoryItem
@@ -14,7 +14,7 @@
 					</div>
 				</t-scrollbar>
 			</div>
-			<div v-else>
+			<div v-if="commitDetail">
 				<t-flexbox flex-direction="row" class="history__logs__detail__buttons">
 					<div
 						class="history__logs__detail__buttons__back"
