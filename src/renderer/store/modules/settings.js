@@ -7,7 +7,8 @@ const state = {
 		}
 	},
 	experimental: {
-		fileChanges: true
+		fileChanges: true,
+		quickFilePreview: false
 	}
 };
 
@@ -39,6 +40,9 @@ const mutations = {
 	},
 	toggleFileChanges(state, payload) {
 		state.experimental.fileChanges = payload.fileChanges;
+	},
+	toggleQuickFilePreview(state, payload) {
+		state.experimental.quickFilePreview = payload.quickFilePreview;
 	}
 };
 
@@ -74,6 +78,15 @@ const actions = {
 		commit({
 			type: "toggleFileChanges",
 			fileChanges: payload.fileChanges
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
+	updateQuickFilePreview: ({ commit }, payload) => {
+		commit({
+			type: "toggleQuickFilePreview",
+			quickFilePreview: payload.quickFilePreview
 		});
 		commit({
 			type: "setSettings"

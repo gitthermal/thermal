@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="width: 300px">
 		<content-loader
 			v-for="index in 6"
 			:key="index"

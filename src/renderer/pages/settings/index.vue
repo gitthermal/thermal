@@ -2,26 +2,28 @@
 	<div class="settings d-flex">
 		<settingsSidebar />
 		<div class="w-100">
-			<VueScrollbar class="settings__scrollbar">
-				<div class="container">
+			<t-scrollbar height="95vh">
+				<t-container>
 					<div class="settings__content">
 						<router-view />
 					</div>
-				</div>
-			</VueScrollbar>
+				</t-container>
+			</t-scrollbar>
 		</div>
 	</div>
 </template>
 
 <script>
 import settingsSidebar from "../../components/sidebar/settings";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TContainer from "../../components/TLayouts/TContainer";
 
 export default {
 	name: "Settings",
 	components: {
 		settingsSidebar,
-		VueScrollbar
+		TScrollbar,
+		TContainer
 	}
 };
 </script>
@@ -29,10 +31,6 @@ export default {
 <style lang="sass">
 .settings
 	height: 95vh
-
-	&__scrollbar
-		max-height: 95vh
-
 	&__content
 		margin-top: 2rem
 		padding: 20px
