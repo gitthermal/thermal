@@ -23,18 +23,16 @@
 			/>
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Close"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('ExportCommitData')"
-			/>
-			<Button
-				text="Export"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="exportDetail()"
-			/>
+			>
+				Close
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="exportDetail()">
+				Export
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -47,7 +45,7 @@ import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
 import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
-import Button from "../components/buttons/Button";
+import TButton from "../components/TButton/TButton";
 import inputTextLabel from "../components/input/inputTextLabel";
 
 // mixins
@@ -65,7 +63,7 @@ export default {
 		TCardBody,
 		TCardFooter,
 		inputTextLabel,
-		Button
+		TButton
 	},
 	mixins: [closeModalMixin],
 	data() {

@@ -52,10 +52,7 @@
 				>
 					Cancel
 				</t-button>
-				<t-button
-					margin-left=".5rem"
-					@click.native="cloneRepository"
-				>
+				<t-button margin-left=".5rem" @click.native="cloneRepository">
 					Clone
 				</t-button>
 			</t-card-footer>
@@ -76,7 +73,7 @@ import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
 import inputTextLabel from "../components/input/inputTextLabel";
-import TButton from "../TButton/TButton";
+import TButton from "../components/TButton/TButton";
 import progressBar from "../components/progress/progressBar";
 
 // mixins

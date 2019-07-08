@@ -15,18 +15,16 @@
 			/>
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Close"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('NewRemote')"
-			/>
-			<Button
-				text="Publish repository"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="addRemoteUrl"
-			/>
+			>
+				Close
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="addRemoteUrl">
+				Publish repository
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -40,7 +38,7 @@ import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
 import inputText from "../components/input/inputText";
-import Button from "../components/buttons/Button";
+import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
@@ -57,7 +55,7 @@ export default {
 		TCardBody,
 		TCardFooter,
 		inputText,
-		Button
+		TButton
 	},
 	directives: {
 		focus: {

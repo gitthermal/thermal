@@ -39,18 +39,16 @@
 			</div>
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Cancel"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('NewRepository')"
-			/>
-			<Button
-				text="Create repository"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="createNewRepository"
-			/>
+			>
+				Cancel
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="createNewRepository">
+				Create repository
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -64,7 +62,7 @@ import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
 import inputTextLabel from "../components/input/inputTextLabel";
-import Button from "../components/buttons/Button";
+import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
@@ -83,7 +81,7 @@ export default {
 		TCardBody,
 		TCardFooter,
 		inputTextLabel,
-		Button
+		TButton
 	},
 	mixins: [closeModalMixin, addRepository],
 	data() {

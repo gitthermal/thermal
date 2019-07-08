@@ -21,26 +21,24 @@
 				style="display: none"
 				@change="fileSectorInput"
 			/>
-			<Button
-				text="Select"
-				appearance="primary"
-				margin-left=".4rem"
-				@click.native="$refs.fileInput.click()"
-			/>
+			<t-button margin-left=".4rem" @click.native="$refs.fileInput.click()">
+				Select
+			</t-button>
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Close"
-				appearance="outline"
+			<t-button
+				outline="true"
 				margin-left="auto"
 				@click.native="closeModal('AddLocalRepository')"
-			/>
-			<Button
-				appearance="primary"
-				text="Add repository"
+			>
+				Close
+			</t-button>
+			<t-button
 				margin-left=".5rem"
 				@click.native="addRepository(pathToRepository)"
-			/>
+			>
+				Add repository
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -54,7 +52,7 @@ import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
 import inputText from "../components/input/inputText";
-import Button from "../components/buttons/Button";
+import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
@@ -70,7 +68,7 @@ export default {
 		TCardBody,
 		TCardFooter,
 		inputText,
-		Button
+		TButton
 	},
 	directives: {
 		focus: {

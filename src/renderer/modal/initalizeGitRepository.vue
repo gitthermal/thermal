@@ -29,7 +29,7 @@ import TCardHeader from "../components/TCard/TCardHeader";
 import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
-import TButton from "../TButton/TButton";
+import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
