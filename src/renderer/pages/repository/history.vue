@@ -1,5 +1,5 @@
 <template>
-	<t-flexbox flex-direction="row">
+	<t-flexbox flex-direction="row" :flex-grow="1">
 		<div ref="historyLogs" class="history__logs">
 			<div v-if="!commitDetail">
 				<logSkeleton v-if="repositoryLogs.length < 1" />
