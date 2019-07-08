@@ -21,18 +21,16 @@
 			</p>
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Close"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('About')"
-			/>
-			<Button
-				text="Release Notes"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="releaseNotes()"
-			/>
+			>
+				Close
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="releaseNotes()">
+				Release Notes
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -42,7 +40,7 @@
 import TCard from "../components/TCard/TCard";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
-import Button from "../components/buttons/Button";
+import TButton from "../TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
@@ -57,7 +55,7 @@ export default {
 		TCard,
 		TCardBody,
 		TCardFooter,
-		Button,
+		TButton,
 		thermalLogo
 	},
 	mixins: [closeModalMixin],

@@ -7,19 +7,17 @@
 			By default git will be initalized at the root of the project.
 		</t-card-body>
 		<t-card-footer>
-			<Button
-				text="Go back"
-				appearance="outline"
+			<t-button
+				:outline="true"
 				border-color="00adb5"
 				margin-left="auto"
 				@click.native="switchRepository"
-			/>
-			<Button
-				text="Initalize git"
-				appearance="primary"
-				margin-left=".5rem"
-				@click.native="initalizeGit"
-			/>
+			>
+				Go back
+			</t-button>
+			<t-button margin-left=".5rem" @click.native="initalizeGit">
+				Initalize git
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -31,7 +29,7 @@ import TCardHeader from "../components/TCard/TCardHeader";
 import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
-import Button from "../components/buttons/Button";
+import TButton from "../TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
@@ -45,7 +43,7 @@ export default {
 		TCardHeaderHeading,
 		TCardBody,
 		TCardFooter,
-		Button
+		TButton
 	},
 	mixins: [closeModalMixin],
 	computed: {

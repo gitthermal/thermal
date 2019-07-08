@@ -36,27 +36,28 @@
 						style="display: none"
 						@change="folderSelectorInput"
 					/>
-					<Button
-						text="Select"
-						appearance="primary"
+					<t-button
 						margin-left=".4rem"
 						@click.native="$refs.folderSelector.click()"
-					/>
+					>
+						Select
+					</t-button>
 				</div>
 			</t-card-body>
 			<t-card-footer>
-				<Button
-					text="Cancel"
-					appearance="outline"
+				<t-button
+					:outline="true"
 					margin-left="auto"
 					@click.native="closeModal('CloneRepository')"
-				/>
-				<Button
-					text="Clone"
-					appearance="primary"
+				>
+					Cancel
+				</t-button>
+				<t-button
 					margin-left=".5rem"
 					@click.native="cloneRepository"
-				/>
+				>
+					Clone
+				</t-button>
 			</t-card-footer>
 		</div>
 		<div v-else class="clone__progress">
@@ -75,13 +76,12 @@ import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
 import inputTextLabel from "../components/input/inputTextLabel";
-import Button from "../components/buttons/Button";
+import TButton from "../TButton/TButton";
 import progressBar from "../components/progress/progressBar";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
 import addRepository from "../mixins/addRepository";
-
 import gitClone from "../git/clone";
 
 export default {
@@ -94,7 +94,7 @@ export default {
 		TCardBody,
 		TCardFooter,
 		inputTextLabel,
-		Button,
+		TButton,
 		progressBar
 	},
 	mixins: [closeModalMixin, addRepository],
