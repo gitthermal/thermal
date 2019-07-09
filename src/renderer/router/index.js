@@ -5,17 +5,17 @@ Vue.use(Router);
 
 let routes = [
 	{
-		path: "/repository",
+		path: "/repository/:projectId",
 		component: require("../pages/repository").default,
 		children: [
 			{
-				path: "workspace",
 				name: "repositoryWorkspace",
+				path: "workspace/:branchName",
 				component: require("../pages/repository/workspace").default
 			},
 			{
-				path: "history",
 				name: "repositoryHistory",
+				path: "commits/:branchName",
 				component: require("../pages/repository/history").default
 			},
 			{
