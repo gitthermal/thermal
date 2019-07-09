@@ -9,23 +9,23 @@ let routes = [
 		component: require("../pages/repository").default,
 		children: [
 			{
-				name: "repositoryWorkspace",
 				path: "workspace/:branchName",
+				name: "projectWorkspace",
 				component: require("../pages/repository/workspace").default
 			},
 			{
-				name: "repositoryHistory",
 				path: "commits/:branchName",
+				name: "projectCommits",
 				component: require("../pages/repository/history").default
 			},
 			{
 				path: "stats",
-				name: "repositoryStats",
+				name: "projectStats",
 				component: require("../pages/repository/stats").default
 			},
 			{
 				path: "settings",
-				name: "repositorySettings",
+				name: "projectSettings",
 				component: require("../pages/repository/settings").default
 			}
 		]
