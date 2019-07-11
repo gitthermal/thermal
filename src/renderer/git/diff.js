@@ -1,8 +1,8 @@
 import git from "simple-git/promise";
 import * as Sentry from "@sentry/electron";
 
-const diff = async (repository, params) => {
-	const data = await git(repository.path).diff(params);
+const diff = async (path, params) => {
+	const data = await git(path).diff(params);
 	try {
 		return data;
 	} catch (error) {
