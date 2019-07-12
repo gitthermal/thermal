@@ -199,14 +199,6 @@ export default {
 		},
 		switchRepository() {
 			this.$router.push({ name: "welcome" });
-			this.$store.commit({
-				type: "history/updateLogs",
-				logs: []
-			});
-			this.$store.commit({
-				type: "commit/files",
-				files: []
-			});
 		}
 	}
 };
