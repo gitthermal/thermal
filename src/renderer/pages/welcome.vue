@@ -164,18 +164,10 @@ export default {
 		toggleRepositoryExampleModel() {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel;
 		},
-		updateCurrentRepository(index) {
-			this.$store.dispatch({
-				type: "workspace/updateWorkspaceRepository",
-				index: index
-			});
-		},
 		selectCurrentRepository(index) {
-			this.updateCurrentRepository(index);
 			this.$router.push({ name: "repositoryWorkspace" });
 		},
 		openRepositorySettings(index) {
-			this.updateCurrentRepository(index);
 			this.$router.push({ name: "repositorySettings" });
 		},
 		dropHandler(event) {
