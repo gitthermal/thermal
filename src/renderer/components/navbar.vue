@@ -4,16 +4,20 @@
 			flex-direction="column"
 			align-items="center"
 			class="navbar__item"
-			:class="getCommitFeature"
+			:class="
+				!!repositoryData.features.commit ? 'cursor-pointer' : 'opacity-5 cursor'
+			"
 			@click.native="openCommitPage()"
 		>
 			<commitIcon />
 			<p>Commit</p>
 		</t-flexbox>
 		<t-flexbox
-			v-if="!!getRemoteUrl"
+			v-if="!!repositoryData.remote"
 			class="navbar__group"
-			:class="getRemoteFeature"
+			:class="
+				!!repositoryData.features.remote ? 'cursor-pointer' : 'opacity-5 cursor'
+			"
 		>
 			<t-flexbox
 				flex-direction="column"
@@ -47,8 +51,10 @@
 			flex-direction="column"
 			align-items="center"
 			:class="[
-				getRemoteFeature,
-				!!getRemoteUrl === false ? 'navbar__group' : ''
+				!!repositoryData.features.remote
+					? 'cursor-pointer'
+					: 'opacity-5 cursor',
+				!!repositoryData.remote === false ? 'navbar__group' : ''
 			]"
 			class="navbar__item"
 			@click.native="newRemote()"
@@ -127,40 +133,18 @@ export default {
 		switchRepositoryIcon,
 		TFlexbox
 	},
-	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		getRemoteUrl() {
-			return this.currentRepository.remote;
-		},
-		getCommitFeature() {
-			if (!this.currentRepository.features.commit) {
-				return "opacity-5 cursor";
-			} else {
-				return "cursor-pointer";
-			}
-		},
-		getRemoteFeature() {
-			if (!this.currentRepository.features.remote) {
-				return "opacity-5 cursor";
-			} else {
-				return "cursor-pointer";
-			}
-		}
-	},
 	mixins: [repositoryDataMixin],
 	methods: {
 		openCommitPage(event) {
-			if (this.currentRepository.features.commit) {
 				this.$router.push({ name: "repositoryWorkspace" });
+			if (this.repositoryData.features.commit) {
 			} else {
 				event.preventDefault();
 			}
 		},
 		async gitPull(event) {
-			if (this.currentRepository.features.remote) {
-				let pull = await git(this.currentRepository.path).pull();
+			if (this.repositoryData.features.remote) {
+				let pull = await git(this.repositoryData.path).pull();
 				try {
 					console.log(pull);
 				} catch (error) {
@@ -171,10 +155,10 @@ export default {
 			}
 		},
 		async gitPush(event) {
-			if (this.currentRepository.features.remote) {
-				let activeBranch = this.$store.state.commit.activeBranch;
-				await git(this.currentRepository.path).push([
-					this.currentRepository.remote,
+			if (this.repositoryData.features.remote) {
+				let activeBranch = this.$route.params.branchName;
+				await git(this.repositoryData.path).push([
+					this.repositoryData.remote,
 					activeBranch
 				]);
 				try {
@@ -187,17 +171,17 @@ export default {
 			}
 		},
 		newRemote(event) {
-			if (this.currentRepository.features.remote) {
+			if (this.repositoryData.features.remote) {
 				this.$store.commit("modal/toggleNewRemoteModal", true);
 			} else {
 				event.preventDefault();
 			}
 		},
 		openTerminal() {
-			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
+			childProcess.exec("start cmd", { cwd: this.repositoryData.path });
 		},
 		openFileExplorer() {
-			shell.openItem(this.currentRepository.path);
+			shell.openItem(this.repositoryData.path);
 		},
 		openRepositorySettings() {
 			this.$router.push({ name: "repositorySettings" });
