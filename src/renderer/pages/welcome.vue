@@ -53,7 +53,7 @@
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
-									@click="openRepositorySettings(index)"
+									@click="openSettings(repo, index)"
 								>
 									<settingsIcon />
 								</div>
@@ -181,8 +181,13 @@ export default {
 					console.log(error);
 				});
 		},
-		openRepositorySettings(index) {
-			this.$router.push({ name: "repositorySettings" });
+		openSettings(repo, index) {
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: index
+				}
+			});
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
