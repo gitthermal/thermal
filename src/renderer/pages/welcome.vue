@@ -47,7 +47,7 @@
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<t-button
 									margin-left="auto"
-									@click.native="selectCurrentRepository(index)"
+									@click.native="openWorkspace(repo, index)"
 								>
 									Open
 								</t-button>
@@ -115,6 +115,7 @@ import TScrollbar from "../components/TLayouts/TScrollbar";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
+import gitBranch from "../git/status";
 const { shell } = require("electron");
 
 export default {
@@ -164,8 +165,21 @@ export default {
 		toggleRepositoryExampleModel() {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel;
 		},
-		selectCurrentRepository(index) {
-			this.$router.push({ name: "repositoryWorkspace" });
+		openWorkspace(repo, index) {
+			gitBranch(repo.path)
+				.then(result => {
+					let branch = result.current;
+					this.$router.push({
+						name: "projectWorkspace",
+						params: {
+							projectId: index,
+							branchName: branch
+						}
+					});
+				})
+				.catch(error => {
+					console.log(error);
+				});
 		},
 		openRepositorySettings(index) {
 			this.$router.push({ name: "repositorySettings" });
