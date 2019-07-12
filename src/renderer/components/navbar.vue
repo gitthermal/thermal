@@ -109,6 +109,7 @@ import folderIcon from "./icon/folder";
 import settingsIcon from "./icon/settings";
 import switchRepositoryIcon from "./icon/switch";
 import TFlexbox from "../components/TLayouts/TFlexbox";
+import repositoryDataMixin from "../mixins/repositoryData";
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -148,6 +149,7 @@ export default {
 			}
 		}
 	},
+	mixins: [repositoryDataMixin],
 	methods: {
 		openCommitPage(event) {
 			if (this.currentRepository.features.commit) {
