@@ -136,8 +136,14 @@ export default {
 	mixins: [repositoryDataMixin],
 	methods: {
 		openCommitPage(event) {
-				this.$router.push({ name: "repositoryWorkspace" });
 			if (this.repositoryData.features.commit) {
+				this.$router.push({
+					name: "projectWorkspace",
+					params: {
+						projectId: this.$router.params.projectId,
+						branchName: this.$router.params.branchName
+					}
+				});
 			} else {
 				event.preventDefault();
 			}
@@ -184,10 +190,14 @@ export default {
 			shell.openItem(this.repositoryData.path);
 		},
 		openRepositorySettings() {
-			this.$router.push({ name: "repositorySettings" });
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: this.$route.params.projectId
+				}
+			});
 		},
 		switchRepository() {
-			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
 			this.$store.commit({
 				type: "history/updateLogs",
