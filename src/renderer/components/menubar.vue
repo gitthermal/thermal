@@ -24,7 +24,7 @@
 						Clone repository
 					</dropdown-item>
 					<dropdown-item
-						v-if="!!currentRepository"
+						v-if="repositoryRoute"
 						@click.native="switchRepository()"
 					>
 						Switch repository
@@ -82,7 +82,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Repository -->
-			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
+			<div v-if="repositoryRoute" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -120,7 +120,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Branch -->
-			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
+			<div v-if="repositoryRoute" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
@@ -252,8 +252,8 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
+		repositoryRoute() {
+			return this.$route.path.startsWith("/repository");
 		}
 	},
 	methods: {
