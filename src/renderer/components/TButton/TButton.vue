@@ -82,6 +82,7 @@ export default {
 
 		&-danger
 			background-color: #f04747
+			border-color: #f04747
 
 	&__outline
 		border-color: #00adb5
