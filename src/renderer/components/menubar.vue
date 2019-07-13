@@ -326,7 +326,9 @@ export default {
 		// Branch
 		// Help
 		reportIssue() {
-			shell.openExternal("https://thermal.netlify.com/issue/");
+			shell.openExternal(
+				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+			);
 		},
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");
