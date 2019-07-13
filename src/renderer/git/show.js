@@ -1,8 +1,8 @@
 import git from "simple-git/promise";
 import * as Sentry from "@sentry/electron";
 
-const show = async (repository, params) => {
-	const data = await git(repository.path).show(params);
+const show = async (path, params) => {
+	const data = await git(path).show(params);
 	try {
 		return data;
 	} catch (error) {
