@@ -46,13 +46,19 @@
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
 								<t-button
+									:class="{
+										't-button__primary-warning': !repo.isGit
+									}"
 									margin-left="auto"
 									@click.native="openWorkspace(repo, index)"
 								>
-									Open
+									{{ repo.isGit ? "Open" : "Initalize" }}
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
+									:class="{
+										't-button__disabled': !repo.isGit
+									}"
 									@click="openSettings(repo, index)"
 								>
 									<settingsIcon />
@@ -116,6 +122,7 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
 import gitBranch from "../git/status";
+import gitInit from "../git/init";
 const { shell } = require("electron");
 
 export default {
@@ -166,28 +173,41 @@ export default {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel;
 		},
 		openWorkspace(repo, index) {
-			gitBranch(repo.path)
-				.then(result => {
-					let branch = result.current;
-					this.$router.push({
-						name: "projectWorkspace",
-						params: {
-							projectId: index,
-							branchName: branch
-						}
+			if (repo.isGit) {
+				gitBranch(repo.path)
+					.then(result => {
+						let branch = result.current;
+						this.$router.push({
+							name: "projectWorkspace",
+							params: {
+								projectId: index,
+								branchName: branch
+							}
+						});
+					})
+					.catch(error => {
+						console.log(error);
 					});
-				})
-				.catch(error => {
-					console.log(error);
+			} else {
+				gitInit(repo.path);
+				this.$store.dispatch({
+					type: "repository/updateIsGit",
+					index: index,
+					isGit: true
 				});
+			}
 		},
-		openSettings(repo, index) {
-			this.$router.push({
-				name: "projectSettings",
-				params: {
-					projectId: index
-				}
-			});
+		openSettings(repo, index, event) {
+			if (repo.isGit) {
+				this.$router.push({
+					name: "projectSettings",
+					params: {
+						projectId: index
+					}
+				});
+			} else {
+				event.preventDefault();
+			}
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
