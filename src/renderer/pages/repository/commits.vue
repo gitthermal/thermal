@@ -1,11 +1,11 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
 		<div ref="historyLogs" class="history__logs">
-			<logSkeleton v-if="repositoryLogs.length < 1" />
+			<logSkeleton v-if="logs.length < 1" />
 			<t-scrollbar style="height: calc(100vh - (65px + 34px))">
 				<div>
 					<commitHistoryItem
-						v-for="log in repositoryLogs"
+						v-for="log in logs"
 						:key="log.hash"
 						:data="log"
 						@click.native="gitShow(log.hash)"
@@ -38,16 +38,8 @@ export default {
 	mixins: [repositoryDataMixin],
 	data() {
 		return {
-			commitDetail: false
+			logs: []
 		};
-	},
-	computed: {
-		repositoryLogs() {
-			return this.$store.getters["history/allLogs"];
-		},
-		commitFileDiffPreview() {
-			return this.$store.getters["history/getFilePreview"];
-		}
 	},
 	mounted() {
 		this.gitLog();
@@ -55,9 +47,7 @@ export default {
 	methods: {
 		gitLog() {
 			gitLog(this.repositoryData.path).then(result => {
-				this.$store.commit("history/updateLogs", {
-					logs: result
-				});
+				this.logs = result;
 			});
 		},
 		gitShow(hash) {

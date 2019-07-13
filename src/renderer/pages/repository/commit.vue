@@ -19,10 +19,7 @@
 				<commit-information :commit-id="$route.params.commitId" />
 			</t-scrollbar>
 		</div>
-		<diffPreview
-			v-if="$store.state.history.filePreview.isActive"
-			:preview="commitFileDiffPreview"
-		/>
+		<diffPreview v-if="filePreview.isActive" :preview="filePreview.preview" />
 		<blank-slate v-else />
 	</t-flexbox>
 </template>
@@ -45,10 +42,13 @@ export default {
 		BlankSlate,
 		TFlexbox
 	},
-	computed: {
-		commitFileDiffPreview() {
-			return this.$store.getters["history/getFilePreview"];
-		}
+	data() {
+		return {
+			filePreview: {
+				isActive: false,
+				preview: []
+			}
+		};
 	},
 	methods: {
 		openCommitsPage() {
