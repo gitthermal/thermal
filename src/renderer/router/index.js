@@ -16,7 +16,12 @@ let routes = [
 			{
 				path: "commits/:branchName",
 				name: "projectCommits",
-				component: require("../pages/repository/history").default
+				component: require("../pages/repository/commits").default
+			},
+			{
+				path: "commit/:commitId",
+				name: "projectCommitDetail",
+				component: require("../pages/repository/commit").default
 			},
 			{
 				path: "stats",
