@@ -52,7 +52,7 @@
 									margin-left="auto"
 									@click.native="openWorkspace(repo, index)"
 								>
-									{{ repo.isGit ? "Open" : "Initalize" }}
+									{{ repo.isGit ? "Open" : "Initialize" }}
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
