@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox class="menubar">
-		<t-flexbox class="menubar__logo" @click="homepage()">
+		<t-flexbox class="menubar__logo" @click.native="homepage()">
 			<thermalLogo />
 		</t-flexbox>
 		<t-flexbox align-items="center" class="menubar__list">
