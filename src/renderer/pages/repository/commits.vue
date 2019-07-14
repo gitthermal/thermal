@@ -54,6 +54,7 @@ export default {
 			this.$router.push({
 				name: "projectCommitDetail",
 				params: {
+					branchName: this.$route.params.branchName,
 					commitId: hash
 				}
 			});
