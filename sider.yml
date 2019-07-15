@@ -9,3 +9,8 @@ linter:
       - ".electron-vue"
       - "src"
     npm_install: true
+
+ignore:
+  - ".github/**"
+  - ".vscode/**"
+  - "static/**"
