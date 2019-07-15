@@ -30,7 +30,7 @@ import spacingProps from "../../mixins/spacingProps";
 import repositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
-	name: "CommitMessage",
+	name: "CommitMessageBox",
 	components: {
 		inputText,
 		TButton
