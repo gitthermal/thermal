@@ -193,7 +193,8 @@ export default {
 			this.$router.push({
 				name: "projectSettings",
 				params: {
-					projectId: this.$route.params.projectId
+					projectId: this.$route.params.projectId,
+					branchName: this.$route.params.branchName
 				}
 			});
 		},
