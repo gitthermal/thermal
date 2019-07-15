@@ -1,5 +1,11 @@
 linter:
   goodcheck:
     config: goodcheck.yml
+    target:
+      - ".electron-vue"
+      - "src"
   eslint:
+    dir:
+      - ".electron-vue"
+      - "src"
     npm_install: true
