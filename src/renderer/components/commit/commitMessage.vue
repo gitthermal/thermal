@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-show="getFeatureValue.commit"
+		v-show="repositoryData.features.commit"
 		:style="{
 			...spacingProps,
 			borderTop: '1px solid #DEE0E3'
@@ -42,12 +42,6 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		getFeatureValue() {
-			return this.currentRepository.features;
-		},
 		stagedFileLength() {
 			return this.$store.state.commit.staged.length;
 		}
@@ -55,7 +49,7 @@ export default {
 	methods: {
 		commitMessageButton() {
 			commitMixin(
-				this.currentRepository,
+				this.repositoryData.path,
 				this.$store.getters["commit/allStagedFiles"],
 				this.commitMessageTitle
 			).then(result => {
