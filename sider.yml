@@ -10,6 +10,9 @@ linter:
       - "src"
     npm_install: true
     config: ".eslintrc.js"
+    ignore:
+      - ".gitignore"
+      - ".eslintignore"
 
 ignore:
   - ".github/**"
