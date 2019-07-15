@@ -9,6 +9,7 @@ linter:
       - ".electron-vue"
       - "src"
     npm_install: true
+    config: ".eslintrc.js"
 
 ignore:
   - ".github/**"
