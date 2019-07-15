@@ -27,6 +27,7 @@ import inputText from "../input/inputText";
 import TButton from "../TButton/TButton";
 import commitMixin from "../../git/commit";
 import spacingProps from "../../mixins/spacingProps";
+import repositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
 	name: "CommitMessage",
@@ -34,7 +35,7 @@ export default {
 		inputText,
 		TButton
 	},
-	mixins: [spacingProps],
+	mixins: [repositoryDataMixin, spacingProps],
 	data() {
 		return {
 			commitMessageTitle: ""
