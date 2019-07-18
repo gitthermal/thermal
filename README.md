@@ -36,7 +36,7 @@
 </p>
 
 <h3 align="center">
-  <a href="https://thermal.codecarrot.net/docs/">Guide</a>
+  <a href="https://thermal.codecarrot.net/docs/getting-started">Guide</a>
   <span> · </span>
   <a href="https://thermal.codecarrot.net/download/">Download</a>
   <span> · </span>
