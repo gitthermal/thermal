@@ -49,7 +49,7 @@
 
 ![Thermal app screenshots](https://thermal.codecarrot.net/images/app-screenshot-2x.png)
 
-## About
+## 🧐 About
 
 Thermal is free, open-source and cross-platform desktop application build using Electron & Vue.js, allowing you to manage your Git repositories at one place by providing a simple to use graphic interface with built-in features like commits, history, repository settings and more.
 
