@@ -43,7 +43,7 @@ export default {
 	methods: {
 		removeCommand(index) {
 			this.$store.commit({
-				name: "removeCommand",
+				type: "commands/removeCommand",
 				index: index
 			});
 		}
