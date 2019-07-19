@@ -61,8 +61,9 @@ export default {
 
 	&__title
 		color: black
+		font-size: 1.125rem
 
 	&__path
-		font-size: .8rem
-		color: #eee
+		font-size: .875rem
+		color: #9D9D9D
 </style>
