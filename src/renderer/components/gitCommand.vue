@@ -11,7 +11,7 @@
 			style="margin-left: auto; cursor: pointer;"
 			@click.native="removeCommand(index)"
 		>
-			<close-icon stroke="black" />
+			<close-icon stroke="#8B9798" />
 		</t-flexbox>
 	</t-flexbox>
 </template>
