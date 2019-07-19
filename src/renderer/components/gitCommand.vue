@@ -54,9 +54,10 @@ export default {
 <style lang="sass">
 .command
 	background-color: white
-	padding: 1rem
-	border: 1px solid #dedede
-	border-radius: .3rem
+	padding: 1rem 1.25rem
+	border-radius: .3125rem
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2)
+	margin-bottom: 1rem
 
 	&__title
 		color: black
