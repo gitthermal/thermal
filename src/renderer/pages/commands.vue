@@ -37,4 +37,5 @@ export default {
 h1
 	margin-top: 3rem
 	margin-bottom: 1rem
+	text-align: center
 </style>
