@@ -1,14 +1,14 @@
 <p align="center">
-	<a href="https://thermal.netlify.com">
-		<img src="https://thermal.codecarrot.net/images/thermal-logo-square.png" alt="Thermal" height="72" />
-	</a>
+  <a href="https://thermal.codecarrot.net/">
+    <img src="https://thermal.codecarrot.net/images/thermal-logo-square.png" alt="Thermal" height="72" />
+  </a>
 </p>
 <h1 align="center">
-	Thermal
+  Thermal
 </h1>
 
 <p align="center">
-	Thermal is a free, open-source, cross-platform Git GUI built by developers for developers
+  Thermal is a free, open-source, cross-platform Git GUI built by developers for developers
 </p>
 
 <p align="center">
@@ -24,7 +24,7 @@
   <a href="https://discord.gg/DcSNmts">
     <img src="https://img.shields.io/discord/556376419886825509.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord invite" />
   </a>
-  <a href="https://thermal.codecarrot.net/docs/how-to-contribute">
+  <a href="https://thermal.codecarrot.net/docs/introduction/">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
   <a href="https://twitter.com/intent/follow?screen_name=gitthermal">
@@ -61,18 +61,17 @@ Download the official installer for your operating system from [Thermal website]
 
 Stay up to date on the development of Thermal and reach out to the community with these helpful resources.
 
-* Follow [@gitthermal](https://twitter.com/@gitthermal) on Twitter.
-* Read the [official Thermal Blog](https://thermal.codecarrot.net/blog).
-* Join the official [Thermal Discord server](https://discordapp.com/invite/KT3nAR5/).
+- Follow [@gitthermal](https://twitter.com/@gitthermal) on Twitter.
+- Read the [official Thermal Blog](https://thermal.codecarrot.net/blog).
+- Join the official [Thermal Discord server](https://discordapp.com/invite/KT3nAR5/).
 
 ## ⛏️ Built Using
 
 Contributing to Thermal project is fairly easy, read this article [how to contribute](https://thermal.codecarrot.net/docs/how-to-contribute/?utm_source=github&utm_medium=readme).
 
-* [**Electron**](https://electronjs.org) - Desktop application
-* [**SQLite**](https://www.sqlite.org) - Database [_(coming soon)_](https://github.com/gitthermal/thermal/pull/2)
-* [**Vue.js**](https://vuejs.org) - Front end
-	* [**Vuex**](https://vuex.vuejs.org) - Vue state management
-	* [**Vue Router**](https://router.vuejs.org) - Vue Router
-* [**Nodegit**](https://www.nodegit.org) - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
-
+- [**Electron**](https://electronjs.org) - Desktop application
+- [**SQLite**](https://www.sqlite.org) - Database [_(coming soon)_](https://github.com/gitthermal/thermal/pull/2)
+- [**Vue.js**](https://vuejs.org) - Front end
+  - [**Vuex**](https://vuex.vuejs.org) - Vue state management
+  - [**Vue Router**](https://router.vuejs.org) - Vue Router
+- [**Nodegit**](https://www.nodegit.org) - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
