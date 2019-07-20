@@ -28,7 +28,7 @@ export default {
 	},
 	mounted() {
 		if (!this.$store.getters["workspace/currentRepository"].isGit) {
-			this.$store.commit("modal/toggleInitalizeGitRepositoryModal", true);
+			this.$store.commit("modal/toggleInitializeGitRepositoryModal", true);
 		}
 	}
 };
