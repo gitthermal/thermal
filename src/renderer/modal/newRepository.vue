@@ -107,8 +107,8 @@ export default {
 			this.localRepository(repositoryPath);
 		},
 		async gitInit(path) {
-			let initaliseRepository = git(path);
-			await initaliseRepository.init();
+			let initializeRepository = git(path);
+			await initializeRepository.init();
 		}
 	}
 };
