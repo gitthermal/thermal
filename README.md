@@ -74,5 +74,5 @@ Contributing to Thermal project is fairly easy, read this article [how to contri
 * [**Vue.js**](https://vuejs.org) - Front end
 	* Vuex - Vue state management
 	* Vue router - Vue router
-* Nodegit - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
+* [**Nodegit**](https://www.nodegit.org) - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
 
