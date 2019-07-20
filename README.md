@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://thermal.netlify.com">
+  <a href="https://thermal.codecarrot.net/">
     <img src="https://thermal.codecarrot.net/images/thermal-logo-square.png" alt="Thermal" height="72" />
   </a>
 </p>
