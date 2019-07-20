@@ -24,7 +24,7 @@
   <a href="https://discord.gg/DcSNmts">
     <img src="https://img.shields.io/discord/556376419886825509.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2" alt="Discord invite" />
   </a>
-  <a href="https://thermal.codecarrot.net/docs/how-to-contribute">
+  <a href="https://thermal.codecarrot.net/docs/introduction/">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
   </a>
   <a href="https://twitter.com/intent/follow?screen_name=gitthermal">
