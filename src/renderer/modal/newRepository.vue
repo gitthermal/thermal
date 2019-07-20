@@ -18,7 +18,7 @@
 						v-model="repositoryLocation"
 						name="repositoryLocation"
 						label="Path"
-						placeholder="Path to local repostiory"
+						placeholder="Path to local repository"
 						style="flex-grow: 2"
 					/>
 					<input
