@@ -49,7 +49,7 @@ import addLocalRepository from "./modal/addLocalRepository";
 import about from "./modal/about";
 import exportCommitData from "./modal/exportCommitData";
 import newRemote from "./modal/newRemote";
-import initalizeGitRepository from "./modal/initalizeGitRepository";
+import initializeGitRepository from "./modal/initializeGitRepository";
 import cloneRepository from "./modal/cloneRepository";
 
 // help widget
@@ -73,7 +73,7 @@ export default {
 		about,
 		exportCommitData,
 		newRemote,
-		initalizeGitRepository,
+		initializeGitRepository,
 		cloneRepository,
 		DropdownList,
 		DropdownItem,
