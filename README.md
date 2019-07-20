@@ -71,7 +71,7 @@ Contributing to Thermal project is fairly easy, read this article [how to contri
 
 * [**Electron**](https://electronjs.org) - Desktop application
 * [**SQLite**](https://www.sqlite.org) - Database [_(coming soon)_](https://github.com/gitthermal/thermal/pull/2)
-* Vue.js - Front end
+* [**Vue.js**](https://vuejs.org) - Front end
 	* Vuex - Vue state management
 	* Vue router - Vue router
 * Nodegit - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
