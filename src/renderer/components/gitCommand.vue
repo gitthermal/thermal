@@ -118,5 +118,5 @@ export default {
 		color: #9D9D9D
 
 	&:last-child
-		margin-bottom: 3rem
+		margin-bottom: 8rem
 </style>
