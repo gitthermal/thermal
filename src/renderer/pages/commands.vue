@@ -1,21 +1,24 @@
 <template>
 	<t-flexbox>
-		<t-container>
-			<h1>Git Commands</h1>
-			<git-command
-				v-for="(item, index) in fetchAllCommands"
-				:key="index"
-				:index="index"
-				:title="item.title"
-				:path="item.path"
-			/>
-		</t-container>
+		<t-scrollbar width="100%" height="100vh">
+			<t-container>
+				<h1>Git Commands</h1>
+				<git-command
+					v-for="(item, index) in fetchAllCommands"
+					:key="index"
+					:index="index"
+					:title="item.title"
+					:path="item.path"
+				/>
+			</t-container>
+		</t-scrollbar>
 	</t-flexbox>
 </template>
 
 <script>
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import TContainer from "../components/TLayouts/TContainer";
+import TScrollbar from "../components/TLayouts/TScrollbar";
 import GitCommand from "../components/gitCommand";
 
 export default {
@@ -23,6 +26,7 @@ export default {
 	components: {
 		TFlexbox,
 		TContainer,
+		TScrollbar,
 		GitCommand
 	},
 	computed: {
