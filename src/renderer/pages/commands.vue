@@ -9,6 +9,7 @@
 					:index="index"
 					:title="item.title"
 					:path="item.path"
+					:type="item.type"
 				/>
 			</t-container>
 		</t-scrollbar>

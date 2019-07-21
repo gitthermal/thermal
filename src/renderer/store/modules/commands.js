@@ -10,7 +10,8 @@ const mutations = {
 	addCommand(state, payload) {
 		state.commands.push({
 			title: payload.title,
-			path: payload.path
+			path: payload.path,
+			type: payload.type
 		});
 	},
 	removeCommand(state, payload) {
