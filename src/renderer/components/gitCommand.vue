@@ -1,5 +1,6 @@
 <template>
 	<t-flexbox class="command">
+		<components :is="commandType" class="command__image"></components>
 		<t-flexbox flex-direction="column">
 			<h5 class="command__title">
 				{{ title }}
@@ -19,12 +20,26 @@
 <script>
 import TFlexbox from "./TLayouts/TFlexbox";
 import CloseIcon from "./icon/close";
+import HistoryIcon from "./icon/clock";
+import CommitIcon from "./icon/commit";
+import CloneIcon from "./icon/download";
+import StatusIcon from "./icon/list";
+import InitIcon from "./icon/play";
+import DiffIcon from "./icon/columns";
+import DefaultIcon from "./icon/menu";
 
 export default {
 	name: "GitCommand",
 	components: {
 		TFlexbox,
-		CloseIcon
+		CloseIcon,
+		HistoryIcon,
+		CommitIcon,
+		CloneIcon,
+		StatusIcon,
+		InitIcon,
+		DiffIcon,
+		DefaultIcon
 	},
 	props: {
 		index: {
@@ -42,6 +57,28 @@ export default {
 		path: {
 			type: String,
 			required: true
+		}
+	},
+	data() {
+		return {
+			git: [
+				["log", HistoryIcon],
+				["clone", CloneIcon],
+				["commit", CommitIcon],
+				["status", StatusIcon],
+				["init", InitIcon],
+				["diff", DiffIcon]
+			]
+		};
+	},
+	computed: {
+		commandType() {
+			for (let i = 0; i < this.git.length; i++) {
+				if (this.type === this.git[i][0]) {
+					return this.git[i][1];
+				}
+			}
+			return DefaultIcon;
 		}
 	},
 	methods: {
@@ -63,6 +100,15 @@ export default {
 	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2)
 	margin-bottom: 1rem
 
+	&__image
+		border: 2px solid rgba(0, 0, 0, 0.1)
+		border-radius: .3125rem
+		padding: 8px
+		margin-right: 1rem
+		width: 50px
+		height: 50px
+		stroke: black
+
 	&__title
 		color: black
 		font-size: 1.125rem
@@ -70,4 +116,7 @@ export default {
 	&__path
 		font-size: .875rem
 		color: #9D9D9D
+
+	&:last-child
+		margin-bottom: 3rem
 </style>
