@@ -1,6 +1,6 @@
 # Configuration for request-info - https://github.com/behaviorbot/request-info
 requestInfoReplyComment: >
-  We would appreciate it if you could provide us with more info about this issue/pr!
+  Hey there! We would appreciate if you could provide us more information about what you're trying to accomplish here!
 
 # *OPTIONAL* Label to be added to Issues and Pull Requests with insufficient information given
 requestInfoLabelToAdd: needs-more-info
