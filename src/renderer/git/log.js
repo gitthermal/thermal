@@ -5,7 +5,8 @@ import gitCommand from "../mixins/commands";
 const log = async (repository, params) => {
 	const data = await git(repository.path).log(params);
 	try {
-		gitCommand("log", params);
+		let command = !!params === true ? params.join(" ") : "";
+		gitCommand("log", command);
 		return data.all;
 	} catch (error) {
 		Sentry.captureException(error);
