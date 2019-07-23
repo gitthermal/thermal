@@ -11,6 +11,7 @@
 					:params="item.params"
 					:path="item.path"
 					:type="item.type"
+					:date="item.date"
 				/>
 			</t-container>
 		</t-scrollbar>

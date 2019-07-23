@@ -23,6 +23,12 @@
 				</h6>
 				{{ `git ${command} ${params}` }}
 			</t-flexbox>
+			<t-flexbox class="command__detail-list">
+				<h6 style="margin-right: 5px;">
+					<strong>Time:</strong>
+				</h6>
+				{{ date }}
+			</t-flexbox>
 		</t-flexbox>
 	</t-flexbox>
 </template>
@@ -69,6 +75,10 @@ export default {
 			required: true
 		},
 		path: {
+			type: String,
+			required: true
+		},
+		date: {
 			type: String,
 			required: true
 		}

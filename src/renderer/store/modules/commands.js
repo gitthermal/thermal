@@ -13,6 +13,7 @@ const mutations = {
 			params: payload.params,
 			path: payload.path,
 			type: payload.type
+			date: new Date()
 		});
 	},
 	removeCommand(state, payload) {
