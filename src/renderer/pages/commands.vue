@@ -7,7 +7,8 @@
 					v-for="(item, index) in fetchAllCommands"
 					:key="index"
 					:index="index"
-					:title="item.title"
+					:command="item.command"
+					:params="item.params"
 					:path="item.path"
 					:type="item.type"
 				/>

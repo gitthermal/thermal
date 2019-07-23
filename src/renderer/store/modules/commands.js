@@ -9,7 +9,8 @@ const getters = {
 const mutations = {
 	addCommand(state, payload) {
 		state.commands.push({
-			title: payload.title,
+			command: payload.command,
+			params: payload.params,
 			path: payload.path,
 			type: payload.type
 		});

@@ -3,7 +3,7 @@
 		<components :is="commandType" class="command__image"></components>
 		<t-flexbox flex-direction="column">
 			<h5 class="command__title">
-				{{ title }}
+				{{ `git ${command}` }}
 			</h5>
 			<span class="command__path">{{ path }}</span>
 		</t-flexbox>
@@ -50,7 +50,11 @@ export default {
 			type: String,
 			required: true
 		},
-		title: {
+		command: {
+			type: String,
+			required: true
+		},
+		params: {
 			type: String,
 			required: true
 		},
