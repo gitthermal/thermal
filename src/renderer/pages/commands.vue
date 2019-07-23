@@ -1,7 +1,7 @@
 <template>
 	<t-flexbox>
-		<t-scrollbar width="100%" height="100vh">
-			<t-container>
+		<t-scrollbar width="100%" style="height: calc(100vh - 37px);">
+			<t-container style="padding-bottom: 4rem;">
 				<h1>Git Commands</h1>
 				<git-command
 					v-for="(item, index) in fetchAllCommands"
