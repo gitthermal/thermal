@@ -1,18 +1,28 @@
 <template>
-	<t-flexbox class="command">
-		<components :is="commandType" class="command__image"></components>
-		<t-flexbox flex-direction="column">
-			<h5 class="command__title">
-				{{ `git ${command}` }}
-			</h5>
-			<span class="command__path">{{ path }}</span>
+	<t-flexbox flex-direction="column" class="command">
+		<t-flexbox @click.native="toggle = !toggle">
+			<components :is="commandType" class="command__image"></components>
+			<t-flexbox flex-direction="column">
+				<h5 class="command__title">
+					{{ `git ${command}` }}
+				</h5>
+				<span class="command__path">{{ path }}</span>
+			</t-flexbox>
+			<t-flexbox
+				align-items="center"
+				style="margin-left: auto; cursor: pointer;"
+				@click.native="removeCommand(index)"
+			>
+				<close-icon stroke="#8B9798" />
+			</t-flexbox>
 		</t-flexbox>
-		<t-flexbox
-			align-items="center"
-			style="margin-left: auto; cursor: pointer;"
-			@click.native="removeCommand(index)"
-		>
-			<close-icon stroke="#8B9798" />
+		<t-flexbox v-show="toggle" flex-direction="column" class="command__detail">
+			<t-flexbox class="command__detail-list">
+				<h6 style="margin-right: 5px;">
+					<strong>Command:</strong>
+				</h6>
+				{{ `git ${command} ${params}` }}
+			</t-flexbox>
 		</t-flexbox>
 	</t-flexbox>
 </template>
@@ -65,6 +75,7 @@ export default {
 	},
 	data() {
 		return {
+			toggle: false,
 			git: [
 				["log", HistoryIcon],
 				["clone", CloneIcon],
@@ -123,4 +134,13 @@ export default {
 
 	&:last-child
 		margin-bottom: 8rem
+
+	&__detail
+		margin-top: 1rem
+		padding-top: 1rem
+		border-top: 1px solid #eee
+
+		&-list
+			&:not(:last-child)
+				padding-bottom: .8rem
 </style>
