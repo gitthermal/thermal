@@ -12,7 +12,7 @@ const mutations = {
 			command: payload.command,
 			params: payload.params,
 			path: payload.path,
-			type: payload.type
+			type: payload.type,
 			date: new Date()
 		});
 	},
