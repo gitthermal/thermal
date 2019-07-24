@@ -297,7 +297,6 @@ export default {
 			this.$store.commit("modal/toggleCloneRepositoryModal", true);
 		},
 		switchRepository() {
-			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
 		},
 		appOptions() {
