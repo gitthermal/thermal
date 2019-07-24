@@ -107,7 +107,7 @@
 					<dropdown-item>
 						View on GitHub
 					</dropdown-item>
-					<dropdown-item>
+					<dropdown-item @click.native="openTerminal">
 						Open in Terminal
 					</dropdown-item>
 					<dropdown-item @click.native="openFileExplorer">
@@ -323,6 +323,9 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openTerminal() {
+			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
+		},
 		openFileExplorer() {
 			shell.openItem(this.currentRepository.path);
 		},
