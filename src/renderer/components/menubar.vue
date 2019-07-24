@@ -114,7 +114,7 @@
 						Open in Code editor
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item>
+					<dropdown-item @click.native="openSettings">
 						Repository settings
 					</dropdown-item>
 				</dropdown-list>
