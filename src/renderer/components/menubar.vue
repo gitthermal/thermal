@@ -108,7 +108,7 @@
 						View on GitHub
 					</dropdown-item>
 					<dropdown-item>
-						Open in PowerShell
+						Open in Terminal
 					</dropdown-item>
 					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
