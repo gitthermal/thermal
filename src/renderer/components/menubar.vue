@@ -117,7 +117,7 @@
 						Open in Code editor
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item>
+					<dropdown-item @click.native="openRepositorySettings">
 						Repository settings
 					</dropdown-item>
 				</dropdown-list>
@@ -328,6 +328,9 @@ export default {
 		},
 		openEditor() {
 			childProcess.exec("code .", { cwd: this.currentRepository.path });
+		},
+		openRepositorySettings() {
+			this.$router.push({ name: "repositorySettings" });
 		},
 		// Branch
 		// Help

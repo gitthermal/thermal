@@ -28,7 +28,7 @@
 				</div>
 			</t-flexbox>
 		</t-flexbox>
-		<div class="welcome__seperate" />
+		<div class="welcome__separate" />
 		<t-flexbox flex-direction="column" align-items="center">
 			<div
 				class="welcome__repository__list"
@@ -208,7 +208,7 @@ export default {
 				&:not(:last-child)
 					margin-right: 20px
 
-	&__seperate
+	&__separate
 		width: 1px
 		height: 480px
 		background-color: #DEE0E3
