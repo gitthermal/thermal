@@ -62,8 +62,11 @@
 					</dropdown-item>
 					<dropdown-item>
 						Go to summary
+					</dropdown-item> -->
+					<dropdown-item @click.native="gitCommands()">
+						Git commands
 					</dropdown-item>
-					<dropdown-divider /> -->
+					<dropdown-divider />
 					<dropdown-item @click.native="fullScreenView()">
 						Toggle full screen
 					</dropdown-item>
@@ -305,6 +308,9 @@ export default {
 			remote.getCurrentWindow().close();
 		},
 		// View
+		gitCommands() {
+			this.$router.push({ name: "gitCommands" });
+		},
 		fullScreenView() {
 			if (!win.isMaximized()) {
 				win.maximize();

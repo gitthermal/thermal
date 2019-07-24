@@ -1,8 +1,10 @@
 import git from "simple-git/promise";
+import gitCommand from "../mixins/commands";
 
 const init = async path => {
-	let initializeRepository = git(path);
-	await initializeRepository.init();
+	let initaliseRepository = git(path);
+	gitCommand("init");
+	await initaliseRepository.init();
 };
 
 export default init;
