@@ -11,9 +11,17 @@ export default {
 			next(false);
 		}
 	},
+	methods: {
+		updateRepositoryData() {
+			this.repositoryData = this.$store.getters["repository/listAllRepository"][
+				this.$route.params.projectId
+			];
+		}
+	},
 	mounted() {
-		this.repositoryData = this.$store.getters["repository/listAllRepository"][
-			this.$route.params.projectId
-		];
+		this.updateRepositoryData();
+	},
+	beforeUpdate() {
+		this.updateRepositoryData();
 	}
 };
