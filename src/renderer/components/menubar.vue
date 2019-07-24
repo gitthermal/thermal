@@ -339,7 +339,7 @@ export default {
 		// Help
 		reportIssue() {
 			shell.openExternal(
-				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+				"https://github.com/gitthermal/thermal/issues/new/choose"
 			);
 		},
 		contactSupport() {
