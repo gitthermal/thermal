@@ -104,8 +104,8 @@
 						Remove
 					</dropdown-item>
 					<dropdown-divider /> -->
-					<dropdown-item>
-						View on GitHub
+					<dropdown-item @click.native="openRemoteRepository">
+						View remote repository
 					</dropdown-item>
 					<dropdown-item @click.native="openTerminal">
 						Open in Terminal
@@ -323,6 +323,9 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openRemoteRepository() {
+			console.log(this.currentRepository.remote);
+		},
 		openTerminal() {
 			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
 		},
