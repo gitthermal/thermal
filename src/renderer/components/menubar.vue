@@ -190,8 +190,8 @@
 		</t-flexbox>
 		<div class="menubar__drag" />
 		<t-flexbox class="menubar__title">
-			<t-flexbox v-if="!!currentRepository">
-				{{ currentRepository.name }}
+			<t-flexbox v-if="repositoryRoute">
+				{{ repositoryData.name }}
 				<div style="padding: 0 5px">
 					-
 				</div>
@@ -210,6 +210,7 @@ import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
 import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
+import repositoryDataMixin from "../mixins/repositoryData";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
@@ -225,6 +226,7 @@ export default {
 		windowsButton,
 		TFlexbox
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			menu: {
@@ -318,10 +320,10 @@ export default {
 		},
 		// Repository
 		openFileExplorer() {
-			shell.openItem(this.currentRepository.path);
+			shell.openItem(this.repositoryData.path);
 		},
 		openEditor() {
-			childProcess.exec("code .", { cwd: this.currentRepository.path });
+			childProcess.exec("code .", { cwd: this.repositoryData.path });
 		},
 		// Branch
 		// Help
