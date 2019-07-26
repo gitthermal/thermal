@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import packageJson from "../../../package.json";
+
 export default {
 	data() {
 		let opsys = process.platform;
@@ -36,7 +38,7 @@ export default {
 				app: {
 					name: "App information",
 					data: [
-						["Version", `v${process.env.npm_package_version}`],
+						["Version", `v${packageJson.version}`],
 						["Environment", "Production"]
 					]
 				},
