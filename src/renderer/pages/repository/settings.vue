@@ -104,6 +104,7 @@ import { ToggleButton } from "vue-js-toggle-button";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TContainer from "../../components/TLayouts/TContainer";
+import RepositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
 	name: "RepositorySettings",
@@ -115,13 +116,11 @@ export default {
 		TFlexbox,
 		TContainer
 	},
+	mixins: [RepositoryDataMixin],
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
 		repositoryName: {
 			get: function() {
-				return this.currentRepository.name;
+				return this.repositoryData.name;
 			},
 			set: function(value) {
 				this.$store.commit({
@@ -131,11 +130,11 @@ export default {
 			}
 		},
 		repositoryPath() {
-			return this.currentRepository.path;
+			return this.repositoryData.path;
 		},
 		toggleCommit: {
 			get: function() {
-				return this.currentRepository.features.commit;
+				return this.repositoryData.features.commit;
 			},
 			set: function(value) {
 				this.$store.commit({
@@ -146,7 +145,7 @@ export default {
 		},
 		toggleRemote: {
 			get: function() {
-				return this.currentRepository.features.remote;
+				return this.repositoryData.features.remote;
 			},
 			set: function(value) {
 				this.$store.commit({
@@ -156,7 +155,7 @@ export default {
 			}
 		},
 		repositoryRemoteUrl() {
-			return this.currentRepository.remote;
+			return this.repositoryData.remote;
 		}
 	},
 	methods: {
