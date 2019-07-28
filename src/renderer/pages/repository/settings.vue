@@ -125,7 +125,8 @@ export default {
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/editLocalRepositoryName",
-					name: value
+					name: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
@@ -139,7 +140,8 @@ export default {
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/toggleCommitFeature",
-					commits: value
+					commits: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
@@ -150,7 +152,8 @@ export default {
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/toggleRemoteFeature",
-					remotes: value
+					remotes: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
@@ -160,7 +163,10 @@ export default {
 	},
 	methods: {
 		removeCurrentRepository() {
-			this.$store.commit("repository/removeLocalRepository");
+			this.$store.commit({
+				type: "repository/removeLocalRepository",
+				projectId: this.$route.params.projectId
+			});
 			this.$router.push({ name: "welcome" });
 		}
 	}
@@ -169,7 +175,6 @@ export default {
 
 <style lang="sass">
 .repository
-
 	&__settings
 		&__content
 			&__header
