@@ -32,18 +32,23 @@ const mutations = {
 	},
 	editLocalRepositoryName(state, payload) {
 		state.repositoryList[payload.projectId].name = payload.name;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	localRepositoryRemote(state, payload) {
 		state.repositoryList[payload.projectId].remote = payload.remote;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleCommitFeature(state, payload) {
 		state.repositoryList[payload.projectId].features.commit = payload.commits;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleRemoteFeature(state, payload) {
 		state.repositoryList[payload.projectId].features.remote = payload.remotes;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleIsGit(state, payload) {
 		state.repositoryList[payload.index].isGit = payload.isGit;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	}
 };
 
