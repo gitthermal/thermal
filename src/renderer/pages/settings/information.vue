@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import packageJson from "../../../package.json";
+import packageJson from "../../../../package.json";
 
 export default {
 	data() {
@@ -55,11 +55,6 @@ export default {
 				}
 			}
 		};
-	},
-	computed: {
-		packageVersion() {
-			return process.env.npm_package_version;
-		}
 	}
 };
 </script>
