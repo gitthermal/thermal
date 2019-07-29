@@ -55,11 +55,6 @@ export default {
 				}
 			}
 		};
-	},
-	computed: {
-		packageVersion() {
-			return process.env.npm_package_version;
-		}
 	}
 };
 </script>
