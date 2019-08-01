@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         node_10_x:
-          node_version: "10.x"
+          node_version: "10.16.0"
 
     steps:
       - template: win.yml
@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         node_10_x:
-          node_version: "10.x"
+          node_version: "10.16.0"
 
     steps:
       - template: linux.yml
@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix:
         node_10_x:
-          node_version: "10.x"
+          node_version: "10.16.0"
 
     steps:
       - template: mac.yml
