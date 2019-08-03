@@ -1,0 +1,29 @@
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+
+  - script: |
+      echo Installing packages and Building windows application
+      yarn && yarn build:window
+      echo Windows build is complete
+    displayName: "Build Windows app"
+
+  - script: |
+      cd dist
+      ls
+    displayName: "Validate build"
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: $(Build.SourcesDirectory)/dist
+      contents: |
+        *.exe
+      targetFolder: $(Build.ArtifactStagingDirectory)
+    displayName: "Copying files"
+
+  - task: PublishPipelineArtifact@0
+    inputs:
+      pathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      artifactName: win
+    displayName: "Publish pipeline artifact"

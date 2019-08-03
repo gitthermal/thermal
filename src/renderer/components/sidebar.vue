@@ -1,38 +1,57 @@
 <template>
-  <div v-show="workspaceRepository" class="sidebar">
-    <div class="sidebar__group d-flex flex-column">
-      <router-link class="sidebar__item d-flex align-items-center" to="workspace">
-        <folderIcon/>
-        <p>Workspace</p>
-      </router-link>
-      <router-link class="sidebar__item d-flex align-items-center" to="history">
-        <clockIcon/>
-        <p>History</p>
-      </router-link>
-    </div>
-  </div>
+	<t-flexbox class="repository__sidebar">
+		<t-flexbox flex-direction="column" class="repository__sidebar__group">
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryWorkspace' }"
+			>
+				<t-flexbox align-items="center">
+					<folderIcon />
+					<p>Workspace</p>
+				</t-flexbox>
+			</router-link>
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryHistory' }"
+			>
+				<t-flexbox align-items="center">
+					<clockIcon />
+					<p>History</p>
+				</t-flexbox>
+			</router-link>
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryStats' }"
+			>
+				<t-flexbox align-items="center">
+					<barIcon />
+					<p>Stats</p>
+				</t-flexbox>
+			</router-link>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
-import folderIcon from "./icon/folder"
-import clockIcon from "./icon/clock"
+import TFlexbox from "./TLayouts/TFlexbox";
+import folderIcon from "./icon/folder";
+import clockIcon from "./icon/clock";
+import barIcon from "./icon/bar";
 
 export default {
-	name: "sidebar",
+	name: "Sidebar",
 	components: {
+		TFlexbox,
 		folderIcon,
-		clockIcon
-	},
-	computed: {
-		workspaceRepository() {
-			return !!this.$store.state.workspace.currentRepository.path
-		}
+		clockIcon,
+		barIcon
 	}
-}
+};
 </script>
 
-<style lang='sass'>
-	.sidebar
+<style lang="sass">
+.repository
+	&__sidebar
 		background-color: #EFEFEF
 		padding-top: 20px
 		border-right: 1px solid #DEE0E3

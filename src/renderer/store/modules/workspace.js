@@ -1,73 +1,47 @@
+import repository from "./repository";
+
 const state = {
-	currentRepository: {
-		name: "",
-		path: ""
+	workspaceRepository: {
+		index: ""
 	},
-	repositoryList: [],
-	model: {
-		addLocalRepository: false,
-		newRepository: false
+	filePreview: {
+		isActive: false,
+		preview: []
 	}
-}
+};
 
 const getters = {
-	listAllRepository: state => state.repositoryList
-}
+	currentRepository: state =>
+		repository.state.repositoryList[state.workspaceRepository.index],
+	filePreview: state => state.filePreview.preview
+};
 
 const mutations = {
 	workspaceRepository(state, payload) {
-		state.currentRepository.name = payload.name
-		state.currentRepository.path = payload.path
+		state.workspaceRepository.index = payload.index;
 	},
-	toggleAddLocalRepositoryModel(state) {
-		state.model.addLocalRepository = !state.model.addLocalRepository
+	toggleFilePreview(state, payload) {
+		state.filePreview.isActive = payload.isActive;
 	},
-	localRepository(state, payload) {
-		let repositoryData = {
-			path: payload.path,
-			name: payload.name
-		}
-		state.repositoryList.push(repositoryData)
-	},
-	removeRepository(state, payload) {
-		state.repositoryList.splice(payload.index, 1)
+	filePreview(state, payload) {
+		state.filePreview.preview = payload.preview;
 	}
-}
+};
 
 const actions = {
 	updateWorkspaceRepository: ({ commit }, payload) => {
 		commit({
 			type: "workspaceRepository",
-			name: payload.name,
-			path: payload.path
-		})
+			index: payload.index
+		});
 	},
 	switchWorkspaceRepository: ({ commit }) => {
 		commit({
 			type: "workspaceRepository",
-			name: "",
-			path: ""
-		})
-	},
-	addLocalRepositoryToList: ({ commit }, payload) => {
-		commit({
-			type: "localRepository",
-			path: payload.path,
-			name: payload.name
-		})
-	},
-	removeRepositoryFromList: ({ commit }, payload) => {
-		commit({
-			type: "removeRepository",
-			index: payload.index
-		})
-	},
-	showAddLocalRepositoryModel: ({ commit }) => {
-		commit({
-			type: "toggleAddLocalRepositoryModel"
-		})
+			index: ""
+		});
 	}
-}
+};
 
 export default {
 	namespaced: true,
@@ -75,4 +49,4 @@ export default {
 	getters,
 	mutations,
 	actions
-}
+};

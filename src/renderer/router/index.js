@@ -1,40 +1,77 @@
-import Vue from "vue"
-import Router from "vue-router"
+import Vue from "vue";
+import Router from "vue-router";
 
-import WelcomePage from "../components/WelcomePage"
-import pageNotFound from "../components/pageNotFound"
-import workspacePage from "../components/workspacePage"
-import historyPage from "../components/history"
-
-Vue.use(Router)
+Vue.use(Router);
 
 let routes = [
 	{
-		path: "/workspace",
-		name: "workspace",
-		component: workspacePage
+		path: "/repository",
+		component: require("../pages/repository").default,
+		children: [
+			{
+				path: "workspace",
+				name: "repositoryWorkspace",
+				component: require("../pages/repository/workspace").default
+			},
+			{
+				path: "history",
+				name: "repositoryHistory",
+				component: require("../pages/repository/history").default
+			},
+			{
+				path: "stats",
+				name: "repositoryStats",
+				component: require("../pages/repository/stats").default
+			},
+			{
+				path: "settings",
+				name: "repositorySettings",
+				component: require("../pages/repository/settings").default
+			}
+		]
 	},
 	{
-		path: "/history",
-		name: "history",
-		component: historyPage
+		path: "/settings",
+		component: require("../pages/settings").default,
+		children: [
+			{
+				path: "profile",
+				name: "profileSettings",
+				component: require("../pages/settings/profile").default
+			},
+			{
+				path: "experimental",
+				name: "experimentalFeatures",
+				component: require("../pages/settings/experimental").default
+			},
+			{
+				path: "information",
+				name: "appInformation",
+				component: require("../pages/settings/information").default
+			}
+		]
+	},
+	{
+		path: "/commands",
+		name: "gitCommands",
+		component: require("../pages/commands").default
 	},
 	{
 		path: "/",
 		name: "welcome",
-		component: WelcomePage
+		component: require("../pages/welcome").default
 	},
 	{
 		path: "*",
 		name: "pageNotFound",
-		component: pageNotFound
+		redirect: "/"
 	}
-]
+];
 
 const router = new Router({
 	base: "/",
 	mode: "history",
 	routes
-})
+});
 
-export default router
+export default router;
