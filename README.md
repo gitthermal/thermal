@@ -69,9 +69,9 @@ Stay up to date on the development of Thermal and reach out to the community wit
 
 Contributing to Thermal project is fairly easy, read this article [how to contribute](https://thermal.codecarrot.net/docs/how-to-contribute/?utm_source=github&utm_medium=readme).
 
-- [**Electron**](https://electronjs.org) - Desktop application
-- [**SQLite**](https://www.sqlite.org) - Database [_(coming soon)_](https://github.com/gitthermal/thermal/pull/2)
-- [**Vue.js**](https://vuejs.org) - Front end
-  - [**Vuex**](https://vuex.vuejs.org) - Vue state management
-  - [**Vue Router**](https://router.vuejs.org) - Vue Router
-- [**Nodegit**](https://www.nodegit.org) - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
+- **[Electron](https://electronjs.org)** - Desktop application
+- **[SQLite](https://www.sqlite.org)** - Database _[(coming soon)](https://github.com/gitthermal/thermal/pull/2)_
+- **[Vue.js](https://vuejs.org)** - Front end
+  - **[Vuex](https://vuex.vuejs.org)** - Vue state management
+  - **[Vue Router](https://router.vuejs.org)** - Vue Router
+- **[Nodegit](https://www.nodegit.org)** - Git commands _[(coming soon)](https://github.com/gitthermal/thermal/issues/170)_
