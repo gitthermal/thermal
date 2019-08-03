@@ -75,3 +75,7 @@ Contributing to Thermal project is fairly easy, read this article [how to contri
   - [**Vuex**](https://vuex.vuejs.org) - Vue state management
   - [**Vue Router**](https://router.vuejs.org) - Vue Router
 - [**Nodegit**](https://www.nodegit.org) - Git commands [_(coming soon)_](https://github.com/gitthermal/thermal/issues/170)
+
+## 🙏🏻 Credits
+
+- Development is sponsored by [CodeCarrot](https://www.codecarrot.net/).
