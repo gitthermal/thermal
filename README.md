@@ -78,4 +78,4 @@ Contributing to Thermal project is fairly easy, read this article [how to contri
 
 ## 🙏🏻 Credits
 
-* Development is sponsored by [CodeCarrot](https://www.codecarrot.net/).
+- Development is sponsored by [CodeCarrot](https://www.codecarrot.net/).
