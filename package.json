@@ -26,8 +26,7 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-		"rebuild": "electron-rebuild -f -w sqlite3"
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "productName": "Thermal",
