@@ -10,6 +10,16 @@ import "vue2-scrollbar/dist/style/vue2-scrollbar.css";
 import "./assets/css/all.sass";
 import packageJson from "../../package.json";
 
+// database
+import database from "../database";
+
+
+database.serialize(() => {
+	database.run(
+		"CREATE TABLE IF NOT EXISTS repository(directoryName VARCHAR(30), directoryPath VARCHAR(150) PRIMARY KEY, isGitRepo INTEGER);"
+	);
+});
+
 const VueIntegration = getIntegrations().browser.Vue;
 init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
