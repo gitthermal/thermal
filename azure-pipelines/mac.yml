@@ -6,6 +6,8 @@ steps:
   - script: |
       echo Installing packages
       yarn
+      echo Install electron app dependencies
+      yarn postinstall
       echo Start building MacOS application
       yarn build:mac
       echo MacOS build is complete

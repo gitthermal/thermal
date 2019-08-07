@@ -6,6 +6,8 @@ steps:
   - script: |
       echo Installing packages
       yarn
+      echo Install electron app dependencies
+      yarn postinstall
       echo Building windows application
       yarn build:window
       echo Windows build is complete

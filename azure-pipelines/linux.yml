@@ -6,6 +6,8 @@ steps:
   - script: |
       echo Installing packages
       yarn
+      echo Install electron app dependencies
+      yarn postinstall
       echo Start building linux application
       yarn build:linux
       echo Linux build is complete
