@@ -27,7 +27,7 @@
 		</t-card-body>
 		<t-card-footer>
 			<t-button
-				outline="true"
+				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('AddLocalRepository')"
 			>
