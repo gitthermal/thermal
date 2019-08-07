@@ -4,8 +4,10 @@ steps:
       versionSpec: $(node_version)
 
   - script: |
-      echo Installing packages and Building windows application
-      yarn && yarn build:window
+      echo Installing packages
+      yarn
+      echo Building windows application
+      yarn build:window
       echo Windows build is complete
     displayName: "Build Windows app"
 
