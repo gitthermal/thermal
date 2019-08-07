@@ -1,18 +1,13 @@
-import git from "simple-git/promise";
+const NodeGit = require("nodegit");
 
 const clone = async (remoteUrl, localPath) => {
-	let cloneStatus;
-	let cloneRepository = git().outputHandler((command, stdout, stderr) => {
-		stderr.on("end", () => {
-			cloneStatus = true;
+	NodeGit.Clone(remoteUrl, localPath)
+		.then(repository => {
+			console.log(repository);
+		})
+		.catch(error => {
+			console.log(error);
 		});
-	});
-	try {
-		await cloneRepository.clone(remoteUrl, localPath, ["--progress"]);
-		return cloneStatus;
-	} catch (error) {
-		console.log(error);
-	}
 };
 
 export default clone;
