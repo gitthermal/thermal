@@ -137,7 +137,9 @@ export default {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
 			exampleRepositoryModel: false,
-			repositoryPath: ""
+			repository: {
+				path: ""
+			}
 		};
 	},
 	computed: {
@@ -181,10 +183,7 @@ export default {
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
 			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.repositoryPath = event.dataTransfer.files[i].path
-					.split("\\")
-					.join("/");
-				this.localRepository(this.repositoryPath);
+				this.repository.path = dropDataTransfer[i].path.split("\\").join("/");
 			}
 		}
 	}
