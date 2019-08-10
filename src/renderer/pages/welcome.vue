@@ -39,27 +39,27 @@
 					<div style="padding: 1rem">
 						<div v-if="allRepository.length > 0">
 							<t-flexbox
-								:key="repo.path"
-								v-for="(repo, index) in allRepository"
+								v-for="repository in allRepository"
+								:key="repository.repositoryId"
 								align-items="center"
 								class="welcome__repository__list__item"
 							>
-								<h6>{{ repo.name | truncateFilter(30) }}</h6>
+								<h6>{{ repository.repositoryName | truncateFilter(30) }}</h6>
 								<t-button
 									:class="{
-										't-button__primary-warning': !repo.isGit
+										't-button__primary-warning': !repository.isGitRepo
 									}"
 									margin-left="auto"
-									@click.native="openWorkspace(repo, index)"
+									@click.native="openWorkspace(repository)"
 								>
-									{{ repo.isGit ? "Open" : "Initialize" }}
+									{{ repository.isGitRepo ? "Open" : "Initialize" }}
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
 									:class="{
-										't-button__disabled': !repo.isGit
+										't-button__disabled': !repository.isGitRepo
 									}"
-									@click="openSettings(repo, index)"
+									@click="openSettings(repository)"
 								>
 									<settingsIcon />
 								</div>
@@ -123,6 +123,10 @@ import truncateFilter from "../filters/truncate";
 import addRepository from "../mixins/addRepository";
 import gitBranch from "../git/status";
 import gitInit from "../git/init";
+
+// database
+import database from "../../database";
+
 const { shell } = require("electron");
 
 export default {
@@ -154,6 +158,14 @@ export default {
 		allRepository() {
 			return this.$store.getters["repository/getAllRepository"];
 		}
+	},
+	mounted() {
+		database.all("SELECT * FROM repository", (err, data) => {
+			if (err) console.log(err);
+			else {
+				this.$store.commit("repository/updateRepositoryList", data);
+			}
+		});
 	},
 	methods: {
 		websiteURL() {
