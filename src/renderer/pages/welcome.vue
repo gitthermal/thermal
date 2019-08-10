@@ -35,12 +35,12 @@
 				@drop.prevent="dropHandler($event)"
 				@dragover.prevent="dropHandler()"
 			>
-				<t-scrollbar v-if="getAllRepository.length > 0" height="400px">
+				<t-scrollbar v-if="allRepository.length > 0" height="400px">
 					<div style="padding: 1rem">
-						<div v-if="getAllRepository.length > 0">
+						<div v-if="allRepository.length > 0">
 							<t-flexbox
-								v-for="(repo, index) in getAllRepository"
 								:key="repo.path"
+								v-for="(repo, index) in allRepository"
 								align-items="center"
 								class="welcome__repository__list__item"
 							>
@@ -100,7 +100,7 @@
 				</div>
 			</div>
 			<t-button
-				v-show="getAllRepository.length > 0"
+				v-show="allRepository.length > 0"
 				margin-top="1rem"
 				@click.native="addLocalRepository()"
 			>
@@ -151,8 +151,8 @@ export default {
 		};
 	},
 	computed: {
-		getAllRepository() {
-			return this.$store.getters["repository/listAllRepository"];
+		allRepository() {
+			return this.$store.getters["repository/getAllRepository"];
 		}
 	},
 	methods: {

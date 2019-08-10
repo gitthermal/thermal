@@ -1,9 +1,9 @@
 const state = {
-	repositoryList: []
+	allRepository: []
 };
 
 const getters = {
-	listAllRepository: state => state.repositoryList
+	getAllRepository: state => state.allRepository
 };
 
 const mutations = {
