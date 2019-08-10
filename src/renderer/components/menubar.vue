@@ -331,7 +331,13 @@ export default {
 			childProcess.exec("code .", { cwd: this.repositoryData.path });
 		},
 		openRepositorySettings() {
-			this.$router.push({ name: "repositorySettings" });
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: this.$route.params.projectId,
+					branchName: this.$route.params.branchName
+				}
+			});
 		},
 		openRepositorySettings() {
 			this.$router.push({ name: "repositorySettings" });
