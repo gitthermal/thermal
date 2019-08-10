@@ -339,9 +339,6 @@ export default {
 				}
 			});
 		},
-		openRepositorySettings() {
-			this.$router.push({ name: "repositorySettings" });
-		},
 		// Branch
 		// Help
 		reportIssue() {
