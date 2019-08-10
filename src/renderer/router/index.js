@@ -57,6 +57,11 @@ let routes = [
 		]
 	},
 	{
+		path: "/commands",
+		name: "gitCommands",
+		component: require("../pages/commands").default
+	},
+	{
 		path: "/",
 		name: "welcome",
 		component: require("../pages/welcome").default

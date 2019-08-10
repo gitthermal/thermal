@@ -62,8 +62,11 @@
 					</dropdown-item>
 					<dropdown-item>
 						Go to summary
+					</dropdown-item> -->
+					<dropdown-item @click.native="gitCommands()">
+						Git commands
 					</dropdown-item>
-					<dropdown-divider /> -->
+					<dropdown-divider />
 					<dropdown-item @click.native="fullScreenView()">
 						Toggle full screen
 					</dropdown-item>
@@ -306,6 +309,9 @@ export default {
 			remote.getCurrentWindow().close();
 		},
 		// View
+		gitCommands() {
+			this.$router.push({ name: "gitCommands" });
+		},
 		fullScreenView() {
 			if (!win.isMaximized()) {
 				win.maximize();
@@ -327,10 +333,15 @@ export default {
 		openRepositorySettings() {
 			this.$router.push({ name: "repositorySettings" });
 		},
+		openRepositorySettings() {
+			this.$router.push({ name: "repositorySettings" });
+		},
 		// Branch
 		// Help
 		reportIssue() {
-			shell.openExternal("https://thermal.netlify.com/issue/");
+			shell.openExternal(
+				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+			);
 		},
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");

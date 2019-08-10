@@ -28,7 +28,7 @@
 				</div>
 			</t-flexbox>
 		</t-flexbox>
-		<div class="welcome__seperate" />
+		<div class="welcome__separate" />
 		<t-flexbox flex-direction="column" align-items="center">
 			<div
 				class="welcome__repository__list"
@@ -145,7 +145,9 @@ export default {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
 			exampleRepositoryModel: false,
-			repositoryPath: ""
+			repository: {
+				path: ""
+			}
 		};
 	},
 	computed: {
@@ -212,10 +214,7 @@ export default {
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
 			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.repositoryPath = event.dataTransfer.files[i].path
-					.split("\\")
-					.join("/");
-				this.localRepository(this.repositoryPath);
+				this.repository.path = dropDataTransfer[i].path.split("\\").join("/");
 			}
 		}
 	}
@@ -239,7 +238,7 @@ export default {
 				&:not(:last-child)
 					margin-right: 20px
 
-	&__seperate
+	&__separate
 		width: 1px
 		height: 480px
 		background-color: #DEE0E3
