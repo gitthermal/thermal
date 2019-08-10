@@ -16,7 +16,7 @@ import database from "../database";
 
 database.serialize(() => {
 	database.run(
-		"CREATE TABLE IF NOT EXISTS repository(directoryName VARCHAR(30), directoryPath VARCHAR(150) PRIMARY KEY, isGitRepo INTEGER);"
+		"CREATE TABLE IF NOT EXISTS repository(repositoryId INTEGER PRIMARY KEY, repositoryName VARCHAR(30), repositoryPath VARCHAR(150), isGitRepo INTEGER);"
 	);
 });
 
