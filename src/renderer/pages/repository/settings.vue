@@ -104,6 +104,7 @@ import { ToggleButton } from "vue-js-toggle-button";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TContainer from "../../components/TLayouts/TContainer";
+import RepositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
 	name: "RepositorySettings",
@@ -115,53 +116,57 @@ export default {
 		TFlexbox,
 		TContainer
 	},
+	mixins: [RepositoryDataMixin],
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
 		repositoryName: {
 			get: function() {
-				return this.currentRepository.name;
+				return this.repositoryData.name;
 			},
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/editLocalRepositoryName",
-					name: value
+					name: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
 		repositoryPath() {
-			return this.currentRepository.path;
+			return this.repositoryData.path;
 		},
 		toggleCommit: {
 			get: function() {
-				return this.currentRepository.features.commit;
+				return this.repositoryData.features.commit;
 			},
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/toggleCommitFeature",
-					commits: value
+					commits: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
 		toggleRemote: {
 			get: function() {
-				return this.currentRepository.features.remote;
+				return this.repositoryData.features.remote;
 			},
 			set: function(value) {
 				this.$store.commit({
 					type: "repository/toggleRemoteFeature",
-					remotes: value
+					remotes: value,
+					projectId: this.$route.params.projectId
 				});
 			}
 		},
 		repositoryRemoteUrl() {
-			return this.currentRepository.remote;
+			return this.repositoryData.remote;
 		}
 	},
 	methods: {
 		removeCurrentRepository() {
-			this.$store.commit("repository/removeLocalRepository");
+			this.$store.commit({
+				type: "repository/removeLocalRepository",
+				projectId: this.$route.params.projectId
+			});
 			this.$router.push({ name: "welcome" });
 		}
 	}
@@ -170,7 +175,6 @@ export default {
 
 <style lang="sass">
 .repository
-
 	&__settings
 		&__content
 			&__header

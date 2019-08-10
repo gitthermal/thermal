@@ -1,5 +1,3 @@
-import workspace from "./workspace";
-
 const state = {
 	repositoryList: []
 };
@@ -28,31 +26,29 @@ const mutations = {
 		state.repositoryList.push(repositoryData);
 		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
-	removeLocalRepository(state) {
-		state.repositoryList.splice(workspace.state.workspaceRepository.index, 1);
+	removeLocalRepository(state, payload) {
+		state.repositoryList.splice(payload.projectId, 1);
 		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	editLocalRepositoryName(state, payload) {
-		// eslint-disable-next-line prettier/prettier
-		state.repositoryList[workspace.state.workspaceRepository.index].name = payload.name;
+		state.repositoryList[payload.projectId].name = payload.name;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	localRepositoryRemote(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].remote =
-			payload.remote;
+		state.repositoryList[payload.projectId].remote = payload.remote;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleCommitFeature(state, payload) {
-		state.repositoryList[
-			workspace.state.workspaceRepository.index
-		].features.commit = payload.commits;
+		state.repositoryList[payload.projectId].features.commit = payload.commits;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleRemoteFeature(state, payload) {
-		state.repositoryList[
-			workspace.state.workspaceRepository.index
-		].features.remote = payload.remotes;
+		state.repositoryList[payload.projectId].features.remote = payload.remotes;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	},
 	toggleIsGit(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].isGit =
-			payload.isGit;
+		state.repositoryList[payload.index].isGit = payload.isGit;
+		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
 	}
 };
 
@@ -60,6 +56,7 @@ const actions = {
 	updateIsGit: ({ commit }, payload) => {
 		commit({
 			type: "toggleIsGit",
+			index: payload.index,
 			isGit: payload.isGit
 		});
 		localStorage.setItem("repository", JSON.stringify(state.repositoryList));

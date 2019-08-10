@@ -3,6 +3,7 @@
 		class="t-button"
 		:class="{
 			't-button__primary': !outline,
+			't-button__primary-warning': !outline && warning,
 			't-button__primary-danger': !outline && danger,
 			't-button__disabled': disabled,
 			't-button__outline': outline,
@@ -29,6 +30,10 @@ export default {
 			default: undefined
 		},
 		outline: {
+			type: Boolean,
+			default: false
+		},
+		warning: {
 			type: Boolean,
 			default: false
 		},
@@ -71,8 +76,13 @@ export default {
 		border-color: #00adb5
 		background-color: #00adb5
 
+		&-warning
+			background-color: #e5d570
+			border-color: #e5d570
+
 		&-danger
 			background-color: #f04747
+			border-color: #f04747
 
 	&__outline
 		border-color: #00adb5
