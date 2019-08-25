@@ -27,11 +27,10 @@ jobs:
 
   Linux:
     name: Linux build on node ${{ matrix.node_version }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node_version: [8.x, 10.x, 12.x]
-        os: ubuntu-latest
     
     steps:
     - name: Checkout
