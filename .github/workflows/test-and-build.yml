@@ -23,4 +23,27 @@ jobs:
       run: npm install
       
     - name: Run lint
-      run: npm run lint      
+      run: npm run lint
+
+  Linux:
+    name: Linux build on node ${{ matrix.node_version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x, 12.x]
+        os: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+      
+    - name: Set Node.js version ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+      
+    - name: Install packages
+      run: npm install
+      
+    - name: Run build
+      run: npm run build:linux
