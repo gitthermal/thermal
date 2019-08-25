@@ -1,10 +1,10 @@
 name: Greetings
 
-on: [pull_request, issues]
-
-# Remove PRs from dependabot
-pull_request:
-  - '!dependabot/*'
+on:
+  - issues
+  # Remove PRs from dependabot
+  - pull_request:
+    - '!dependabot/*'
 
 jobs:
   greeting:
