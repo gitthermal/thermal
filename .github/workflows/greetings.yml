@@ -3,8 +3,9 @@ name: Greetings
 on:
   - issues
   # Remove PRs from dependabot
-  - pull_request:
-    - '!dependabot/*'
+  pull_request:
+    branches:
+      - '!dependabot/*'
 
 jobs:
   greeting:
