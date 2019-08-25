@@ -1,4 +1,4 @@
-name: "Test and build Thermal app"
+name: Test & Build
 on: push
 
 jobs:
