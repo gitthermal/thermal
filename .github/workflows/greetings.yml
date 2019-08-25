@@ -1,7 +1,8 @@
 name: Greetings
 
+on: issues
+
 on:
-  issues
   # Remove PRs from dependabot
   pull_request:
     branches:
