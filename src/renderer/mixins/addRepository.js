@@ -14,6 +14,37 @@ export default {
 		};
 	},
 	methods: {
+		// add repository to database
+		addRepositoryToDatabase(path) {
+			this.getRepositoryName(path);
+			this.getRemoteUrl(path);
+
+			database.serialize(() => {
+				this.insertNewRepository(path);
+
+				// fetch lastest entry from repository database
+				database.all(
+					`SELECT * FROM repository ORDER BY repositoryId DESC LIMIT 1`,
+					(err, data) => {
+						if (err) console.log(err);
+						else {
+							let repositoryId = data;
+							this.insertNewGitRepository(repositoryId);
+							this.insertNewRepositorySettings(repositoryId);
+						}
+					}
+				);
+			});
+
+			// reset local data property
+			this.repository = {
+				name: "",
+				path: "",
+				isGitRepo: false,
+				remote: ""
+			};
+
+			this.queryAllRepository();
 		},
 
 		// directory name
