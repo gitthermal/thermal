@@ -7,6 +7,8 @@ const getters = {
 };
 
 const mutations = {
+	updateRepositoryList(state, payload) {
+		state.allRepository = payload;
 	}
 };
 
