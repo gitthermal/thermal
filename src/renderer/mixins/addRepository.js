@@ -11,8 +11,6 @@ export default {
 		};
 	},
 	methods: {
-		getRepositoryName(path) {
-			return path.split("/")[path.split("/").length - 1];
 		},
 		async isGitRepository(path) {
 			const validateGitRepository = git(path);
@@ -22,6 +20,10 @@ export default {
 			} catch (error) {
 				console.log(error);
 			}
+
+		// directory name
+		getRepositoryName(path) {
+			this.repository.name = path.split("/")[path.split("/").length - 1];
 		},
 		async localRepository(path) {
 			let listRemote;
