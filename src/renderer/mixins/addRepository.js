@@ -1,5 +1,8 @@
 import git from "simple-git/promise";
 
+// database
+import database from "../../database";
+
 export default {
 	data() {
 		return {
