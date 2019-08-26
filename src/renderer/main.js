@@ -23,6 +23,33 @@ database.serialize(() => {
 			repositoryPath VARCHAR(150) NOT NULL
 		);`
 	);
+
+	// create repository git table
+	database.run(
+		`CREATE TABLE IF NOT EXISTS gitRepository(
+			gitId INTEGER PRIMARY KEY,
+			isGit INTEGER NOT NULL,
+			remoteUrl VARCHAR(200),
+			activeBranch VARCHAR(50),
+			repositoryId INTEGER NOT NULL,
+			FOREIGN KEY(repositoryId) REFERENCES repository(repositoryId)
+		)`
+	);
+
+	// create repository settings table
+	database.run(
+		`CREATE TABLE IF NOT EXISTS repositorySettings(
+			settingsId INTEGER PRIMARY KEY,
+			name VARCHAR(30) NOT NULL,
+			description VARCHAR(200),
+			directoryName VARCHAR(30) NOT NULL,
+			directoryPath VARCHAR(150) NOT NULL,
+			commitFeature INTEGER NOT NULL,
+			remoteFeature INTEGER NOT NULL,
+			repositoryId INTEGER NOT NULL,
+			FOREIGN KEY(repositoryId) REFERENCES repository(repositoryId)
+		)`
+	);
 });
 
 const VueIntegration = getIntegrations().browser.Vue;
