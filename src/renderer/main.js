@@ -15,8 +15,13 @@ import database from "../database";
 
 
 database.serialize(() => {
+	// create repository table
 	database.run(
-		"CREATE TABLE IF NOT EXISTS repository(repositoryId INTEGER PRIMARY KEY, repositoryName VARCHAR(30), repositoryPath VARCHAR(150));"
+		`CREATE TABLE IF NOT EXISTS repository(
+			repositoryId INTEGER PRIMARY KEY,
+			repositoryName VARCHAR(30) NOT NULL,
+			repositoryPath VARCHAR(150) NOT NULL
+		);`
 	);
 });
 
