@@ -58,6 +58,60 @@ export default {
 				}
 			);
 		},
+
+		// insert repository settings to database
+		insertNewRepositorySettings(data) {
+			database.run(
+				`INSERT INTO repositorySettings(
+					name,
+					directoryName,
+					directoryPath,
+					commitFeature,
+					remoteFeature,
+					repositoryId
+				) VALUES(
+					$name,
+					$directoryName,
+					$directoryPath,
+					$commitFeature,
+					$remoteFeature,
+					$repositoryId
+				);`,
+				{
+					$name: data[0].repositoryName,
+					$directoryName: data[0].repositoryName,
+					$directoryPath: data[0].repositoryPath,
+					$commitFeature: 1,
+					$remoteFeature: 1,
+					$repositoryId: data[0].repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
+		},
+
+		// insert repository git to database
+		insertNewGitRepository(data) {
+			database.run(
+				`INSERT INTO gitRepository(
+					isGit,
+					remoteUrl,
+					repositoryId
+				) VALUES(
+					$isGitRepo,
+					$remoteUrl,
+					$repositoryId
+				);`,
+				{
+					$isGitRepo: this.repository.isGitRepo,
+					$remoteUrl: this.repository.remote,
+					$repositoryId: data[0].repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
 		}
 	}
 };
