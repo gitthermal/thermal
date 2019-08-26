@@ -1,6 +1,15 @@
 import git from "simple-git/promise";
 
 export default {
+	data() {
+		return {
+			repository: {
+				name: "",
+				isGitRepo: false,
+				remote: ""
+			}
+		};
+	},
 	methods: {
 		getRepositoryName(path) {
 			return path.split("/")[path.split("/").length - 1];
