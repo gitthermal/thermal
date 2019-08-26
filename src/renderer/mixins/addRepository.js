@@ -36,8 +36,16 @@ export default {
 				console.log(error);
 			}
 		},
+
+		// query repositories from database
+		queryAllRepository() {
+			database.all("SELECT * FROM repository", (err, data) => {
+				if (err) console.log(err);
+				else {
+					this.$store.commit("repository/updateRepositoryList", data);
 				}
 			});
+		},
 
 		// insert new repository to database
 		insertNewRepository(path) {
