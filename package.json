@@ -155,6 +155,6 @@
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.1.3"
+    "webpack-merge": "^4.2.2"
   }
 }
