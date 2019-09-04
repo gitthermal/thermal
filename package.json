@@ -110,7 +110,7 @@
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
     "babili-webpack-plugin": "^0.1.2",
-    "cfonts": "^2.4.4",
+    "cfonts": "^2.4.5",
     "chalk": "^2.4.2",
     "copy-webpack-plugin": "5.0.4",
     "cross-env": "^5.2.1",
