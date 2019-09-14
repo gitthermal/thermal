@@ -160,12 +160,21 @@ export default {
 		}
 	},
 	mounted() {
-		database.all("SELECT * FROM repository", (err, data) => {
-			if (err) console.log(err);
-			else {
-				this.$store.commit("repository/updateRepositoryList", data);
+		database.all(
+			`SELECT
+				repositoryId,
+				repositoryName,
+				repositoryPath,
+				isGit
+			FROM repository
+			INNER JOIN gitRepository USING(repositoryId)`,
+			(err, data) => {
+				if (err) console.log(err);
+				else {
+					this.$store.commit("repository/updateRepositoryList", data);
+				}
 			}
-		});
+		);
 	},
 	methods: {
 		websiteURL() {
