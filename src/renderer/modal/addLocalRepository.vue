@@ -6,7 +6,7 @@
 		</t-card-header>
 		<t-card-body>
 			<inputText
-				v-model.trim="repository.path"
+				v-model.trim="newRepository.path"
 				v-focus
 				name="pathToRepository"
 				placeholder="Local path to repository"
@@ -35,7 +35,7 @@
 			</t-button>
 			<t-button
 				margin-left=".5rem"
-				@click.native="addRepository(repository.path)"
+				@click.native="addRepository(newRepository.path)"
 			>
 				Add repository
 			</t-button>
@@ -78,21 +78,13 @@ export default {
 		}
 	},
 	mixins: [closeModalMixin, addRepository],
-	data() {
-		return {
-			repository: {
-				path: ""
-			}
-		};
-	},
 	methods: {
 		fileSectorInput(event) {
-			this.repository.path = event.target.files[0].path.split("\\").join("/");
+			this.newRepository.path = event.target.files[0].path.split("\\").join("/");
 		},
 		addRepository(path) {
-			if (this.repository.path !== "") {
-				this.localRepository(path);
-				this.repository.path = "";
+			if (this.newRepository.path !== "") {
+				this.addRepositoryToDatabase(path);
 				this.closeModal("AddLocalRepository");
 			}
 		}

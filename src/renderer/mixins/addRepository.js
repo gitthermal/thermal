@@ -6,10 +6,11 @@ import database from "../../database";
 export default {
 	data() {
 		return {
-			repository: {
+			newRepository: {
 				name: "",
 				isGitRepo: false,
-				remote: ""
+				remote: "",
+				path: ""
 			}
 		};
 	},
@@ -37,7 +38,7 @@ export default {
 			});
 
 			// reset local data property
-			this.repository = {
+			this.newRepository = {
 				name: "",
 				path: "",
 				isGitRepo: false,
@@ -49,7 +50,7 @@ export default {
 
 		// directory name
 		getRepositoryName(path) {
-			this.repository.name = path.split("/")[path.split("/").length - 1];
+			this.newRepository.name = path.split("/")[path.split("/").length - 1];
 		},
 
 		// get remote url
@@ -58,9 +59,9 @@ export default {
 			try {
 				listRemote = await git(path).listRemote(["--get-url"]);
 				if (listRemote.slice(-4, -1) === "git") {
-					this.repository.isGitRepo = true;
+					this.newRepository.isGitRepo = true;
 				}
-				this.repository.remote = listRemote;
+				this.newRepository.remote = listRemote;
 
 				console.log(listRemote);
 			} catch (error) {

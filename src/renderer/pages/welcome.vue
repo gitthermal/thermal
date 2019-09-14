@@ -145,10 +145,7 @@ export default {
 	data() {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
-			exampleRepositoryModel: false,
-			repository: {
-				path: ""
-			}
+			exampleRepositoryModel: false
 		};
 	},
 	computed: {
