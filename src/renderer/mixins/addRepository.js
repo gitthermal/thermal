@@ -32,6 +32,7 @@ export default {
 							let repositoryId = data;
 							this.insertNewGitRepository(repositoryId);
 							this.insertNewRepositorySettings(repositoryId);
+							this.queryAllRepository();
 						}
 					}
 				);
@@ -44,8 +45,6 @@ export default {
 				isGitRepo: false,
 				remote: ""
 			};
-
-			this.queryAllRepository();
 		},
 
 		// directory name
