@@ -47,7 +47,7 @@
 								<h6>{{ repository.repositoryName | truncateFilter(30) }}</h6>
 								<t-button
 									:class="{
-										't-button__primary-warning': !repository.isGitRepo
+										't-button__primary-warning': !repository.isGit
 									}"
 									margin-left="auto"
 									@click.native="openWorkspace(repository)"
