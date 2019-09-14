@@ -56,10 +56,7 @@
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
-									:class="{
-										't-button__disabled': !repository.isGitRepo
-									}"
-									@click="openSettings(repository)"
+									@click="openSettings(repository.repositoryId)"
 								>
 									<settingsIcon />
 								</div>
@@ -220,17 +217,13 @@ export default {
 				});
 			}
 		},
-		openSettings(repo, index, event) {
-			if (repo.isGit) {
-				this.$router.push({
-					name: "projectSettings",
-					params: {
-						projectId: index
-					}
-				});
-			} else {
-				event.preventDefault();
-			}
+		openSettings(repositoryId) {
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: repositoryId
+				}
+			});
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
