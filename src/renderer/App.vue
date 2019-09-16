@@ -109,7 +109,6 @@ export default {
 		}
 	},
 	beforeCreate() {
-		this.$store.commit("repository/getRepositoryList");
 		this.$store.commit("settings/getSettingsList");
 	},
 	methods: {
