@@ -10,22 +10,22 @@
 				<div>
 					<div class="settings__section">
 						<inputTextLabel
-							v-model="repositoryName"
+							v-model="settings.name"
 							name="repositoryName"
 							label="Name"
 							placeholder="Repository name"
 							class="settings__input"
 						/>
 						<inputTextLabel
-							v-model="repositoryPath"
 							name="repositoryPath"
+							v-model="settings.directoryPath"
 							label="Directory path"
 							placeholder="Path"
 							:disabled="true"
 							class="settings__input"
 						/>
 						<inputTextLabel
-							v-model="repositoryRemoteUrl"
+							v-model="settings.remoteUrl"
 							name="repositoryRemoteUrl"
 							label="Remote URL"
 							placeholder="Path"
