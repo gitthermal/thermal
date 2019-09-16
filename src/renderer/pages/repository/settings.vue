@@ -17,8 +17,8 @@
 							class="settings__input"
 						/>
 						<inputTextLabel
-							name="repositoryPath"
 							v-model="settings.directoryPath"
+							name="directoryPath"
 							label="Directory path"
 							placeholder="Path"
 							:disabled="true"
@@ -27,7 +27,7 @@
 						<inputTextLabel
 							v-model="settings.remoteUrl"
 							name="repositoryRemoteUrl"
-							label="Remote URL"
+							label="Origin / Remote URL"
 							placeholder="Path"
 							:disabled="true"
 							class="settings__input"
