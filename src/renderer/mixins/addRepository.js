@@ -1,5 +1,8 @@
 import git from "simple-git/promise";
 
+// mixins
+import queryAllRepository from "./queryAllRepository";
+
 // database
 import database from "../../database";
 
@@ -14,6 +17,7 @@ export default {
 			}
 		};
 	},
+	mixins: [queryAllRepository],
 	methods: {
 		// add repository to database
 		addRepositoryToDatabase(path) {
@@ -66,26 +70,6 @@ export default {
 			} catch (error) {
 				console.log(error);
 			}
-		},
-
-		// query repositories from database
-		queryAllRepository() {
-			database.all(
-				`SELECT
-					repositoryId,
-					repositoryName,
-					repositoryPath,
-					isGit
-				FROM repository
-				INNER JOIN gitRepository USING(repositoryId)`,
-				(err, data) => {
-					if (err) console.log(err);
-					else {
-						console.log(data);
-						this.$store.commit("repository/updateRepositoryList", data);
-					}
-				}
-			);
 		},
 
 		// insert new repository to database

@@ -104,6 +104,9 @@ import { ToggleButton } from "vue-js-toggle-button";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TContainer from "../../components/TLayouts/TContainer";
+
+// mixins
+import queryAllRepository from "../../mixins/queryAllRepository";
 import RepositoryDataMixin from "../../mixins/repositoryData";
 import database from "../../../database";
 
@@ -117,7 +120,7 @@ export default {
 		TFlexbox,
 		TContainer
 	},
-	mixins: [RepositoryDataMixin],
+	mixins: [RepositoryDataMixin, queryAllRepository],
 	data() {
 		return {
 			settings: {}
@@ -201,6 +204,7 @@ export default {
 				},
 				(err, data) => {
 					if (err) console.log(err);
+					else this.queryAllRepository();
 				}
 			);
 		}
