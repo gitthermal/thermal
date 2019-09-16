@@ -46,7 +46,7 @@
 									<p>Enable/disable commits for this repository</p>
 								</div>
 								<toggle-button
-									v-model="toggleCommit"
+									v-model="commitFeature"
 									color="#00adb5"
 									class="ml-auto"
 								/>
@@ -61,7 +61,7 @@
 									<p>Pull, push and fetch</p>
 								</div>
 								<toggle-button
-									v-model="toggleRemote"
+									v-model="remoteFeature"
 									color="#00adb5"
 									class="ml-auto"
 								/>
@@ -123,36 +123,23 @@ export default {
 		};
 	},
 	computed: {
-		repositoryName: {
+		commitFeature: {
 			get: function() {
-				return this.repositoryData.name;
+				return !!this.settings.commitFeature;
 			},
 			set: function(value) {
-				this.$store.commit({
-					type: "repository/editLocalRepositoryName",
-					name: value,
-					projectId: this.$route.params.projectId
-				});
+				this.settings.commitFeature = value ? 1 : 0;
 			}
 		},
-		repositoryPath() {
-			return this.repositoryData.path;
-		},
-		toggleCommit: {
+		remoteFeature: {
 			get: function() {
-				return this.repositoryData.features.commit;
+				return !!this.settings.remoteFeature;
 			},
 			set: function(value) {
-				this.$store.commit({
-					type: "repository/toggleCommitFeature",
-					commits: value,
-					projectId: this.$route.params.projectId
-				});
+				this.settings.remoteFeature = value ? 1 : 0;
 			}
-		},
-		toggleRemote: {
-			get: function() {
-				return this.repositoryData.features.remote;
+		}
+	},
 	mounted() {
 		database.all(
 			`SELECT
