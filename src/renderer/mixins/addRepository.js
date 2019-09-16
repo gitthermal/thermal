@@ -70,12 +70,22 @@ export default {
 
 		// query repositories from database
 		queryAllRepository() {
-			database.all("SELECT * FROM repository", (err, data) => {
-				if (err) console.log(err);
-				else {
-					this.$store.commit("repository/updateRepositoryList", data);
+			database.all(
+				`SELECT
+					repositoryId,
+					repositoryName,
+					repositoryPath,
+					isGit
+				FROM repository
+				INNER JOIN gitRepository USING(repositoryId)`,
+				(err, data) => {
+					if (err) console.log(err);
+					else {
+						console.log(data);
+						this.$store.commit("repository/updateRepositoryList", data);
+					}
 				}
-			});
+			);
 		},
 
 		// insert new repository to database
@@ -89,7 +99,7 @@ export default {
 					$repositoryPath
 				);`,
 				{
-					$repositoryName: this.repository.name,
+					$repositoryName: this.newRepository.name,
 					$repositoryPath: path
 				},
 				(err, data) => {
@@ -143,8 +153,8 @@ export default {
 					$repositoryId
 				);`,
 				{
-					$isGitRepo: this.repository.isGitRepo,
-					$remoteUrl: this.repository.remote,
+					$isGitRepo: this.newRepository.isGitRepo,
+					$remoteUrl: this.newRepository.remote,
 					$repositoryId: data[0].repositoryId
 				},
 				(err, data) => {
