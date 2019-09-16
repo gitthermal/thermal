@@ -117,6 +117,11 @@ export default {
 		TContainer
 	},
 	mixins: [RepositoryDataMixin],
+	data() {
+		return {
+			settings: {}
+		};
+	},
 	computed: {
 		repositoryName: {
 			get: function() {
@@ -148,18 +153,24 @@ export default {
 		toggleRemote: {
 			get: function() {
 				return this.repositoryData.features.remote;
+	mounted() {
+		database.all(
+			`SELECT
+				*
+			FROM repositorySettings
+			INNER JOIN gitRepository USING(repositoryId)
+			WHERE repositoryId IS $repositoryId`,
+			{
+				$repositoryId: this.$route.params.projectId
 			},
-			set: function(value) {
-				this.$store.commit({
-					type: "repository/toggleRemoteFeature",
-					remotes: value,
-					projectId: this.$route.params.projectId
-				});
+			(err, data) => {
+				if (err) console.log(err);
+				else {
+					console.log(data);
+					this.settings = data[0];
+				}
 			}
-		},
-		repositoryRemoteUrl() {
-			return this.repositoryData.remote;
-		}
+		);
 	},
 	methods: {
 		removeCurrentRepository() {
