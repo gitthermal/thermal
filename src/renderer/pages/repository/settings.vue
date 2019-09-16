@@ -105,6 +105,7 @@ import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TContainer from "../../components/TLayouts/TContainer";
 import RepositoryDataMixin from "../../mixins/repositoryData";
+import database from "../../../database";
 
 export default {
 	name: "RepositorySettings",
@@ -161,11 +162,47 @@ export default {
 	},
 	methods: {
 		removeCurrentRepository() {
-			this.$store.commit({
-				type: "repository/removeLocalRepository",
-				projectId: this.$route.params.projectId
-			});
+			this.removeRepoFromSettingsTable();
+
 			this.$router.push({ name: "welcome" });
+		},
+		removeRepoFromSettingsTable() {
+			// remove repository from repository settings table
+			database.run(
+				`DELETE FROM repositorySettings WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else this.removeRepoFromGitTable();
+				}
+			);
+		},
+		removeRepoFromGitTable() {
+			// remove repository from git repository table
+			database.run(
+				`DELETE FROM gitRepository WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else this.removeRepoFromRepositoryTable();
+				}
+			);
+		},
+		removeRepoFromRepositoryTable() {
+			// remove repository from main table
+			database.run(
+				`DELETE FROM repository WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
 		}
 	}
 };
