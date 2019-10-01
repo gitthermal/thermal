@@ -8928,10 +8928,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
 
-vue-apexcharts@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/vue-apexcharts/-/vue-apexcharts-1.4.0.tgz#a654ae51e5d47fe2ac9f8b4c3d1095426b09c808"
-  integrity sha512-x3HplG6UZ5ZEoyNYaFZlMUgijyBvkG65mB4AY4RMvEMMxp83kh0QZV8x47vimZ96K7vDkPeUrIH5Uy6FjSY8lg==
+vue-apexcharts@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/vue-apexcharts/-/vue-apexcharts-1.5.0.tgz#55209d87f389a4929f888fb3a21ef3ddd7f8177d"
+  integrity sha512-BhwhC45vQkhcsYwDGXjVczGL1KReedu/4lNH+hr0SzKNL8FgK4BQZgE+BJHwBQ5gt1Bd9JYnwe/DPWumC7O3bg==
 
 vue-chartjs@^3.4.2:
   version "3.4.2"
