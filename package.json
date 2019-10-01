@@ -113,7 +113,7 @@
     "cfonts": "^2.4.5",
     "chalk": "^2.4.2",
     "copy-webpack-plugin": "5.0.4",
-    "cross-env": "^5.2.1",
+    "cross-env": "^6.0.0",
     "css-loader": "3.2.0",
     "del": "5.1.0",
     "devtron": "^1.4.0",
