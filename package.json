@@ -139,7 +139,7 @@
     "node-loader": "^0.6.0",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
-    "sass-loader": "^7.2.0",
+    "sass-loader": "^8.0.0",
     "style-loader": "1.0.0",
     "url-loader": "^2.1.0",
     "vue-apexcharts": "^1.4.0",
