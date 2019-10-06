@@ -117,12 +117,12 @@ import TButton from "../components/TButton/TButton";
 import TScrollbar from "../components/TLayouts/TScrollbar";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
-import addRepository from "../mixins/addRepository";
 import gitBranch from "../git/status";
 import gitInit from "../git/init";
 
-// database
-import database from "../../database";
+// mixins
+import addRepository from "../mixins/addRepository";
+import queryAllRepository from "../mixins/queryAllRepository";
 
 const { shell } = require("electron");
 
@@ -141,7 +141,7 @@ export default {
 	filters: {
 		truncateFilter
 	},
-	mixins: [addRepository],
+	mixins: [addRepository, queryAllRepository],
 	data() {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
@@ -154,21 +154,7 @@ export default {
 		}
 	},
 	mounted() {
-		database.all(
-			`SELECT
-				repositoryId,
-				repositoryName,
-				repositoryPath,
-				isGit
-			FROM repository
-			INNER JOIN gitRepository USING(repositoryId)`,
-			(err, data) => {
-				if (err) console.log(err);
-				else {
-					this.$store.commit("repository/updateRepositoryList", data);
-				}
-			}
-		);
+		this.queryAllRepository();
 	},
 	methods: {
 		websiteURL() {
