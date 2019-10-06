@@ -14,6 +14,9 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('file', false)"
 				>
+					<dropdown-item @click.native="selectRepository()">
+						Select repository
+					</dropdown-item>
 					<dropdown-item @click.native="newRepository()">
 						New repository
 					</dropdown-item>
@@ -288,6 +291,9 @@ export default {
 			}
 		},
 		// File
+		selectRepository() {
+			this.$store.commit("modal/toggleSelectRepositoryModal", true);
+		},
 		newRepository() {
 			this.$store.commit("modal/toggleNewRepositoryModal", true);
 		},
