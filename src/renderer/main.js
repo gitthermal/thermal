@@ -13,14 +13,12 @@ import packageJson from "../../package.json";
 // database
 import database from "../database";
 
-
 database.serialize(() => {
 	// create repository table
 	database.run(
 		`CREATE TABLE IF NOT EXISTS repository(
 			repositoryId INTEGER PRIMARY KEY,
-			repositoryName VARCHAR(30) NOT NULL,
-			repositoryPath VARCHAR(150) NOT NULL
+			directoryPath VARCHAR(150) NOT NULL
 		);`
 	);
 
@@ -40,10 +38,9 @@ database.serialize(() => {
 	database.run(
 		`CREATE TABLE IF NOT EXISTS repositorySettings(
 			settingsId INTEGER PRIMARY KEY,
-			name VARCHAR(30) NOT NULL,
+			repositoryName VARCHAR(30) NOT NULL,
 			description VARCHAR(200),
 			directoryName VARCHAR(30) NOT NULL,
-			directoryPath VARCHAR(150) NOT NULL,
 			commitFeature INTEGER NOT NULL,
 			remoteFeature INTEGER NOT NULL,
 			repositoryId INTEGER NOT NULL,

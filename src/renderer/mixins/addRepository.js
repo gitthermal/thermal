@@ -33,22 +33,28 @@ export default {
 					(err, data) => {
 						if (err) console.log(err);
 						else {
-							let repositoryId = data;
-							this.insertNewGitRepository(repositoryId);
-							this.insertNewRepositorySettings(repositoryId);
+							let repository = {
+								...data[0],
+								name: this.newRepository.name,
+								isGitRepo: this.newRepository.isGitRepo,
+								remote: this.newRepository.remote
+							};
+
+							this.insertNewGitRepository(repository);
+							this.insertNewRepositorySettings(repository);
 							this.queryAllRepository();
+
+							// reset local data property
+							this.newRepository = {
+								name: "",
+								path: "",
+								isGitRepo: false,
+								remote: ""
+							};
 						}
 					}
 				);
 			});
-
-			// reset local data property
-			this.newRepository = {
-				name: "",
-				path: "",
-				isGitRepo: false,
-				remote: ""
-			};
 		},
 
 		// directory name
@@ -76,15 +82,12 @@ export default {
 		insertNewRepository(path) {
 			database.run(
 				`INSERT INTO repository(
-					repositoryName,
-					repositoryPath
+					directoryPath
 				) VALUES(
-					$repositoryName,
-					$repositoryPath
+					$directoryPath
 				);`,
 				{
-					$repositoryName: this.newRepository.name,
-					$repositoryPath: path
+					$directoryPath: path
 				},
 				(err, data) => {
 					if (err) console.log(err);
@@ -96,30 +99,27 @@ export default {
 		insertNewRepositorySettings(data) {
 			database.run(
 				`INSERT INTO repositorySettings(
-					name,
+					repositoryName,
 					directoryName,
-					directoryPath,
 					commitFeature,
 					remoteFeature,
 					repositoryId
 				) VALUES(
-					$name,
+					$repositoryName,
 					$directoryName,
-					$directoryPath,
 					$commitFeature,
 					$remoteFeature,
 					$repositoryId
 				);`,
 				{
-					$name: data[0].repositoryName,
-					$directoryName: data[0].repositoryName,
-					$directoryPath: data[0].repositoryPath,
+					$repositoryName: data.name,
+					$directoryName: data.name,
 					$commitFeature: 1,
 					$remoteFeature: 1,
-					$repositoryId: data[0].repositoryId
+					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
-					if (err) console.log(err);
+					if (err) console.log("err", err);
 				}
 			);
 		},
@@ -137,9 +137,9 @@ export default {
 					$repositoryId
 				);`,
 				{
-					$isGitRepo: this.newRepository.isGitRepo,
-					$remoteUrl: this.newRepository.remote,
-					$repositoryId: data[0].repositoryId
+					$isGitRepo: data.isGitRepo,
+					$remoteUrl: data.remote,
+					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
 					if (err) console.log(err);

@@ -7,16 +7,16 @@ export default {
 		queryAllRepository() {
 			database.all(
 				`SELECT
-					repositoryId,
-					repositoryName,
-					repositoryPath,
-					isGit
+					repository.repositoryId,
+					repositorySettings.repositoryName,
+					repository.directoryPath,
+					gitRepository.isGit
 				FROM repository
-				INNER JOIN gitRepository USING(repositoryId)`,
+				INNER JOIN gitRepository USING(repositoryId)
+				INNER JOIN repositorySettings USING(repositoryId)`,
 				(err, data) => {
 					if (err) console.log(err);
 					else {
-						console.log(data);
 						this.$store.commit("repository/updateRepositoryList", data);
 					}
 				}
