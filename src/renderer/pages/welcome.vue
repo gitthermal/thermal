@@ -1,60 +1,41 @@
 <template>
-	<t-flexbox
-		align-items="center"
-		justify-content="space-evenly"
-		class="welcome"
-	>
-		<t-flexbox
-			flex-direction="column"
-			align-items="center"
-			style="text-align: center"
-		>
+	<t-flexbox align-items="center" justify-content="space-evenly" class="welcome">
+		<t-flexbox flex-direction="column" align-items="center" class="text-center">
 			<h1>Welcome to Thermal</h1>
-			<p style="margin-bottom: 1rem">
-				One stop. Git repository.
-			</p>
-			<t-flexbox style="margin-bottom: 1rem">
-				<div class="welcome__introduction__item__icon" @click="websiteURL()">
+			<p class="mb-1">One stop. Git repository.</p>
+			<t-flexbox class="mb-1">
+				<div class="icon" @click="websiteURL()">
 					<linkIcon />
 				</div>
-				<div class="welcome__introduction__item__icon" @click="twitterURL()">
+				<div class="icon" @click="twitterURL()">
 					<twitterIcon />
 				</div>
-				<div class="welcome__introduction__item__icon" @click="coffeeURL()">
+				<div class="icon" @click="coffeeURL()">
 					<dollarIcon />
 				</div>
-				<div class="welcome__introduction__item__icon" @click="discordURL()">
+				<div class="icon" @click="discordURL()">
 					<helpIcon />
 				</div>
 			</t-flexbox>
 		</t-flexbox>
-		<div class="welcome__separate" />
 		<t-flexbox flex-direction="column" align-items="center">
 			<div
-				class="welcome__repository__list"
+				class="repository__list"
 				@drop.prevent="dropHandler($event)"
 				@dragover.prevent="dropHandler()"
 			>
 				<t-scrollbar v-if="getAllRepository.length > 0" height="400px">
-					<div style="padding: 1rem">
+					<div class="p-1">
 						<div v-if="getAllRepository.length > 0">
 							<t-flexbox
 								v-for="(repo, index) in getAllRepository"
 								:key="repo.path"
 								align-items="center"
-								class="welcome__repository__list__item"
+								class="item"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<t-button
-									margin-left="auto"
-									@click.native="selectCurrentRepository(index)"
-								>
-									Open
-								</t-button>
-								<div
-									class="welcome__repository__list__item__settings"
-									@click="openRepositorySettings(index)"
-								>
+								<t-button margin-left="auto" @click.native="selectCurrentRepository(index)">Open</t-button>
+								<div class="item__settings" @click="openRepositorySettings(index)">
 									<settingsIcon />
 								</div>
 							</t-flexbox>
@@ -63,7 +44,7 @@
 				</t-scrollbar>
 				<div
 					v-else
-					style="position: relative; padding: 1rem;"
+					class="p-1 relative"
 					@mouseenter="toggleRepositoryExampleModel"
 					@mouseleave="toggleRepositoryExampleModel"
 				>
@@ -72,24 +53,17 @@
 							v-for="repo in repositoryList"
 							:key="repo"
 							align-items="center"
-							class="welcome__repository__list__item welcome__repository__example"
+							class="repository__example item"
 						>
 							<h6>{{ repo }}</h6>
-							<t-button margin-left="auto">
-								Open
-							</t-button>
-							<div class="welcome__repository__list__item__settings">
+							<t-button margin-left="auto">Open</t-button>
+							<div class="item__settings">
 								<settingsIcon />
 							</div>
 						</t-flexbox>
 					</div>
-					<div
-						v-show="exampleRepositoryModel"
-						class="welcome__repository__example__model"
-					>
-						<t-button margin-top="1rem" @click.native="addLocalRepository()">
-							Add Repository
-						</t-button>
+					<div v-show="exampleRepositoryModel" class="repository__example__model">
+						<t-button margin-top="1rem" @click.native="addLocalRepository()">Add Repository</t-button>
 					</div>
 				</div>
 			</div>
@@ -97,9 +71,7 @@
 				v-show="getAllRepository.length > 0"
 				margin-top="1rem"
 				@click.native="addLocalRepository()"
-			>
-				Add Repository
-			</t-button>
+			>Add Repository</t-button>
 		</t-flexbox>
 	</t-flexbox>
 </template>
@@ -195,25 +167,23 @@ export default {
 .welcome
 	height: 100vh
 
-	&__introduction
-		&__item
-			&__icon
-				cursor: pointer
+	.icon
+		cursor: pointer
 
-				svg
-					width: 30px
-					height: 30px
-					stroke: #222831
+		svg
+			width: 30px
+			height: 30px
+			stroke: #222831
 
-				&:not(:last-child)
-					margin-right: 20px
+		&:not(:last-child)
+			margin-right: 20px
 
-	&__separate
+	.separate
 		width: 1px
 		height: 480px
 		background-color: #DEE0E3
 
-	&__repository
+	.repository
 		&__example
 			user-select: none
 
@@ -228,13 +198,13 @@ export default {
 				background-color: rgba(#fff, .8)
 
 		&__list
-			border: 1px solid #EFEFEF
+			box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
 			width: 450px
 			border-radius: 1rem
 
-			&__item
+			.item
 				&:not(:last-child)
-					margin-bottom: .5rem
+					margin-bottom: 1.2rem
 
 				h6
 					padding-right: 5px

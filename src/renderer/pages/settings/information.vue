@@ -1,17 +1,11 @@
 <template>
 	<div class="information">
-		<div
-			v-for="section in information"
-			:key="section.name"
-			class="information__section"
-		>
+		<div v-for="section in information" :key="section.name" class="section">
 			<h5>{{ section.name }}</h5>
 			<table class="table">
-				<tbody class="table__item-container">
-					<tr v-for="item in section.data" :key="item.info" class="table__item">
-						<td v-for="info in item" :key="info" class="table__item-line">
-							{{ info }}
-						</td>
+				<tbody class="item-container">
+					<tr v-for="item in section.data" :key="item.info" class="item">
+						<td v-for="info in item" :key="info" class="item-line">{{ info }}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -69,15 +63,16 @@ export default {
 		margin-bottom: 1.5rem
 		width: 100%
 
-		&__item
+		.item
 			display: flex
 			justify-content: space-between
-			border-bottom: 1px solid #EFEFEF
+			margin-top: 1.2rem
+    	padding: 0.2rem
 
 			&:hover
 				background-color: #DEE0E3
 
-		&__item-line
+		.item-line
 			padding: .4rem
 
 			&:first-child

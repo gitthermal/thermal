@@ -1,6 +1,6 @@
 <template>
 	<div class="profile">
-		<div class="profile__avatar">
+		<div class="avatar">
 			<Avatar
 				:src="profileData.author.imageUrl"
 				:title="profileData.author.name"
@@ -17,21 +17,21 @@
 			label="Name"
 			placeholder="Enter your name"
 			name="profile_name"
-			class="profile__field"
+			class="field"
 		/>
 		<inputTextLabel
 			v-model="authorEmail"
 			label="Email"
 			placeholder="Enter your email address"
 			name="profile_email"
-			class="profile__field"
+			class="field"
 		/>
 		<inputTextLabel
 			v-model="authorImage"
 			label="Image"
 			placeholder="Paste your image"
 			name="profile_image"
-			class="profile__field"
+			class="field"
 		/>
 	</div>
 </template>
@@ -89,11 +89,11 @@ export default {
 
 <style lang="sass">
 .profile
-	&__avatar
+	.avatar
 		border-radius: 1rem
 		display: inline-block
 		margin-bottom: 1rem
 
-	&__field
+	.field
 		margin-bottom: 1rem
 </style>

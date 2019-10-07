@@ -1,53 +1,38 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
-		<div ref="workspaceFiles" class="workspace__files">
-			<t-flexbox flex-direction="column" style="overflow: hidden;">
-				<t-flexbox
-					ref="branchName"
-					align-items="center"
-					class="workspace__branch"
-				>
+		<div ref="workspaceFiles" class="workspace">
+			<t-flexbox flex-direction="column" class="overflow-hidden">
+				<t-flexbox ref="branchName" align-items="center" class="branch">
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
-				<t-scrollbar
-					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
-					width="100%"
-				>
-					<fileChangesSkeleton
-						v-if="this.$store.getters['commit/allFiles'].length < 1"
-					/>
+				<t-scrollbar style="height: calc(100vh - (106px + 41px + 65px + 34px))" width="100%">
+					<fileChangesSkeleton v-if="this.$store.getters['commit/allFiles'].length < 1" />
 					<div v-else>
 						<t-flexbox
 							v-for="file in this.$store.getters['commit/allFiles']"
 							:key="file.path"
-							class="workspace__changes__item"
+							class="changes__item"
 							align-items="center"
-							@click="previewFileChange(file)"
+							@click.native="previewFileChange(file)"
 						>
 							<input
 								v-show="getFeatureValue.commit"
 								v-model="stagedFile"
-								class="workspace__changes__item__checkbox"
+								class="checkbox"
 								type="checkbox"
 								:value="file.path"
 							/>
-							<label :title="file.path" :for="file.path">
+							<label class="cursor-pointer" :title="file.path" :for="file.path">
 								<t-flexbox>
-									<p class="workspace__changes__item__path__name">
-										{{ filePath(file.path) }}
-									</p>
-									<p class="workspace__changes__item__path__file">
-										{{ fileName(file.path) }}
-									</p>
+									<p class="path__name">{{ filePath(file.path) }}</p>
+									<p class="path__file">{{ fileName(file.path) }}</p>
 								</t-flexbox>
 							</label>
 							<div
 								:style="'background-color: #' + fileTypeColor(file)"
-								class="workspace__changes__item__type ml-auto"
-							>
-								{{ fileType(file) }}
-							</div>
+								class="type ml-auto"
+							>{{ fileType(file) }}</div>
 						</t-flexbox>
 					</div>
 				</t-scrollbar>
@@ -60,10 +45,7 @@
 				padding-right="10px"
 			/>
 		</div>
-		<diffPreview
-			v-if="this.$store.state.workspace.filePreview.isActive"
-			:preview="fileDiffPreview"
-		/>
+		<diffPreview v-if="this.$store.state.workspace.filePreview.isActive" :preview="fileDiffPreview" />
 		<blank-slate v-else />
 	</t-flexbox>
 </template>
@@ -223,11 +205,12 @@ export default {
 
 <style lang="sass">
 .workspace
-	&__files
-		border-right: 1px solid #DEE0E3
-		width: 300px
+	border-right: 1px solid #DEE0E3
+	width: 300px
+	max-width: 300px;
+	min-width: 300px;
 
-	&__branch
+	.branch
 		background-color: #EFEFEF
 		padding: 10px 20px
 		border-bottom: 1px solid #DEE0E3
@@ -242,22 +225,21 @@ export default {
 			font-size: 14px
 			font-weight: 600
 
-	&__changes
+	.changes
 		&__item
-			border-bottom: 1px solid #DEE0E3
+			padding: .8rem 10px
 			font-size: 12px
 			color: #2E3034
-			padding: 6px 10px
 			cursor: pointer
 
-			&__checkbox
+			.checkbox
 				margin-right: 5px
 
-			&__path
+			.path
 				&__name
 					color: #BEBEBE
 
-			&__type
+			.type
 				padding: 3px 5px
 				color: white
 				border-radius: 3px

@@ -50,6 +50,7 @@ export default {
 
 <style lang="sass">
 .t-button
+	transition: 0.15s cubic-bezier(0.34, 0, 0.58, 1), transform 0.15s cubic-bezier(0.34, 0, 0.58, 1)
 	cursor: pointer
 	opacity: 1
 	font:
@@ -65,6 +66,9 @@ export default {
 		width: 1px
 		style: solid
 		radius: 2rem
+	
+	&:hover
+    transform: scale(1.02)
 
 	&__primary
 		color: #ffffff

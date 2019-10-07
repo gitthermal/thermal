@@ -4,7 +4,7 @@
 		<div class="w-100">
 			<t-scrollbar height="95vh">
 				<t-container>
-					<div class="settings__content">
+					<div class="content">
 						<router-view />
 					</div>
 				</t-container>
@@ -31,7 +31,7 @@ export default {
 <style lang="sass">
 .settings
 	height: 95vh
-	&__content
+	.content
 		margin-top: 2rem
 		padding: 20px
 </style>
