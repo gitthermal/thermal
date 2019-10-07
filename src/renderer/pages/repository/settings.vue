@@ -10,7 +10,7 @@
 				<div>
 					<div class="settings__section">
 						<inputTextLabel
-							v-model="settings.name"
+							v-model="settings.repositoryName"
 							name="repositoryName"
 							label="Name"
 							placeholder="Repository name"
@@ -91,6 +91,10 @@
 							</t-flexbox>
 						</div>
 					</div>
+
+					<t-button @click.native="saveSettings()">
+						Save
+					</t-button>
 				</div>
 			</t-container>
 		</t-scrollbar>
@@ -129,7 +133,7 @@ export default {
 	computed: {
 		commitFeature: {
 			get: function() {
-				return !!this.settings.commitFeature;
+				return !!+this.settings.commitFeature;
 			},
 			set: function(value) {
 				this.settings.commitFeature = value ? 1 : 0;
@@ -137,7 +141,7 @@ export default {
 		},
 		remoteFeature: {
 			get: function() {
-				return !!this.settings.remoteFeature;
+				return !!+this.settings.remoteFeature;
 			},
 			set: function(value) {
 				this.settings.remoteFeature = value ? 1 : 0;
@@ -147,8 +151,15 @@ export default {
 	mounted() {
 		database.all(
 			`SELECT
-				*
+				repository.repositoryId,
+				repository.directoryPath,
+				repositorySettings.repositoryName,
+				repositorySettings.description,
+				repositorySettings.commitFeature,
+				repositorySettings.remoteFeature,
+				gitRepository.remoteUrl
 			FROM repositorySettings
+			INNER JOIN repository USING(repositoryId)
 			INNER JOIN gitRepository USING(repositoryId)
 			WHERE repositoryId IS $repositoryId`,
 			{
@@ -207,6 +218,26 @@ export default {
 					else this.queryAllRepository();
 				}
 			);
+		},
+		saveSettings() {
+			database.run(
+				`UPDATE repositorySettings SET
+					repositoryName = $repositoryName,
+					description = $description,
+					commitFeature = $commitFeature,
+					remoteFeature = $remoteFeature
+				WHERE repositoryId = $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId,
+					$repositoryName: this.settings.repositoryName,
+					$description: this.settings.description,
+					$commitFeature: this.settings.commitFeature,
+					$remoteFeature: this.settings.remoteFeature
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			)
 		}
 	}
 };
