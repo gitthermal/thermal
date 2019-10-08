@@ -66,7 +66,7 @@ export default {
 		width: 1px
 		style: solid
 		radius: 2rem
-	
+
 	&:hover
     transform: scale(1.02)
 

@@ -1,7 +1,9 @@
 <template>
 	<t-scrollbar padding="0.5rem" height="90vh">
 		<div>
-			<div v-for="(line, index) in preview" :key="index">{{ line }}</div>
+			<div v-for="(line, index) in preview" :key="index">
+				{{ line }}
+			</div>
 		</div>
 	</t-scrollbar>
 </template>

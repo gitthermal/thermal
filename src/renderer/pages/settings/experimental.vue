@@ -4,9 +4,7 @@
 		<div class="warning">
 			Experimental features are projects/features that aren't quite ready. They
 			may break (or disapper) at any time. Let us know what you think on our
-			<a
-				@click="discordURL()"
-			>Thermal Discord server</a>.
+			<a @click="discordURL()">Thermal Discord server</a>.
 		</div>
 		<div class="section__group">
 			<t-flexbox flex-direction="row" align-items="center" class="item">
@@ -14,19 +12,25 @@
 					<h6>File changes</h6>
 					<p>
 						Preview additions and deletion in file from commit history,
-						<a
-							@click="fileChanges()"
-						>click to learn more</a>.
+						<a @click="fileChanges()">click to learn more</a>.
 					</p>
 				</div>
-				<toggle-button v-model="toggleFileChanges" color="#00adb5" class="ml-auto" />
+				<toggle-button
+					v-model="toggleFileChanges"
+					color="#00adb5"
+					class="ml-auto"
+				/>
 			</t-flexbox>
 			<t-flexbox flex-direction="row" align-items="center" class="item">
 				<div>
 					<h6>Quick file preview</h6>
 					<p>Toggle quick file preview for commit logs.</p>
 				</div>
-				<toggle-button v-model="toggleQuickFilePreview" color="#00adb5" class="ml-auto" />
+				<toggle-button
+					v-model="toggleQuickFilePreview"
+					color="#00adb5"
+					class="ml-auto"
+				/>
 			</t-flexbox>
 		</div>
 	</div>

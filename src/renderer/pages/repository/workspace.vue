@@ -6,8 +6,13 @@
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
-				<t-scrollbar style="height: calc(100vh - (106px + 41px + 65px + 34px))" width="100%">
-					<fileChangesSkeleton v-if="this.$store.getters['commit/allFiles'].length < 1" />
+				<t-scrollbar
+					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
+					width="100%"
+				>
+					<fileChangesSkeleton
+						v-if="this.$store.getters['commit/allFiles'].length < 1"
+					/>
 					<div v-else>
 						<t-flexbox
 							v-for="file in this.$store.getters['commit/allFiles']"
@@ -32,7 +37,9 @@
 							<div
 								:style="'background-color: #' + fileTypeColor(file)"
 								class="type ml-auto"
-							>{{ fileType(file) }}</div>
+							>
+								{{ fileType(file) }}
+							</div>
 						</t-flexbox>
 					</div>
 				</t-scrollbar>
@@ -45,7 +52,10 @@
 				padding-right="10px"
 			/>
 		</div>
-		<diffPreview v-if="this.$store.state.workspace.filePreview.isActive" :preview="fileDiffPreview" />
+		<diffPreview
+			v-if="this.$store.state.workspace.filePreview.isActive"
+			:preview="fileDiffPreview"
+		/>
 		<blank-slate v-else />
 	</t-flexbox>
 </template>

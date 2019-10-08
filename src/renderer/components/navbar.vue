@@ -10,7 +10,11 @@
 			<commitIcon />
 			<p>Commit</p>
 		</t-flexbox>
-		<t-flexbox v-if="!!getRemoteUrl" class="navbar__group" :class="getRemoteFeature">
+		<t-flexbox
+			v-if="!!getRemoteUrl"
+			class="navbar__group"
+			:class="getRemoteFeature"
+		>
 			<t-flexbox
 				flex-direction="column"
 				align-items="center"
@@ -29,7 +33,11 @@
 				<pushIcon />
 				<p>Push</p>
 			</t-flexbox>
-			<t-flexbox flex-direction="column" align-items="center" class="navbar__item">
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+			>
 				<fetchIcon />
 				<p>Fetch</p>
 			</t-flexbox>

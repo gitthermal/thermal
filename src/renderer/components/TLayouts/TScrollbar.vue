@@ -1,5 +1,7 @@
 <template>
-	<vue-scrollbar :style="{ height: height, width: width, margin: 0, padding: padding }">
+	<vue-scrollbar
+		:style="{ height: height, width: width, margin: 0, padding: padding }"
+	>
 		<slot />
 	</vue-scrollbar>
 </template>

@@ -1,8 +1,14 @@
 <template>
-	<t-flexbox align-items="center" justify-content="space-evenly" class="welcome">
+	<t-flexbox
+		align-items="center"
+		justify-content="space-evenly"
+		class="welcome"
+	>
 		<t-flexbox flex-direction="column" align-items="center" class="text-center">
 			<h1>Welcome to Thermal</h1>
-			<p class="mb-1">One stop. Git repository.</p>
+			<p class="mb-1">
+				One stop. Git repository.
+			</p>
 			<t-flexbox class="mb-1">
 				<div class="icon" @click="websiteURL()">
 					<linkIcon />
@@ -34,8 +40,16 @@
 								class="item"
 							>
 								<h6>{{ repo.name | truncateFilter(30) }}</h6>
-								<t-button margin-left="auto" @click.native="selectCurrentRepository(index)">Open</t-button>
-								<div class="item__settings" @click="openRepositorySettings(index)">
+								<t-button
+									margin-left="auto"
+									@click.native="selectCurrentRepository(index)"
+								>
+									Open
+								</t-button>
+								<div
+									class="item__settings"
+									@click="openRepositorySettings(index)"
+								>
 									<settingsIcon />
 								</div>
 							</t-flexbox>
@@ -56,14 +70,21 @@
 							class="repository__example item"
 						>
 							<h6>{{ repo }}</h6>
-							<t-button margin-left="auto">Open</t-button>
+							<t-button margin-left="auto">
+								Open
+							</t-button>
 							<div class="item__settings">
 								<settingsIcon />
 							</div>
 						</t-flexbox>
 					</div>
-					<div v-show="exampleRepositoryModel" class="repository__example__model">
-						<t-button margin-top="1rem" @click.native="addLocalRepository()">Add Repository</t-button>
+					<div
+						v-show="exampleRepositoryModel"
+						class="repository__example__model"
+					>
+						<t-button margin-top="1rem" @click.native="addLocalRepository()">
+							Add Repository
+						</t-button>
 					</div>
 				</div>
 			</div>
@@ -71,7 +92,9 @@
 				v-show="getAllRepository.length > 0"
 				margin-top="1rem"
 				@click.native="addLocalRepository()"
-			>Add Repository</t-button>
+			>
+				Add Repository
+			</t-button>
 		</t-flexbox>
 	</t-flexbox>
 </template>

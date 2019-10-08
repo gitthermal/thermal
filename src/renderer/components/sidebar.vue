@@ -1,19 +1,28 @@
 <template>
 	<t-flexbox class="repository__sidebar">
 		<t-flexbox flex-direction="column" class="repository__sidebar__group">
-			<router-link class="repository__sidebar__item" :to="{ name: 'repositoryWorkspace' }">
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryWorkspace' }"
+			>
 				<t-flexbox align-items="center">
 					<folderIcon />
 					<p>Workspace</p>
 				</t-flexbox>
 			</router-link>
-			<router-link class="repository__sidebar__item" :to="{ name: 'repositoryHistory' }">
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryHistory' }"
+			>
 				<t-flexbox align-items="center">
 					<clockIcon />
 					<p>History</p>
 				</t-flexbox>
 			</router-link>
-			<router-link class="repository__sidebar__item" :to="{ name: 'repositoryStats' }">
+			<router-link
+				class="repository__sidebar__item"
+				:to="{ name: 'repositoryStats' }"
+			>
 				<t-flexbox align-items="center">
 					<barIcon />
 					<p>Stats</p>

@@ -1,9 +1,22 @@
 <template>
 	<t-flexbox flex-direction="column">
-		<a class="history__item" @mouseenter="showFiles(data.hash)" @mouseleave="hideFiles()">
-			<div :title="data.message" class="history__item__title">{{ data.message }}</div>
-			<t-flexbox flex-direction="row" align-items="center" class="history__item__author">
-				<img class="history__item__author__image" src="../../../../static/image/user_avatar.png" />
+		<a
+			class="history__item"
+			@mouseenter="showFiles(data.hash)"
+			@mouseleave="hideFiles()"
+		>
+			<div :title="data.message" class="history__item__title">
+				{{ data.message }}
+			</div>
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+				class="history__item__author"
+			>
+				<img
+					class="history__item__author__image"
+					src="../../../../static/image/user_avatar.png"
+				/>
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
 			</t-flexbox>
 		</a>
@@ -15,7 +28,9 @@
 			class="history__files"
 		>
 			<dropdown-list class="history__files__dropdown">
-				<dropdown-item v-for="item in files.list" :key="item">{{ item }}</dropdown-item>
+				<dropdown-item v-for="item in files.list" :key="item">
+					{{ item }}
+				</dropdown-item>
 			</dropdown-list>
 		</t-flexbox>
 	</t-flexbox>

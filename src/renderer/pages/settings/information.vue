@@ -5,7 +5,9 @@
 			<table class="table">
 				<tbody class="item-container">
 					<tr v-for="item in section.data" :key="item.info" class="item">
-						<td v-for="info in item" :key="info" class="item-line">{{ info }}</td>
+						<td v-for="info in item" :key="info" class="item-line">
+							{{ info }}
+						</td>
 					</tr>
 				</tbody>
 			</table>
