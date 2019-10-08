@@ -2,60 +2,109 @@ name: Test & Build
 on: push
 
 jobs:
-  Test:
+  test:
     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node_version: [8.x, 10.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-      
+
     - name: Set Node.js version ${{ matrix.node_version }}
       uses: actions/setup-node@v1
       with:
         version: ${{ matrix.node_version }}
-      
+
     - name: Install packages
       run: npm install
-      
+
     - name: Run lint
       run: npm run lint
 
-  Linux:
+  linux:
     name: Linux build on node ${{ matrix.node_version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node_version: [8.x, 10.x]
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-      
+
     - name: Set Node.js version ${{ matrix.node_version }}
       uses: actions/setup-node@v1
       with:
         version: ${{ matrix.node_version }}
-      
+
     - name: Install packages
       run: npm install
-      
+
     - name: Run build
-      run: |
-        cd dist
-        ls
-        npm run build:linux
-        ls
-        pwd
-        cd dist
-        ls
+      run: npm run build:linux
 
     - name: Upload linux build artifacts
       uses: actions/upload-artifact@master
       with:
         name: "linux"
+        path: "dist"
+
+  windows:
+    name: Windows build on node ${{ matrix.node_version }}
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Set Node.js version ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+
+    - name: Install packages
+      run: npm install
+
+    - name: Run build
+      run: npm run build:window
+
+    - name: Upload linux build artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: "windows"
+        path: "dist"
+
+  mac:
+    name: Mac build on node ${{ matrix.node_version }}
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Set Node.js version ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+
+    - name: Install packages
+      run: npm install
+
+    - name: Run build
+      run: npm run build:mac
+
+    - name: Upload linux build artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: "mac"
         path: "dist"
