@@ -221,13 +221,13 @@ export default {
 				background-color: rgba(#fff, .8)
 
 		&__list
-			box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23);
+			border: 1px solid #EFEFEF
 			width: 450px
 			border-radius: 1rem
 
 			.item
 				&:not(:last-child)
-					margin-bottom: 1.2rem
+					margin-bottom: .5rem
 
 				h6
 					padding-right: 5px
