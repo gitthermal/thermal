@@ -79,7 +79,7 @@ jobs:
     - name: Run build
       run: npm run build:window
 
-    - name: Upload linux build artifacts
+    - name: Upload windows build artifacts
       uses: actions/upload-artifact@master
       with:
         name: "windows"
@@ -107,7 +107,7 @@ jobs:
     - name: Run build
       run: npm run build:mac
 
-    - name: Upload linux build artifacts
+    - name: Upload mac build artifacts
       uses: actions/upload-artifact@master
       with:
         name: "mac"
