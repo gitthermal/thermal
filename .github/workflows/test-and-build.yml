@@ -49,3 +49,11 @@ jobs:
         npm run build:linux
         ls
         pwd
+        cd dist
+        ls
+
+    - name: Upload linux build artifacts
+      uses: actions/upload-artifact@master
+      with:
+        name: "linux"
+        path: "dist"
