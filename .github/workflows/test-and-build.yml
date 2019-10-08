@@ -46,6 +46,8 @@ jobs:
       
     - name: Run build
       run: |
+        cd dist
+        ls
         npm run build:linux
         ls
         pwd
