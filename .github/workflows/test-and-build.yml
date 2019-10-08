@@ -1,5 +1,9 @@
 name: Test & Build
-on: push
+on:
+  push:
+    paths-ignore:
+    - '.github'
+    - '.vscode'
 
 jobs:
   test:
