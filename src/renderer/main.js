@@ -47,6 +47,16 @@ database.serialize(() => {
 			FOREIGN KEY(repositoryId) REFERENCES repository(repositoryId)
 		)`
 	);
+
+	database.run(
+		`CREATE TABLE IF NOT EXISTS gitCommands(
+			commandId INTEGET PRIMARY KEY,
+			icon VARCHAR(20) NOT NULL,
+			command VARCHAR(200) NOT NULL,
+			path VARCHAR(150) NOT NULL,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		)`
+	);
 });
 
 const VueIntegration = getIntegrations().browser.Vue;
