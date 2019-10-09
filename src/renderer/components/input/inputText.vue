@@ -14,7 +14,7 @@
 			...borderProps,
 			...fontProps
 		}"
-		@input="mit('input', $event.target.value)"
+		@input="$emit('input', $event.target.value)"
 	/>
 </template>
 

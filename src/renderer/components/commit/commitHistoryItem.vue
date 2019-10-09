@@ -96,7 +96,7 @@ export default {
 	&__item
 		padding: 14px
 		font-size: 12px
-		margin-bottom: 0.8rem
+		border-bottom: 1px solid #DEE0E3
 
 		&__title
 			margin-bottom: 6px

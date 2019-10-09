@@ -2,7 +2,7 @@
 	<t-flexbox flex-direction="row" :flex-grow="1">
 		<div ref="workspaceFiles" class="workspace">
 			<t-flexbox flex-direction="column" class="overflow-hidden">
-				<t-flexbox ref="branchName" align-items="center" class="branch">
+				<t-flexbox ref="branchName" align-items="center" class="title-branch">
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
 				</t-flexbox>
@@ -220,7 +220,7 @@ export default {
 	max-width: 300px;
 	min-width: 300px;
 
-	.branch
+	.title-branch
 		background-color: #EFEFEF
 		padding: 10px 20px
 		border-bottom: 1px solid #DEE0E3
