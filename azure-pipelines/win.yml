@@ -6,6 +6,8 @@ steps:
   - script: |
       echo Installing packages
       npm install
+      echo Audit fix
+      npm audit fix
       echo Install electron app dependencies
       npm run postinstall
       echo Building windows application
