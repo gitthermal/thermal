@@ -6,7 +6,7 @@ steps:
   - script: |
       echo Installing packages
       echo Installing packages and Building windows application
-      yarn && yarn postinstall && yarn build:linux
+      npm install && npm run postinstall && npm run build:linux
       echo Linux build is complete
     displayName: "Build Linux app"
 

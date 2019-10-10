@@ -5,11 +5,11 @@ steps:
 
   - script: |
       echo Installing packages
-      yarn
+      npm install
       echo Install electron app dependencies
-      yarn postinstall
+      npm run postinstall
       echo Start building MacOS application
-      yarn build:mac
+      npm run build:mac
       echo MacOS build is complete
     displayName: "Build MacOS app"
 
