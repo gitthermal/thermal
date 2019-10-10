@@ -217,8 +217,8 @@ export default {
 .workspace
 	border-right: 1px solid #DEE0E3
 	width: 300px
-	max-width: 300px;
-	min-width: 300px;
+	max-width: 300px
+	min-width: 300px
 
 	.title-branch
 		background-color: #EFEFEF
