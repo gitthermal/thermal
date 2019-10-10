@@ -5,11 +5,11 @@ steps:
 
   - script: |
       echo Installing packages
-      yarn
+      npm install
       echo Install electron app dependencies
-      yarn postinstall
+      npm run postinstall
       echo Building windows application
-      yarn build:window
+      npm run build:window
       echo Windows build is complete
     displayName: "Build Windows app"
 
