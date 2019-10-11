@@ -4,10 +4,8 @@ steps:
       versionSpec: $(node_version)
 
   - script: |
-      echo Installing packages
-      yarn
-      echo Start building linux application
-      yarn build:linux
+      echo Installing packages and Building windows application
+      npm install && npm run postinstall && npm run build:linux
       echo Linux build is complete
     displayName: "Build Linux app"
 

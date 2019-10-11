@@ -4,8 +4,8 @@ steps:
       versionSpec: $(node_version)
 
   - script: |
-      echo Installing packages and Building windows application
-      yarn && yarn build:window
+      echo Installing packages, audit fix, install native deps, & build windows app
+      npm install && npm audit fix && npm run postinstall && npm run build:window
       echo Windows build is complete
     displayName: "Build Windows app"
 
