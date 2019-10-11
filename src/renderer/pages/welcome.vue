@@ -35,72 +35,9 @@
 				@drop.prevent="dropHandler($event)"
 				@dragover.prevent="dropHandler()"
 			>
-				<t-scrollbar v-if="allRepository.length > 0" height="400px">
-					<div style="padding: 1rem">
-						<div v-if="allRepository.length > 0">
-							<t-flexbox
-								v-for="repository in allRepository"
-								:key="repository.repositoryId"
-								align-items="center"
-								class="welcome__repository__list__item"
-							>
-								<h6>{{ repository.repositoryName | truncateFilter(30) }}</h6>
-								<t-button
-									:class="{
-										't-button__primary-warning': !repository.isGit
-									}"
-									margin-left="auto"
-									@click.native="openWorkspace(repository)"
-								>
-									{{ repository.isGitRepo ? "Open" : "Initialize" }}
-								</t-button>
-								<div
-									class="welcome__repository__list__item__settings"
-									@click="openSettings(repository.repositoryId)"
-								>
-									<settingsIcon />
-								</div>
-							</t-flexbox>
-						</div>
-					</div>
-				</t-scrollbar>
-				<div
-					v-else
-					style="position: relative; padding: 1rem;"
-					@mouseenter="toggleRepositoryExampleModel"
-					@mouseleave="toggleRepositoryExampleModel"
-				>
-					<div>
-						<t-flexbox
-							v-for="repo in repositoryList"
-							:key="repo"
-							align-items="center"
-							class="welcome__repository__list__item welcome__repository__example"
-						>
-							<h6>{{ repo }}</h6>
-							<t-button margin-left="auto">
-								Open
-							</t-button>
-							<div class="welcome__repository__list__item__settings">
-								<settingsIcon />
-							</div>
-						</t-flexbox>
-					</div>
-					<div
-						v-show="exampleRepositoryModel"
-						class="welcome__repository__example__model"
-					>
-						<t-button margin-top="1rem" @click.native="addLocalRepository()">
-							Add Repository
-						</t-button>
-					</div>
-				</div>
+				<repository-list height="400px" />
 			</div>
-			<t-button
-				v-show="allRepository.length > 0"
-				margin-top="1rem"
-				@click.native="addLocalRepository()"
-			>
+			<t-button margin-top="1rem" @click.native="addLocalRepository()">
 				Add Repository
 			</t-button>
 		</t-flexbox>
@@ -112,17 +49,15 @@ import linkIcon from "../components/icon/link";
 import twitterIcon from "../components/icon/twitter";
 import dollarIcon from "../components/icon/dollar";
 import helpIcon from "../components/icon/help";
-import settingsIcon from "../components/icon/settings";
 import TButton from "../components/TButton/TButton";
-import TScrollbar from "../components/TLayouts/TScrollbar";
 import TFlexbox from "../components/TLayouts/TFlexbox";
+import repositoryList from "../components/repositoryListView/repositoryList";
 import truncateFilter from "../filters/truncate";
 import gitBranch from "../git/status";
 import gitInit from "../git/init";
 
 // mixins
 import addRepository from "../mixins/addRepository";
-import queryAllRepository from "../mixins/queryAllRepository";
 
 const { shell } = require("electron");
 
@@ -134,28 +69,13 @@ export default {
 		dollarIcon,
 		helpIcon,
 		TFlexbox,
-		settingsIcon,
-		TButton,
-		TScrollbar
+		repositoryList,
+		TButton
 	},
 	filters: {
 		truncateFilter
 	},
-	mixins: [addRepository, queryAllRepository],
-	data() {
-		return {
-			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
-			exampleRepositoryModel: false
-		};
-	},
-	computed: {
-		allRepository() {
-			return this.$store.getters["repository/getAllRepository"];
-		}
-	},
-	mounted() {
-		this.queryAllRepository();
-	},
+	mixins: [addRepository],
 	methods: {
 		websiteURL() {
 			shell.openExternal("https://thermal.codecarrot.net/");
