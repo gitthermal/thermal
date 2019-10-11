@@ -1,7 +1,7 @@
-import nodegit, { Repository } from "nodegit";
+import nodegit from "nodegit";
 
 const log = async path => {
-	const repo = await Repository.open(path);
+	const repo = await nodegit.Repository.open(path);
 	const commit = await repo.getHeadCommit();
 
 	// History returns an event.

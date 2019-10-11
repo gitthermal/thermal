@@ -83,8 +83,8 @@ export default {
 			return this.$store.getters["history/getFilePreview"];
 		}
 	},
-	async mounted() {
-		await this.gitLog();
+	mounted() {
+		this.gitLog();
 	},
 	methods: {
 		async gitLog() {
