@@ -42,6 +42,7 @@
 import menubar from "./components/menubar";
 import TModal from "./components/TModal/TModal";
 import * as Sentry from "@sentry/electron";
+import queryAllRepository from "./mixins/queryAllRepository";
 
 // modals
 import newRepository from "./modal/newRepository";
@@ -81,6 +82,7 @@ export default {
 		DropdownItem,
 		DropdownDivider
 	},
+	mixins: [queryAllRepository],
 	data() {
 		return {
 			helpWidget: false
@@ -112,6 +114,9 @@ export default {
 	},
 	beforeCreate() {
 		this.$store.commit("settings/getSettingsList");
+	},
+	mounted() {
+		this.queryAllRepository();
 	},
 	methods: {
 		websiteUrl() {
