@@ -1,70 +1,18 @@
-import workspace from "./workspace";
-
 const state = {
-	repositoryList: []
+	allRepository: []
 };
 
 const getters = {
-	listAllRepository: state => state.repositoryList
+	getAllRepository: state => state.allRepository
 };
 
 const mutations = {
-	getRepositoryList(state) {
-		if (localStorage.getItem("repository")) {
-			state.repositoryList = JSON.parse(localStorage.getItem("repository"));
-		}
-	},
-	addLocalRepository(state, payload) {
-		let repositoryData = {
-			path: payload.path,
-			name: payload.name,
-			remote: payload.remote,
-			isGit: payload.isGit,
-			features: {
-				commit: payload.commits,
-				remote: payload.remotes
-			}
-		};
-		state.repositoryList.push(repositoryData);
-		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
-	},
-	removeLocalRepository(state) {
-		state.repositoryList.splice(workspace.state.workspaceRepository.index, 1);
-		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
-	},
-	editLocalRepositoryName(state, payload) {
-		// eslint-disable-next-line prettier/prettier
-		state.repositoryList[workspace.state.workspaceRepository.index].name = payload.name;
-	},
-	localRepositoryRemote(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].remote =
-			payload.remote;
-	},
-	toggleCommitFeature(state, payload) {
-		state.repositoryList[
-			workspace.state.workspaceRepository.index
-		].features.commit = payload.commits;
-	},
-	toggleRemoteFeature(state, payload) {
-		state.repositoryList[
-			workspace.state.workspaceRepository.index
-		].features.remote = payload.remotes;
-	},
-	toggleIsGit(state, payload) {
-		state.repositoryList[workspace.state.workspaceRepository.index].isGit =
-			payload.isGit;
+	updateRepositoryList(state, payload) {
+		state.allRepository = payload;
 	}
 };
 
-const actions = {
-	updateIsGit: ({ commit }, payload) => {
-		commit({
-			type: "toggleIsGit",
-			isGit: payload.isGit
-		});
-		localStorage.setItem("repository", JSON.stringify(state.repositoryList));
-	}
-};
+const actions = {};
 
 export default {
 	namespaced: true,

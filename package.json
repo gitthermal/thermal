@@ -26,7 +26,7 @@
     "pack": "npm run pack:main && npm run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": "npm run lint:fix"
+    "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "productName": "Thermal",
@@ -93,6 +93,7 @@
     "axios": "^0.19.0",
     "chart.js": "^2.8.0",
     "simple-git": "1.113.0",
+    "sqlite3": "^4.0.9",
     "vue": "2.6.10",
     "vue-chartjs": "^3.4.2",
     "vue-electron": "^1.0.6",

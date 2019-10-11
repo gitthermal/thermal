@@ -35,25 +35,28 @@
 				@drop.prevent="dropHandler($event)"
 				@dragover.prevent="dropHandler()"
 			>
-				<t-scrollbar v-if="getAllRepository.length > 0" height="400px">
+				<t-scrollbar v-if="allRepository.length > 0" height="400px">
 					<div style="padding: 1rem">
-						<div v-if="getAllRepository.length > 0">
+						<div v-if="allRepository.length > 0">
 							<t-flexbox
-								v-for="(repo, index) in getAllRepository"
-								:key="repo.path"
+								v-for="repository in allRepository"
+								:key="repository.repositoryId"
 								align-items="center"
 								class="welcome__repository__list__item"
 							>
-								<h6>{{ repo.name | truncateFilter(30) }}</h6>
+								<h6>{{ repository.repositoryName | truncateFilter(30) }}</h6>
 								<t-button
+									:class="{
+										't-button__primary-warning': !repository.isGit
+									}"
 									margin-left="auto"
-									@click.native="selectCurrentRepository(index)"
+									@click.native="openWorkspace(repository)"
 								>
-									Open
+									{{ repository.isGitRepo ? "Open" : "Initialize" }}
 								</t-button>
 								<div
 									class="welcome__repository__list__item__settings"
-									@click="openRepositorySettings(index)"
+									@click="openSettings(repository.repositoryId)"
 								>
 									<settingsIcon />
 								</div>
@@ -94,7 +97,7 @@
 				</div>
 			</div>
 			<t-button
-				v-show="getAllRepository.length > 0"
+				v-show="allRepository.length > 0"
 				margin-top="1rem"
 				@click.native="addLocalRepository()"
 			>
@@ -114,7 +117,13 @@ import TButton from "../components/TButton/TButton";
 import TScrollbar from "../components/TLayouts/TScrollbar";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import truncateFilter from "../filters/truncate";
+import gitBranch from "../git/status";
+import gitInit from "../git/init";
+
+// mixins
 import addRepository from "../mixins/addRepository";
+import queryAllRepository from "../mixins/queryAllRepository";
+
 const { shell } = require("electron");
 
 export default {
@@ -132,18 +141,20 @@ export default {
 	filters: {
 		truncateFilter
 	},
-	mixins: [addRepository],
+	mixins: [addRepository, queryAllRepository],
 	data() {
 		return {
 			repositoryList: ["thermal-app", "gatsbyjs", "awesome-vuejs"],
-			exampleRepositoryModel: false,
-			repositoryPath: ""
+			exampleRepositoryModel: false
 		};
 	},
 	computed: {
-		getAllRepository() {
-			return this.$store.getters["repository/listAllRepository"];
+		allRepository() {
+			return this.$store.getters["repository/getAllRepository"];
 		}
+	},
+	mounted() {
+		this.queryAllRepository();
 	},
 	methods: {
 		websiteURL() {
@@ -164,27 +175,46 @@ export default {
 		toggleRepositoryExampleModel() {
 			this.exampleRepositoryModel = !this.exampleRepositoryModel;
 		},
-		updateCurrentRepository(index) {
-			this.$store.dispatch({
-				type: "workspace/updateWorkspaceRepository",
-				index: index
+		openWorkspace(repo, index) {
+			if (repo.isGit) {
+				gitBranch(repo.path)
+					.then(result => {
+						let branch = result.current;
+						this.$router.push({
+							name: "projectWorkspace",
+							params: {
+								projectId: index,
+								branchName: branch
+							}
+						});
+					})
+					.catch(error => {
+						console.log(error);
+					});
+			} else {
+				gitInit(repo.path);
+				this.$store.dispatch({
+					type: "repository/updateIsGit",
+					index: index,
+					isGit: true
+				});
+			}
+		},
+		openSettings(repositoryId) {
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: repositoryId
+				}
 			});
-		},
-		selectCurrentRepository(index) {
-			this.updateCurrentRepository(index);
-			this.$router.push({ name: "repositoryWorkspace" });
-		},
-		openRepositorySettings(index) {
-			this.updateCurrentRepository(index);
-			this.$router.push({ name: "repositorySettings" });
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
 			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.repositoryPath = event.dataTransfer.files[i].path
+				this.newRepository.path = dropDataTransfer[i].path
 					.split("\\")
 					.join("/");
-				this.localRepository(this.repositoryPath);
+				this.addRepositoryToDatabase(this.newRepository.path);
 			}
 		}
 	}

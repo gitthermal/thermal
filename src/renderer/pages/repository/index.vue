@@ -25,11 +25,6 @@ export default {
 		TFlexbox,
 		navbar,
 		sidebar
-	},
-	mounted() {
-		if (!this.$store.getters["workspace/currentRepository"].isGit) {
-			this.$store.commit("modal/toggleInitializeGitRepositoryModal", true);
-		}
 	}
 };
 </script>

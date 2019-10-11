@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox class="menubar">
-		<t-flexbox class="menubar__logo" @click="homepage()">
+		<t-flexbox class="menubar__logo" @click.native="homepage()">
 			<thermalLogo />
 		</t-flexbox>
 		<t-flexbox align-items="center" class="menubar__list">
@@ -24,7 +24,7 @@
 						Clone repository
 					</dropdown-item>
 					<dropdown-item
-						v-if="!!currentRepository"
+						v-if="repositoryRoute"
 						@click.native="switchRepository()"
 					>
 						Switch repository
@@ -85,7 +85,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Repository -->
-			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
+			<div v-if="repositoryRoute" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -123,7 +123,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Branch -->
-			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
+			<div v-if="repositoryRoute" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
@@ -193,8 +193,8 @@
 		</t-flexbox>
 		<div class="menubar__drag" />
 		<t-flexbox class="menubar__title">
-			<t-flexbox v-if="!!currentRepository">
-				{{ currentRepository.name }}
+			<t-flexbox v-if="repositoryRoute">
+				{{ repositoryData.name }}
 				<div style="padding: 0 5px">
 					-
 				</div>
@@ -213,6 +213,7 @@ import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
 import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
+import repositoryDataMixin from "../mixins/repositoryData";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
@@ -228,6 +229,7 @@ export default {
 		windowsButton,
 		TFlexbox
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			menu: {
@@ -255,8 +257,8 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
+		repositoryRoute() {
+			return this.$route.path.startsWith("/repository");
 		}
 	},
 	methods: {
@@ -298,7 +300,6 @@ export default {
 			this.$store.commit("modal/toggleCloneRepositoryModal", true);
 		},
 		switchRepository() {
-			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
 		},
 		appOptions() {
@@ -324,13 +325,19 @@ export default {
 		},
 		// Repository
 		openFileExplorer() {
-			shell.openItem(this.currentRepository.path);
+			shell.openItem(this.repositoryData.path);
 		},
 		openEditor() {
-			childProcess.exec("code .", { cwd: this.currentRepository.path });
+			childProcess.exec("code .", { cwd: this.repositoryData.path });
 		},
 		openRepositorySettings() {
-			this.$router.push({ name: "repositorySettings" });
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: this.$route.params.projectId,
+					branchName: this.$route.params.branchName
+				}
+			});
 		},
 		// Branch
 		// Help

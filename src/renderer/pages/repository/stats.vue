@@ -17,6 +17,7 @@ import ApexCharts from "vue-apexcharts";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TContainer from "../../components/TLayouts/TContainer";
+import repositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
 	name: "RepositoryStats",
@@ -26,6 +27,7 @@ export default {
 		TFlexbox,
 		TContainer
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			commitCountData: [],
@@ -46,13 +48,8 @@ export default {
 			]
 		};
 	},
-	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		}
-	},
 	created() {
-		gitLog(this.currentRepository, [
+		gitLog(this.repositoryData.path, [
 			"--date=short",
 			"--pretty=format:%ad"
 		]).then(result => {

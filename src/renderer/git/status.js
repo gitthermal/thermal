@@ -2,8 +2,8 @@ import git from "simple-git/promise";
 import * as Sentry from "@sentry/electron";
 import gitCommand from "../mixins/commands";
 
-const status = async repository => {
-	const data = await git(repository.path).status();
+const status = async path => {
+	const data = await git(path).status();
 	try {
 		gitCommand("status");
 		return data;
