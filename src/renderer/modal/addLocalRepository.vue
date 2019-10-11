@@ -80,7 +80,9 @@ export default {
 	mixins: [closeModalMixin, addRepository],
 	methods: {
 		fileSectorInput(event) {
-			this.newRepository.path = event.target.files[0].path.split("\\").join("/");
+			this.newRepository.path = event.target.files[0].path
+				.split("\\")
+				.join("/");
 		},
 		addRepository(path) {
 			if (this.newRepository.path !== "") {

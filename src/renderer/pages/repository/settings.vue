@@ -237,7 +237,7 @@ export default {
 				(err, data) => {
 					if (err) console.log(err);
 				}
-			)
+			);
 		}
 	}
 };
