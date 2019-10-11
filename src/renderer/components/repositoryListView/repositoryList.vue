@@ -2,13 +2,11 @@
 	<div style="width: 100%">
 		<t-scrollbar v-if="getAllRepository.length > 0" height="300px">
 			<div style="padding: 1rem">
-				<div v-if="getAllRepository.length > 0">
-					<repository-item
-						v-for="repo in getAllRepository"
-						:key="repo.path"
-						:repo="repo"
-					/>
-				</div>
+				<repository-item
+					v-for="(repo, index) in getAllRepository"
+					:key="index"
+					:repo="repo"
+				/>
 			</div>
 		</t-scrollbar>
 		<div v-else>
