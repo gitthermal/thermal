@@ -87,11 +87,10 @@ export default {
 		this.gitLog();
 	},
 	methods: {
-		gitLog() {
-			gitLog(this.currentRepository).then(result => {
-				this.$store.commit("history/updateLogs", {
-					logs: result
-				});
+		async gitLog() {
+			const logs = await gitLog(this.currentRepository.path);
+			this.$store.commit("history/updateLogs", {
+				logs: logs
 			});
 		},
 		toggleCommitDetail() {
