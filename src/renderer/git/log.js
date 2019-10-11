@@ -1,16 +1,31 @@
-import git from "simple-git/promise";
-import * as Sentry from "@sentry/electron";
+import nodegit, { Repository } from "nodegit";
 
-const log = async (repository, params) => {
-	const data = await git(repository.path).log(params);
-	try {
-		return data.all;
-	} catch (error) {
-		Sentry.captureException(error);
-		let errorMessage = "Unable to fetch logs.";
-		console.log(errorMessage);
-		Sentry.captureMessage(errorMessage, data);
-	}
+const log = async path => {
+	const repo = await Repository.open(path);
+	const commit = await repo.getHeadCommit();
+
+	// History returns an event.
+	const history = commit.history(nodegit.Revwalk.SORT.TIME);
+
+	let logs = [];
+
+	// History emits "commit" event for each commit in the branch's history
+	history.on("commit", function(commit) {
+		let objectCommit = {
+			author_email: commit.author().email(),
+			author_name: commit.author().name(),
+			body: commit.body(),
+			date: commit.date(),
+			hash: commit.sha(),
+			message: commit.message()
+		};
+
+		logs.push(objectCommit);
+	});
+
+	history.start();
+
+	return logs;
 };
 
 export default log;
