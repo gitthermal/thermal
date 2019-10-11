@@ -18,6 +18,7 @@ import TFlexbox from "../TLayouts/TFlexbox";
 import truncateFilter from "../../filters/truncate";
 import TButton from "../TButton/TButton";
 import settingsIcon from "../icon/settings";
+import closeModal from "../../mixins/closeModal";
 
 export default {
 	name: "RepositoryItem",
@@ -27,6 +28,7 @@ export default {
 		settingsIcon
 	},
 	filters: { truncateFilter },
+	mixins: [closeModal],
 	props: {
 		repositoryId: {
 			type: Number,
@@ -49,6 +51,7 @@ export default {
 					projectId: id
 				}
 			});
+			this.closeModal("SelectRepository");
 		},
 		openSettings(id) {
 			this.$router.push({
@@ -57,6 +60,7 @@ export default {
 					projectId: id
 				}
 			});
+			this.closeModal("SelectRepository");
 		}
 	}
 };
