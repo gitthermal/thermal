@@ -1,7 +1,7 @@
 import nodegit from "nodegit";
 
-const init = async path => {
-	nodegit.Repository.init(path, 0)
+const init = repo => {
+	nodegit.Repository.init(repo.path, 0)
 		.then(res => {
 			console.log(res);
 		})
