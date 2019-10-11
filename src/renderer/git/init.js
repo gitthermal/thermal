@@ -1,8 +1,13 @@
-import git from "simple-git/promise";
+import nodegit from "nodegit";
 
 const init = async path => {
-	let initaliseRepository = git(path);
-	await initaliseRepository.init();
+	nodegit.Repository.init(path, 0)
+		.then(res => {
+			console.log(res);
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };
 
 export default init;
