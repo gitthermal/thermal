@@ -51,6 +51,7 @@ import exportCommitData from "./modal/exportCommitData";
 import newRemote from "./modal/newRemote";
 import initializeGitRepository from "./modal/initializeGitRepository";
 import cloneRepository from "./modal/cloneRepository";
+import selectRepository from "./modal/selectRepository";
 
 // help widget
 import packageJson from "../../package.json";
@@ -75,6 +76,7 @@ export default {
 		newRemote,
 		initializeGitRepository,
 		cloneRepository,
+		selectRepository,
 		DropdownList,
 		DropdownItem,
 		DropdownDivider
