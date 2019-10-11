@@ -3,9 +3,11 @@
 		<t-scrollbar v-if="getAllRepository.length > 0" height="300px">
 			<div style="padding: 1rem">
 				<repository-item
-					v-for="(repo, index) in getAllRepository"
-					:key="index"
-					:repo="repo"
+					v-for="repo in getAllRepository"
+					:key="repo.repositoryId"
+					:repository-id="repo.repositoryId"
+					:repository-name="repo.repositoryName"
+					:is-git="repo.isGit"
 				/>
 			</div>
 		</t-scrollbar>
@@ -27,7 +29,7 @@ export default {
 	},
 	computed: {
 		getAllRepository() {
-			return this.$store.getters["repository/listAllRepository"];
+			return this.$store.getters["repository/getAllRepository"];
 		}
 	}
 };

@@ -1,12 +1,12 @@
 <template>
 	<t-flexbox align-items="center" class="welcome__repository__list__item">
-		<h6>{{ repo.name | truncateFilter(30) }}</h6>
-		<t-button margin-left="auto" @click.native="selectCurrentRepository(index)">
+		<h6>{{ repositoryName | truncateFilter(30) }}</h6>
+		<t-button margin-left="auto" @click.native="openWorkspace(repositoryId)">
 			Open
 		</t-button>
 		<div
 			class="welcome__repository__list__item__settings"
-			@click="openRepositorySettings(index)"
+			@click="openSettings(repositoryId)"
 		>
 			<settingsIcon />
 		</div>
@@ -28,11 +28,35 @@ export default {
 	},
 	filters: { truncateFilter },
 	props: {
-		repo: {
-			type: Object,
-			default: () => {
-				return {};
-			}
+		repositoryId: {
+			type: Number,
+			required: true
+		},
+		repositoryName: {
+			type: String,
+			default: ""
+		},
+		isGit: {
+			type: Number,
+			default: 0
+		}
+	},
+	methods: {
+		openWorkspace(id) {
+			this.$router.push({
+				name: "projectWorkspace",
+				params: {
+					projectId: id
+				}
+			});
+		},
+		openSettings(id) {
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: id
+				}
+			});
 		}
 	}
 };
