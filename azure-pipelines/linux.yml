@@ -4,7 +4,6 @@ steps:
       versionSpec: $(node_version)
 
   - script: |
-      echo Installing packages
       echo Installing packages and Building windows application
       npm install && npm run postinstall && npm run build:linux
       echo Linux build is complete
