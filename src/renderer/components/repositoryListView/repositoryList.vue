@@ -1,6 +1,6 @@
 <template>
 	<div style="width: 100%">
-		<t-scrollbar v-if="getAllRepository.length > 0" height="300px">
+		<t-scrollbar v-if="getAllRepository.length > 0" :height="height">
 			<div style="padding: 1rem">
 				<repository-item
 					v-for="repo in getAllRepository"
@@ -26,6 +26,12 @@ export default {
 	components: {
 		repositoryItem,
 		TScrollbar
+	},
+	props: {
+		height: {
+			type: String,
+			default: ""
+		}
 	},
 	computed: {
 		getAllRepository() {
