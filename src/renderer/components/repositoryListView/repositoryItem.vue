@@ -1,7 +1,18 @@
 <template>
 	<t-flexbox align-items="center" class="welcome__repository__list__item">
 		<h6>{{ repositoryName | truncateFilter(30) }}</h6>
-		<t-button margin-left="auto" @click.native="openWorkspace(repositoryId)">
+		<t-button
+			v-if="!isGit"
+			margin-left="auto"
+			class="t-button__primary-warning"
+		>
+			Initialize
+		</t-button>
+		<t-button
+			v-if="isGit"
+			margin-left="auto"
+			@click.native="openWorkspace(repositoryId)"
+		>
 			Open
 		</t-button>
 		<div
@@ -41,6 +52,10 @@ export default {
 		isGit: {
 			type: Number,
 			default: 0
+		},
+		directoryPath: {
+			type: String,
+			default: ""
 		}
 	},
 	methods: {

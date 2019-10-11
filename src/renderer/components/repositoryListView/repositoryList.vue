@@ -7,6 +7,7 @@
 					:key="repo.repositoryId"
 					:repository-id="repo.repositoryId"
 					:repository-name="repo.repositoryName"
+					:directory-path="repo.directoryPath"
 					:is-git="repo.isGit"
 				/>
 			</div>
