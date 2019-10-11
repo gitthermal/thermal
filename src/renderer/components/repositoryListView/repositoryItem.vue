@@ -26,7 +26,7 @@ export default {
 		TButton,
 		settingsIcon
 	},
-	filters: [truncateFilter],
+	filters: { truncateFilter },
 	props: {
 		repo: {
 			type: Object,

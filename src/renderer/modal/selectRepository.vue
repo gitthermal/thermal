@@ -7,7 +7,15 @@
 		<t-card-body>
 			<repository-list />
 		</t-card-body>
-		<t-card-footer> </t-card-footer>
+		<t-card-footer>
+			<t-button
+				:outline="true"
+				margin-left="auto"
+				@click.native="closeModal('SelectRepository')"
+			>
+				Close
+			</t-button>
+		</t-card-footer>
 	</t-card>
 </template>
 
@@ -19,6 +27,7 @@ import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
 import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
 import TCardBody from "../components/TCard/TCardBody";
 import TCardFooter from "../components/TCard/TCardFooter";
+import TButton from "../components/TButton/TButton";
 import repositoryList from "../components/repositoryListView/repositoryList";
 
 // mixins
@@ -33,6 +42,7 @@ export default {
 		TCardHeaderClose,
 		TCardBody,
 		TCardFooter,
+		TButton,
 		repositoryList
 	},
 	mixins: [closeModalMixin]
