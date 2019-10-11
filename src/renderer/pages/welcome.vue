@@ -53,8 +53,6 @@ import TButton from "../components/TButton/TButton";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import repositoryList from "../components/repositoryListView/repositoryList";
 import truncateFilter from "../filters/truncate";
-import gitBranch from "../git/status";
-import gitInit from "../git/init";
 
 // mixins
 import addRepository from "../mixins/addRepository";
@@ -91,42 +89,6 @@ export default {
 		},
 		addLocalRepository() {
 			this.$store.commit("modal/toggleAddLocalRepositoryModal", true);
-		},
-		toggleRepositoryExampleModel() {
-			this.exampleRepositoryModel = !this.exampleRepositoryModel;
-		},
-		openWorkspace(repo, index) {
-			if (repo.isGit) {
-				gitBranch(repo.path)
-					.then(result => {
-						let branch = result.current;
-						this.$router.push({
-							name: "projectWorkspace",
-							params: {
-								projectId: index,
-								branchName: branch
-							}
-						});
-					})
-					.catch(error => {
-						console.log(error);
-					});
-			} else {
-				gitInit(repo.path);
-				this.$store.dispatch({
-					type: "repository/updateIsGit",
-					index: index,
-					isGit: true
-				});
-			}
-		},
-		openSettings(repositoryId) {
-			this.$router.push({
-				name: "projectSettings",
-				params: {
-					projectId: repositoryId
-				}
-			});
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
