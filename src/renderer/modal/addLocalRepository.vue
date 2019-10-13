@@ -6,6 +6,7 @@
 		</t-card-header>
 		<t-card-body>
 			<inputText
+				id="pathToRepository"
 				v-model.trim="pathToRepository"
 				v-focus
 				name="pathToRepository"
@@ -30,15 +31,8 @@
 				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('AddLocalRepository')"
-			>
-				Close
-			</t-button>
-			<t-button
-				margin-left=".5rem"
-				@click.native="addRepository(pathToRepository)"
-			>
-				Add repository
-			</t-button>
+			>Close</t-button>
+			<t-button margin-left=".5rem" @click.native="addRepository(pathToRepository)">Add repository</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
@@ -86,6 +80,8 @@ export default {
 	methods: {
 		fileSectorInput(event) {
 			this.pathToRepository = event.target.files[0].path.split("\\").join("/");
+			var repositoryPathInput = document.getElementById("pathToRepository");
+			repositoryPathInput.value = this.pathToRepository;
 		},
 		addRepository(path) {
 			if (this.pathToRepository !== "") {
