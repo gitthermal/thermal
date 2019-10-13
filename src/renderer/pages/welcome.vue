@@ -30,11 +30,7 @@
 		</t-flexbox>
 		<div class="welcome__separate" />
 		<t-flexbox flex-direction="column" align-items="center">
-			<div
-				class="welcome__repository__list"
-				@drop.prevent="dropHandler($event)"
-				@dragover.prevent="dropHandler()"
-			>
+			<div class="welcome__repository__list">
 				<repository-list height="400px" />
 			</div>
 			<t-button margin-top="1rem" @click.native="addLocalRepository()">
@@ -54,9 +50,6 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 import repositoryList from "../components/repositoryListView/repositoryList";
 import truncateFilter from "../filters/truncate";
 
-// mixins
-import addRepository from "../mixins/addRepository";
-
 const { shell } = require("electron");
 
 export default {
@@ -73,7 +66,6 @@ export default {
 	filters: {
 		truncateFilter
 	},
-	mixins: [addRepository],
 	methods: {
 		websiteURL() {
 			shell.openExternal("https://thermal.codecarrot.net/");
@@ -89,15 +81,6 @@ export default {
 		},
 		addLocalRepository() {
 			this.$store.commit("modal/toggleAddLocalRepositoryModal", true);
-		},
-		dropHandler(event) {
-			const dropDataTransfer = event.dataTransfer.files;
-			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.newRepository.path = dropDataTransfer[i].path
-					.split("\\")
-					.join("/");
-				this.addRepositoryToDatabase(this.newRepository.path);
-			}
 		}
 	}
 };
