@@ -143,29 +143,4 @@ export default {
 			border: 1px solid #EFEFEF
 			width: 450px
 			border-radius: 1rem
-
-			&__item
-				&:not(:last-child)
-					margin-bottom: .5rem
-
-				h6
-					padding-right: 5px
-					margin-bottom: 0
-
-				p
-					color: #6C6F75
-					font-size: 14px
-
-				&__settings
-					margin-left: .5rem
-					border: 1px solid #00adb5
-					padding: .5rem
-					border-radius: 5rem
-					display: flex
-					cursor: pointer
-
-					svg
-						width: 20px
-						height: 20px
-						stroke: #00adb5
 </style>

@@ -81,4 +81,21 @@ export default {
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.repository__item
+	&:not(:last-child)
+		margin-bottom: .5rem
+
+	&-settings
+		margin-left: .5rem
+		border: 1px solid #00adb5
+		padding: .5rem
+		border-radius: 5rem
+		display: flex
+		cursor: pointer
+
+		svg
+			width: 20px
+			height: 20px
+			stroke: #00adb5
+</style>
