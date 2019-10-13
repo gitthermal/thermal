@@ -126,19 +126,6 @@ export default {
 		background-color: #DEE0E3
 
 	&__repository
-		&__example
-			user-select: none
-
-			&__model
-				position: absolute
-				bottom: 0
-				align-items: center
-				justify-content: center
-				display: flex
-				width: 93%
-				height: 100%
-				background-color: rgba(#fff, .8)
-
 		&__list
 			border: 1px solid #EFEFEF
 			width: 450px
