@@ -48,7 +48,6 @@ import helpIcon from "../components/icon/help";
 import TButton from "../components/TButton/TButton";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 import repositoryList from "../components/repositoryListView/repositoryList";
-import truncateFilter from "../filters/truncate";
 
 const { shell } = require("electron");
 
@@ -62,9 +61,6 @@ export default {
 		TFlexbox,
 		repositoryList,
 		TButton
-	},
-	filters: {
-		truncateFilter
 	},
 	methods: {
 		websiteURL() {
