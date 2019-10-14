@@ -67,6 +67,14 @@ export default {
 		directoryPath: {
 			type: String,
 			default: ""
+		},
+		source: {
+			type: Boolean,
+			default: true
+		},
+		path: {
+			type: Boolean,
+			default: true
 		}
 	},
 	methods: {

@@ -19,6 +19,8 @@
 					:repository-name="repo.repositoryName"
 					:directory-path="repo.directoryPath"
 					:is-git="repo.isGit"
+					:source="source"
+					:path="path"
 				/>
 			</div>
 		</t-scrollbar>
@@ -46,6 +48,14 @@ export default {
 		height: {
 			type: String,
 			default: ""
+		},
+		source: {
+			type: Boolean,
+			default: true
+		},
+		path: {
+			type: Boolean,
+			default: true
 		}
 	},
 	data() {
