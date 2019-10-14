@@ -69,7 +69,7 @@ let routes = [
 	{
 		path: "/",
 		name: "welcome",
-		component: require("../pages/select").default
+		component: require("../pages/welcome").default
 	},
 	{
 		path: "*",
