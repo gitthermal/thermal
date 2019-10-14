@@ -40,6 +40,7 @@ database.serialize(() => {
 			settingsId INTEGER PRIMARY KEY,
 			repositoryName VARCHAR(30) NOT NULL,
 			description VARCHAR(200),
+			source VARCHAR(15) NOT NULL,
 			directoryName VARCHAR(30) NOT NULL,
 			commitFeature INTEGER NOT NULL,
 			remoteFeature INTEGER NOT NULL,
