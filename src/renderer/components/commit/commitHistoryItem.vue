@@ -94,13 +94,14 @@ export default {
 <style lang="sass">
 .history
 	&__item
-		padding: 10px
+		padding: 14px
 		font-size: 12px
 		border-bottom: 1px solid #DEE0E3
 
 		&__title
 			margin-bottom: 6px
 			color: black
+			font-weight: 500
 
 		&__author
 			font-size: 10px

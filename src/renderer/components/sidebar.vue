@@ -59,7 +59,7 @@ export default {
 
 		&__item
 			padding: 3px 20px
-			margin-bottom: 5px
+			margin-bottom: .3rem
 
 			svg
 				width: 20px

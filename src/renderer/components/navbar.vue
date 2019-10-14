@@ -246,5 +246,5 @@ export default {
 
 		.navbar__item
 			&:not(:last-child)
-				margin-right: 15px
+				margin-right: .7rem
 </style>
