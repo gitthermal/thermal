@@ -5,7 +5,7 @@
 			<t-card-header-close modal-name="SelectRepository" />
 		</t-card-header>
 		<t-card-body>
-			<repository-list height="300px" />
+			<repository-list height="300px" :source="false" :path="false" />
 		</t-card-body>
 		<t-card-footer>
 			<t-button
