@@ -31,8 +31,15 @@
 				:outline="true"
 				margin-left="auto"
 				@click.native="closeModal('AddLocalRepository')"
-			>Close</t-button>
-			<t-button margin-left=".5rem" @click.native="addRepository(pathToRepository)">Add repository</t-button>
+			>
+				Close
+			</t-button>
+			<t-button
+				margin-left=".5rem"
+				@click.native="addRepository(pathToRepository)"
+			>
+				Add repository
+			</t-button>
 		</t-card-footer>
 	</t-card>
 </template>
