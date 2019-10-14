@@ -1,14 +1,18 @@
 <template>
 	<t-flexbox align-items="center" class="repository__item">
 		<t-flexbox>
-			<t-flexbox align-items="center" class="repository__item-type">
+			<t-flexbox
+				v-if="source"
+				align-items="center"
+				class="repository__item-type"
+			>
 				<file-icon />
 			</t-flexbox>
 			<t-flexbox flex-direction="column">
-				<h5 class="repository__item-title">
+				<h6 class="repository__item-title">
 					{{ repositoryName | truncateFilter(30) }}
-				</h5>
-				<p class="repository__item-path">
+				</h6>
+				<p v-if="path" class="repository__item-path">
 					{{ directoryPath }}
 				</p>
 			</t-flexbox>
@@ -117,9 +121,10 @@ export default {
 			stroke: #8B9798
 
 	&-title
-		margin-bottom: 6px
+		margin: 0
 
 	&-path
+		margin-top: 4px
 		font-size: .8rem
 		color: #6C6F75
 
