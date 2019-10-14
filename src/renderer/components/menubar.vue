@@ -294,7 +294,7 @@ export default {
 		},
 		// File
 		selectRepository() {
-			this.$store.commit("modal/toggleSelectRepositoryModal", true);
+			this.$router.push("/select");
 		},
 		newRepository() {
 			this.$store.commit("modal/toggleNewRepositoryModal", true);
