@@ -36,6 +36,11 @@ let routes = [
 		]
 	},
 	{
+		path: "/select",
+		name: "selectRepository",
+		component: require("../pages/selectRepository").default
+	},
+	{
 		path: "/settings",
 		component: require("../pages/settings").default,
 		children: [
@@ -64,7 +69,7 @@ let routes = [
 	{
 		path: "/",
 		name: "welcome",
-		component: require("../pages/welcome").default
+		component: require("../pages/select").default
 	},
 	{
 		path: "*",
