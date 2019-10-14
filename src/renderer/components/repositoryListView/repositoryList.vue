@@ -1,7 +1,17 @@
 <template>
-	<div style="width: 100%">
-		<t-scrollbar v-if="getAllRepository.length > 0" :height="height">
-			<div style="padding: 1rem">
+	<t-flexbox class="repositories__list" flex-direction="column">
+		<input-text
+			v-model.trim="searchQuery"
+			class="repositories__list-search"
+			name="search_repository"
+			placeholder="Search repository"
+		/>
+		<t-scrollbar
+			v-if="getAllRepository.length > 0"
+			class="repositories__list-scrollbar"
+			:height="height"
+		>
+			<div>
 				<repository-item
 					v-for="repo in getAllRepository"
 					:key="repo.repositoryId"
@@ -15,18 +25,22 @@
 		<div v-else>
 			You don't have any repositories.
 		</div>
-	</div>
+	</t-flexbox>
 </template>
 
 <script>
-import repositoryItem from "./repositoryItem";
+import TFlexbox from "../TLayouts/TFlexbox";
+import inputText from "../input/inputText";
 import TScrollbar from "../TLayouts/TScrollbar";
+import repositoryItem from "./repositoryItem";
 
 export default {
 	name: "RepositoryList",
 	components: {
-		repositoryItem,
-		TScrollbar
+		TFlexbox,
+		inputText,
+		TScrollbar,
+		repositoryItem
 	},
 	props: {
 		height: {
@@ -34,12 +48,31 @@ export default {
 			default: ""
 		}
 	},
+	data() {
+		return {
+			searchQuery: ""
+		};
+	},
 	computed: {
 		getAllRepository() {
-			return this.$store.getters["repository/getAllRepository"];
+			let repositories = this.$store.getters["repository/getAllRepository"];
+			return repositories.filter(post => {
+				return post.repositoryName
+					.toLowerCase()
+					.includes(this.searchQuery.toLowerCase());
+			});
 		}
 	}
 };
 </script>
 
-<style lang="sass"></style>
+<style lang="sass">
+.repositories__list
+	width: 100%
+
+	&-search
+		margin-bottom: 1rem
+
+	&-scrollbar
+		width: 100%
+</style>
