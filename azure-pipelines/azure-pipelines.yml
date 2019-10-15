@@ -6,7 +6,7 @@ jobs:
 
     strategy:
       matrix:
-        node_10_x:
+        node_10:
           node_version: "10.x"
 
     steps:
@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        node_10_x:
+        node_10:
           node_version: "10.x"
 
     steps:
@@ -32,7 +32,7 @@ jobs:
 
     strategy:
       matrix:
-        node_10_x:
+        node_10:
           node_version: "10.x"
 
     steps:

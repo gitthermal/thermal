@@ -1,18 +1,20 @@
-import git from "simple-git/promise";
-import * as Sentry from "@sentry/electron";
-import gitCommand from "../mixins/commands";
+import nodegit from "nodegit";
 
-const status = async path => {
-	const data = await git(path).status();
-	try {
-		gitCommand("status");
-		return data;
-	} catch (error) {
-		Sentry.captureException(error);
-		let errorMessage = "Unable to run git status command.";
-		console.log(errorMessage);
-		Sentry.captureMessage(errorMessage, data);
-	}
+const status = repository => {
+	nodegit.Repository.open(repository.path)
+		.then(repo => {
+			repo
+				.getStatus()
+				.then(res => {
+					console.log(res);
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		})
+		.catch(err => {
+			console.log(err);
+		});
 };
 
 export default status;
