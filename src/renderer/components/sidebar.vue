@@ -3,7 +3,12 @@
 		<t-flexbox flex-direction="column" class="repository__sidebar__group">
 			<router-link
 				class="repository__sidebar__item"
-				:to="{ name: 'repositoryWorkspace' }"
+				:to="{
+					name: 'projectWorkspace',
+					params: {
+						branchName: $route.params.branchName
+					}
+				}"
 			>
 				<t-flexbox align-items="center">
 					<folderIcon />
@@ -12,7 +17,12 @@
 			</router-link>
 			<router-link
 				class="repository__sidebar__item"
-				:to="{ name: 'repositoryHistory' }"
+				:to="{
+					name: 'projectCommits',
+					params: {
+						branchName: $route.params.branchName
+					}
+				}"
 			>
 				<t-flexbox align-items="center">
 					<clockIcon />
@@ -21,7 +31,12 @@
 			</router-link>
 			<router-link
 				class="repository__sidebar__item"
-				:to="{ name: 'repositoryStats' }"
+				:to="{
+					name: 'projectStats',
+					params: {
+						branchName: $route.params.branchName
+					}
+				}"
 			>
 				<t-flexbox align-items="center">
 					<barIcon />
