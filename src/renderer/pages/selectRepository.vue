@@ -45,12 +45,8 @@ export default {
 		},
 		dropHandler(event) {
 			const dropDataTransfer = event.dataTransfer.files;
-			for (let i = 0; i < dropDataTransfer.length; i++) {
-				this.newRepository.path = dropDataTransfer[i].path
-					.split("\\")
-					.join("/");
-				this.addRepositoryToDatabase(this.newRepository.path);
-			}
+			this.newRepository.path = dropDataTransfer[0].path.split("\\").join("/");
+			this.addRepositoryToDatabase(this.newRepository.path);
 		}
 	}
 };
