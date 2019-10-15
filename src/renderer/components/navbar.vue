@@ -199,7 +199,7 @@ export default {
 			});
 		},
 		switchRepository() {
-			this.$router.push({ name: "welcome" });
+			this.$store.commit("modal/toggleSwitchRepositoryModal", true);
 		}
 	}
 };
