@@ -1,31 +1,23 @@
 import nodegit from "nodegit";
 
-const log = async path => {
+const log = async (path, count = 50) => {
 	const repo = await nodegit.Repository.open(path);
+
+	const newRevWalk = repo.createRevWalk();
+
 	const commit = await repo.getHeadCommit();
 
-	// History returns an event.
-	const history = commit.history(nodegit.Revwalk.SORT.TIME);
+	const result = newRevWalk.push(commit.sha());
 
-	let logs = [];
+	if (result !== 0) {
+		console.log("Error: " + result);
+	} else {
+		const commits = await newRevWalk.getCommits(count);
 
-	// History emits "commit" event for each commit in the branch's history
-	history.on("commit", function(commit) {
-		let objectCommit = {
-			author_email: commit.author().email(),
-			author_name: commit.author().name(),
-			body: commit.body(),
-			date: commit.date(),
-			hash: commit.sha(),
-			message: commit.message()
-		};
+		console.log(commits);
 
-		logs.push(objectCommit);
-	});
-
-	history.start();
-
-	return logs;
+		return commits;
+	}
 };
 
 export default log;

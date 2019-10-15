@@ -2,11 +2,11 @@
 	<t-flexbox flex-direction="column">
 		<a
 			class="history__item"
-			@mouseenter="showFiles(data.hash)"
+			@mouseenter="showFiles(data.sha())"
 			@mouseleave="hideFiles()"
 		>
-			<div :title="data.message" class="history__item__title">
-				{{ data.message }}
+			<div :title="data.message()" class="history__item__title">
+				{{ data.message() }}
 			</div>
 			<t-flexbox
 				flex-direction="row"
@@ -17,7 +17,8 @@
 					class="history__item__author__image"
 					src="../../../../static/image/user_avatar.png"
 				/>
-				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
+				{{ data.author().name() }} committed
+				{{ data.date() | moment("from", "now") }}
 			</t-flexbox>
 		</a>
 		<t-flexbox
