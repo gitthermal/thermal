@@ -42,6 +42,7 @@
 import menubar from "./components/menubar";
 import TModal from "./components/TModal/TModal";
 import * as Sentry from "@sentry/electron";
+import queryAllRepository from "./mixins/queryAllRepository";
 
 // modals
 import newRepository from "./modal/newRepository";
@@ -49,8 +50,9 @@ import addLocalRepository from "./modal/addLocalRepository";
 import about from "./modal/about";
 import exportCommitData from "./modal/exportCommitData";
 import newRemote from "./modal/newRemote";
-import initalizeGitRepository from "./modal/initalizeGitRepository";
+import initializeGitRepository from "./modal/initializeGitRepository";
 import cloneRepository from "./modal/cloneRepository";
+import switchRepository from "./modal/switchRepository";
 
 // help widget
 import packageJson from "../../package.json";
@@ -73,12 +75,14 @@ export default {
 		about,
 		exportCommitData,
 		newRemote,
-		initalizeGitRepository,
+		initializeGitRepository,
 		cloneRepository,
+		switchRepository,
 		DropdownList,
 		DropdownItem,
 		DropdownDivider
 	},
+	mixins: [queryAllRepository],
 	data() {
 		return {
 			helpWidget: false
@@ -109,8 +113,10 @@ export default {
 		}
 	},
 	beforeCreate() {
-		this.$store.commit("repository/getRepositoryList");
 		this.$store.commit("settings/getSettingsList");
+	},
+	mounted() {
+		this.queryAllRepository();
 	},
 	methods: {
 		websiteUrl() {

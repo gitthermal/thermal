@@ -1,6 +1,6 @@
 <template>
 	<t-flexbox class="menubar">
-		<t-flexbox class="menubar__logo" @click="homepage()">
+		<t-flexbox class="menubar__logo" @click.native="homepage()">
 			<thermalLogo />
 		</t-flexbox>
 		<t-flexbox align-items="center" class="menubar__list">
@@ -14,6 +14,9 @@
 					class="menubar__list__item__dropdown"
 					@mouseleave.native="dropdown('file', false)"
 				>
+					<dropdown-item @click.native="selectRepository()">
+						Select repository
+					</dropdown-item>
 					<dropdown-item @click.native="newRepository()">
 						New repository
 					</dropdown-item>
@@ -22,12 +25,6 @@
 					</dropdown-item>
 					<dropdown-item @click.native="cloneRepository">
 						Clone repository
-					</dropdown-item>
-					<dropdown-item
-						v-if="!!currentRepository"
-						@click.native="switchRepository()"
-					>
-						Switch repository
 					</dropdown-item>
 					<dropdown-divider />
 					<dropdown-item @click.native="appOptions()">
@@ -62,8 +59,11 @@
 					</dropdown-item>
 					<dropdown-item>
 						Go to summary
+					</dropdown-item> -->
+					<dropdown-item @click.native="gitCommands()">
+						Git commands
 					</dropdown-item>
-					<dropdown-divider /> -->
+					<dropdown-divider />
 					<dropdown-item @click.native="fullScreenView()">
 						Toggle full screen
 					</dropdown-item>
@@ -82,7 +82,7 @@
 				</dropdown-list>
 			</div>
 			<!-- Repository -->
-			<div v-if="!!currentRepository" @click="dropdown('repository', true)">
+			<div v-if="repositoryRoute" @click="dropdown('repository', true)">
 				<div class="menubar__list__item">
 					Repository
 				</div>
@@ -114,13 +114,13 @@
 						Open in Code editor
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item>
+					<dropdown-item @click.native="openRepositorySettings">
 						Repository settings
 					</dropdown-item>
 				</dropdown-list>
 			</div>
 			<!-- Branch -->
-			<div v-if="!!currentRepository" @click="dropdown('branch', true)">
+			<div v-if="repositoryRoute" @click="dropdown('branch', true)">
 				<div class="menubar__list__item">
 					Branch
 				</div>
@@ -190,8 +190,8 @@
 		</t-flexbox>
 		<div class="menubar__drag" />
 		<t-flexbox class="menubar__title">
-			<t-flexbox v-if="!!currentRepository">
-				{{ currentRepository.name }}
+			<t-flexbox v-if="repositoryRoute">
+				{{ repositoryData.name }}
 				<div style="padding: 0 5px">
 					-
 				</div>
@@ -210,6 +210,7 @@ import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
 import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
+import repositoryDataMixin from "../mixins/repositoryData";
 import TFlexbox from "../components/TLayouts/TFlexbox";
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
@@ -225,6 +226,7 @@ export default {
 		windowsButton,
 		TFlexbox
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			menu: {
@@ -252,8 +254,8 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
+		repositoryRoute() {
+			return this.$route.path.startsWith("/repository");
 		}
 	},
 	methods: {
@@ -285,6 +287,9 @@ export default {
 			}
 		},
 		// File
+		selectRepository() {
+			this.$router.push("/select");
+		},
 		newRepository() {
 			this.$store.commit("modal/toggleNewRepositoryModal", true);
 		},
@@ -295,7 +300,6 @@ export default {
 			this.$store.commit("modal/toggleCloneRepositoryModal", true);
 		},
 		switchRepository() {
-			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
 		},
 		appOptions() {
@@ -305,6 +309,9 @@ export default {
 			remote.getCurrentWindow().close();
 		},
 		// View
+		gitCommands() {
+			this.$router.push({ name: "gitCommands" });
+		},
 		fullScreenView() {
 			if (!win.isMaximized()) {
 				win.maximize();
@@ -318,15 +325,26 @@ export default {
 		},
 		// Repository
 		openFileExplorer() {
-			shell.openItem(this.currentRepository.path);
+			shell.openItem(this.repositoryData.path);
 		},
 		openEditor() {
-			childProcess.exec("code .", { cwd: this.currentRepository.path });
+			childProcess.exec("code .", { cwd: this.repositoryData.path });
+		},
+		openRepositorySettings() {
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: this.$route.params.projectId,
+					branchName: this.$route.params.branchName
+				}
+			});
 		},
 		// Branch
 		// Help
 		reportIssue() {
-			shell.openExternal("https://thermal.netlify.com/issue/");
+			shell.openExternal(
+				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+			);
 		},
 		contactSupport() {
 			shell.openExternal("https://discord.gg/f5mYum8");

@@ -4,7 +4,7 @@
 			<t-card-header-heading heading="Git not found" />
 		</t-card-header>
 		<t-card-body>
-			By default git will be initalized at the root of the project.
+			By default git will be initialized at the root of the project.
 		</t-card-body>
 		<t-card-footer>
 			<t-button
@@ -15,8 +15,8 @@
 			>
 				Go back
 			</t-button>
-			<t-button margin-left=".5rem" @click.native="initalizeGit">
-				Initalize git
+			<t-button margin-left=".5rem" @click.native="initializeGit">
+				Initialize git
 			</t-button>
 		</t-card-footer>
 	</t-card>
@@ -36,7 +36,7 @@ import closeModalMixin from "../mixins/closeModal";
 import gitInit from "../git/init";
 
 export default {
-	name: "InitalizeGitRepository",
+	name: "InitializeGitRepository",
 	components: {
 		TCard,
 		TCardHeader,
@@ -53,17 +53,17 @@ export default {
 	},
 	methods: {
 		switchRepository() {
-			this.closeModal("InitalizeGitRepository");
+			this.closeModal("InitializeGitRepository");
 			this.$store.dispatch("workspace/switchWorkspaceRepository");
 			this.$router.push({ name: "welcome" });
 		},
-		initalizeGit() {
+		initializeGit() {
 			gitInit(this.currentRepository.path);
 			this.$store.dispatch({
 				type: "repository/updateIsGit",
 				isGit: true
 			});
-			this.closeModal("InitalizeGitRepository");
+			this.closeModal("InitializeGitRepository");
 		}
 	}
 };
