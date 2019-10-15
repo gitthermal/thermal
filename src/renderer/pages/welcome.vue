@@ -31,7 +31,7 @@
 		<div class="welcome__separate" />
 		<t-flexbox flex-direction="column" align-items="center">
 			<div class="welcome__repository__list">
-				<repository-list height="400px" />
+				<repository-list height="400px" :source="false" :path="false" />
 			</div>
 			<t-button margin-top="1rem" @click.native="addLocalRepository()">
 				Add Repository
@@ -106,6 +106,7 @@ export default {
 
 	&__repository
 		&__list
+			padding: 1rem
 			border: 1px solid #EFEFEF
 			width: 450px
 			border-radius: 1rem
