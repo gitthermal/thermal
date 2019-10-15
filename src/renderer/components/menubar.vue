@@ -26,12 +26,6 @@
 					<dropdown-item @click.native="cloneRepository">
 						Clone repository
 					</dropdown-item>
-					<dropdown-item
-						v-if="repositoryRoute"
-						@click.native="switchRepository()"
-					>
-						Switch repository
-					</dropdown-item>
 					<dropdown-divider />
 					<dropdown-item @click.native="appOptions()">
 						Options
