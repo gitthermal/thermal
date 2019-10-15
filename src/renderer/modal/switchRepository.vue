@@ -2,7 +2,7 @@
 	<t-card width="small">
 		<t-card-header>
 			<t-card-header-heading heading="Select repository" />
-			<t-card-header-close modal-name="SelectRepository" />
+			<t-card-header-close modal-name="SwitchRepository" />
 		</t-card-header>
 		<t-card-body>
 			<repository-list height="300px" :source="false" :path="false" />
@@ -34,7 +34,7 @@ import repositoryList from "../components/repositoryListView/repositoryList";
 import closeModalMixin from "../mixins/closeModal";
 
 export default {
-	name: "SelectRepository",
+	name: "SwitchRepository",
 	components: {
 		TCard,
 		TCardHeader,

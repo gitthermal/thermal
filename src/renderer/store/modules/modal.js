@@ -1,6 +1,6 @@
 const state = {
 	addLocalRepository: false,
-	selectRepository: false,
+	switchRepository: false,
 	newRepository: false,
 	about: false,
 	exportCommitData: false,
@@ -15,8 +15,8 @@ const mutations = {
 	toggleAddLocalRepositoryModal(state, status) {
 		state.addLocalRepository = status;
 	},
-	toggleSelectRepositoryModal(state, status) {
-		state.selectRepository = status;
+	toggleSwitchRepositoryModal(state, status) {
+		state.switchRepository = status;
 	},
 	toggleAboutModal(state, status) {
 		state.about = status;
