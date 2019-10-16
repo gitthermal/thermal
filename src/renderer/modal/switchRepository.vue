@@ -11,7 +11,7 @@
 			<t-button
 				:outline="true"
 				margin-left="auto"
-				@click.native="closeModal('SelectRepository')"
+				@click.native="closeModal('SwitchRepository')"
 			>
 				Close
 			</t-button>

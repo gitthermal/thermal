@@ -89,7 +89,7 @@ export default {
 					projectId: id
 				}
 			});
-			this.closeModal("SelectRepository");
+			this.closeModal("SwitchRepository");
 		},
 		openSettings(id) {
 			this.$router.push({
@@ -98,7 +98,7 @@ export default {
 					projectId: id
 				}
 			});
-			this.closeModal("SelectRepository");
+			this.closeModal("SwitchRepository");
 		}
 	}
 };
