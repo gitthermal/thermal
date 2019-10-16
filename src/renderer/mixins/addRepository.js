@@ -1,4 +1,4 @@
-import git from "simple-git/promise";
+import nodegit from "nodegit";
 
 // mixins
 import queryAllRepository from "./queryAllRepository";
@@ -12,7 +12,6 @@ export default {
 			newRepository: {
 				name: "",
 				isGitRepo: false,
-				remote: "",
 				path: ""
 			}
 		};
@@ -22,7 +21,7 @@ export default {
 		// add repository to database
 		addRepositoryToDatabase(path) {
 			this.getRepositoryName(path);
-			this.getRemoteUrl(path);
+			this.isGitRepo(path);
 
 			database.serialize(() => {
 				this.insertNewRepository(path);
@@ -36,8 +35,7 @@ export default {
 							let repository = {
 								...data[0],
 								name: this.newRepository.name,
-								isGitRepo: this.newRepository.isGitRepo,
-								remote: this.newRepository.remote
+								isGitRepo: this.newRepository.isGitRepo
 							};
 
 							this.insertNewGitRepository(repository);
@@ -48,8 +46,7 @@ export default {
 							this.newRepository = {
 								name: "",
 								path: "",
-								isGitRepo: false,
-								remote: ""
+								isGitRepo: false
 							};
 						}
 					}
@@ -62,17 +59,11 @@ export default {
 			this.newRepository.name = path.split("/")[path.split("/").length - 1];
 		},
 
-		// get remote url
-		async getRemoteUrl(path) {
-			let listRemote;
+		// validate git repository
+		async isGitRepo(path) {
+			let repository = await nodegit.Repository.open(path);
 			try {
-				listRemote = await git(path).listRemote(["--get-url"]);
-				if (listRemote.slice(-4, -1) === "git") {
-					this.newRepository.isGitRepo = true;
-				}
-				this.newRepository.remote = listRemote;
-
-				console.log(listRemote);
+				this.newRepository.isGitRepo = !!repository;
 			} catch (error) {
 				console.log(error);
 			}
@@ -129,16 +120,13 @@ export default {
 			database.run(
 				`INSERT INTO gitRepository(
 					isGit,
-					remoteUrl,
 					repositoryId
 				) VALUES(
 					$isGitRepo,
-					$remoteUrl,
 					$repositoryId
 				);`,
 				{
 					$isGitRepo: data.isGitRepo,
-					$remoteUrl: data.remote,
 					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
