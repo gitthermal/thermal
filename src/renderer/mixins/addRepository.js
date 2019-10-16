@@ -92,12 +92,14 @@ export default {
 				`INSERT INTO repositorySettings(
 					repositoryName,
 					directoryName,
+					source,
 					commitFeature,
 					remoteFeature,
 					repositoryId
 				) VALUES(
 					$repositoryName,
 					$directoryName,
+					$source,
 					$commitFeature,
 					$remoteFeature,
 					$repositoryId
@@ -105,6 +107,7 @@ export default {
 				{
 					$repositoryName: data.name,
 					$directoryName: data.name,
+					$source: "local",
 					$commitFeature: 1,
 					$remoteFeature: 1,
 					$repositoryId: data.repositoryId
