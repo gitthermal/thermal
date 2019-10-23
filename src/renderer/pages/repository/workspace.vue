@@ -8,7 +8,7 @@
 					class="workspace__branch"
 				>
 					<branchIcon />
-					<p>{{ this.$store.state.commit.activeBranch }}</p>
+					<p>{{ branchName }}</p>
 				</t-flexbox>
 				<t-scrollbar
 					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
@@ -69,7 +69,6 @@
 </template>
 
 <script>
-import statusMixin from "../../git/status";
 import diffMixin from "../../git/diff";
 import repositoryDataMixin from "../../mixins/repositoryData";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
@@ -79,6 +78,10 @@ import diffPreview from "../../components/diff/diffPreview";
 import fileChangesSkeleton from "../../components/skeleton/fileChanges";
 import BlankSlate from "../../components/BlankSlate";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
+
+// mixins
+import { getStatus } from "../../git/status";
+import { getBranchName } from "../../git/branch";
 
 export default {
 	name: "Workspace",
@@ -94,14 +97,9 @@ export default {
 	mixins: [repositoryDataMixin],
 	data() {
 		return {
-			commitMessageTitle: "",
-			fileColors: {
-				modify: "57C9F6",
-				new: "7CCD5F",
-				delete: "EC746E",
-				rename: "3585de",
-				other: "E2E2E2"
-			}
+			branchName: "",
+			statusList: [],
+			commitMessageTitle: ""
 		};
 	},
 	computed: {
@@ -131,64 +129,33 @@ export default {
 			);
 		}
 	},
-	mounted() {
+	beforeRouteEnter(to, from, next) {
+		next(vm => {
+			vm.currentBranchName();
+			vm.gitStatus();
+		});
+	},
+	beforeRouteUpdate(to, from, next) {
+		this.currentBranchName();
 		this.gitStatus();
-		this.previewFileChange(this.$store.getters["commit/allFiles"][0]);
+		next();
 	},
 	methods: {
+		currentBranchName() {
+			getBranchName(this.$store.state.repository.repositoryData.directoryPath)
+				.then(res => {
+					this.branchName = res;
+				})
+				.catch(err => {
+					console.log(err);
+				});
+		},
 		gitStatus() {
-			statusMixin(this.repositoryData.path).then(result => {
-				this.$store.dispatch({
-					type: "commit/updateActiveBranch",
-					branch: result.current
-				});
-				this.$store.commit({
-					type: "commit/files",
-					files: result.files
-				});
-			});
-		},
-		fileType(file) {
-			switch (file.working_dir) {
-				case "M":
-					return "M";
-				case "D":
-					return "D";
-				case "?":
-					return "A";
-				case " ":
-					switch (file.index) {
-						case "M":
-							return "M";
-						case "D":
-							return "D";
-						case "R":
-							return "R";
-						case "A":
-							return "A";
-					}
-			}
-		},
-		fileTypeColor(file) {
-			switch (file.working_dir) {
-				case "M":
-					return this.fileColors.modify;
-				case "D":
-					return this.fileColors.delete;
-				case "?":
-					return this.fileColors.new;
-				case " ":
-					switch (file.index) {
-						case "M":
-							return this.fileColors.modify;
-						case "D":
-							return this.fileColors.delete;
-						case "R":
-							return this.fileColors.rename;
-						case "A":
-							return this.fileColors.new;
-					}
-			}
+			getStatus(this.$store.state.repository.repositoryData.directoryPath).then(
+				result => {
+					this.statusList = result;
+				}
+			);
 		},
 		filePath(path) {
 			if (path.lastIndexOf("/").toString() !== "-1") {
