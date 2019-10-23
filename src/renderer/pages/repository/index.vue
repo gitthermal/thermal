@@ -61,6 +61,10 @@ export default {
 			}
 		);
 		next();
+	},
+	beforeRouteLeave(to, from, next) {
+		this.$store.commit("repository/updateRepositoryData", {});
+		next();
 	}
 };
 </script>
