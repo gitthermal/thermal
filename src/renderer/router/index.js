@@ -5,7 +5,7 @@ Vue.use(Router);
 
 let routes = [
 	{
-		path: "/repository/:projectId",
+		path: "/repository/:repositoryId",
 		component: require("../pages/repository").default,
 		children: [
 			{
