@@ -28,22 +28,22 @@ export default {
 		sidebar
 	},
 	beforeRouteEnter(to, from, next) {
-		next(vm => {
-			database.all(
-				"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
-				{
-					$repositoryId: to.params.repositoryId
-				},
-				(err, data) => {
-					if (err) console.log(err);
-					else {
+		database.all(
+			"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
+			{
+				$repositoryId: to.params.repositoryId
+			},
+			(err, data) => {
+				if (err) console.log(err);
+				else {
+					next(vm => {
 						vm.$store.commit("repository/updateRepositoryData", {
 							...data[0]
 						});
-					}
+					});
 				}
-			);
-		});
+			}
+		);
 	},
 	beforeRouteUpdate(to, from, next) {
 		database.all(
@@ -57,10 +57,10 @@ export default {
 					this.$store.commit("repository/updateRepositoryData", {
 						...data[0]
 					});
+					next();
 				}
 			}
 		);
-		next();
 	},
 	beforeRouteLeave(to, from, next) {
 		this.$store.commit("repository/updateRepositoryData", {});
