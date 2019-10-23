@@ -18,6 +18,7 @@
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import navbar from "../../components/navbar";
 import sidebar from "../../components/sidebar";
+import database from "../../../database";
 
 export default {
 	name: "RepositoryIndex",
@@ -25,6 +26,41 @@ export default {
 		TFlexbox,
 		navbar,
 		sidebar
+	},
+	beforeRouteEnter(to, from, next) {
+		next(vm => {
+			database.all(
+				"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
+				{
+					$repositoryId: to.params.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else {
+						vm.$store.commit("repository/updateRepositoryData", {
+							...data[0]
+						});
+					}
+				}
+			);
+		});
+	},
+	beforeRouteUpdate(to, from, next) {
+		database.all(
+			"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
+			{
+				$repositoryId: to.params.repositoryId
+			},
+			(err, data) => {
+				if (err) console.log(err);
+				else {
+					this.$store.commit("repository/updateRepositoryData", {
+						...data[0]
+					});
+				}
+			}
+		);
+		next();
 	}
 };
 </script>
