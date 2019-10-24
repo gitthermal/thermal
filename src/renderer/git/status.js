@@ -10,6 +10,13 @@ export const getStatus = async path => {
 		let item = {};
 		item.path = file.path();
 
+		// staged file
+		if (file.inIndex()) {
+			item.stage = true;
+		} else {
+			item.stage = false;
+		}
+
 		// X "unknown" change type (most probably a bug, please report it)
 		item.symbol = "X";
 		item.color = "E2E2E2";
