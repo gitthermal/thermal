@@ -29,7 +29,14 @@ export default {
 	},
 	beforeRouteEnter(to, from, next) {
 		database.all(
-			"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
+			`SELECT
+				repository.repositoryId,
+				repository.directoryPath,
+				repositorySettings.commitFeature,
+				repositorySettings.remoteFeature
+			FROM repository
+			INNER JOIN repositorySettings USING(repositoryId)
+			WHERE repositoryId IS $repositoryId`,
 			{
 				$repositoryId: to.params.repositoryId
 			},
@@ -47,7 +54,14 @@ export default {
 	},
 	beforeRouteUpdate(to, from, next) {
 		database.all(
-			"SELECT * FROM repository WHERE repositoryId IS $repositoryId",
+			`SELECT
+				repository.repositoryId,
+				repository.directoryPath,
+				repositorySettings.commitFeature,
+				repositorySettings.remoteFeature
+			FROM repository
+			INNER JOIN repositorySettings USING(repositoryId)
+			WHERE repositoryId IS $repositoryId`,
 			{
 				$repositoryId: to.params.repositoryId
 			},
