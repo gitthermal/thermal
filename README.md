@@ -18,6 +18,7 @@
   <a href="https://dev.azure.com/codecarrot/Thermal/_build/latest?definitionId=3&branchName=master">
     <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/Thermal?branchName=master" alt="Azure pipeline" />
   </a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fgitthermal%2Fthermal?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgitthermal%2Fthermal.svg?type=shield"/></a>
   <a href="https://thermal.codecarrot.net/download/">
     <img src="https://img.shields.io/github/downloads/gitthermal/thermal/total.svg" alt="Total downloads" />
   </a>
@@ -79,3 +80,7 @@ Contributing to Thermal project is fairly easy, read this article [how to contri
 ## 🙏🏻 Credits
 
 - Development is sponsored by [CodeCarrot](https://www.codecarrot.net/).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fgitthermal%2Fthermal.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fgitthermal%2Fthermal?ref=badge_large)
