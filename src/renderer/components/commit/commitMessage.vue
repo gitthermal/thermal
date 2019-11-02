@@ -17,7 +17,7 @@
 			:disabled="!stagedFileLength > 0"
 			@click.native="commitMessageButton()"
 		>
-			Commit to <strong>{{ $store.state.commit.activeBranch }}</strong>
+			Commit to <strong>{{ branchName }}</strong>
 		</t-button>
 	</div>
 </template>
@@ -36,6 +36,12 @@ export default {
 		TButton
 	},
 	mixins: [repositoryDataMixin, spacingProps],
+	props: {
+		branchName: {
+			type: String,
+			default: ""
+		}
+	},
 	data() {
 		return {
 			commitMessageTitle: ""

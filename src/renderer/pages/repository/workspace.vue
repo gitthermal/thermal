@@ -14,6 +14,7 @@
 				</t-scrollbar>
 			</t-flexbox>
 			<commit-message
+				:branch-name="branchName"
 				padding-top="10px"
 				padding-bottom="10px"
 				padding-left="10px"
