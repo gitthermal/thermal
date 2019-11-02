@@ -1,12 +1,8 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
-		<div ref="workspaceFiles" class="workspace__files">
+		<div class="workspace__files">
 			<t-flexbox flex-direction="column" style="overflow: hidden;">
-				<t-flexbox
-					ref="branchName"
-					align-items="center"
-					class="workspace__branch"
-				>
+				<t-flexbox align-items="center" class="workspace__branch">
 					<branchIcon />
 					<p>{{ branchName }}</p>
 				</t-flexbox>
@@ -52,8 +48,7 @@
 					</div>
 				</t-scrollbar>
 			</t-flexbox>
-			<commitMessage
-				ref="commitMessage"
+			<commit-message
 				padding-top="10px"
 				padding-bottom="10px"
 				padding-left="10px"
