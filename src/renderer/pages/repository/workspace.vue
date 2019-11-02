@@ -10,42 +10,7 @@
 					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
 					width="100%"
 				>
-					<fileChangesSkeleton
-						v-if="this.$store.getters['commit/allFiles'].length < 1"
-					/>
-					<div v-else>
-						<t-flexbox
-							v-for="file in this.$store.getters['commit/allFiles']"
-							:key="file.path"
-							class="workspace__changes__item"
-							align-items="center"
-							@click="previewFileChange(file)"
-						>
-							<input
-								v-show="getFeatureValue.commit"
-								v-model="stagedFile"
-								class="workspace__changes__item__checkbox"
-								type="checkbox"
-								:value="file.path"
-							/>
-							<label :title="file.path" :for="file.path">
-								<t-flexbox>
-									<p class="workspace__changes__item__path__name">
-										{{ filePath(file.path) }}
-									</p>
-									<p class="workspace__changes__item__path__file">
-										{{ fileName(file.path) }}
-									</p>
-								</t-flexbox>
-							</label>
-							<div
-								:style="'background-color: #' + fileTypeColor(file)"
-								class="workspace__changes__item__type ml-auto"
-							>
-								{{ fileType(file) }}
-							</div>
-						</t-flexbox>
-					</div>
+					<status-list :status-list="status" />
 				</t-scrollbar>
 			</t-flexbox>
 			<commit-message
@@ -66,13 +31,13 @@
 <script>
 import diffMixin from "../../git/diff";
 import repositoryDataMixin from "../../mixins/repositoryData";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
+import StatusList from "../../components/status/StatusList";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
-import fileChangesSkeleton from "../../components/skeleton/fileChanges";
 import BlankSlate from "../../components/BlankSlate";
-import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 // mixins
 import { getStatus } from "../../git/status";
@@ -81,19 +46,19 @@ import { getBranchName } from "../../git/branch";
 export default {
 	name: "Workspace",
 	components: {
+		TFlexbox,
 		branchIcon,
 		TScrollbar,
 		commitMessage,
 		diffPreview,
-		fileChangesSkeleton,
 		BlankSlate,
-		TFlexbox
+		StatusList,
 	},
 	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			branchName: "",
-			statusList: [],
+			status: [],
 			commitMessageTitle: ""
 		};
 	},
@@ -148,20 +113,9 @@ export default {
 		gitStatus() {
 			getStatus(this.$store.state.repository.repositoryData.directoryPath).then(
 				result => {
-					this.statusList = result;
+					this.status = result;
 				}
 			);
-		},
-		filePath(path) {
-			if (path.lastIndexOf("/").toString() !== "-1") {
-				return path.slice(0, path.lastIndexOf("/"));
-			}
-		},
-		fileName(path) {
-			if (path.lastIndexOf("/").toString() !== "-1") {
-				return path.slice(path.lastIndexOf("/"), path.length);
-			}
-			return path;
 		},
 		previewFileChange(file) {
 			this.$store.commit({
