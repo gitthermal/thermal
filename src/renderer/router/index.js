@@ -9,7 +9,7 @@ let routes = [
 		component: require("../pages/repository").default,
 		children: [
 			{
-				path: "workspace/:branchName",
+				path: "workspace",
 				name: "projectWorkspace",
 				component: require("../pages/repository/workspace").default
 			},
