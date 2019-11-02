@@ -119,11 +119,8 @@ export default {
 					this.cloning = false;
 					this.closeModal("CloneRepository");
 				}
-				this.addRepository(repositoryPath);
+				this.addRepositoryToDatabase(repositoryPath);
 			});
-		},
-		addRepository(path) {
-			this.localRepository(path);
 		}
 	}
 };
