@@ -6,7 +6,9 @@ const clone = async (remoteUrl, localPath, cloneProgress) => {
 			fetchOpts: {
 				callbacks: {
 					transferProgress: progress =>
-						cloneProgress(progress.receivedObjects() / progress.totalObjects() * 100)
+						cloneProgress(
+							(progress.receivedObjects() / progress.totalObjects()) * 100
+						)
 				}
 			}
 		});
