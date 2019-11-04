@@ -85,7 +85,7 @@ export default {
 				this.$store.commit({
 					type: "repository/localRepositoryRemote",
 					remote: this.remoteUrl,
-					projectId: this.$route.params.projectId
+					repositoryId: this.$route.params.repositoryId
 				});
 				this.closeModal("NewRemote");
 			} catch (error) {

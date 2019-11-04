@@ -86,7 +86,7 @@ export default {
 			this.$router.push({
 				name: "projectWorkspace",
 				params: {
-					projectId: id
+					repositoryId: id
 				}
 			});
 			this.closeModal("SwitchRepository");
@@ -95,7 +95,7 @@ export default {
 			this.$router.push({
 				name: "projectSettings",
 				params: {
-					projectId: id
+					repositoryId: id
 				}
 			});
 			this.closeModal("SwitchRepository");

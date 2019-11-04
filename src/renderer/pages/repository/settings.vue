@@ -163,7 +163,7 @@ export default {
 			INNER JOIN gitRepository USING(repositoryId)
 			WHERE repositoryId IS $repositoryId`,
 			{
-				$repositoryId: this.$route.params.projectId
+				$repositoryId: this.$route.params.repositoryId
 			},
 			(err, data) => {
 				if (err) console.log(err);
