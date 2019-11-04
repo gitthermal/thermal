@@ -1,10 +1,11 @@
 <template>
 	<t-flexbox align-items="center" class="status__item">
 		<input
+			v-model="status.stage"
 			class="status__item-checkbox"
 			type="checkbox"
 			:value="status.path"
-			@change="$emit('stagedFile', status.path)"
+			@change="$emit('input', $event.target)"
 		/>
 		<label :title="status.path" :for="status.path">
 			<t-flexbox>
@@ -33,10 +34,6 @@ export default {
 	name: "StatusItem",
 	components: {
 		TFlexbox
-	},
-	model: {
-		prop: "status.stage",
-		event: "stagedFile"
 	},
 	props: {
 		status: {
