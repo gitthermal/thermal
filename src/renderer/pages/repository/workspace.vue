@@ -41,6 +41,7 @@ import diffPreview from "../../components/diff/diffPreview";
 import BlankSlate from "../../components/BlankSlate";
 
 // mixins
+import repositoryData from "../../mixins/repositoryData";
 import { getStatus } from "../../git/status";
 import { getBranchName } from "../../git/branch";
 
@@ -55,7 +56,7 @@ export default {
 		BlankSlate,
 		StatusList,
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	data() {
 		return {
 			branchName: "",
@@ -100,7 +101,7 @@ export default {
 	},
 	methods: {
 		currentBranchName() {
-			getBranchName(this.$store.state.repository.repositoryData.directoryPath)
+			getBranchName(this.repositoryData.directoryPath)
 				.then(res => {
 					this.branchName = res;
 				})
@@ -110,11 +111,9 @@ export default {
 				});
 		},
 		gitStatus() {
-			getStatus(this.$store.state.repository.repositoryData.directoryPath).then(
-				result => {
-					this.status = result;
-				}
-			);
+			getStatus(this.repositoryData.directoryPath).then(result => {
+				this.status = result;
+			});
 		},
 		previewFileChange(file) {
 			this.$store.commit({
