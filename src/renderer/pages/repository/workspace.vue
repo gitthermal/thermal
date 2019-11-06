@@ -75,9 +75,6 @@ export default {
 				});
 			}
 		},
-		getFeatureValue() {
-			return this.repositoryData.features;
-		},
 		fileDiffPreview() {
 			return this.$store.state.workspace.filePreview.preview;
 		},
