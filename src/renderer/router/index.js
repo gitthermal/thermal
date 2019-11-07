@@ -14,7 +14,7 @@ let routes = [
 				component: require("../pages/repository/workspace").default
 			},
 			{
-				path: "commits/:branchName",
+				path: "commits",
 				name: "projectCommits",
 				component: require("../pages/repository/commits").default
 			},
