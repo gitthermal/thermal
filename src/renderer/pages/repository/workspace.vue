@@ -136,7 +136,8 @@ export default {
 .workspace
 	&__files
 		border-right: 1px solid #DEE0E3
-		width: 300px
+		max-width: 300px
+		width: 100%
 
 	&__branch
 		background-color: #EFEFEF
