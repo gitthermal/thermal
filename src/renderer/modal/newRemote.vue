@@ -22,7 +22,11 @@
 			>
 				Close
 			</t-button>
-			<t-button margin-left=".5rem" @click.native="addRemoteUrl">
+			<t-button
+				margin-left=".5rem"
+				:disabled="!remoteUrl"
+				@click.native="addRemoteUrl"
+			>
 				Publish repository
 			</t-button>
 		</t-card-footer>
@@ -42,9 +46,9 @@ import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
-import repositoryDataMixin from "../mixins/repositoryData";
-
-import git from "simple-git/promise";
+import repositoryData from "../mixins/repositoryData";
+import { addRemoteUrl } from "../git/remote";
+import database from "../../database";
 
 export default {
 	name: "NewRemote",
@@ -65,7 +69,7 @@ export default {
 			}
 		}
 	},
-	mixins: [closeModalMixin, repositoryDataMixin],
+	mixins: [repositoryData, closeModalMixin],
 	data() {
 		return {
 			remoteUrl: ""
@@ -73,24 +77,33 @@ export default {
 	},
 	methods: {
 		async addRemoteUrl() {
-			console.mesinfosage("Pushing changes...");
-			let status = await git(this.repositoryData.path).status();
-			await git(this.repositoryData.path).push([
-				this.remoteUrl,
-				status.current
-			]);
-			try {
-				await git(this.repositoryData.path).addRemote("origin", this.remoteUrl);
-				console.info("Adding remote url to origin");
-				this.$store.commit({
-					type: "repository/localRepositoryRemote",
-					remote: this.remoteUrl,
-					repositoryId: this.$route.params.repositoryId
-				});
-				this.closeModal("NewRemote");
-			} catch (error) {
-				console.error(error);
+			if (this.remoteUrl) {
+				try {
+					await addRemoteUrl(
+						this.repositoryData.directoryPath,
+						"origin",
+						this.remoteUrl
+					);
+					this.addRemoteToDatabase();
+					this.closeModal("NewRemote");
+				} catch (error) {
+					console.error(error);
+				}
 			}
+		},
+		addRemoteToDatabase() {
+			database.run(
+				`UPDATE gitRepository SET
+					remoteUrl = $remoteUrl
+				WHERE repositoryId = $repositoryId`,
+				{
+					$repositoryId: this.repositoryData.repositoryId,
+					$remoteUrl: this.remoteUrl
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
 		}
 	}
 };
