@@ -2,6 +2,7 @@ import nodegit from "nodegit";
 
 // mixins
 import queryAllRepository from "./queryAllRepository";
+import { getRemoteUrl } from "../git/remote";
 
 // database
 import database from "../../database";
@@ -12,7 +13,8 @@ export default {
 			newRepository: {
 				name: "",
 				isGitRepo: false,
-				path: ""
+				path: "",
+				remote: ""
 			}
 		};
 	},
@@ -22,6 +24,7 @@ export default {
 		addRepositoryToDatabase(path) {
 			this.getRepositoryName(path);
 			this.isGitRepo(path);
+			this.remoteOriginUrl(path);
 
 			database.serialize(() => {
 				this.insertNewRepository(path);
@@ -35,7 +38,8 @@ export default {
 							let repository = {
 								...data[0],
 								name: this.newRepository.name,
-								isGitRepo: this.newRepository.isGitRepo
+								isGitRepo: this.newRepository.isGitRepo,
+								remoteUrl: this.newRepository.remote
 							};
 
 							this.insertNewGitRepository(repository);
@@ -46,7 +50,8 @@ export default {
 							this.newRepository = {
 								name: "",
 								path: "",
-								isGitRepo: false
+								isGitRepo: false,
+								remote: ""
 							};
 						}
 					}
@@ -64,6 +69,15 @@ export default {
 			let repository = await nodegit.Repository.open(path);
 			try {
 				this.newRepository.isGitRepo = !!repository;
+			} catch (error) {
+				console.log(error);
+			}
+		},
+
+		async remoteOriginUrl(path) {
+			try {
+				let url = await getRemoteUrl(path, "origin");
+				this.newRepository.remote = url;
 			} catch (error) {
 				console.log(error);
 			}
@@ -123,13 +137,16 @@ export default {
 			database.run(
 				`INSERT INTO gitRepository(
 					isGit,
+					remoteUrl,
 					repositoryId
 				) VALUES(
 					$isGitRepo,
+					$remoteUrl,
 					$repositoryId
 				);`,
 				{
 					$isGitRepo: data.isGitRepo,
+					$remoteUrl: data.remoteUrl,
 					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
