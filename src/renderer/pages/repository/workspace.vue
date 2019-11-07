@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import repositoryDataMixin from "../../mixins/repositoryData";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import StatusList from "../../components/status/StatusList";
@@ -72,14 +71,6 @@ export default {
 					staged: value
 				});
 			}
-		},
-		fileChangesSize() {
-			return (
-				this.$refs.workspaceFiles.clientHeight -
-				this.$refs.branchName.clientHeight -
-				this.$refs.commitMessage.clientHeight +
-				"px"
-			);
 		}
 	},
 	beforeRouteEnter(to, from, next) {
