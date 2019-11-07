@@ -33,9 +33,11 @@ export default {
 				repository.repositoryId,
 				repository.directoryPath,
 				repositorySettings.commitFeature,
-				repositorySettings.remoteFeature
+				repositorySettings.remoteFeature,
+				gitRepository.remoteUrl
 			FROM repository
 			INNER JOIN repositorySettings USING(repositoryId)
+			INNER JOIN gitRepository USING(repositoryId)
 			WHERE repositoryId IS $repositoryId`,
 			{
 				$repositoryId: to.params.repositoryId
@@ -58,9 +60,11 @@ export default {
 				repository.repositoryId,
 				repository.directoryPath,
 				repositorySettings.commitFeature,
-				repositorySettings.remoteFeature
+				repositorySettings.remoteFeature,
+				gitRepository.remoteUrl
 			FROM repository
 			INNER JOIN repositorySettings USING(repositoryId)
+			INNER JOIN gitRepository USING(repositoryId)
 			WHERE repositoryId IS $repositoryId`,
 			{
 				$repositoryId: to.params.repositoryId
