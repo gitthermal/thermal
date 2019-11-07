@@ -21,11 +21,8 @@
 				padding-right="10px"
 			/>
 		</div>
-		<diffPreview
-			v-if="this.$store.state.workspace.filePreview.isActive"
-			:preview="fileDiffPreview"
-		/>
-		<blank-slate v-else />
+		<diff-preview v-if="filePreview" :preview="fileDiffPreview" />
+		<blank-slate />
 	</t-flexbox>
 </template>
 
@@ -37,8 +34,8 @@ import TScrollbar from "../../components/TLayouts/TScrollbar";
 import StatusList from "../../components/status/StatusList";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
-import diffPreview from "../../components/diff/diffPreview";
 import BlankSlate from "../../components/BlankSlate";
+import diffPreview from "../../components/diff/diffPreview";
 
 // mixins
 import repositoryData from "../../mixins/repositoryData";
@@ -51,16 +48,17 @@ export default {
 		TFlexbox,
 		branchIcon,
 		TScrollbar,
-		commitMessage,
-		diffPreview,
-		BlankSlate,
 		StatusList,
+		commitMessage,
+		BlankSlate,
+		diffPreview
 	},
 	mixins: [repositoryData],
 	data() {
 		return {
 			branchName: "",
 			status: [],
+			filePreview: false,
 			commitMessageTitle: ""
 		};
 	},
