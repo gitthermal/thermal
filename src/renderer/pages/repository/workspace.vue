@@ -21,13 +21,12 @@
 				padding-right="10px"
 			/>
 		</div>
-		<diff-preview v-if="filePreview" :preview="fileDiffPreview" />
+		<diff-preview v-if="filePreview" />
 		<blank-slate />
 	</t-flexbox>
 </template>
 
 <script>
-import diffMixin from "../../git/diff";
 import repositoryDataMixin from "../../mixins/repositoryData";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
@@ -74,9 +73,6 @@ export default {
 				});
 			}
 		},
-		fileDiffPreview() {
-			return this.$store.state.workspace.filePreview.preview;
-		},
 		fileChangesSize() {
 			return (
 				this.$refs.workspaceFiles.clientHeight -
@@ -111,21 +107,6 @@ export default {
 		gitStatus() {
 			getStatus(this.repositoryData.directoryPath).then(result => {
 				this.status = result;
-			});
-		},
-		previewFileChange(file) {
-			this.$store.commit({
-				type: "workspace/toggleFilePreview",
-				isActive: true
-			});
-			const params = ["HEAD", "--", `:${file.path}`];
-			diffMixin(this.repositoryData.path, params).then(result => {
-				let output = result.split("\n");
-				output.splice(0, 3);
-				this.$store.commit({
-					type: "workspace/filePreview",
-					preview: output
-				});
 			});
 		}
 	}
