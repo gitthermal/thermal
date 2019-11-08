@@ -1,8 +1,8 @@
-import Git from "nodegit";
+import { Clone } from "nodegit";
 
 const clone = async (remoteUrl, localPath, cloneProgress) => {
 	try {
-		await Git.Clone(remoteUrl, localPath, {
+		await Clone(remoteUrl, localPath, {
 			fetchOpts: {
 				callbacks: {
 					transferProgress: progress =>
