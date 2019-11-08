@@ -220,6 +220,18 @@ export default {
 		},
 		saveSettings() {
 			database.run(
+				`UPDATE gitRepository SET
+					remoteUrl = $remoteUrl
+				WHERE repositoryId = $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId,
+					$remoteUrl: this.settings.remoteUrl
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
+			database.run(
 				`UPDATE repositorySettings SET
 					repositoryName = $repositoryName,
 					description = $description,
