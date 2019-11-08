@@ -7,7 +7,7 @@
 			:class="
 				!!repositoryData.commitFeature ? 'cursor-pointer' : 'opacity-5 cursor'
 			"
-			@click.native="openCommitPage()"
+			@click.native="openCommitPage"
 		>
 			<commitIcon />
 			<p>Commit</p>
@@ -23,7 +23,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="gitPull()"
+				@click.native="gitPull"
 			>
 				<pullIcon />
 				<p>Pull</p>
@@ -32,7 +32,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="gitPush()"
+				@click.native="gitPush"
 			>
 				<pushIcon />
 				<p>Push</p>
@@ -55,7 +55,7 @@
 				!!repositoryData.remoteUrl === false ? 'navbar__group' : ''
 			]"
 			class="navbar__item"
-			@click.native="newRemote()"
+			@click.native="newRemote"
 		>
 			<publishIcon />
 			<p>Publish</p>
@@ -65,7 +65,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="openTerminal()"
+				@click.native="openTerminal"
 			>
 				<terminalIcon />
 				<p>Terminal</p>
@@ -74,7 +74,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="openFileExplorer()"
+				@click.native="openFileExplorer"
 			>
 				<folderIcon />
 				<p>Explorer</p>
@@ -83,7 +83,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="openRepositorySettings()"
+				@click.native="openRepositorySettings"
 			>
 				<settingsIcon />
 				<p>Settings</p>
@@ -93,7 +93,7 @@
 			flex-direction="column"
 			align-items="center"
 			class="navbar__item"
-			@click.native="switchRepository()"
+			@click.native="switchRepository"
 		>
 			<switchRepositoryIcon />
 			<p>Switch repo</p>
@@ -135,7 +135,7 @@ export default {
 	},
 	mixins: [repositoryData],
 	methods: {
-		openCommitPage(event) {
+		openCommitPage() {
 			if (this.repositoryData.commitFeature) {
 				this.$router.push({
 					name: "projectWorkspace",
@@ -143,11 +143,9 @@ export default {
 						repositoryId: this.$router.params.repositoryId
 					}
 				});
-			} else {
-				event.preventDefault();
 			}
 		},
-		async gitPull(event) {
+		async gitPull() {
 			if (this.repositoryData.remoteFeature) {
 				let pull = await git(this.repositoryData.path).pull();
 				try {
@@ -155,31 +153,26 @@ export default {
 				} catch (error) {
 					console.log(error);
 				}
-			} else {
-				event.preventDefault();
 			}
 		},
-		async gitPush(event) {
 				let activeBranch = this.$route.params.branchName;
 				await git(this.repositoryData.path).push([
 					this.repositoryData.remote,
 					activeBranch
 				]);
+		async gitPush() {
 			if (this.repositoryData.remoteFeature) {
 				try {
 					console.log("Push changes to remote repository");
 				} catch (error) {
 					console.log(error);
 				}
-			} else {
-				event.preventDefault();
+			}
 			}
 		},
 		newRemote(event) {
 			if (this.repositoryData.remoteFeature) {
 				this.$store.commit("modal/toggleNewRemoteModal", true);
-			} else {
-				event.preventDefault();
 			}
 		},
 		openTerminal() {
