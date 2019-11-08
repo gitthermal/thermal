@@ -182,10 +182,12 @@ export default {
 			}
 		},
 		openTerminal() {
-			childProcess.exec("start cmd", { cwd: this.repositoryData.path });
+			childProcess.exec("start cmd", {
+				cwd: this.repositoryData.directoryPath
+			});
 		},
 		openFileExplorer() {
-			shell.openItem(this.repositoryData.path);
+			shell.openItem(this.repositoryData.directoryPath);
 		},
 		openRepositorySettings() {
 			this.$router.push({
