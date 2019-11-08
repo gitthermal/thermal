@@ -13,7 +13,10 @@
 					<status-list :status-list="status" />
 				</t-scrollbar>
 			</t-flexbox>
-			<commit-message :branch-name="branchName" />
+			<commit-message
+				v-if="repositoryData.commitFeature"
+				:branch-name="branchName"
+			/>
 		</div>
 		<diff-preview v-if="filePreview" />
 		<blank-slate />

@@ -1,8 +1,5 @@
 <template>
-	<div
-		v-if="repositoryData.commitFeature"
-		class="commit__message"
-	>
+	<div class="commit__message">
 		<inputText
 			v-model="commitMessageTitle"
 			name="commitMessageTitle"
