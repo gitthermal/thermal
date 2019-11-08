@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+    paths-ignore:
+    - '.vscode'
+    - 'README.md'
+    - 'LICENCE'
+
+jobs:
+  linux:
+    name: Linux build on node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Set Node.js version ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+
+    - name: Install packages
+      run: npm install
+      shell: bash
+
+    - name: Run build
+      run: npm run build:linux
+      shell: bash
+
+    - name: Moving build to artifacts directory
+      run: ./scripts/moveFiles.sh
+      shell: bash
+
+    - name: Upload linux build artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: "linux"
+        path: "build/artifacts"
+
