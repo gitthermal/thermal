@@ -66,7 +66,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
-				@click.native="openTerminal"
+				@click.native="openCmdTerminal"
 			>
 				<terminalIcon />
 				<p>Terminal</p>
@@ -178,7 +178,7 @@ export default {
 				this.$store.commit("modal/toggleNewRemoteModal", true);
 			}
 		},
-		openTerminal() {
+		openCmdTerminal() {
 			childProcess.exec("start cmd", {
 				cwd: this.repositoryData.directoryPath
 			});

@@ -104,8 +104,8 @@
 					<dropdown-item>
 						View on GitHub
 					</dropdown-item>
-					<dropdown-item>
-						Open in PowerShell
+					<dropdown-item @click.native="openCmdTerminal">
+						Open in Command Prompt
 					</dropdown-item>
 					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
@@ -329,6 +329,11 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openCmdTerminal() {
+			childProcess.exec("start cmd", {
+				cwd: this.repositoryData.directoryPath
+			});
+		},
 		openFileExplorer() {
 			shell.openItem(this.repositoryData.directoryPath);
 		},
