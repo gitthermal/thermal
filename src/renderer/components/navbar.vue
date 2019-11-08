@@ -5,7 +5,7 @@
 			align-items="center"
 			class="navbar__item"
 			:class="
-				!!repositoryData.features.commit ? 'cursor-pointer' : 'opacity-5 cursor'
+				!!repositoryData.commitFeature ? 'cursor-pointer' : 'opacity-5 cursor'
 			"
 			@click.native="openCommitPage()"
 		>
@@ -13,10 +13,10 @@
 			<p>Commit</p>
 		</t-flexbox>
 		<t-flexbox
-			v-if="!!repositoryData.remote"
+			v-if="repositoryData.remoteUrl"
 			class="navbar__group"
 			:class="
-				!!repositoryData.features.remote ? 'cursor-pointer' : 'opacity-5 cursor'
+				!!repositoryData.remoteFeature ? 'cursor-pointer' : 'opacity-5 cursor'
 			"
 		>
 			<t-flexbox
@@ -51,10 +51,8 @@
 			flex-direction="column"
 			align-items="center"
 			:class="[
-				!!repositoryData.features.remote
-					? 'cursor-pointer'
-					: 'opacity-5 cursor',
-				!!repositoryData.remote === false ? 'navbar__group' : ''
+				!!repositoryData.remoteFeature ? 'cursor-pointer' : 'opacity-5 cursor',
+				!!repositoryData.remoteUrl === false ? 'navbar__group' : ''
 			]"
 			class="navbar__item"
 			@click.native="newRemote()"
@@ -115,7 +113,9 @@ import folderIcon from "./icon/folder";
 import settingsIcon from "./icon/settings";
 import switchRepositoryIcon from "./icon/switch";
 import TFlexbox from "../components/TLayouts/TFlexbox";
-import repositoryDataMixin from "../mixins/repositoryData";
+
+// mixins
+import repositoryData from "../mixins/repositoryData";
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -133,10 +133,10 @@ export default {
 		switchRepositoryIcon,
 		TFlexbox
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	methods: {
 		openCommitPage(event) {
-			if (this.repositoryData.features.commit) {
+			if (this.repositoryData.commitFeature) {
 				this.$router.push({
 					name: "projectWorkspace",
 					params: {
@@ -149,7 +149,7 @@ export default {
 			}
 		},
 		async gitPull(event) {
-			if (this.repositoryData.features.remote) {
+			if (this.repositoryData.remoteFeature) {
 				let pull = await git(this.repositoryData.path).pull();
 				try {
 					console.log(pull);
@@ -161,12 +161,12 @@ export default {
 			}
 		},
 		async gitPush(event) {
-			if (this.repositoryData.features.remote) {
 				let activeBranch = this.$route.params.branchName;
 				await git(this.repositoryData.path).push([
 					this.repositoryData.remote,
 					activeBranch
 				]);
+			if (this.repositoryData.remoteFeature) {
 				try {
 					console.log("Push changes to remote repository");
 				} catch (error) {
@@ -177,7 +177,7 @@ export default {
 			}
 		},
 		newRemote(event) {
-			if (this.repositoryData.features.remote) {
+			if (this.repositoryData.remoteFeature) {
 				this.$store.commit("modal/toggleNewRemoteModal", true);
 			} else {
 				event.preventDefault();
