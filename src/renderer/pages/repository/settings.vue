@@ -111,7 +111,6 @@ import TContainer from "../../components/TLayouts/TContainer";
 
 // mixins
 import queryAllRepository from "../../mixins/queryAllRepository";
-import RepositoryDataMixin from "../../mixins/repositoryData";
 import database from "../../../database";
 
 export default {
@@ -124,7 +123,7 @@ export default {
 		TFlexbox,
 		TContainer
 	},
-	mixins: [RepositoryDataMixin, queryAllRepository],
+	mixins: [queryAllRepository],
 	data() {
 		return {
 			settings: {}
