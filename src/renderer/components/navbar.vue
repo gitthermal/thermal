@@ -41,6 +41,7 @@
 				flex-direction="column"
 				align-items="center"
 				class="navbar__item"
+				@click.native="gitFetch"
 			>
 				<fetchIcon />
 				<p>Fetch</p>
@@ -116,6 +117,7 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 
 // mixins
 import repositoryData from "../mixins/repositoryData";
+import { fetch } from "../git/fetch";
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -168,6 +170,10 @@ export default {
 					console.log(error);
 				}
 			}
+		},
+		async gitFetch() {
+			if (this.repositoryData.remoteFeature) {
+				await fetch(this.repositoryData.directoryPath, "origin");
 			}
 		},
 		newRemote(event) {
