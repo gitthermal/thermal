@@ -24,7 +24,7 @@ import TButton from "../TButton/TButton";
 import commitMixin from "../../git/commit";
 
 // mixins
-import repositoryData from "../../mixins/repositoryData"
+import repositoryData from "../../mixins/repositoryData";
 
 export default {
 	name: "CommitMessageBox",
