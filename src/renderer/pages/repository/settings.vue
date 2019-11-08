@@ -167,7 +167,6 @@ export default {
 			(err, data) => {
 				if (err) console.log(err);
 				else {
-					console.log(data);
 					this.settings = data[0];
 				}
 			}
