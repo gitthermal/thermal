@@ -32,6 +32,7 @@ export default {
 			`SELECT
 				repository.repositoryId,
 				repository.directoryPath,
+				repositorySettings.repositoryName,
 				repositorySettings.commitFeature,
 				repositorySettings.remoteFeature,
 				gitRepository.remoteUrl
@@ -59,6 +60,7 @@ export default {
 			`SELECT
 				repository.repositoryId,
 				repository.directoryPath,
+				repositorySettings.repositoryName,
 				repositorySettings.commitFeature,
 				repositorySettings.remoteFeature,
 				gitRepository.remoteUrl
