@@ -103,7 +103,6 @@
 </template>
 
 <script>
-import git from "simple-git/promise";
 import commitIcon from "./icon/commit";
 import pushIcon from "./icon/push";
 import pullIcon from "./icon/pull";
@@ -117,6 +116,7 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 
 // mixins
 import repositoryData from "../mixins/repositoryData";
+import { pullRemoteBranch } from "../git/pull";
 import { fetch } from "../git/fetch";
 const { shell } = require("electron");
 const childProcess = require("child_process");
@@ -149,9 +149,8 @@ export default {
 		},
 		async gitPull() {
 			if (this.repositoryData.remoteFeature) {
-				let pull = await git(this.repositoryData.path).pull();
 				try {
-					console.log(pull);
+					await pullRemoteBranch(this.repositoryData.directoryPath);
 				} catch (error) {
 					console.log(error);
 				}
