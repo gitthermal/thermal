@@ -140,8 +140,7 @@ export default {
 				this.$router.push({
 					name: "projectWorkspace",
 					params: {
-						projectId: this.$router.params.projectId,
-						branchName: this.$router.params.branchName
+						repositoryId: this.$router.params.repositoryId
 					}
 				});
 			} else {
