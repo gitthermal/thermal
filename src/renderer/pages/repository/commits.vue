@@ -18,6 +18,7 @@
 </template>
 
 <script>
+// components
 import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import gitLog from "../../git/log";

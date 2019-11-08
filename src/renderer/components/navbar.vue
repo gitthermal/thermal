@@ -103,6 +103,7 @@
 </template>
 
 <script>
+// components
 import commitIcon from "./icon/commit";
 import pushIcon from "./icon/push";
 import pullIcon from "./icon/pull";
@@ -118,6 +119,8 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 import repositoryData from "../mixins/repositoryData";
 import { pullRemoteBranch } from "../git/pull";
 import { fetch } from "../git/fetch";
+
+// modules
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -156,11 +159,6 @@ export default {
 				}
 			}
 		},
-				let activeBranch = this.$route.params.branchName;
-				await git(this.repositoryData.path).push([
-					this.repositoryData.remote,
-					activeBranch
-				]);
 		async gitPush() {
 			if (this.repositoryData.remoteFeature) {
 				try {
@@ -175,7 +173,7 @@ export default {
 				await fetch(this.repositoryData.directoryPath, "origin");
 			}
 		},
-		newRemote(event) {
+		newRemote() {
 			if (this.repositoryData.remoteFeature) {
 				this.$store.commit("modal/toggleNewRemoteModal", true);
 			}

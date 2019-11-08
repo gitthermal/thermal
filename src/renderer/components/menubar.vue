@@ -17,20 +17,20 @@
 					<dropdown-item @click.native="selectRepository()">
 						Select repository
 					</dropdown-item>
-					<dropdown-item @click.native="newRepository()">
+					<dropdown-item @click.native="newRepository">
 						New repository
 					</dropdown-item>
-					<dropdown-item @click.native="addLocalRepository()">
+					<dropdown-item @click.native="addLocalRepository">
 						Add local repository
 					</dropdown-item>
 					<dropdown-item @click.native="cloneRepository">
 						Clone repository
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item @click.native="appOptions()">
+					<dropdown-item @click.native="appOptions">
 						Options
 					</dropdown-item>
-					<dropdown-item @click.native="exitApp()">
+					<dropdown-item @click.native="exitApp">
 						Exit
 					</dropdown-item>
 				</dropdown-list>
@@ -60,11 +60,11 @@
 					<dropdown-item>
 						Go to summary
 					</dropdown-item> -->
-					<dropdown-item @click.native="gitCommands()">
+					<dropdown-item @click.native="gitCommands">
 						Git commands
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item @click.native="fullScreenView()">
+					<dropdown-item @click.native="fullScreenView">
 						Toggle full screen
 					</dropdown-item>
 					<!-- <dropdown-item>
@@ -76,7 +76,7 @@
 					<dropdown-item>
 						Zoom out
 					</dropdown-item> -->
-					<dropdown-item @click.native="openDevTools()">
+					<dropdown-item @click.native="openDevTools">
 						Toggle developer tools
 					</dropdown-item>
 				</dropdown-list>
@@ -205,6 +205,7 @@
 </template>
 
 <script>
+// components
 import thermalLogo from "./icon/logo";
 import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
@@ -214,6 +215,8 @@ import TFlexbox from "../components/TLayouts/TFlexbox";
 
 // mixins
 import repositoryData from "../mixins/repositoryData";
+
+// packages
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
 const win = remote.getCurrentWindow();

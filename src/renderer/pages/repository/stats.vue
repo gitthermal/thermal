@@ -13,6 +13,7 @@
 
 <script>
 import gitLog from "../../git/log";
+// components
 import ApexCharts from "vue-apexcharts";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import TFlexbox from "../../components/TLayouts/TFlexbox";

@@ -91,13 +91,14 @@
 </template>
 
 <script>
+// components
+import TFlexbox from "../TLayouts/TFlexbox";
+
 // mixins
 import repositoryData from "../../mixins/repositoryData";
+import trimFilePathMixin from "../../mixins/trimFilePath";
 import showMixin from "../../git/show";
 import diffMixin from "../../git/diff";
-import trimFilePathMixin from "../../mixins/trimFilePath";
-import repositoryDataMixin from "../../mixins/repositoryData";
-import TFlexbox from "../TLayouts/TFlexbox";
 
 export default {
 	name: "CommitInformation",
