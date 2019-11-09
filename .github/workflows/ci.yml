@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         node_version: [8.x, 10.x]
+      fail-fast: false
 
     steps:
     - name: Checkout
