@@ -3,7 +3,7 @@ on:
   push:
     paths-ignore:
     - '.vscode'
-    - 'README.md'
+    - '*.md'
     - 'LICENCE'
 
 jobs:
