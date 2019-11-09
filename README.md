@@ -15,8 +15,8 @@
   <a href="https://thermal.codecarrot.net/sponsor/">
     <img src="https://img.shields.io/badge/become%20a-sponsor-blue.svg" alt="Become a Sponsor" />
   </a>
-  <a href="https://dev.azure.com/codecarrot/Thermal/_build/latest?definitionId=3&branchName=master">
-    <img src="https://dev.azure.com/codecarrot/Thermal/_apis/build/status/Thermal?branchName=master" alt="Azure pipeline" />
+  <a href="https://github.com/gitthermal/thermal/actions?query=workflow%3ACI">
+    <img src="https://github.com/gitthermal/thermal/workflows/CI/badge.svg" alt="GitHub Action" />
   </a>
   <a href="https://thermal.codecarrot.net/download/">
     <img src="https://img.shields.io/github/downloads/gitthermal/thermal/total.svg" alt="Total downloads" />
