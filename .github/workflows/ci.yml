@@ -60,5 +60,5 @@ jobs:
           ${{ github.repository }} \
           ${{ github.ref }} \
           ${{ github.sha }} \
-          ${{ github.sender.login }} \
-          ${{ github.sender.avatar_url }}
+          ${{ github.event.sender.login }} \
+          ${{ github.event.sender.avatar_url }}
