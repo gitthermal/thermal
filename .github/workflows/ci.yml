@@ -33,9 +33,9 @@ jobs:
     - name: Moving build to artifacts directory
       run: bash ./scripts/move-files.sh linux
 
-    - name: Upload linux amd64 deb
+    - name: Upload linux build artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: "linux-${{ matrix.node_version }}-thermal-linux-amd64"
-        path: "dist/artifacts/thermal-linux-amd64-*.deb"
+        name: "linux-${{ matrix.node_version }}"
+        path: "dist/artifacts"
 
