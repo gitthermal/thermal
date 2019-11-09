@@ -19,6 +19,17 @@ current_date=$(date --iso-8601=seconds)
 
 STATUS_COLOR=0x2664261
 
+# echo all variables
+echo $DISCORD_WEBHOOK
+echo $COMMIT_MESSAGE
+echo $REPOSITORY_ORG_NAME
+echo $REF
+echo $COMMIT_ID
+echo $AUTHOR_NAME
+echo $AUTHOR_IMAGE
+echo $current_date
+echo $STATUS_COLOR
+
 curl \
 	--header "content-type: application/json" \
 	--request POST \
