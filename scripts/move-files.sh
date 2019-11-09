@@ -8,8 +8,9 @@ bash ./scripts/print-directory-content.sh dist ./dist
 
 # artifacts directory name
 directoryName=artifacts
-echo Crate artifacts directory name: $directoryName
+echo Create artifacts directory name: $directoryName
 mkdir $directoryName
+ls
 printf "\n"
 
 # moving directory content
