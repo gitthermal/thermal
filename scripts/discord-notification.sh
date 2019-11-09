@@ -23,21 +23,24 @@ curl \
 	--header "content-type: application/json" \
 	--request POST \
 	--data '{
-		"username": "GitHub"
+		"username": "GitHub Actions",
 		"avatar_url": "https://i.imgur.com/u6mj8bs.png",
 		"embeds": [
 			{
-				"description": "Build [4534633]() is successful `origin/master`",
-				"color": "'"$STATUS_COLOR"'",
+				"title": "['"$COMMIT_MESSAGE"'](https://www.github.com/'"$REPOSITORY_ORG_NAME"'/commit/'"$COMMIT_ID"')",
 				"timestamp": "'"$current_date"'",
 				"author": {
 					"name": "'"$AUTHOR_NAME"'",
-					"image": "'"$AUTHOR_IMAGE"'"
+					"icon_url": "'"$AUTHOR_IMAGE"'"
 				},
 				"fields": [
 					{
+						"name": "Branch",
+						"value": "'"$REF"'"
+					},
+					{
 						"name": "Commit ID",
-						"value": "["'"$COMMIT_ID"'"](https://www.github.com/"'"$REPOSITORY_ORG_NAME"'"/commit/"'"$COMMIT_ID"'")"
+						"value": "'"$COMMIT_ID"'"
 					}
 				]
 			}
