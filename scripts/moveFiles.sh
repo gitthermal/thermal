@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-cd ../dist
+cd dist
 ls
