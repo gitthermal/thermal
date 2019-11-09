@@ -53,4 +53,12 @@ jobs:
       run: echo "$RUNNER_CONTEXT"
 
     - name: Sending notification
-      run: bash ./scripts/discord-notification.sh ${{ secrets.DISCORD_CI_WEBHOOK }} ${{ github.ref }}
+      run: |
+        bash ./scripts/discord-notification.sh \
+          ${{ secrets.DISCORD_CI_WEBHOOK }} \
+          ${{ github.workflow }} \
+          ${{ github.repository }} \
+          ${{ github.ref }} \
+          ${{ github.sha }} \
+          ${{ github.sender.login }} \
+          ${{ github.sender.avatar_url }}
