@@ -31,7 +31,7 @@ jobs:
       run: npm run build:linux
 
     - name: Moving build to artifacts directory
-      run: ./scripts/moveFiles.sh
+      run: bash ./scripts/moveFiles.sh
 
     - name: Upload linux build artifacts
       uses: actions/upload-artifact@v1
