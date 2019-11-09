@@ -19,10 +19,3 @@ mv --verbose ./dist/thermal-$1* --target-directory ./dist/$directoryName
 
 # list artifacts directory content
 bash ./scripts/print-directory-content.sh artifacts ./dist/artifacts
-# cd ./dist
-# echo List directory content
-
-# for entry in "$search_dir"./*
-# do
-#   echo $entry
-# done
