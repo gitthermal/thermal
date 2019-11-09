@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # $1: Webhook url
-# $2: Workflow name
+# $2: Commit message
 # $3: Organisation name/repository name
 # $4: Ref (branch) name
 # $5: Commit ID
@@ -9,7 +9,7 @@
 # $7: Author image
 
 DISCORD_WEBHOOK=$1
-WORKFLOW_NAME=$2
+COMMIT_MESSAGE=$2
 REPOSITORY_ORG_NAME=$3
 REF=$4
 COMMIT_ID=$5
