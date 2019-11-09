@@ -27,7 +27,7 @@ curl \
 		"avatar_url": "https://i.imgur.com/u6mj8bs.png",
 		"embeds": [
 			{
-				"title": "['"$COMMIT_MESSAGE"'",
+				"title": "'"$COMMIT_MESSAGE"'",
 				"url": "https://www.github.com/'"$REPOSITORY_ORG_NAME"'/commit/'"$COMMIT_ID"')",
 				"timestamp": "'"$current_date"'",
 				"author": {
