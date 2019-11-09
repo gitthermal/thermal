@@ -25,7 +25,6 @@ curl \
 	--data '{
 		"username": "GitHub"
 		"avatar_url": "https://i.imgur.com/u6mj8bs.png",
-		"content": "**'"$WORKFLOW_NAME"'" build status**",
 		"embeds": [
 			{
 				"description": "Build [4534633]() is successful `origin/master`",
