@@ -39,9 +39,14 @@ jobs:
         name: "linux-${{ matrix.node_version }}"
         path: "dist/artifacts"
 
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Dump job context
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+
     - name: Sending notification
-      run: |
-        echo ${{ github }}
-        echo ${{ job }}
-        printf "\n"
-        bash ./scripts/discord-notification.sh ${{ secrets.DISCORD_CI_WEBHOOK }} ${{ github.ref }}
+      run: bash ./scripts/discord-notification.sh ${{ secrets.DISCORD_CI_WEBHOOK }} ${{ github.ref }}
