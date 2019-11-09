@@ -56,7 +56,7 @@ jobs:
       run: |
         bash ./scripts/discord-notification.sh \
           ${{ secrets.DISCORD_CI_WEBHOOK }} \
-          ${{ github.event.commits[0].message }} \
+          ${{ github.head_commit.message }} \
           ${{ github.repository }} \
           ${{ github.ref }} \
           ${{ github.sha }} \
