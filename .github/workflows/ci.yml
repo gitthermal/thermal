@@ -40,4 +40,4 @@ jobs:
         path: "dist/artifacts"
 
     - name: Sending notification
-      run: bash ./scripts/discord-notification.sh ${{ DISCORD_CI_WEBHOOK }}
+      run: bash ./scripts/discord-notification.sh ${{ secrets.DISCORD_CI_WEBHOOK }}
