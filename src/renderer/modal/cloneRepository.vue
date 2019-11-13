@@ -114,16 +114,15 @@ export default {
 			const repositoryPath =
 				this.repositoryLocation + "/" + this.repositoryName;
 			this.cloning = true;
-			gitClone(this.remoteUrl, repositoryPath).then(result => {
+			gitClone(this.remoteUrl, repositoryPath, cloneProgress => {
+				this.cloneProgress = cloneProgress;
+			}).then(result => {
 				if (result) {
 					this.cloning = false;
 					this.closeModal("CloneRepository");
 				}
-				this.addRepository(repositoryPath);
+				this.addRepositoryToDatabase(repositoryPath);
 			});
-		},
-		addRepository(path) {
-			this.localRepository(path);
 		}
 	}
 };

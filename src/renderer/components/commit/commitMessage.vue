@@ -1,11 +1,5 @@
 <template>
-	<div
-		v-show="repositoryData.features.commit"
-		:style="{
-			...spacingProps,
-			borderTop: '1px solid #DEE0E3'
-		}"
-	>
+	<div class="commit__message">
 		<inputText
 			v-model="commitMessageTitle"
 			name="commitMessageTitle"
@@ -13,11 +7,10 @@
 			margin-bottom="15px"
 		/>
 		<t-button
-			width="100%"
 			:disabled="!stagedFileLength > 0"
 			@click.native="commitMessageButton()"
 		>
-			Commit to <strong>{{ $store.state.commit.activeBranch }}</strong>
+			Commit to <strong>{{ branchName }}</strong>
 		</t-button>
 	</div>
 </template>
@@ -26,8 +19,9 @@
 import inputText from "../input/inputText";
 import TButton from "../TButton/TButton";
 import commitMixin from "../../git/commit";
-import spacingProps from "../../mixins/spacingProps";
-import repositoryDataMixin from "../../mixins/repositoryData";
+
+// mixins
+import repositoryData from "../../mixins/repositoryData";
 
 export default {
 	name: "CommitMessageBox",
@@ -35,7 +29,13 @@ export default {
 		inputText,
 		TButton
 	},
-	mixins: [repositoryDataMixin, spacingProps],
+	mixins: [repositoryData],
+	props: {
+		branchName: {
+			type: String,
+			default: ""
+		}
+	},
 	data() {
 		return {
 			commitMessageTitle: ""
@@ -64,3 +64,11 @@ export default {
 	}
 };
 </script>
+
+<style lang="sass">
+.commit__message
+	display: flex
+	flex-direction: column
+	padding: 10px
+	border-top: 1px solid #DEE0E3
+</style>

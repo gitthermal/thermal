@@ -4,10 +4,7 @@
 			<router-link
 				class="repository__sidebar__item"
 				:to="{
-					name: 'projectWorkspace',
-					params: {
-						branchName: $route.params.branchName
-					}
+					name: 'projectWorkspace'
 				}"
 			>
 				<t-flexbox align-items="center">
@@ -18,10 +15,7 @@
 			<router-link
 				class="repository__sidebar__item"
 				:to="{
-					name: 'projectCommits',
-					params: {
-						branchName: $route.params.branchName
-					}
+					name: 'projectCommits'
 				}"
 			>
 				<t-flexbox align-items="center">
@@ -32,10 +26,7 @@
 			<router-link
 				class="repository__sidebar__item"
 				:to="{
-					name: 'projectStats',
-					params: {
-						branchName: $route.params.branchName
-					}
+					name: 'projectStats'
 				}"
 			>
 				<t-flexbox align-items="center">

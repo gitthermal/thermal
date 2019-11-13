@@ -1,17 +1,18 @@
-import git from "simple-git/promise";
-import gitCommand from "../mixins/commands";
+import { Clone } from "nodegit";
 
-const clone = async (remoteUrl, localPath) => {
-	let cloneStatus;
-	let cloneRepository = git().outputHandler((command, stdout, stderr) => {
-		stderr.on("end", () => {
-			cloneStatus = true;
-		});
-	});
+const clone = async (remoteUrl, localPath, cloneProgress) => {
 	try {
-		gitCommand("clone", remoteUrl);
-		await cloneRepository.clone(remoteUrl, localPath, ["--progress"]);
-		return cloneStatus;
+		await Clone(remoteUrl, localPath, {
+			fetchOpts: {
+				callbacks: {
+					transferProgress: progress =>
+						cloneProgress(
+							(progress.receivedObjects() / progress.totalObjects()) * 100
+						)
+				}
+			}
+		});
+		return true;
 	} catch (error) {
 		console.log(error);
 	}
