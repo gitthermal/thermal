@@ -122,8 +122,8 @@ export default {
 					$repositoryName: data.name,
 					$directoryName: data.name,
 					$source: "local",
-					$commitFeature: 1,
-					$remoteFeature: 1,
+					$commitFeature: data.isGitRepo,
+					$remoteFeature: data.isGitRepo,
 					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
