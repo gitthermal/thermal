@@ -25,7 +25,7 @@ current_date=$(date --iso-8601=seconds)
 
 STATUS_COLOR=0x2664261
 
-while getopts "u:m:r:b:c:n:i" opt; do
+while getopts "u:m:r:b:c:n:i:" opt; do
 	case $opt in
 		u)
 			DISCORD_WEBHOOK=$OPTARG
