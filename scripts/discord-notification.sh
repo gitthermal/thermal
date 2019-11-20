@@ -32,16 +32,22 @@ while getopts "u:m:r:b:c:n:i" opt; do
 			;;
 		m)
 			COMMIT_MESSAGE=$OPTARG
+			;;
 		r)
 			REPOSITORY_ORG_NAME=$OPTARG
+			;;
 		b)
 			REF=$OPTARG
+			;;
 		c)
 			COMMIT_ID=$OPTARG
+			;;
 		n)
 			AUTHOR_NAME=$OPTARG
+			;;
 		i)
 			AUTHOR_IMAGE=$OPTARG
+			;;
 		\?)
 			help_func
 			exit 1
