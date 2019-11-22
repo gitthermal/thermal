@@ -80,7 +80,7 @@ curl \
 				"author": {
 					"name": "'"$AUTHOR_NAME"'",
 					"icon_url": "'"$AUTHOR_IMAGE"'"
-				},
+				},	
 				"fields": [
 					{
 						"name": "Branch",
