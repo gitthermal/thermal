@@ -56,6 +56,8 @@ jobs:
       uses: gitthermal/discord-notification-action@master
       with:
         webhook_url: ${{ secrets.DISCORD_CI_WEBHOOK }}
+        os: Linux
+        node_version: ${{ matrix.node_version }}
 
     - name: Sending notification
       run: |
