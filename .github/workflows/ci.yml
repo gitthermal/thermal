@@ -59,6 +59,3 @@ jobs:
         os: Linux
         node_version: ${{ matrix.node_version }}
 
-    - name: Sending notification
-      run: |
-        bash ./scripts/discord-notification.sh -u ${{ secrets.DISCORD_CI_WEBHOOK }} -m ${{ github.head_commit.message }} -r ${{ github.repository }} -b ${{ github.ref }} -c ${{ github.sha }} -n ${{ github.event.sender.login }} -i ${{ github.event.sender.avatar_url }}
