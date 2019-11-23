@@ -29,6 +29,8 @@ jobs:
 
     - name: Cache
       run: |
+        echo "Root list"
+        ls
         cd ~/
         echo "~/ directory"
         ls
