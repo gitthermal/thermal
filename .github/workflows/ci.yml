@@ -35,6 +35,9 @@ jobs:
         cd .npm
         echo ".npm directory"
         ls
+        cd _cacache
+        echo "_cacache directory"
+        ls
 
     - name: Run build
       run: npm run build:linux
