@@ -2,9 +2,9 @@ name: CI
 on:
   push:
     paths-ignore:
-    - '.vscode'
-    - '*.md'
-    - 'LICENCE'
+      - ".vscode"
+      - "*.md"
+      - "LICENCE"
 
 jobs:
   linux:
@@ -16,49 +16,47 @@ jobs:
       fail-fast: false
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    - name: Set Node.js version ${{ matrix.node_version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node_version }}
+      - name: Set Node.js version ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
 
-    - name: Install packages
-      run: npm install
+      - name: Install packages
+        run: npm install
 
-    - name: Cache
-      run: |
-        echo "Root list"
-        ls
-        cd ~/
-        echo "~/ directory"
-        ls
-        cd .npm
-        echo ".npm directory"
-        ls
-        cd _cacache
-        echo "_cacache directory"
-        ls
+      - name: Cache
+        run: |
+          echo "Root list"
+          ls
+          cd ~/
+          echo "~/ directory"
+          ls
+          cd .npm
+          echo ".npm directory"
+          ls
+          cd _cacache
+          echo "_cacache directory"
+          ls
 
-    - name: Run build
-      run: npm run build:linux
+      - name: Run build
+        run: npm run build:linux
 
-    - name: Moving build to artifacts directory
-      run: bash ./scripts/move-files.sh linux
+      - name: Moving build to artifacts directory
+        run: bash ./scripts/move-files.sh linux
 
-    - name: Upload linux build artifacts
-      uses: actions/upload-artifact@v1
-      with:
-        name: "linux-${{ matrix.node_version }}"
-        path: "dist/artifacts"
+      - name: Upload linux build artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: "linux-${{ matrix.node_version }}"
+          path: "dist/artifacts"
 
-    - name: Notification
-      uses: gitthermal/discord-notification-action@master
-      with:
-        webhook_url: ${{ secrets.DISCORD_CI_WEBHOOK }}
-        os: Linux
-        node_version: ${{ matrix.node_version }}
-        workflow_name: CI
-
-
+      - name: Notification
+        uses: gitthermal/discord-notification-action@master
+        with:
+          webhook_url: ${{ secrets.DISCORD_CI_WEBHOOK }}
+          os: Linux
+          node_version: ${{ matrix.node_version }}
+          workflow_name: CI
