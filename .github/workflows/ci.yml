@@ -27,6 +27,15 @@ jobs:
     - name: Install packages
       run: npm install
 
+    - name: Cache
+      run: |
+        cd ~/
+        echo "~/ directory"
+        ls
+        cd .npm
+        echo ".npm directory"
+        ls
+
     - name: Run build
       run: npm run build:linux
 
