@@ -24,23 +24,18 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Install packages
-        run: npm install
-
       - name: Cache
+        uses: actions/cache@v1
         id: cache-package
-        run: |
-          echo "Root list"
-          ls
-          cd ~/
-          echo "~/ directory"
-          ls
-          cd .npm
-          echo ".npm directory"
-          ls
-          cd _cacache
-          echo "_cacache directory"
-          ls
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install packages
+        if: steps.cache-package.outputs.cache-hit != 'true'
+        run: npm install
 
       - name: Run build
         run: npm run build:linux
