@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache@v1
         id: cache-package
         with:
-          path: ~/.npm
+          path: yarn cache dir
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node-
