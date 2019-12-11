@@ -49,11 +49,3 @@ jobs:
         with:
           name: "linux-${{ matrix.node_version }}"
           path: "dist/artifacts"
-
-      - name: Notification
-        uses: gitthermal/discord-notification-action@master
-        with:
-          webhook_url: ${{ secrets.DISCORD_CI_WEBHOOK }}
-          os: Linux
-          node_version: ${{ matrix.node_version }}
-          workflow_name: CI
