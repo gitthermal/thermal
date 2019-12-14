@@ -7,6 +7,7 @@ const state = {
 		}
 	},
 	experimental: {
+		autoInit: false,
 		fileChanges: true,
 		quickFilePreview: false
 	}
@@ -35,6 +36,9 @@ const mutations = {
 	},
 	authorImage(state, payload) {
 		state.profile.author.imageUrl = payload.image;
+	},
+	toggleAutoInit(state, payload) {
+		state.experimental.autoInit = payload.autoInit;
 	},
 	toggleFileChanges(state, payload) {
 		state.experimental.fileChanges = payload.fileChanges;
@@ -67,6 +71,15 @@ const actions = {
 		commit({
 			type: "authorImage",
 			image: payload.image
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
+	updateAutoInit: ({ commit }, payload) => {
+		commit({
+			type: "toggleAutoInit",
+			fileChanges: payload.autoInit
 		});
 		commit({
 			type: "setSettings"

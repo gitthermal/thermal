@@ -13,6 +13,23 @@
 				class="settings__section__group__item"
 			>
 				<div>
+					<h6>Auto init</h6>
+					<p>
+						Automatically initalize a non-git repository.
+					</p>
+				</div>
+				<toggle-button
+					v-model="toggleAutoInit"
+					color="#00adb5"
+					class="ml-auto"
+				/>
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="row"
+				align-items="center"
+				class="settings__section__group__item"
+			>
+				<div>
 					<h6>File changes</h6>
 					<p>
 						Preview additions and deletion in file from commit history,
@@ -58,6 +75,17 @@ export default {
 		ToggleButton
 	},
 	computed: {
+		toggleAutoInit: {
+			get: function() {
+				return this.$store.state.settings.experimental.autoInit;
+			},
+			set: function(value) {
+				this.$store.dispatch({
+					type: "settings/updateAutoInit",
+					autoInit: value
+				});
+			}
+		},
 		toggleFileChanges: {
 			get: function() {
 				return this.$store.state.settings.experimental.fileChanges;
