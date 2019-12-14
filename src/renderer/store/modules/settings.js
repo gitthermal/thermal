@@ -19,12 +19,10 @@ const getters = {
 
 const mutations = {
 	getSettingsList(state) {
-		if (localStorage.getItem("settings")) {
-			state.profile = JSON.parse(localStorage.getItem("settings")).profile;
-			state.experimental = JSON.parse(
-				localStorage.getItem("settings")
-			).experimental;
-		}
+		state.profile = JSON.parse(localStorage.getItem("settings")).profile;
+		state.experimental = JSON.parse(
+			localStorage.getItem("settings")
+		).experimental;
 	},
 	setSettings(state) {
 		localStorage.setItem("settings", JSON.stringify(state));
