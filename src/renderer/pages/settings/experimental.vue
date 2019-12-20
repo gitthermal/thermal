@@ -80,10 +80,7 @@ export default {
 				return this.$store.state.settings.experimental.autoInit;
 			},
 			set: function(value) {
-				this.$store.dispatch({
-					type: "settings/updateAutoInit",
-					autoInit: value
-				});
+				this.$store.dispatch("settings/updateAutoInit", value);
 			}
 		},
 		toggleFileChanges: {
@@ -91,10 +88,7 @@ export default {
 				return this.$store.state.settings.experimental.fileChanges;
 			},
 			set: function(value) {
-				this.$store.dispatch({
-					type: "settings/updateFileChanges",
-					fileChanges: value
-				});
+				this.$store.dispatch("settings/updateFileChanges", value);
 			}
 		},
 		toggleQuickFilePreview: {
@@ -102,10 +96,7 @@ export default {
 				return this.$store.state.settings.experimental.quickFilePreview;
 			},
 			set: function(value) {
-				this.$store.dispatch({
-					type: "settings/updateQuickFilePreview",
-					quickFilePreview: value
-				});
+				this.$store.dispatch("settings/updateQuickFilePreview", value);
 			}
 		}
 	},

@@ -79,7 +79,7 @@ const actions = {
 	updateAutoInit: ({ commit }, payload) => {
 		commit({
 			type: "toggleAutoInit",
-			fileChanges: payload.autoInit
+			fileChanges: payload
 		});
 		commit({
 			type: "setSettings"
@@ -88,7 +88,7 @@ const actions = {
 	updateFileChanges: ({ commit }, payload) => {
 		commit({
 			type: "toggleFileChanges",
-			fileChanges: payload.fileChanges
+			fileChanges: payload
 		});
 		commit({
 			type: "setSettings"
@@ -97,7 +97,7 @@ const actions = {
 	updateQuickFilePreview: ({ commit }, payload) => {
 		commit({
 			type: "toggleQuickFilePreview",
-			quickFilePreview: payload.quickFilePreview
+			quickFilePreview: payload
 		});
 		commit({
 			type: "setSettings"
