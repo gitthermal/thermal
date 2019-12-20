@@ -7,6 +7,7 @@ const state = {
 		}
 	},
 	experimental: {
+		autoInit: false,
 		fileChanges: true,
 		quickFilePreview: false
 	}
@@ -19,15 +20,15 @@ const getters = {
 
 const mutations = {
 	getSettingsList(state) {
-		if (localStorage.getItem("settings")) {
-			state.profile = JSON.parse(localStorage.getItem("settings")).profile;
-			state.experimental = JSON.parse(
-				localStorage.getItem("settings")
-			).experimental;
-		}
+		state.profile = JSON.parse(localStorage.getItem("settings")).profile;
+		state.experimental = JSON.parse(
+			localStorage.getItem("settings")
+		).experimental;
 	},
 	setSettings(state) {
+		console.log('Running set settings.')
 		localStorage.setItem("settings", JSON.stringify(state));
+		console.log(state)
 	},
 	authorName(state, payload) {
 		state.profile.author.name = payload.name;
@@ -37,6 +38,9 @@ const mutations = {
 	},
 	authorImage(state, payload) {
 		state.profile.author.imageUrl = payload.image;
+	},
+	toggleAutoInit(state, payload) {
+		state.experimental.autoInit = payload.autoInit;
 	},
 	toggleFileChanges(state, payload) {
 		state.experimental.fileChanges = payload.fileChanges;
@@ -74,10 +78,19 @@ const actions = {
 			type: "setSettings"
 		});
 	},
+	updateAutoInit: ({ commit }, payload) => {
+		commit({
+			type: "toggleAutoInit",
+			autoInit: payload
+		});
+		commit({
+			type: "setSettings"
+		});
+	},
 	updateFileChanges: ({ commit }, payload) => {
 		commit({
 			type: "toggleFileChanges",
-			fileChanges: payload.fileChanges
+			fileChanges: payload
 		});
 		commit({
 			type: "setSettings"
@@ -86,7 +99,7 @@ const actions = {
 	updateQuickFilePreview: ({ commit }, payload) => {
 		commit({
 			type: "toggleQuickFilePreview",
-			quickFilePreview: payload.quickFilePreview
+			quickFilePreview: payload
 		});
 		commit({
 			type: "setSettings"
