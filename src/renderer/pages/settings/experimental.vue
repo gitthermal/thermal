@@ -15,7 +15,7 @@
 				<div>
 					<h6>Auto init</h6>
 					<p>
-						Automatically initalize a non-git repository.
+						Automatically initialize a non-git repository.
 					</p>
 				</div>
 				<toggle-button
