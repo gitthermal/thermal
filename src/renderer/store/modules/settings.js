@@ -26,7 +26,9 @@ const mutations = {
 		).experimental;
 	},
 	setSettings(state) {
+		console.log('Running set settings.')
 		localStorage.setItem("settings", JSON.stringify(state));
+		console.log(state)
 	},
 	authorName(state, payload) {
 		state.profile.author.name = payload.name;
@@ -79,7 +81,7 @@ const actions = {
 	updateAutoInit: ({ commit }, payload) => {
 		commit({
 			type: "toggleAutoInit",
-			fileChanges: payload
+			autoInit: payload
 		});
 		commit({
 			type: "setSettings"
