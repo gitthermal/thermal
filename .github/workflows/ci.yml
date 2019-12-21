@@ -50,3 +50,71 @@ jobs:
         with:
           name: "linux-${{ matrix.node_version }}"
           path: "dist/artifacts"
+
+  windows:
+    name: Windows build on node ${{ matrix.node_version }}
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x]
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set Node.js version ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install packages
+        run: npm install
+
+      - name: Run build
+        run: npm run build:window
+
+      - name: Moving build to artifacts directory
+        run: bash ./scripts/move-files.sh $OS_NAME
+        env:
+          OS_NAME: window
+
+      - name: Upload window build artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: "window-${{ matrix.node_version }}"
+          path: "dist/artifacts"
+
+  mac:
+    name: Mac build on node ${{ matrix.node_version }}
+    runs-on: macOS-latest
+    strategy:
+      matrix:
+        node_version: [8.x, 10.x]
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Set Node.js version ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Install packages
+        run: npm install
+
+      - name: Run build
+        run: npm run build:mac
+
+      - name: Moving build to artifacts directory
+        run: bash ./scripts/move-files.sh $OS_NAME
+        env:
+          OS_NAME: mac
+
+      - name: Upload mac build artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: "mac-${{ matrix.node_version }}"
+          path: "dist/artifacts"
