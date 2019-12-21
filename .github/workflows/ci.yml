@@ -41,7 +41,9 @@ jobs:
         run: npm run build:linux
 
       - name: Moving build to artifacts directory
-        run: bash ./scripts/move-files.sh linux
+        run: bash ./scripts/move-files.sh $OS_NAME
+        env:
+          OS_NAME: linux
 
       - name: Upload linux build artifacts
         uses: actions/upload-artifact@v1
