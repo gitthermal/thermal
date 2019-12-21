@@ -24,15 +24,14 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Cache
-        uses: actions/cache@v1
-        id: cache-package
-        with:
-          path: yarn cache dir
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
+      # - name: Cache
+      #   uses: actions/cache@v1
+      #   id: cache-package
+      #   with:
+      #     path: yarn cache dir
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
       - name: Install packages
         if: steps.cache-package.outputs.cache-hit != 'true'
