@@ -2,8 +2,8 @@ import git from "simple-git/promise";
 import * as Sentry from "@sentry/electron";
 import gitCommand from "../mixins/commands";
 
-const log = async (repository, params) => {
-	const data = await git(repository.path).log(params);
+const log = async (path, params) => {
+	const data = await git(path).log(params);
 	try {
 		let command = !!params === true ? params.join(" ") : "";
 		gitCommand("log", command);

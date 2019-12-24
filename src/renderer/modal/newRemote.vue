@@ -42,6 +42,7 @@ import TButton from "../components/TButton/TButton";
 
 // mixins
 import closeModalMixin from "../mixins/closeModal";
+import repositoryDataMixin from "../mixins/repositoryData";
 
 import git from "simple-git/promise";
 
@@ -64,34 +65,27 @@ export default {
 			}
 		}
 	},
-	mixins: [closeModalMixin],
+	mixins: [closeModalMixin, repositoryDataMixin],
 	data() {
 		return {
 			remoteUrl: ""
 		};
 	},
-	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		}
-	},
 	methods: {
 		async addRemoteUrl() {
-			let status = await git(this.currentRepository.path).status();
 			console.mesinfosage("Pushing changes...");
-			await git(this.currentRepository.path).push([
+			let status = await git(this.repositoryData.path).status();
+			await git(this.repositoryData.path).push([
 				this.remoteUrl,
 				status.current
 			]);
 			try {
-				await git(this.currentRepository.path).addRemote(
-					"origin",
-					this.remoteUrl
-				);
+				await git(this.repositoryData.path).addRemote("origin", this.remoteUrl);
 				console.info("Adding remote url to origin");
 				this.$store.commit({
 					type: "repository/localRepositoryRemote",
-					remote: this.remoteUrl
+					remote: this.remoteUrl,
+					projectId: this.$route.params.projectId
 				});
 				this.closeModal("NewRemote");
 			} catch (error) {
