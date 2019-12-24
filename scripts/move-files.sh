@@ -19,7 +19,7 @@ printf "\n"
 
 # moving content to artifacts directory
 echo Moving content to $directoryName directory
-mv --verbose ./dist/thermal-$1* --target-directory ./dist/$directoryName
+mv --verbose ./dist/thermal-$1* ./dist/$directoryName
 
 # list artifacts directory content
 bash ./scripts/print-directory-content.sh $directoryName ./dist/$directoryName
