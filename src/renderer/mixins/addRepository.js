@@ -68,7 +68,10 @@ export default {
 		// validate git repository
 		async isGitRepo(path) {
 			try {
-				let repository = await nodegit.Repository.open(path);
+				let repository;
+				try {
+					repository = await nodegit.Repository.open(path);
+				} catch (_) {}
 				let autoInitFeature = this.$store.getters["settings/getExperimental"]
 					.autoInit;
 				if (!repository && autoInitFeature) {
