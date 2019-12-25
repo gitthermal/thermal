@@ -113,7 +113,11 @@ export default {
 		}
 	},
 	beforeCreate() {
-		this.$store.commit("settings/getSettingsList");
+		if (localStorage.getItem("settings")) {
+			this.$store.commit("settings/getSettingsList");
+		} else {
+			this.$store.commit("settings/setSettings");
+		}
 	},
 	mounted() {
 		this.queryAllRepository();

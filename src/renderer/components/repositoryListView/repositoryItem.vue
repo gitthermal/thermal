@@ -21,6 +21,7 @@
 			v-if="!isGit"
 			margin-left="auto"
 			class="t-button__primary-warning"
+			@click.native="initialize(directoryPath)"
 		>
 			Initialize
 		</t-button>
@@ -44,6 +45,9 @@ import TButton from "../TButton/TButton";
 import fileIcon from "../icon/file";
 import settingsIcon from "../icon/settings";
 import closeModal from "../../mixins/closeModal";
+
+import gitInit from "../../git/init";
+import database from "../../../database";
 
 export default {
 	name: "RepositoryItem",
@@ -99,6 +103,19 @@ export default {
 				}
 			});
 			this.closeModal("SwitchRepository");
+		},
+		async initialize(path) {
+			await gitInit({ path });
+			database.run(`
+				UPDATE gitRepository
+				SET isGit = TRUE
+				WHERE repositoryId = $repositoryId
+			`, { $repositoryId: this.repositoryId },
+				(err, data) => {
+					if (err) console.log(err);
+					else this.isGit = 1;
+				}
+			);
 		}
 	}
 };
