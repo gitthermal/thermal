@@ -3,6 +3,7 @@ import nodegit from "nodegit";
 // mixins
 import queryAllRepository from "./queryAllRepository";
 import { getRemoteUrl } from "../git/remote";
+import gitInit from "../git/init";
 
 // database
 import database from "../../database";
@@ -66,8 +67,13 @@ export default {
 
 		// validate git repository
 		async isGitRepo(path) {
-			let repository = await nodegit.Repository.open(path);
 			try {
+				let repository = await nodegit.Repository.open(path);
+				let autoInitFeature = this.$store.getters["settings/getExperimental"]
+					.autoInit;
+				if (!repository && autoInitFeature) {
+					gitInit({ path });
+				}
 				this.newRepository.isGitRepo = !!repository;
 			} catch (error) {
 				console.log(error);
