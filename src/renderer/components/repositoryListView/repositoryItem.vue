@@ -106,11 +106,13 @@ export default {
 		},
 		async initialize(path) {
 			await gitInit({ path });
-			database.run(`
+			database.run(
+				`
 				UPDATE gitRepository
 				SET isGit = TRUE
 				WHERE repositoryId = $repositoryId
-			`, { $repositoryId: this.repositoryId },
+			`,
+				{ $repositoryId: this.repositoryId },
 				(err, data) => {
 					if (err) console.log(err);
 					else this.isGit = 1;
