@@ -16,6 +16,7 @@
 					name="feedback message"
 					placeholder="Enter your message"
 					label="Message"
+					resize="vertical"
 				/>
 			</div>
 			<div v-show="!feedbackForm.toggle" class="model__body-thankyou">
