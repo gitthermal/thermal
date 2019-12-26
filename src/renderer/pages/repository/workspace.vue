@@ -71,6 +71,7 @@
 <script>
 import statusMixin from "../../git/status";
 import diffMixin from "../../git/diff";
+import repositoryDataMixin from "../../mixins/repositoryData";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
@@ -90,6 +91,7 @@ export default {
 		BlankSlate,
 		TFlexbox
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			commitMessageTitle: "",
@@ -103,9 +105,6 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
 		stagedFile: {
 			get() {
 				return this.$store.getters["commit/allStagedFiles"];
@@ -118,7 +117,7 @@ export default {
 			}
 		},
 		getFeatureValue() {
-			return this.currentRepository.features;
+			return this.repositoryData.features;
 		},
 		fileDiffPreview() {
 			return this.$store.state.workspace.filePreview.preview;
@@ -138,7 +137,7 @@ export default {
 	},
 	methods: {
 		gitStatus() {
-			statusMixin(this.currentRepository).then(result => {
+			statusMixin(this.repositoryData.path).then(result => {
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
 					branch: result.current
@@ -208,7 +207,7 @@ export default {
 				isActive: true
 			});
 			const params = ["HEAD", "--", `:${file.path}`];
-			diffMixin(this.currentRepository, params).then(result => {
+			diffMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
 				output.splice(0, 3);
 				this.$store.commit({

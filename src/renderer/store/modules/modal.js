@@ -1,11 +1,12 @@
 const state = {
 	addLocalRepository: false,
+	switchRepository: false,
 	newRepository: false,
 	about: false,
 	exportCommitData: false,
 	newRemote: false,
 	cloneRepository: false,
-	initalizeGitRepository: false
+	initializeGitRepository: false
 };
 
 const getters = {};
@@ -13,6 +14,9 @@ const getters = {};
 const mutations = {
 	toggleAddLocalRepositoryModal(state, status) {
 		state.addLocalRepository = status;
+	},
+	toggleSwitchRepositoryModal(state, status) {
+		state.switchRepository = status;
 	},
 	toggleAboutModal(state, status) {
 		state.about = status;
@@ -29,8 +33,8 @@ const mutations = {
 	toggleCloneRepositoryModal(state, status) {
 		state.cloneRepository = status;
 	},
-	toggleInitalizeGitRepositoryModal(state, status) {
-		state.initalizeGitRepository = status;
+	toggleInitializeGitRepositoryModal(state, status) {
+		state.initializeGitRepository = status;
 	}
 };
 

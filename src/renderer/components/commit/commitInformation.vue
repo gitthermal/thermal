@@ -7,111 +7,82 @@
 			/>
 			<div>
 				<h6 class="commit__detail__author__name">
-					{{ commitInformation.author.name }}
+					{{ commitData.author.name }}
 				</h6>
 				<p class="commit__detail__author__email">
-					{{ commitInformation.author.email }}
+					{{ commitData.author.email }}
 				</p>
 			</div>
 		</t-flexbox>
 		<div class="commit__detail__summary">
 			<div class="commit__detail__summary__title">
-				{{ commitInformation.title }}
+				{{ commitData.title }}
 			</div>
 			<div
-				v-if="commitInformation.description"
+				v-if="commitData.description"
 				class="commit__detail__summary__description"
 			>
-				{{ commitInformation.description }}
+				{{ commitData.description }}
 			</div>
 		</div>
 		<div class="commit__detail__meta">
-			<div
-				v-if="commitInformation.author.name"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.author.name" class="commit__detail__meta__item">
 				Author:
 				<p>
-					{{ commitInformation.author.name }}
+					{{ commitData.author.name }}
 					<!-- eslint-disable-next-line vue/no-parsing-error -->
-					<{{ commitInformation.author.email }}>
+					<{{ commitData.author.email }}>
 				</p>
 			</div>
-			<div
-				v-if="commitInformation.author.date"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.author.date" class="commit__detail__meta__item">
 				Author Date:
-				<p>{{ commitInformation.author.date }}</p>
+				<p>{{ commitData.author.date }}</p>
 			</div>
-			<div
-				v-if="commitInformation.committer.name"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.committer.name" class="commit__detail__meta__item">
 				Committer:
 				<p>
-					{{ commitInformation.committer.name }}
+					{{ commitData.committer.name }}
 					<!-- eslint-disable-next-line vue/no-parsing-error -->
-					<{{ commitInformation.committer.email }}>
+					<{{ commitData.committer.email }}>
 				</p>
 			</div>
-			<div
-				v-if="commitInformation.committer.date"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.committer.date" class="commit__detail__meta__item">
 				Committer Date:
-				<p>{{ commitInformation.committer.date }}</p>
+				<p>{{ commitData.committer.date }}</p>
 			</div>
-			<div
-				v-if="commitInformation.meta.refs"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.meta.refs" class="commit__detail__meta__item">
 				Refs:
-				<p>{{ commitInformation.meta.refs }}</p>
+				<p>{{ commitData.meta.refs }}</p>
 			</div>
-			<div
-				v-if="commitInformation.meta.commit_hash"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitId" class="commit__detail__meta__item">
 				Commit Hash:
-				<p>{{ commitInformation.meta.commit_hash }}</p>
+				<p>{{ commitId }}</p>
 			</div>
-			<div
-				v-if="commitInformation.meta.tree_hash"
-				class="commit__detail__meta__item"
-			>
+			<div v-if="commitData.meta.tree_hash" class="commit__detail__meta__item">
 				Tree Hash:
-				<p>{{ commitInformation.meta.tree_hash }}</p>
+				<p>{{ commitData.meta.tree_hash }}</p>
 			</div>
 			<div
-				v-if="commitInformation.meta.parent_hash"
+				v-if="commitData.meta.parent_hash"
 				class="commit__detail__meta__item"
 			>
 				Parent Hash:
-				<p>{{ commitInformation.meta.parent_hash }}</p>
+				<p>{{ commitData.meta.parent_hash }}</p>
 			</div>
 		</div>
 		<div class="commit__detail__files">
 			<div class="commit__detail__files__summary">
-				Showing {{ commitInformation.files.list.length }} changed files with
-				{{
-					commitInformation.files.additions
-						? commitInformation.files.additions
-						: "0"
-				}}
+				Showing {{ commitData.files.list.length }} changed files with
+				{{ commitData.files.additions ? commitData.files.additions : "0" }}
 				additions and
-				{{
-					commitInformation.files.deletion
-						? commitInformation.files.additions
-						: "0"
-				}}
+				{{ commitData.files.deletion ? commitData.files.additions : "0" }}
 				deletion
 			</div>
 			<div
-				v-for="file in commitInformation.files.list"
+				v-for="file in commitData.files.list"
 				:key="file"
 				class="commit__detail__files__list"
-				@click="commitHistoryPreview(commitInformation.meta.commit_hash, file)"
+				@click="commitHistoryPreview(commitData.meta.commit_hash, file)"
 			>
 				{{ file }}
 			</div>
@@ -123,6 +94,7 @@
 import showMixin from "../../git/show";
 import diffMixin from "../../git/diff";
 import trimFilePathMixin from "../../mixins/trimFilePath";
+import repositoryDataMixin from "../../mixins/repositoryData";
 import TFlexbox from "../TLayouts/TFlexbox";
 
 export default {
@@ -130,42 +102,63 @@ export default {
 	components: {
 		TFlexbox
 	},
-	computed: {
-		commitInformation() {
-			return this.$store.getters["history/getCommitInformation"];
-		},
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		commitHash() {
-			return this.$store.state.history.commitInformation.meta.commit_hash;
+	mixins: [repositoryDataMixin],
+	props: {
+		commitId: {
+			type: String,
+			default: null
 		}
 	},
+	data() {
+		return {
+			commitData: {
+				title: "",
+				description: "",
+				author: {
+					name: "",
+					email: "",
+					date: ""
+				},
+				meta: {
+					tree_hash: "",
+					parent_hash: "",
+					refs: ""
+				},
+				committer: {
+					name: "",
+					email: "",
+					date: ""
+				},
+				files: {
+					additions: "",
+					deletion: "",
+					list: []
+				}
+			}
+		};
+	},
 	mounted() {
-		this.getCommitInformation();
+		this.getcommitData();
 	},
 	methods: {
-		getCommitInformation() {
-			this.getAuthorDetail(this.commitHash);
-			this.getCommitBody(this.commitHash);
-			this.getCommitMeta(this.commitHash);
-			this.getFilesDetail(this.commitHash);
+		getcommitData() {
+			this.getAuthorDetail(this.commitId);
+			this.getCommitBody(this.commitId);
+			this.getCommitMeta(this.commitId);
+			this.getFilesDetail(this.commitId);
 		},
 		getAuthorDetail(hash) {
 			const params = [hash, "--format=%an %n %ae %n %ad"];
-			showMixin(this.currentRepository, params).then(result => {
+			showMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
-				this.$store.dispatch({
-					type: "history/updateCommitInformationAuthor",
-					author_name: output[0].trim(),
-					author_email: output[1].trim(),
-					author_date: output[2].trim()
-				});
+				this.commitData.author.name = output[0].trim();
+				this.commitData.author.email = output[1].trim();
+				this.commitData.author.date = output[2].trim();
 			});
 		},
 		getCommitBody(hash) {
 			const params = [hash, "--format=%s %n << %n %b %n >>"];
-			showMixin(this.currentRepository, params).then(result => {
+			showMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
 				let title = output[0].trim();
 				let description;
@@ -185,35 +178,25 @@ export default {
 						.toString()
 						.trim();
 				}
-				this.$store.dispatch({
-					type: "history/updateCommitInformationBody",
-					title: title,
-					description: description
-				});
+				this.commitData.title = title;
+				this.commitData.description = description;
 			});
 		},
 		getCommitMeta(hash) {
-			const params = [
-				hash,
-				"--format=%cn %n %ce %n %cd %n %d %n %H %n %T %n %P"
-			];
-			showMixin(this.currentRepository, params).then(result => {
+			const params = [hash, "--format=%cn %n %ce %n %cd %n %d %n %T %n %P"];
+			showMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
-				this.$store.dispatch({
-					type: "history/updateCommitInformationMeta",
-					committer_name: output[0].trim(),
-					committer_email: output[1].trim(),
-					committer_date: output[2].trim(),
-					meta_refs: output[3].trim(),
-					commit_hash: output[4].trim(),
-					tree_hash: output[5].trim(),
-					parent_hash: output[6].trim()
-				});
+				this.commitData.committer.name = output[0].trim();
+				this.commitData.committer.email = output[1].trim();
+				this.commitData.committer.date = output[2].trim();
+				this.commitData.meta.refs = output[3].trim();
+				this.commitData.meta.tree_hash = output[4].trim();
+				this.commitData.meta.parent_hash = output[5].trim();
 			});
 		},
 		getFilesDetail(hash) {
 			const params = [hash, "--oneline", "--stat"];
-			showMixin(this.currentRepository, params).then(result => {
+			showMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
 				let additionDeletion = output[output.length - 2].split(", ");
 				additionDeletion.shift();
@@ -234,12 +217,11 @@ export default {
 					}
 				}
 
-				this.$store.dispatch({
-					type: "history/updateCommitInformationFiles",
-					files_additions: addition,
-					files_deletion: deletion,
-					files_list: trimFilePathMixin(output.slice(1, output.length - 2))
-				});
+				this.commitData.files.addition = addition;
+				this.commitData.files.deletion = deletion;
+				this.commitData.files.list = trimFilePathMixin(
+					output.slice(1, output.length - 2)
+				);
 			});
 		},
 		commitHistoryPreview(hash, path) {
@@ -249,7 +231,7 @@ export default {
 					isActive: true
 				});
 				const params = [hash + "^1", hash, "--", path];
-				diffMixin(this.currentRepository, params).then(result => {
+				diffMixin(this.repositoryData.path, params).then(result => {
 					let output = result.split("\n");
 					output.splice(0, 4);
 					this.$store.dispatch({

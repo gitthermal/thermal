@@ -1,11 +1,14 @@
 import git from "simple-git/promise";
 import * as Sentry from "@sentry/electron";
+import gitCommand from "../mixins/commands";
 
-const status = async (repository, files, message) => {
+const status = async (path, files, message) => {
 	console.log(files);
-	await git(repository.path).add(files);
-	let data = git(repository.path).commit(message);
+	await git(path).add(files);
+	let data = git(path).commit(message);
 	try {
+		let params = `${files.join(",")} -m "${message}"`;
+		gitCommand("commit", params);
 		return data;
 	} catch (error) {
 		Sentry.captureException(error);
