@@ -11,7 +11,8 @@
 		:style="{
 			...spacingProps,
 			...borderProps,
-			...fontProps
+			...fontProps,
+			resize
 		}"
 		:rows="rows"
 		:cols="cols"
@@ -81,6 +82,10 @@ export default {
 		width: {
 			type: String,
 			default: "100%"
+		},
+		resize: {
+			type: String,
+			default: "both"
 		}
 	}
 };

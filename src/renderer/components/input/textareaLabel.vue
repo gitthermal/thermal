@@ -11,6 +11,7 @@
 			:value="value"
 			:disabled="disabled"
 			:is-invalid="isInvalid"
+			:resize="resize"
 			@input="$emit('input', $event)"
 		/>
 	</div>
@@ -60,6 +61,10 @@ export default {
 		label: {
 			type: String,
 			required: true
+		},
+		resize: {
+			type: String,
+			default: "both"
 		}
 	},
 	computed: {
