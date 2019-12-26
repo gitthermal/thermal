@@ -10,13 +10,6 @@
 		</div>
 		<div class="model__section model__body ">
 			<div v-show="feedbackForm.toggle" class="model__body-content">
-				<input-text-label
-					v-model.trim="feedbackForm.name"
-					label="Name"
-					name="name"
-					placeholder="Enter your name"
-					margin-bottom=".8rem"
-				/>
 				<text-area-label
 					v-model.trim="feedbackForm.message"
 					:rows="8"
@@ -42,7 +35,6 @@
 </template>
 
 <script>
-import inputTextLabel from "../input/inputTextLabel";
 import TextAreaLabel from "../input/textareaLabel";
 import closeIcon from "../icon/close";
 import Button from "../buttons/Button";
@@ -52,14 +44,12 @@ export default {
 	name: "FeedbackForm",
 	components: {
 		closeIcon,
-		inputTextLabel,
 		TextAreaLabel,
 		Button
 	},
 	data() {
 		return {
 			feedbackForm: {
-				name: "",
 				message: "",
 				toggle: true
 			}
