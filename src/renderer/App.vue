@@ -155,7 +155,7 @@ export default {
 			this.toggleHelpWidget();
 		},
 		shareFeedback() {
-			this.$store.dispatch("model/showFeedback");
+			this.$store.commit("modal/toggleFeedbackModal", true);
 			this.toggleHelpWidget();
 		},
 		toggleHelpWidget() {
