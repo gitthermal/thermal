@@ -48,7 +48,7 @@
 		<t-card-footer>
 			<t-button
 				v-if="feedbackForm.toggle"
-				margin-left=".5rem"
+				margin-left="auto"
 				appearance="primary"
 				:disabled="!disableTweet"
 				@click.native="submitFeedback"
@@ -57,7 +57,7 @@
 			</t-button>
 			<t-button
 				v-if="!feedbackForm.toggle"
-				margin-left=".5rem"
+				margin-left="auto"
 				appearance="primary"
 				@click.native="submitFeedback"
 			>
