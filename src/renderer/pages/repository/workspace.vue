@@ -1,20 +1,28 @@
 <template>
-	<div class="workspace">
-		<div class="workspace__files">
-			<div class="workspace__repository">
-				<div class="workspace__branch d-flex align-items-center">
+	<t-flexbox flex-direction="row" :flex-grow="1">
+		<div ref="workspaceFiles" class="workspace__files">
+			<t-flexbox flex-direction="column" style="overflow: hidden;">
+				<t-flexbox
+					ref="branchName"
+					align-items="center"
+					class="workspace__branch"
+				>
 					<branchIcon />
 					<p>{{ this.$store.state.commit.activeBranch }}</p>
-				</div>
-				<VueScrollbar class="workspace__changes__scrollbar">
+				</t-flexbox>
+				<t-scrollbar
+					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
+					width="100%"
+				>
 					<fileChangesSkeleton
 						v-if="this.$store.getters['commit/allFiles'].length < 1"
 					/>
-					<div v-else class="workspace__changes">
-						<div
+					<div v-else>
+						<t-flexbox
 							v-for="file in this.$store.getters['commit/allFiles']"
 							:key="file.path"
-							class="workspace__changes__item d-flex align-items-center"
+							class="workspace__changes__item"
+							align-items="center"
 							@click="previewFileChange(file)"
 						>
 							<input
@@ -24,17 +32,15 @@
 								type="checkbox"
 								:value="file.path"
 							/>
-							<label
-								class="workspace__changes__item__path"
-								:title="file.path"
-								:for="file.path"
-							>
-								<p class="workspace__changes__item__path__name">
-									{{ filePath(file.path) }}
-								</p>
-								<p class="workspace__changes__item__path__file">
-									{{ fileName(file.path) }}
-								</p>
+							<label :title="file.path" :for="file.path">
+								<t-flexbox>
+									<p class="workspace__changes__item__path__name">
+										{{ filePath(file.path) }}
+									</p>
+									<p class="workspace__changes__item__path__file">
+										{{ fileName(file.path) }}
+									</p>
+								</t-flexbox>
 							</label>
 							<div
 								:style="'background-color: #' + fileTypeColor(file)"
@@ -42,47 +48,50 @@
 							>
 								{{ fileType(file) }}
 							</div>
-						</div>
+						</t-flexbox>
 					</div>
-				</VueScrollbar>
-			</div>
+				</t-scrollbar>
+			</t-flexbox>
 			<commitMessage
+				ref="commitMessage"
 				padding-top="10px"
 				padding-bottom="10px"
 				padding-left="10px"
 				padding-right="10px"
 			/>
 		</div>
-		<div class="workspace__preview">
-			<diffPreview
-				v-if="this.$store.state.workspace.filePreview.isActive"
-				:preview="fileDiffPreview"
-			/>
-			<div v-else>
-				No file selected.
-			</div>
-		</div>
-	</div>
+		<diffPreview
+			v-if="this.$store.state.workspace.filePreview.isActive"
+			:preview="fileDiffPreview"
+		/>
+		<blank-slate v-else />
+	</t-flexbox>
 </template>
 
 <script>
-import statusMixin from "../../mixins/git/status";
-import diffMixin from "../../mixins/git/diff";
-import VueScrollbar from "vue2-scrollbar";
+import statusMixin from "../../git/status";
+import diffMixin from "../../git/diff";
+import repositoryDataMixin from "../../mixins/repositoryData";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
 import diffPreview from "../../components/diff/diffPreview";
 import fileChangesSkeleton from "../../components/skeleton/fileChanges";
+import BlankSlate from "../../components/BlankSlate";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 
 export default {
 	name: "Workspace",
 	components: {
 		branchIcon,
-		VueScrollbar,
+		TScrollbar,
 		commitMessage,
 		diffPreview,
-		fileChangesSkeleton
+		fileChangesSkeleton,
+		BlankSlate,
+		TFlexbox
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			commitMessageTitle: "",
@@ -96,9 +105,6 @@ export default {
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
 		stagedFile: {
 			get() {
 				return this.$store.getters["commit/allStagedFiles"];
@@ -111,10 +117,18 @@ export default {
 			}
 		},
 		getFeatureValue() {
-			return this.currentRepository.features;
+			return this.repositoryData.features;
 		},
 		fileDiffPreview() {
 			return this.$store.state.workspace.filePreview.preview;
+		},
+		fileChangesSize() {
+			return (
+				this.$refs.workspaceFiles.clientHeight -
+				this.$refs.branchName.clientHeight -
+				this.$refs.commitMessage.clientHeight +
+				"px"
+			);
 		}
 	},
 	mounted() {
@@ -123,7 +137,7 @@ export default {
 	},
 	methods: {
 		gitStatus() {
-			statusMixin(this.currentRepository).then(result => {
+			statusMixin(this.repositoryData.path).then(result => {
 				this.$store.dispatch({
 					type: "commit/updateActiveBranch",
 					branch: result.current
@@ -193,7 +207,7 @@ export default {
 				isActive: true
 			});
 			const params = ["HEAD", "--", `:${file.path}`];
-			diffMixin(this.currentRepository, params).then(result => {
+			diffMixin(this.repositoryData.path, params).then(result => {
 				let output = result.split("\n");
 				output.splice(0, 3);
 				this.$store.commit({
@@ -208,9 +222,6 @@ export default {
 
 <style lang="sass">
 .workspace
-	display: flex
-	flex-direction: row
-
 	&__files
 		border-right: 1px solid #DEE0E3
 		width: 300px
@@ -219,8 +230,6 @@ export default {
 		background-color: #EFEFEF
 		padding: 10px 20px
 		border-bottom: 1px solid #DEE0E3
-		position: sticky
-		top: 0
 
 		svg
 			width: 20px
@@ -233,10 +242,6 @@ export default {
 			font-weight: 600
 
 	&__changes
-
-		&__scrollbar
-			height: calc(86vh - (41px + 102px))
-
 		&__item
 			border-bottom: 1px solid #DEE0E3
 			font-size: 12px
@@ -248,8 +253,6 @@ export default {
 				margin-right: 5px
 
 			&__path
-				display: flex
-
 				&__name
 					color: #BEBEBE
 
@@ -260,7 +263,4 @@ export default {
 
 			&:hover
 				background-color: rgba(#EFEFEF, .4)
-
-	&__preview
-		padding: 1rem
 </style>

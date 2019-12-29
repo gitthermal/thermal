@@ -1,29 +1,33 @@
 <template>
-	<div class="stats w-100">
-		<VueScrollbar class="stats__scrollbar">
-			<div class="container">
-				<div class="stats__content">
-					<div class="stats__content-group">
-						<p>Commits per day</p>
-						<ApexCharts type="area" :options="options" :series="series" />
-					</div>
+	<t-flexbox :flex-grow="1">
+		<t-scrollbar style="height: calc(100vh - (65px + 34px))" width="100%">
+			<t-container class="stats__content">
+				<div class="stats__content-group">
+					<p>Commits per day</p>
+					<ApexCharts type="area" :options="options" :series="series" />
 				</div>
-			</div>
-		</VueScrollbar>
-	</div>
+			</t-container>
+		</t-scrollbar>
+	</t-flexbox>
 </template>
 
 <script>
 import gitLog from "../../git/log";
 import ApexCharts from "vue-apexcharts";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
+import TContainer from "../../components/TLayouts/TContainer";
+import repositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
 	name: "RepositoryStats",
 	components: {
 		ApexCharts,
-		VueScrollbar
+		TScrollbar,
+		TFlexbox,
+		TContainer
 	},
+	mixins: [repositoryDataMixin],
 	data() {
 		return {
 			commitCountData: [],
@@ -44,13 +48,8 @@ export default {
 			]
 		};
 	},
-	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		}
-	},
 	created() {
-		gitLog(this.currentRepository, [
+		gitLog(this.repositoryData.path, [
 			"--date=short",
 			"--pretty=format:%ad"
 		]).then(result => {
@@ -106,9 +105,6 @@ export default {
 
 <style lang="sass">
 .stats
-	&__scrollbar
-		max-height: 86vh
-
 	&__content
 		margin-top: 2rem
 		margin-bottom: 4rem

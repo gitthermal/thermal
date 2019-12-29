@@ -26,6 +26,7 @@ module.exports = {
 		"prettier"
 	],
 	rules: {
+		"linebreak-style": [1, "unix"],
 		"prettier/prettier": [
 			1,
 			{

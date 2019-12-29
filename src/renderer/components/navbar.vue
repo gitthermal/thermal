@@ -1,58 +1,106 @@
 <template>
-	<div class="navbar">
-		<div
+	<t-flexbox class="navbar">
+		<t-flexbox
+			flex-direction="column"
+			align-items="center"
 			class="navbar__item"
-			:class="getCommitFeature"
-			@click="openCommitPage()"
+			:class="
+				!!repositoryData.features.commit ? 'cursor-pointer' : 'opacity-5 cursor'
+			"
+			@click.native="openCommitPage()"
 		>
 			<commitIcon />
 			<p>Commit</p>
-		</div>
-		<div v-if="!!getRemoteUrl" class="navbar__group" :class="getRemoteFeature">
-			<div class="navbar__item" @click="gitPull()">
+		</t-flexbox>
+		<t-flexbox
+			v-if="!!repositoryData.remote"
+			class="navbar__group"
+			:class="
+				!!repositoryData.features.remote ? 'cursor-pointer' : 'opacity-5 cursor'
+			"
+		>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="gitPull()"
+			>
 				<pullIcon />
 				<p>Pull</p>
-			</div>
-			<div class="navbar__item" @click="gitPush()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="gitPush()"
+			>
 				<pushIcon />
 				<p>Push</p>
-			</div>
-			<div class="navbar__item">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+			>
 				<fetchIcon />
 				<p>Fetch</p>
-			</div>
-		</div>
-		<div
+			</t-flexbox>
+		</t-flexbox>
+		<t-flexbox
 			v-else
+			flex-direction="column"
+			align-items="center"
 			:class="[
-				getRemoteFeature,
-				!!getRemoteUrl === false ? 'navbar__group' : ''
+				!!repositoryData.features.remote
+					? 'cursor-pointer'
+					: 'opacity-5 cursor',
+				!!repositoryData.remote === false ? 'navbar__group' : ''
 			]"
 			class="navbar__item"
-			@click="newRemote()"
+			@click.native="newRemote()"
 		>
 			<publishIcon />
 			<p>Publish</p>
-		</div>
-		<div class="navbar__group ml-auto">
-			<div class="navbar__item" @click="openTerminal()">
+		</t-flexbox>
+		<t-flexbox class="navbar__group ml-auto">
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openTerminal()"
+			>
 				<terminalIcon />
 				<p>Terminal</p>
-			</div>
-			<div class="navbar__item" @click="openFileExplorer()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openFileExplorer()"
+			>
 				<folderIcon />
 				<p>Explorer</p>
-			</div>
-			<div class="navbar__item" @click="openRepositorySettings()">
+			</t-flexbox>
+			<t-flexbox
+				flex-direction="column"
+				align-items="center"
+				class="navbar__item"
+				@click.native="openRepositorySettings()"
+			>
 				<settingsIcon />
 				<p>Settings</p>
-			</div>
-		</div>
-		<div class="navbar__item" @click="switchRepository()">
+			</t-flexbox>
+		</t-flexbox>
+		<t-flexbox
+			flex-direction="column"
+			align-items="center"
+			class="navbar__item"
+			@click.native="switchRepository()"
+		>
 			<switchRepositoryIcon />
 			<p>Switch repo</p>
-		</div>
-	</div>
+		</t-flexbox>
+	</t-flexbox>
 </template>
 
 <script>
@@ -66,6 +114,8 @@ import terminalIcon from "./icon/terminal";
 import folderIcon from "./icon/folder";
 import settingsIcon from "./icon/settings";
 import switchRepositoryIcon from "./icon/switch";
+import TFlexbox from "../components/TLayouts/TFlexbox";
+import repositoryDataMixin from "../mixins/repositoryData";
 const { shell } = require("electron");
 const childProcess = require("child_process");
 
@@ -80,41 +130,27 @@ export default {
 		terminalIcon,
 		folderIcon,
 		settingsIcon,
-		switchRepositoryIcon
+		switchRepositoryIcon,
+		TFlexbox
 	},
-	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		getRemoteUrl() {
-			return this.currentRepository.remote;
-		},
-		getCommitFeature() {
-			if (!this.currentRepository.features.commit) {
-				return "opacity-5 cursor";
-			} else {
-				return "cursor-pointer";
-			}
-		},
-		getRemoteFeature() {
-			if (!this.currentRepository.features.remote) {
-				return "opacity-5 cursor";
-			} else {
-				return "cursor-pointer";
-			}
-		}
-	},
+	mixins: [repositoryDataMixin],
 	methods: {
 		openCommitPage(event) {
-			if (this.currentRepository.features.commit) {
-				this.$router.push({ name: "repositoryWorkspace" });
+			if (this.repositoryData.features.commit) {
+				this.$router.push({
+					name: "projectWorkspace",
+					params: {
+						projectId: this.$router.params.projectId,
+						branchName: this.$router.params.branchName
+					}
+				});
 			} else {
 				event.preventDefault();
 			}
 		},
 		async gitPull(event) {
-			if (this.currentRepository.features.remote) {
-				let pull = await git(this.currentRepository.path).pull();
+			if (this.repositoryData.features.remote) {
+				let pull = await git(this.repositoryData.path).pull();
 				try {
 					console.log(pull);
 				} catch (error) {
@@ -125,10 +161,10 @@ export default {
 			}
 		},
 		async gitPush(event) {
-			if (this.currentRepository.features.remote) {
-				let activeBranch = this.$store.state.commit.activeBranch;
-				await git(this.currentRepository.path).push([
-					this.currentRepository.remote,
+			if (this.repositoryData.features.remote) {
+				let activeBranch = this.$route.params.branchName;
+				await git(this.repositoryData.path).push([
+					this.repositoryData.remote,
 					activeBranch
 				]);
 				try {
@@ -141,32 +177,29 @@ export default {
 			}
 		},
 		newRemote(event) {
-			if (this.currentRepository.features.remote) {
-				this.$store.dispatch("model/showNewRemote");
+			if (this.repositoryData.features.remote) {
+				this.$store.commit("modal/toggleNewRemoteModal", true);
 			} else {
 				event.preventDefault();
 			}
 		},
 		openTerminal() {
-			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
+			childProcess.exec("start cmd", { cwd: this.repositoryData.path });
 		},
 		openFileExplorer() {
-			shell.openItem(this.currentRepository.path);
+			shell.openItem(this.repositoryData.path);
 		},
 		openRepositorySettings() {
-			this.$router.push({ name: "repositorySettings" });
+			this.$router.push({
+				name: "projectSettings",
+				params: {
+					projectId: this.$route.params.projectId,
+					branchName: this.$route.params.branchName
+				}
+			});
 		},
 		switchRepository() {
-			this.$store.dispatch("workspace/switchWorkspaceRepository");
-			this.$router.push({ name: "welcome" });
-			this.$store.commit({
-				type: "history/updateLogs",
-				logs: []
-			});
-			this.$store.commit({
-				type: "commit/files",
-				files: []
-			});
+			this.$store.commit("modal/toggleSwitchRepositoryModal", true);
 		}
 	}
 };
@@ -177,12 +210,10 @@ export default {
 	background-color: #EFEFEF
 	border-bottom: 1px solid #DEE0E3
 	padding: 12px 20px
-	z-index: 8
+	z-index: 2
 	position: relative
 
 	&__item
-		flex-direction: column
-		align-items: center
 		user-select: none
 
 		&:hover
@@ -205,7 +236,4 @@ export default {
 		.navbar__item
 			&:not(:last-child)
 				margin-right: 15px
-
-.navbar, .navbar__item, .navbar__group
-	display: flex
 </style>

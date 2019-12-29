@@ -1,7 +1,7 @@
 <template>
-	<div class="repository__settings w-100">
-		<VueScrollbar class="repository__settings__scrollbar">
-			<div class="repository__settings__content container">
+	<t-flexbox :flex-grow="1">
+		<t-scrollbar height="86vh" width="100%">
+			<t-container style="padding: 20px">
 				<div class="repository__settings__content__header">
 					<h4>Settings</h4>
 					<p>Your local repository settings</p>
@@ -10,24 +10,24 @@
 				<div>
 					<div class="settings__section">
 						<inputTextLabel
-							v-model="repositoryName"
+							v-model="settings.repositoryName"
 							name="repositoryName"
 							label="Name"
 							placeholder="Repository name"
 							class="settings__input"
 						/>
 						<inputTextLabel
-							v-model="repositoryPath"
-							name="repositoryPath"
+							v-model="settings.directoryPath"
+							name="directoryPath"
 							label="Directory path"
 							placeholder="Path"
 							:disabled="true"
 							class="settings__input"
 						/>
 						<inputTextLabel
-							v-model="repositoryRemoteUrl"
+							v-model="settings.remoteUrl"
 							name="repositoryRemoteUrl"
-							label="Remote URL"
+							label="Origin / Remote URL"
 							placeholder="Path"
 							:disabled="true"
 							class="settings__input"
@@ -36,116 +36,208 @@
 					<div class="settings__section">
 						<h4>Features</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Commit</h6>
 									<p>Enable/disable commits for this repository</p>
 								</div>
 								<toggle-button
-									v-model="toggleCommit"
+									v-model="commitFeature"
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
-							<div class="settings__section__group__item">
+							</t-flexbox>
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remote</h6>
 									<p>Pull, push and fetch</p>
 								</div>
 								<toggle-button
-									v-model="toggleRemote"
+									v-model="remoteFeature"
 									color="#00adb5"
 									class="ml-auto"
 								/>
-							</div>
+							</t-flexbox>
 						</div>
 					</div>
 					<div class="settings__section">
 						<h4>Danger Zone</h4>
 						<div class="settings__section__group">
-							<div class="settings__section__group__item">
+							<t-flexbox
+								flex-direction="row"
+								align-items="center"
+								class="settings__section__group__item"
+							>
 								<div>
 									<h6>Remove this repository</h6>
 									<p>You can add it again</p>
 								</div>
-								<Button
+								<t-button
 									margin-left="auto"
-									appearance="outline"
-									type="danger"
-									text="Remove"
+									:outline="true"
+									:danger="true"
 									@click.native="removeCurrentRepository()"
-								/>
-							</div>
+								>
+									Remove
+								</t-button>
+							</t-flexbox>
 						</div>
 					</div>
+
+					<t-button @click.native="saveSettings()">
+						Save
+					</t-button>
 				</div>
-			</div>
-		</VueScrollbar>
-	</div>
+			</t-container>
+		</t-scrollbar>
+	</t-flexbox>
 </template>
 
 <script>
 import inputTextLabel from "../../components/input/inputTextLabel";
-import Button from "../../components/buttons/Button";
+import TButton from "../../components/TButton/TButton";
 import { ToggleButton } from "vue-js-toggle-button";
-import VueScrollbar from "vue2-scrollbar";
+import TScrollbar from "../../components/TLayouts/TScrollbar";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
+import TContainer from "../../components/TLayouts/TContainer";
+
+// mixins
+import queryAllRepository from "../../mixins/queryAllRepository";
+import RepositoryDataMixin from "../../mixins/repositoryData";
+import database from "../../../database";
 
 export default {
 	name: "RepositorySettings",
 	components: {
 		inputTextLabel,
-		Button,
+		TButton,
 		ToggleButton,
-		VueScrollbar
+		TScrollbar,
+		TFlexbox,
+		TContainer
+	},
+	mixins: [RepositoryDataMixin, queryAllRepository],
+	data() {
+		return {
+			settings: {}
+		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		repositoryName: {
+		commitFeature: {
 			get: function() {
-				return this.currentRepository.name;
+				return !!+this.settings.commitFeature;
 			},
 			set: function(value) {
-				this.$store.commit({
-					type: "repository/editLocalRepositoryName",
-					name: value
-				});
+				this.settings.commitFeature = value ? 1 : 0;
 			}
 		},
-		repositoryPath() {
-			return this.currentRepository.path;
-		},
-		toggleCommit: {
+		remoteFeature: {
 			get: function() {
-				return this.currentRepository.features.commit;
+				return !!+this.settings.remoteFeature;
 			},
 			set: function(value) {
-				this.$store.commit({
-					type: "repository/toggleCommitFeature",
-					commits: value
-				});
+				this.settings.remoteFeature = value ? 1 : 0;
 			}
-		},
-		toggleRemote: {
-			get: function() {
-				return this.currentRepository.features.remote;
-			},
-			set: function(value) {
-				this.$store.commit({
-					type: "repository/toggleRemoteFeature",
-					remotes: value
-				});
-			}
-		},
-		repositoryRemoteUrl() {
-			return this.currentRepository.remote;
 		}
+	},
+	mounted() {
+		database.all(
+			`SELECT
+				repository.repositoryId,
+				repository.directoryPath,
+				repositorySettings.repositoryName,
+				repositorySettings.description,
+				repositorySettings.commitFeature,
+				repositorySettings.remoteFeature,
+				gitRepository.remoteUrl
+			FROM repositorySettings
+			INNER JOIN repository USING(repositoryId)
+			INNER JOIN gitRepository USING(repositoryId)
+			WHERE repositoryId IS $repositoryId`,
+			{
+				$repositoryId: this.$route.params.projectId
+			},
+			(err, data) => {
+				if (err) console.log(err);
+				else {
+					console.log(data);
+					this.settings = data[0];
+				}
+			}
+		);
 	},
 	methods: {
 		removeCurrentRepository() {
-			this.$store.commit("repository/removeLocalRepository");
+			this.removeRepoFromSettingsTable();
+
 			this.$router.push({ name: "welcome" });
+		},
+		removeRepoFromSettingsTable() {
+			// remove repository from repository settings table
+			database.run(
+				`DELETE FROM repositorySettings WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else this.removeRepoFromGitTable();
+				}
+			);
+		},
+		removeRepoFromGitTable() {
+			// remove repository from git repository table
+			database.run(
+				`DELETE FROM gitRepository WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else this.removeRepoFromRepositoryTable();
+				}
+			);
+		},
+		removeRepoFromRepositoryTable() {
+			// remove repository from main table
+			database.run(
+				`DELETE FROM repository WHERE repositoryId IS $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId
+				},
+				(err, data) => {
+					if (err) console.log(err);
+					else this.queryAllRepository();
+				}
+			);
+		},
+		saveSettings() {
+			database.run(
+				`UPDATE repositorySettings SET
+					repositoryName = $repositoryName,
+					description = $description,
+					commitFeature = $commitFeature,
+					remoteFeature = $remoteFeature
+				WHERE repositoryId = $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId,
+					$repositoryName: this.settings.repositoryName,
+					$description: this.settings.description,
+					$commitFeature: this.settings.commitFeature,
+					$remoteFeature: this.settings.remoteFeature
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
 		}
 	}
 };
@@ -153,15 +245,8 @@ export default {
 
 <style lang="sass">
 .repository
-
 	&__settings
-
-		&__scrollbar
-			max-height: 86vh
-
 		&__content
-			padding: 20px
-
 			&__header
 				margin-bottom: 1rem
 

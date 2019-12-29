@@ -1,6 +1,6 @@
 <template>
 	<div
-		v-show="getFeatureValue.commit"
+		v-show="repositoryData.features.commit"
 		:style="{
 			...spacingProps,
 			borderTop: '1px solid #DEE0E3'
@@ -12,41 +12,36 @@
 			placeholder="Summary (required)"
 			margin-bottom="15px"
 		/>
-		<Button
-			:text="'Commit to ' + this.$store.state.commit.activeBranch"
+		<t-button
 			width="100%"
-			appearance="primary"
 			:disabled="!stagedFileLength > 0"
 			@click.native="commitMessageButton()"
-		/>
+		>
+			Commit to <strong>{{ $store.state.commit.activeBranch }}</strong>
+		</t-button>
 	</div>
 </template>
 
 <script>
 import inputText from "../input/inputText";
-import Button from "../buttons/Button";
-import commitMixin from "../../mixins/git/commit";
+import TButton from "../TButton/TButton";
+import commitMixin from "../../git/commit";
 import spacingProps from "../../mixins/spacingProps";
+import repositoryDataMixin from "../../mixins/repositoryData";
 
 export default {
-	name: "CommitMessage",
+	name: "CommitMessageBox",
 	components: {
 		inputText,
-		Button
+		TButton
 	},
-	mixins: [spacingProps],
+	mixins: [repositoryDataMixin, spacingProps],
 	data() {
 		return {
 			commitMessageTitle: ""
 		};
 	},
 	computed: {
-		currentRepository() {
-			return this.$store.getters["workspace/currentRepository"];
-		},
-		getFeatureValue() {
-			return this.currentRepository.features;
-		},
 		stagedFileLength() {
 			return this.$store.state.commit.staged.length;
 		}
@@ -54,7 +49,7 @@ export default {
 	methods: {
 		commitMessageButton() {
 			commitMixin(
-				this.currentRepository,
+				this.repositoryData.path,
 				this.$store.getters["commit/allStagedFiles"],
 				this.commitMessageTitle
 			).then(result => {
