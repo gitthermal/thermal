@@ -1,15 +1,11 @@
 <template>
-	<div v-show="this.$store.state.model.model.feedback" class="model--small">
-		<div class="model__section model__header">
-			<h6 class="model__header__title">
-				Share feedback
-			</h6>
-			<div class="model__header__close" @click="closeModel">
-				<close-icon />
-			</div>
-		</div>
-		<div class="model__section model__body ">
-			<div v-show="feedbackForm.toggle" class="model__body-content">
+	<t-card width="small">
+		<t-card-header>
+			<t-card-header-heading heading="Share feedback" />
+			<t-card-header-close modal-name="Feedback" />
+		</t-card-header>
+		<t-card-body>
+			<div v-show="feedbackForm.toggle" style="width: 100%;">
 				<div>
 					<h6>How was your experience?</h6>
 					<div class="feedback__icons-container">
@@ -48,38 +44,39 @@
 			<div v-show="!feedbackForm.toggle" class="model__body-thankyou">
 				Thank you for sharing the feedback :)
 			</div>
-		</div>
-		<div class="model__section model__footer">
-			<Button
-				text="Cancel"
-				margin-left="auto"
-				appearance="outline"
-				@click.native="closeModel"
-			/>
-			<Button
+		</t-card-body>
+		<t-card-footer>
+			<t-button
 				v-if="feedbackForm.toggle"
 				margin-left=".5rem"
 				appearance="primary"
-				text="Tweet"
 				:disabled="!disableTweet"
 				@click.native="submitFeedback"
-			/>
-			<Button
+			>
+				Tweet
+			</t-button>
+			<t-button
 				v-if="!feedbackForm.toggle"
 				margin-left=".5rem"
 				appearance="primary"
-				text="Close"
 				@click.native="submitFeedback"
-			/>
-		</div>
-	</div>
+			>
+				Close
+			</t-button>
+		</t-card-footer>
+	</t-card>
 </template>
 
 <script>
 // components
+import TCard from "../components/TCard/TCard";
+import TCardHeader from "../components/TCard/TCardHeader";
+import TCardHeaderHeading from "../components/TCard/TCardHeaderHeading";
+import TCardHeaderClose from "../components/TCard/TCardHeaderClose";
+import TCardBody from "../components/TCard/TCardBody";
+import TCardFooter from "../components/TCard/TCardFooter";
 import TextAreaLabel from "../components/input/textareaLabel";
-import closeIcon from "../components/icon/close";
-import Button from "../components/TButton/TButton";
+import TButton from "../components/TButton/TButton";
 
 // icons
 import SmileIcon from "../components/icon/smile";
@@ -91,9 +88,14 @@ const { shell } = require("electron");
 export default {
 	name: "FeedbackForm",
 	components: {
-		closeIcon,
+		TCard,
+		TCardHeader,
+		TCardHeaderHeading,
+		TCardHeaderClose,
+		TCardBody,
+		TCardFooter,
 		TextAreaLabel,
-		Button,
+		TButton,
 		SmileIcon,
 		FrownIcon
 	},
@@ -124,9 +126,6 @@ export default {
 		}
 	},
 	methods: {
-		closeModel() {
-			this.$store.dispatch("model/showFeedback");
-		},
 		submitFeedback(event) {
 			if (this.disableTweet) {
 				let tweetUrl = new URL("https://twitter.com/intent/tweet");
@@ -150,11 +149,6 @@ export default {
 </script>
 
 <style lang="sass">
-.model__body-content
-	display: flex
-	flex-direction: column
-	width: 100%
-
 .feedback__icons-container
 	display: flex
 	margin-bottom: 1.5rem
