@@ -56,7 +56,7 @@ import newRemote from "./modal/newRemote";
 import initializeGitRepository from "./modal/initializeGitRepository";
 import cloneRepository from "./modal/cloneRepository";
 import switchRepository from "./modal/switchRepository";
-import feedback from "./model/feedback";
+import feedback from "./modal/feedback";
 
 // help widget
 import packageJson from "../../package.json";

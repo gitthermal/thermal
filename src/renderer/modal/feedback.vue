@@ -77,13 +77,13 @@
 
 <script>
 // components
-import TextAreaLabel from "../input/textareaLabel";
-import closeIcon from "../icon/close";
-import Button from "../buttons/Button";
+import TextAreaLabel from "../components/input/textareaLabel";
+import closeIcon from "../components/icon/close";
+import Button from "../components/TButton/TButton";
 
 // icons
-import SmileIcon from "../icon/smile";
-import FrownIcon from "../icon/frown";
+import SmileIcon from "../components/icon/smile";
+import FrownIcon from "../components/icon/frown";
 
 // pachakes
 const { shell } = require("electron");
