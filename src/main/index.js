@@ -4,6 +4,7 @@ import { app, BrowserWindow } from "electron";
 import * as Sentry from "@sentry/electron";
 import packageJson from "../../package.json";
 
+const buildMenu = require("./menu");
 const CONFIG = require("./config");
 
 Sentry.init({
@@ -35,6 +36,8 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		height: CONFIG.WINDOW_DEFAULT_HEIGHT,
 		width: CONFIG.WINDOW_DEFAULT_WIDTH,
+		titleBarStyle: "hidden",
+
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -48,10 +51,15 @@ function createWindow() {
 }
 
 app.on("ready", () => {
+	if (process.platform === "darwin") {
+		buildMenu();
+	}
 	createWindow();
 });
 
 app.on("window-all-closed", () => {
+	// On OS X it is common for applications and their menu bar
+	// to stay active until the user quits explicitly with Cmd + Q
 	if (process.platform !== "darwin") {
 		app.quit();
 	}
