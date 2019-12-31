@@ -4,6 +4,8 @@ import { app, BrowserWindow } from "electron";
 import * as Sentry from "@sentry/electron";
 import packageJson from "../../package.json";
 
+const CONFIG = require("./config");
+
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
 	environment: process.env.NODE_ENV,
@@ -31,10 +33,8 @@ function createWindow() {
 	 * Initial window options
 	 */
 	mainWindow = new BrowserWindow({
-		height: 563,
-		useContentSize: true,
-		width: 1000,
-		frame: false,
+		height: CONFIG.WINDOW_DEFAULT_HEIGHT,
+		width: CONFIG.WINDOW_DEFAULT_WIDTH,
 		webPreferences: {
 			devTools: true,
 			nodeIntegration: true
