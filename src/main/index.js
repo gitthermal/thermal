@@ -36,7 +36,6 @@ function createWindow() {
 		height: CONFIG.WINDOW_DEFAULT_HEIGHT,
 		width: CONFIG.WINDOW_DEFAULT_WIDTH,
 		webPreferences: {
-			devTools: true,
 			nodeIntegration: true
 		}
 	});
