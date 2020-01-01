@@ -29,6 +29,15 @@ const winURL =
 		? "http://localhost:9080"
 		: `file://${__dirname}/index.html`;
 
+let windowOptions = {};
+
+if (process.platform === "darwin") {
+	// TODO: Use `titleBarStyle: "hidden"` with custom created TitleBar.vue component for macOS
+	windowOptions.titleBarStyle = "default";
+} else {
+	windowOptions.frame = false;
+}
+
 function createWindow() {
 	/**
 	 * Initial window options
@@ -36,7 +45,9 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		height: CONFIG.WINDOW_DEFAULT_HEIGHT,
 		width: CONFIG.WINDOW_DEFAULT_WIDTH,
-		titleBarStyle: "hidden",
+
+		// conditional data based on platform
+		...windowOptions,
 
 		webPreferences: {
 			nodeIntegration: true
