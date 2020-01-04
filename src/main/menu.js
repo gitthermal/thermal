@@ -23,7 +23,7 @@ const template = [
 			},
 			{ type: "separator" },
 			{
-				label: "Release notes",
+				label: "Release Notes",
 				click() {
 					shell.openExternal(CONFIG.GITHUB_URL_RELEASE_NOTES);
 				}
@@ -36,7 +36,7 @@ const template = [
 			},
 			{ type: "separator" },
 			{
-				label: "Check for updates...",
+				label: "Check for Updates...",
 				click() {
 					showUpdatesDialog();
 				}
@@ -53,22 +53,22 @@ const template = [
 		label: "File",
 		submenu: [
 			{
-				label: "Select repository"
+				label: "Select Repository"
 			},
 			{ type: "separator" },
 			{
-				label: "New repository"
+				label: "New Repository"
 			},
 			{ type: "separator" },
 			{
-				label: "Add local repository"
+				label: "Add Local Repository"
 			},
 			{
-				label: "Clone repository"
+				label: "Clone Repository"
 			},
 			{ type: "separator" },
 			{
-				label: "Git commands"
+				label: "Git Commands"
 			}
 		]
 	},
@@ -104,13 +104,13 @@ const template = [
 		label: "View",
 		submenu: [
 			{
-				label: "Show changes"
+				label: "Show Changes"
 			},
 			{
-				label: "Show history"
+				label: "Show History"
 			},
 			{
-				label: "Show branchs list"
+				label: "Show Branchs List"
 			},
 			{ type: "separator" },
 			{
@@ -159,24 +159,24 @@ const template = [
 			},
 			{ type: "separator" },
 			{
-				label: "Discard all changes"
+				label: "Discard All Changes"
 			},
 			{ type: "separator" },
 			{
-				label: "Compare to branch"
+				label: "Compare to Branch"
 			},
 			{
-				label: "Merge into current branch"
+				label: "Merge Into Current Branch"
 			},
 			{
-				label: "Rebase current branch"
+				label: "Rebase Current Branch"
 			},
 			{ type: "separator" },
 			{
 				label: "Compare on GitHub"
 			},
 			{
-				label: "Show pull request"
+				label: "Show Pull Request"
 			}
 		]
 	},
@@ -205,23 +205,23 @@ const template = [
 		label: "Help",
 		submenu: [
 			{
-				label: "Learn more",
+				label: "Learn More",
 				click() {
 					shell.openExternal(CONFIG.THERMAL_URL_WEBSITE);
 				}
 			},
 			{
-				label: "Show keyboard shortcuts"
+				label: "Show Keyboard sSortcuts"
 			},
 			{ type: "separator" },
 			{
-				label: "Report an issue",
+				label: "Report an Issue",
 				click() {
 					shell.openExternal(CONFIG.GITHUB_URL_ISSUES);
 				}
 			},
 			{
-				label: "Contact support",
+				label: "Contact Support",
 				click() {
 					shell.openExternal(CONFIG.DISCORD_INVITE_URL);
 				}
