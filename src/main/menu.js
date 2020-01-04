@@ -65,12 +65,54 @@ const template = [
 			},
 			{
 				label: "Clone repository"
+			},
+			{ type: "separator" },
+			{
+				label: "Git commands"
+			}
+		]
+	},
+	{
+		label: "Repository",
+		submenu: [
+			{
+				label: "Push"
+			},
+			{
+				label: "Pull"
+			},
+			{ type: "separator" },
+			{
+				label: "View on GitHub"
+			},
+			{
+				label: "Open in Terminal"
+			},
+			{
+				label: "Open in Finder"
+			},
+			{
+				label: "Open in Visual Studio Code"
+			},
+			{ type: "separator" },
+			{
+				label: "Repository Settings"
 			}
 		]
 	},
 	{
 		label: "View",
 		submenu: [
+			{
+				label: "Show changes"
+			},
+			{
+				label: "Show history"
+			},
+			{
+				label: "Show branchs list"
+			},
+			{ type: "separator" },
 			{
 				label: "Toggle Full Screen",
 				accelerator: (() => {
@@ -104,6 +146,41 @@ const template = [
 		]
 	},
 	{
+		label: "Branch",
+		submenu: [
+			{
+				label: "New branch"
+			},
+			{
+				label: "Rename"
+			},
+			{
+				label: "Delete"
+			},
+			{ type: "separator" },
+			{
+				label: "Discard all changes"
+			},
+			{ type: "separator" },
+			{
+				label: "Compare to branch"
+			},
+			{
+				label: "Merge into current branch"
+			},
+			{
+				label: "Rebase current branch"
+			},
+			{ type: "separator" },
+			{
+				label: "Compare on GitHub"
+			},
+			{
+				label: "Show pull request"
+			}
+		]
+	},
+	{
 		label: "Window",
 		role: "window",
 		submenu: [
@@ -116,11 +193,6 @@ const template = [
 				label: "Reload",
 				accelerator: "CmdOrCtrl+R",
 				role: "reload"
-			},
-			{
-				label: "Force Reload",
-				accelerator: "CmdOrCtrl+Shift+R",
-				role: "forceReload"
 			},
 			{
 				label: "Close",
@@ -137,6 +209,9 @@ const template = [
 				click() {
 					shell.openExternal(CONFIG.THERMAL_URL_WEBSITE);
 				}
+			},
+			{
+				label: "Show keyboard shortcuts"
 			},
 			{ type: "separator" },
 			{
