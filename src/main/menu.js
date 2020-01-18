@@ -1,4 +1,4 @@
-const { Menu, shell, dialog } = require("electron");
+const { Menu, shell, dialog, ipcMain } = require("electron");
 const CONFIG = require("./config");
 
 /**
@@ -53,7 +53,10 @@ const template = [
 		label: "File",
 		submenu: [
 			{
-				label: "Select Repository"
+				label: "Select Repository",
+				click() {
+					selectRepository();
+				}
 			},
 			{ type: "separator" },
 			{
@@ -257,6 +260,12 @@ function showUpdatesDialog() {
 		message: `${CONFIG.APP_NAME} updates`,
 		detail:
 			"You can stay up to day with updates by checking the releases page on Thermal GitHub repository."
+	});
+}
+
+function selectRepository() {
+	ipcMain.on("open-select-repository-page", (event, arg) => {
+		console.log(arg);
 	});
 }
 
