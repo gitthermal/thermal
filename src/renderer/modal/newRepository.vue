@@ -67,7 +67,6 @@ import TButton from "../components/TButton/TButton";
 // mixins
 import closeModalMixin from "../mixins/closeModal";
 import addRepository from "../mixins/addRepository";
-import gitInit from "../git/init";
 
 const fs = require("fs");
 
@@ -102,13 +101,8 @@ export default {
 			if (!fs.existsSync(repositoryPath)) {
 				fs.mkdirSync(repositoryPath);
 			}
-			this.gitInit(repositoryPath);
 			this.closeModal("NewRepository");
-			this.localRepository(repositoryPath);
-		},
-		async gitInit(path) {
-			await gitInit({ path });
-			this.addRepositoryToDatabase(path);
+			this.addRepositoryToDatabase(repositoryPath);
 		}
 	}
 };
