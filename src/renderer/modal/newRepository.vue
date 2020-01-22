@@ -101,8 +101,8 @@ export default {
 			if (!fs.existsSync(repositoryPath)) {
 				fs.mkdirSync(repositoryPath);
 			}
-			this.closeModal("NewRepository");
 			this.addRepositoryToDatabase(repositoryPath);
+			this.closeModal("NewRepository");
 		}
 	}
 };
