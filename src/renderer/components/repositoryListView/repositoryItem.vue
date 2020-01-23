@@ -115,7 +115,12 @@ export default {
 				{ $repositoryId: this.repositoryId },
 				(err, data) => {
 					if (err) console.log(err);
-					else this.isGit = 1;
+					// update isGit repository status to true
+					else
+						this.$store.commit("repository/updateIsGitStatus", {
+							id: this.repositoryId,
+							isGit: true
+						});
 				}
 			);
 		}
