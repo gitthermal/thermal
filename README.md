@@ -70,7 +70,7 @@ Stay up to date on the development of Thermal and reach out to the community wit
 Contributing to Thermal project is fairly easy, read this article [how to contribute](https://thermal.codecarrot.net/docs/how-to-contribute/?utm_source=github&utm_medium=readme).
 
 - **[Electron](https://electronjs.org)** - Desktop application
-- **[SQLite](https://www.sqlite.org)** - Database _[(coming soon)](https://github.com/gitthermal/thermal/pull/2)_
+- **[SQLite](https://www.sqlite.org)** - Database
 - **[Vue.js](https://vuejs.org)** - Front end
   - **[Vuex](https://vuex.vuejs.org)** - Vue state management
   - **[Vue Router](https://router.vuejs.org)** - Vue Router
