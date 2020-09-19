@@ -28,66 +28,6 @@
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
     "postinstall": "electron-builder install-app-deps"
   },
-  "build": {
-    "productName": "Thermal",
-    "appId": "com.netlify.thermal",
-    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "dist/electron/**/*"
-    ],
-    "dmg": {
-      "title": "${name}",
-      "background": "build/appDmgBackground.png",
-      "icon": "build/icons/icon.icns",
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "icon": "build/icons/icon.icns",
-      "electronLanguages": [
-        "en"
-      ]
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ],
-      "publisherName": "CodeCarrot, Inc.",
-      "icon": "build/icons/icon.ico"
-    },
-    "linux": {
-      "synopsis": "One stop. Git repository",
-      "category": "development;git;gui",
-      "target": [
-        "deb",
-        "zip",
-        "AppImage",
-        "snap"
-      ],
-      "icon": "build/icons"
-    }
-  },
   "dependencies": {
     "@sentry/electron": "^0.17.3",
     "axios": "^0.19.0",

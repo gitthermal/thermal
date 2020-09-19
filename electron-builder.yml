@@ -1,0 +1,59 @@
+productName: Thermal
+appId: net.codecarrot.thermal
+artifactName: ${name}-${os}-${arch}-${version}.${ext}
+copyright: Copyright © year Yashu Mittal
+directories:
+  output: dist
+files:
+  - dist/electron/**/*
+detectUpdateChannel: true
+buildDependenciesFromSource: true
+nodeGypRebuild: true
+
+mac:
+  icon: build/icons/icon.icns
+  category: public.app-category.developer-tools
+  electronLanguages:
+    - en_us
+  target:
+    - dmg
+  CFBundleVersion: ${version}
+  darkModeSupport: false
+
+dmg:
+  title: ${name}
+  background: build/appDmgBackground.png
+  contents:
+    - x: 410
+      y: 150
+      type: link
+      path: /Applications
+    - x: 130
+      y: 150
+      type: file
+
+win:
+  publisherName: CodeCarrot, Inc.
+  FileVersion: ${version}
+  icon: build/icons/icon.ico
+  target: nsis
+
+nsis:
+  installerIcon: build/icons/icon.ico
+  uninstallerIcon: build/icons/icon.ico
+  uninstallDisplayName: ${name}
+  license: LICENCE
+  deleteAppDataOnUninstall: true
+  installerLanguages:
+    - en_US
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+
+linux:
+  synopsis: ${description}
+  category: development
+  target:
+    - deb
+    - AppImage
+    - snap
+  icon: build/icons/icon.png
