@@ -101,11 +101,11 @@
 						Remove
 					</dropdown-item>
 					<dropdown-divider /> -->
-					<dropdown-item>
-						View on GitHub
+					<dropdown-item @click.native="openRemoteRepository">
+						View remote repository
 					</dropdown-item>
-					<dropdown-item>
-						Open in PowerShell
+					<dropdown-item @click.native="openTerminal">
+						Open in Terminal
 					</dropdown-item>
 					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
@@ -324,6 +324,12 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openRemoteRepository() {
+			console.log(this.currentRepository.remote);
+		},
+		openTerminal() {
+			childProcess.exec("start cmd", { cwd: this.currentRepository.path });
+		},
 		openFileExplorer() {
 			shell.openItem(this.repositoryData.path);
 		},
@@ -343,7 +349,7 @@ export default {
 		// Help
 		reportIssue() {
 			shell.openExternal(
-				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
+				"https://github.com/gitthermal/thermal/issues/new/choose"
 			);
 		},
 		contactSupport() {
