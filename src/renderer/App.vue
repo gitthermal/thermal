@@ -28,6 +28,9 @@
 			<dropdown-item @click.native="reportIssue">
 				Report a bug 🐛
 			</dropdown-item>
+			<dropdown-item @click.native="shareFeedback">
+				Share feedback 🗣
+			</dropdown-item>
 			<dropdown-divider />
 			<div class="help__widget-version">
 				{{ appVersion }}
@@ -53,6 +56,7 @@ import newRemote from "./modal/newRemote";
 import initializeGitRepository from "./modal/initializeGitRepository";
 import cloneRepository from "./modal/cloneRepository";
 import switchRepository from "./modal/switchRepository";
+import feedback from "./modal/feedback";
 
 // help widget
 import packageJson from "../../package.json";
@@ -78,6 +82,7 @@ export default {
 		initializeGitRepository,
 		cloneRepository,
 		switchRepository,
+		feedback,
 		DropdownList,
 		DropdownItem,
 		DropdownDivider
@@ -151,6 +156,10 @@ export default {
 			shell.openExternal(
 				"https://github.com/gitthermal/thermal/issues/new?assignees=&labels=🐞+Bug&template=bug_report.md"
 			);
+			this.toggleHelpWidget();
+		},
+		shareFeedback() {
+			this.$store.commit("modal/toggleFeedbackModal", true);
 			this.toggleHelpWidget();
 		},
 		toggleHelpWidget() {
