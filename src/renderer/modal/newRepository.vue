@@ -68,7 +68,6 @@ import TButton from "../components/TButton/TButton";
 import closeModalMixin from "../mixins/closeModal";
 import addRepository from "../mixins/addRepository";
 
-import git from "simple-git/promise";
 const fs = require("fs");
 
 export default {
@@ -102,13 +101,8 @@ export default {
 			if (!fs.existsSync(repositoryPath)) {
 				fs.mkdirSync(repositoryPath);
 			}
-			this.gitInit(repositoryPath);
+			this.addRepositoryToDatabase(repositoryPath);
 			this.closeModal("NewRepository");
-			this.localRepository(repositoryPath);
-		},
-		async gitInit(path) {
-			let initializeRepository = git(path);
-			await initializeRepository.init();
 		}
 	}
 };

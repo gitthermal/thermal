@@ -111,7 +111,6 @@ import TContainer from "../../components/TLayouts/TContainer";
 
 // mixins
 import queryAllRepository from "../../mixins/queryAllRepository";
-import RepositoryDataMixin from "../../mixins/repositoryData";
 import database from "../../../database";
 
 export default {
@@ -124,7 +123,7 @@ export default {
 		TFlexbox,
 		TContainer
 	},
-	mixins: [RepositoryDataMixin, queryAllRepository],
+	mixins: [queryAllRepository],
 	data() {
 		return {
 			settings: {}
@@ -163,12 +162,11 @@ export default {
 			INNER JOIN gitRepository USING(repositoryId)
 			WHERE repositoryId IS $repositoryId`,
 			{
-				$repositoryId: this.$route.params.projectId
+				$repositoryId: this.$route.params.repositoryId
 			},
 			(err, data) => {
 				if (err) console.log(err);
 				else {
-					console.log(data);
 					this.settings = data[0];
 				}
 			}
@@ -220,6 +218,18 @@ export default {
 			);
 		},
 		saveSettings() {
+			database.run(
+				`UPDATE gitRepository SET
+					remoteUrl = $remoteUrl
+				WHERE repositoryId = $repositoryId`,
+				{
+					$repositoryId: this.settings.repositoryId,
+					$remoteUrl: this.settings.remoteUrl
+				},
+				(err, data) => {
+					if (err) console.log(err);
+				}
+			);
 			database.run(
 				`UPDATE repositorySettings SET
 					repositoryName = $repositoryName,

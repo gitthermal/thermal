@@ -17,20 +17,20 @@
 					<dropdown-item @click.native="selectRepository()">
 						Select repository
 					</dropdown-item>
-					<dropdown-item @click.native="newRepository()">
+					<dropdown-item @click.native="newRepository">
 						New repository
 					</dropdown-item>
-					<dropdown-item @click.native="addLocalRepository()">
+					<dropdown-item @click.native="addLocalRepository">
 						Add local repository
 					</dropdown-item>
 					<dropdown-item @click.native="cloneRepository">
 						Clone repository
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item @click.native="appOptions()">
+					<dropdown-item @click.native="appOptions">
 						Options
 					</dropdown-item>
-					<dropdown-item @click.native="exitApp()">
+					<dropdown-item @click.native="exitApp">
 						Exit
 					</dropdown-item>
 				</dropdown-list>
@@ -60,11 +60,11 @@
 					<dropdown-item>
 						Go to summary
 					</dropdown-item> -->
-					<dropdown-item @click.native="gitCommands()">
+					<dropdown-item @click.native="gitCommands">
 						Git commands
 					</dropdown-item>
 					<dropdown-divider />
-					<dropdown-item @click.native="fullScreenView()">
+					<dropdown-item @click.native="fullScreenView">
 						Toggle full screen
 					</dropdown-item>
 					<!-- <dropdown-item>
@@ -76,7 +76,7 @@
 					<dropdown-item>
 						Zoom out
 					</dropdown-item> -->
-					<dropdown-item @click.native="openDevTools()">
+					<dropdown-item @click.native="openDevTools">
 						Toggle developer tools
 					</dropdown-item>
 				</dropdown-list>
@@ -104,8 +104,8 @@
 					<dropdown-item>
 						View on GitHub
 					</dropdown-item>
-					<dropdown-item>
-						Open in PowerShell
+					<dropdown-item @click.native="openCmdTerminal">
+						Open in Command Prompt
 					</dropdown-item>
 					<dropdown-item @click.native="openFileExplorer">
 						Show in Explorer
@@ -191,7 +191,7 @@
 		<div class="menubar__drag" />
 		<t-flexbox class="menubar__title">
 			<t-flexbox v-if="repositoryRoute">
-				{{ repositoryData.name }}
+				{{ repositoryData.repositoryName }}
 				<div style="padding: 0 5px">
 					-
 				</div>
@@ -205,13 +205,18 @@
 </template>
 
 <script>
+// components
 import thermalLogo from "./icon/logo";
 import dropdownList from "./dropdown/dropdownList";
 import dropdownItem from "./dropdown/dropdownItem";
 import dropdownDivider from "./dropdown/dropdownDivider";
 import windowsButton from "./windowsButton";
-import repositoryDataMixin from "../mixins/repositoryData";
 import TFlexbox from "../components/TLayouts/TFlexbox";
+
+// mixins
+import repositoryData from "../mixins/repositoryData";
+
+// packages
 const { shell, remote } = require("electron");
 const childProcess = require("child_process");
 const win = remote.getCurrentWindow();
@@ -226,7 +231,7 @@ export default {
 		windowsButton,
 		TFlexbox
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	data() {
 		return {
 			menu: {
@@ -324,18 +329,22 @@ export default {
 			currentWindow.openDevTools();
 		},
 		// Repository
+		openCmdTerminal() {
+			childProcess.exec("start cmd", {
+				cwd: this.repositoryData.directoryPath
+			});
+		},
 		openFileExplorer() {
-			shell.openItem(this.repositoryData.path);
+			shell.openItem(this.repositoryData.directoryPath);
 		},
 		openEditor() {
-			childProcess.exec("code .", { cwd: this.repositoryData.path });
+			childProcess.exec("code .", { cwd: this.repositoryData.directoryPath });
 		},
 		openRepositorySettings() {
 			this.$router.push({
 				name: "projectSettings",
 				params: {
-					projectId: this.$route.params.projectId,
-					branchName: this.$route.params.branchName
+					repositoryId: this.repositoryData.repositoryId
 				}
 			});
 		},

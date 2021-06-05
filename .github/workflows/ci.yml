@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [8.x, 10.x]
+        node_version: [14, 16]
       fail-fast: false
 
     steps:
@@ -34,11 +34,13 @@ jobs:
       #       ${{ runner.os }}-node-
 
       - name: Install packages
-        if: steps.cache-package.outputs.cache-hit != 'true'
-        run: npm install
+        # if: steps.cache-package.outputs.cache-hit != 'true'
+        run: |
+          yarn
+          yarn postinstall
 
       - name: Run build
-        run: npm run build:linux
+        run: yarn build:linux
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
@@ -56,7 +58,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        node_version: [8.x, 10.x]
+        node_version: [14, 16]
       fail-fast: false
 
     steps:
@@ -69,10 +71,12 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Install packages
-        run: npm install
+        run: |
+          yarn
+          yarn postinstall
 
       - name: Run build
-        run: npm run build:window
+        run: yarn build:window
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
@@ -90,7 +94,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        node_version: [8.x, 10.x]
+        node_version: [14, 16]
       fail-fast: false
 
     steps:
@@ -103,10 +107,12 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Install packages
-        run: npm install
+        run: |
+          yarn
+          yarn postinstall
 
       - name: Run build
-        run: npm run build:mac
+        run: yarn build:mac
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
