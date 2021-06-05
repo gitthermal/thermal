@@ -33,14 +33,12 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-node-
 
-      - name: Install packages
+      - name: Install packages & build
         # if: steps.cache-package.outputs.cache-hit != 'true'
         run: |
           yarn
           yarn postinstall
-
-      - name: Run build
-        run: yarn build:linux
+          yarn build:linux
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
@@ -70,13 +68,11 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Install packages
+      - name: Install packages & build
         run: |
           yarn
           yarn postinstall
-
-      - name: Run build
-        run: yarn build:window
+          yarn build:window
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
@@ -106,13 +102,11 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Install packages
+      - name: Install packages & build
         run: |
           yarn
           yarn postinstall
-
-      - name: Run build
-        run: yarn build:mac
+          yarn build:mac
 
       - name: Moving build to artifacts directory
         run: bash ./scripts/move-files.sh $OS_NAME
