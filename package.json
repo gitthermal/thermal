@@ -29,7 +29,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "engines": {
-    "node": "14.x.x"
+    "node": "14.x.x || 16.x.x"
   },
   "build": {
     "productName": "Thermal",
