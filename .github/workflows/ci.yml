@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:e2e:
-    name: e2e tests
+    name: e2e tests on node ${{ matrix.node_version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
