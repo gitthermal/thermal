@@ -1,166 +1,173 @@
 {
-  "name": "thermal",
-  "license": "null",
+	"name": "thermal",
+	"license": "null",
 	"description": "Git made simpler.",
-  "version": "0.0.4",
+	"version": "0.0.4",
 	"private": true,
-  "copyright": "Copyright © 2019 CodeCarrot",
-  "author": {
-    "name": "CodeCarrot, Inc.",
-    "email": "contact@codecarrot.net"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.com/gitthermal/thermal.git"
-  },
-  "main": "./dist/electron/main.js",
-  "scripts": {
-    "build:window": "node .electron-vue/build.js && electron-builder --win",
-    "build:mac": "node .electron-vue/build.js && electron-builder --mac",
-    "build:linux": "node .electron-vue/build.js && electron-builder --linux",
-    "build:dir": "node .electron-vue/build.js && electron-builder --dir",
-    "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
-    "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
-    "dev": "node .electron-vue/dev-runner.js",
-    "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src",
-    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
-    "pack": "npm run pack:main && npm run pack:renderer",
-    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
-    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
-    "postinstall": "electron-builder install-app-deps"
-  },
-  "engines": {
-    "node": "14.x.x || 16.x.x"
-  },
-  "build": {
-    "productName": "Thermal",
-    "appId": "net.codecarrot.thermal",
-    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
-    "directories": {
-      "output": "dist"
-    },
-    "files": [
-      "dist/electron/**/*"
-    ],
-    "dmg": {
-      "title": "${name}",
-      "background": "build/appDmgBackground.png",
-      "icon": "build/icons/icon.icns",
-      "contents": [
-        {
-          "x": 410,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        },
-        {
-          "x": 130,
-          "y": 150,
-          "type": "file"
-        }
-      ]
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "icon": "build/icons/icon.icns",
-      "electronLanguages": [
-        "en"
-      ]
-    },
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": [
-            "x64",
-            "ia32"
-          ]
-        }
-      ],
-      "publisherName": "CodeCarrot, Inc.",
-      "icon": "build/icons/icon.ico"
-    },
-    "linux": {
-      "synopsis": "One stop. Git repository",
-      "category": "development;git;gui",
-      "target": [
-        "deb",
-        "zip",
-        "AppImage",
-        "snap"
-      ],
-      "icon": "build/icons"
-    }
-  },
-  "dependencies": {
-    "@sentry/electron": "^0.17.3",
-    "axios": "^0.19.0",
-    "chart.js": "^2.8.0",
-    "nodegit": "^0.26.2",
-    "simple-git": "1.113.0",
-    "sqlite3": "^4.0.9",
-    "vue": "^2.6.11",
-    "vue-chartjs": "^3.4.2",
-    "vue-electron": "^1.0.6",
-    "vue-router": "3.1.3",
-    "vuex": "^3.1.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.3",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "ajv": "^6.10.2",
-    "apexcharts": "^3.24.0",
-    "babel-eslint": "10.0.3",
-    "babel-loader": "8.0.6",
-    "babel-minify-webpack-plugin": "^0.3.1",
-    "cfonts": "^2.4.5",
-    "chalk": "^2.4.2",
-    "copy-webpack-plugin": "5.0.4",
-    "cross-env": "^6.0.0",
-    "css-loader": "3.2.0",
-    "del": "5.1.0",
-    "devtron": "^1.4.0",
-    "electron": "5.0.6",
-    "electron-builder": "21.2.0",
-    "electron-debug": "3.0.1",
-    "electron-devtools-installer": "^2.2.4",
-    "eslint": "5.16.0",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-loader": "^3.0.2",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "10.0.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-standard": "4.0.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "file-loader": "4.2.0",
-    "html-webpack-plugin": "^3.2.0",
-    "mini-css-extract-plugin": "0.8.0",
-    "multispinner": "^0.2.1",
-    "node-loader": "^0.6.0",
-    "node-sass": "^4.12.0",
-    "prettier": "^1.18.2",
-    "sass-loader": "^7.2.0",
-    "style-loader": "1.0.0",
-    "url-loader": "^2.1.0",
-    "vue-apexcharts": "^1.4.0",
-    "vue-content-loader": "^0.2.2",
-    "vue-html-loader": "^1.2.4",
-    "vue-js-toggle-button": "^1.3.2",
-    "vue-loader": "^15.7.1",
-    "vue-moment": "^4.0.0",
-    "vue-style-loader": "^4.1.0",
-    "vue-template-compiler": "^2.6.11",
-    "vue2-scrollbar": "^0.0.3",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.2.2"
-  }
+	"copyright": "Copyright © 2019 CodeCarrot",
+	"author": {
+		"name": "CodeCarrot, Inc.",
+		"email": "contact@codecarrot.net"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.com/gitthermal/thermal.git"
+	},
+	"main": "./dist/electron/main.js",
+	"scripts": {
+		"build:window": "node .electron-vue/build.js && electron-builder --win",
+		"build:mac": "node .electron-vue/build.js && electron-builder --mac",
+		"build:linux": "node .electron-vue/build.js && electron-builder --linux",
+		"build:dir": "node .electron-vue/build.js && electron-builder --dir",
+		"build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
+		"build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
+		"dev": "node .electron-vue/dev-runner.js",
+		"lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter src",
+		"lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix src",
+		"pack": "npm run pack:main && npm run pack:renderer",
+		"pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
+		"pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
+		"postinstall": "electron-builder install-app-deps",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook"
+	},
+	"engines": {
+		"node": "14.x.x || 16.x.x"
+	},
+	"build": {
+		"productName": "Thermal",
+		"appId": "net.codecarrot.thermal",
+		"artifactName": "${name}-${os}-${arch}-${version}.${ext}",
+		"directories": {
+			"output": "dist"
+		},
+		"files": [
+			"dist/electron/**/*"
+		],
+		"dmg": {
+			"title": "${name}",
+			"background": "build/appDmgBackground.png",
+			"icon": "build/icons/icon.icns",
+			"contents": [
+				{
+					"x": 410,
+					"y": 150,
+					"type": "link",
+					"path": "/Applications"
+				},
+				{
+					"x": 130,
+					"y": 150,
+					"type": "file"
+				}
+			]
+		},
+		"mac": {
+			"category": "public.app-category.developer-tools",
+			"icon": "build/icons/icon.icns",
+			"electronLanguages": [
+				"en"
+			]
+		},
+		"win": {
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"x64",
+						"ia32"
+					]
+				}
+			],
+			"publisherName": "CodeCarrot, Inc.",
+			"icon": "build/icons/icon.ico"
+		},
+		"linux": {
+			"synopsis": "One stop. Git repository",
+			"category": "development;git;gui",
+			"target": [
+				"deb",
+				"zip",
+				"AppImage",
+				"snap"
+			],
+			"icon": "build/icons"
+		}
+	},
+	"dependencies": {
+		"@sentry/electron": "^0.17.3",
+		"axios": "^0.19.0",
+		"chart.js": "^2.8.0",
+		"nodegit": "^0.26.2",
+		"simple-git": "1.113.0",
+		"sqlite3": "^4.0.9",
+		"vue": "^2.6.11",
+		"vue-chartjs": "^3.4.2",
+		"vue-electron": "^1.0.6",
+		"vue-router": "3.1.3",
+		"vuex": "^3.1.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.6.3",
+		"@babel/plugin-transform-runtime": "^7.6.2",
+		"@babel/preset-env": "^7.6.2",
+		"@babel/register": "^7.6.2",
+		"@babel/runtime": "^7.6.2",
+		"@storybook/addon-actions": "^6.2.9",
+		"@storybook/addon-essentials": "^6.2.9",
+		"@storybook/addon-links": "^6.2.9",
+		"@storybook/preset-scss": "^1.0.3",
+		"@storybook/vue": "^6.2.9",
+		"ajv": "^6.10.2",
+		"apexcharts": "^3.24.0",
+		"babel-eslint": "10.0.3",
+		"babel-loader": "8.0.6",
+		"babel-minify-webpack-plugin": "^0.3.1",
+		"cfonts": "^2.4.5",
+		"chalk": "^2.4.2",
+		"copy-webpack-plugin": "5.0.4",
+		"cross-env": "^6.0.0",
+		"css-loader": "3.2.0",
+		"del": "5.1.0",
+		"devtron": "^1.4.0",
+		"electron": "5.0.6",
+		"electron-builder": "21.2.0",
+		"electron-debug": "3.0.1",
+		"electron-devtools-installer": "^2.2.4",
+		"eslint": "5.16.0",
+		"eslint-config-prettier": "^6.4.0",
+		"eslint-config-standard": "12.0.0",
+		"eslint-friendly-formatter": "^4.0.1",
+		"eslint-loader": "^3.0.2",
+		"eslint-plugin-import": "^2.18.2",
+		"eslint-plugin-node": "10.0.0",
+		"eslint-plugin-prettier": "^3.1.1",
+		"eslint-plugin-promise": "4.2.1",
+		"eslint-plugin-standard": "4.0.1",
+		"eslint-plugin-vue": "^5.2.3",
+		"file-loader": "4.2.0",
+		"html-webpack-plugin": "^3.2.0",
+		"mini-css-extract-plugin": "0.8.0",
+		"multispinner": "^0.2.1",
+		"node-loader": "^0.6.0",
+		"node-sass": "^4.12.0",
+		"prettier": "^1.18.2",
+		"sass-loader": "^7.2.0",
+		"style-loader": "1.0.0",
+		"url-loader": "^2.1.0",
+		"vue-apexcharts": "^1.4.0",
+		"vue-content-loader": "^0.2.2",
+		"vue-html-loader": "^1.2.4",
+		"vue-js-toggle-button": "^1.3.2",
+		"vue-loader": "^15.7.1",
+		"vue-moment": "^4.0.0",
+		"vue-style-loader": "^4.1.0",
+		"vue-template-compiler": "^2.6.11",
+		"vue2-scrollbar": "^0.0.3",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.9",
+		"webpack-dev-server": "^3.8.2",
+		"webpack-hot-middleware": "^2.25.0",
+		"webpack-merge": "^4.2.2"
+	}
 }
