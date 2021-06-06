@@ -1,13 +1,14 @@
 {
   "name": "thermal",
   "license": "null",
+	"description": "Git made simpler.",
   "version": "0.0.4",
+	"private": true,
   "copyright": "Copyright © 2019 CodeCarrot",
   "author": {
     "name": "CodeCarrot, Inc.",
     "email": "contact@codecarrot.net"
   },
-  "description": "Thermal is an open source Electron-based app. It is written in JavaScript and uses Vue.js.",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/gitthermal/thermal.git"
@@ -33,7 +34,7 @@
   },
   "build": {
     "productName": "Thermal",
-    "appId": "com.netlify.thermal",
+    "appId": "net.codecarrot.thermal",
     "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
     "directories": {
       "output": "dist"
