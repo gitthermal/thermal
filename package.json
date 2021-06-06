@@ -28,7 +28,8 @@
 		"pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.main.config.js",
 		"pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-vue/webpack.renderer.config.js",
 		"postinstall": "electron-builder install-app-deps",
-		"storybook": "start-storybook"
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook"
 	},
 	"engines": {
 		"node": "14.x.x || 16.x.x"
@@ -112,7 +113,11 @@
 		"@babel/preset-env": "^7.6.2",
 		"@babel/register": "^7.6.2",
 		"@babel/runtime": "^7.6.2",
-		"@storybook/vue": "^5.2.6",
+		"@storybook/addon-actions": "^6.2.9",
+		"@storybook/addon-essentials": "^6.2.9",
+		"@storybook/addon-links": "^6.2.9",
+		"@storybook/preset-scss": "^1.0.3",
+		"@storybook/vue": "^6.2.9",
 		"ajv": "^6.10.2",
 		"apexcharts": "^3.24.0",
 		"babel-eslint": "10.0.3",

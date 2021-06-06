@@ -1,13 +1,14 @@
-// import { storiesOf } from '@storybook/vue';
-import TButton from "./TButton.vue";
+import TButton from "./TButton";
 
 export default {
-	title: "Button"
+	title: "Button",
+	components: TButton
 };
 
-export const primaryButton = () => ({
-	components: {
-		TButton
-	},
-	template: "<TButton>Primary Button</TButton>"
+const Template = (args, { argTypes }) => ({
+	components: TButton,
+	props: Object.keys(argTypes),
+	template: '<TButton v-bind="$props">Primary</TButton>'
 });
+
+export const primaryButton = Template.bind({});
