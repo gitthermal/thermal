@@ -5,7 +5,6 @@ process.env.NODE_ENV = "production";
 const { say } = require("cfonts");
 const chalk = require("chalk");
 const del = require("del");
-const { spawn } = require("child_process");
 const webpack = require("webpack");
 const Listr = require("listr");
 
@@ -32,12 +31,6 @@ async function build() {
 	greeting();
 
 	del.sync(["dist/electron/*", "!.gitkeep"]);
-
-	const tasks = ["main", "renderer"];
-	const m = new Multispinner(tasks, {
-		preText: "building",
-		postText: "process"
-	});
 
 	let results = "";
 
