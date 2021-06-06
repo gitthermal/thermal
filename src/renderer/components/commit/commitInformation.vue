@@ -3,7 +3,7 @@
 		<t-flexbox flex-direction="row" class="commit__detail__author">
 			<img
 				class="commit__detail__author__image"
-				src="../../../../static/image/user_avatar.png"
+				src="../../../../static/images/user_avatar.png"
 			/>
 			<div>
 				<h6 class="commit__detail__author__name">
@@ -91,18 +91,21 @@
 </template>
 
 <script>
+// components
+import TFlexbox from "../TLayouts/TFlexbox";
+
+// mixins
+import repositoryData from "../../mixins/repositoryData";
+import trimFilePathMixin from "../../mixins/trimFilePath";
 import showMixin from "../../git/show";
 import diffMixin from "../../git/diff";
-import trimFilePathMixin from "../../mixins/trimFilePath";
-import repositoryDataMixin from "../../mixins/repositoryData";
-import TFlexbox from "../TLayouts/TFlexbox";
 
 export default {
 	name: "CommitInformation",
 	components: {
 		TFlexbox
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	props: {
 		commitId: {
 			type: String,
@@ -149,7 +152,7 @@ export default {
 		},
 		getAuthorDetail(hash) {
 			const params = [hash, "--format=%an %n %ae %n %ad"];
-			showMixin(this.repositoryData.path, params).then(result => {
+			showMixin(this.repositoryData.directoryPath, params).then(result => {
 				let output = result.split("\n");
 				this.commitData.author.name = output[0].trim();
 				this.commitData.author.email = output[1].trim();
@@ -158,7 +161,7 @@ export default {
 		},
 		getCommitBody(hash) {
 			const params = [hash, "--format=%s %n << %n %b %n >>"];
-			showMixin(this.repositoryData.path, params).then(result => {
+			showMixin(this.repositoryData.directoryPath, params).then(result => {
 				let output = result.split("\n");
 				let title = output[0].trim();
 				let description;
@@ -184,7 +187,7 @@ export default {
 		},
 		getCommitMeta(hash) {
 			const params = [hash, "--format=%cn %n %ce %n %cd %n %d %n %T %n %P"];
-			showMixin(this.repositoryData.path, params).then(result => {
+			showMixin(this.repositoryData.directoryPath, params).then(result => {
 				let output = result.split("\n");
 				this.commitData.committer.name = output[0].trim();
 				this.commitData.committer.email = output[1].trim();
@@ -196,7 +199,7 @@ export default {
 		},
 		getFilesDetail(hash) {
 			const params = [hash, "--oneline", "--stat"];
-			showMixin(this.repositoryData.path, params).then(result => {
+			showMixin(this.repositoryData.directoryPath, params).then(result => {
 				let output = result.split("\n");
 				let additionDeletion = output[output.length - 2].split(", ");
 				additionDeletion.shift();
@@ -231,7 +234,7 @@ export default {
 					isActive: true
 				});
 				const params = [hash + "^1", hash, "--", path];
-				diffMixin(this.repositoryData.path, params).then(result => {
+				diffMixin(this.repositoryData.directoryPath, params).then(result => {
 					let output = result.split("\n");
 					output.splice(0, 4);
 					this.$store.dispatch({

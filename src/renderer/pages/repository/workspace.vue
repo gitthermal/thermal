@@ -1,107 +1,60 @@
 <template>
 	<t-flexbox flex-direction="row" :flex-grow="1">
-		<div ref="workspaceFiles" class="workspace__files">
+		<div class="workspace__files">
 			<t-flexbox flex-direction="column" style="overflow: hidden;">
-				<t-flexbox
-					ref="branchName"
-					align-items="center"
-					class="workspace__branch"
-				>
+				<t-flexbox align-items="center" class="workspace__branch">
 					<branchIcon />
-					<p>{{ this.$store.state.commit.activeBranch }}</p>
+					<p>{{ branchName }}</p>
 				</t-flexbox>
 				<t-scrollbar
 					style="height: calc(100vh - (106px + 41px + 65px + 34px))"
 					width="100%"
 				>
-					<fileChangesSkeleton
-						v-if="this.$store.getters['commit/allFiles'].length < 1"
-					/>
-					<div v-else>
-						<t-flexbox
-							v-for="file in this.$store.getters['commit/allFiles']"
-							:key="file.path"
-							class="workspace__changes__item"
-							align-items="center"
-							@click="previewFileChange(file)"
-						>
-							<input
-								v-show="getFeatureValue.commit"
-								v-model="stagedFile"
-								class="workspace__changes__item__checkbox"
-								type="checkbox"
-								:value="file.path"
-							/>
-							<label :title="file.path" :for="file.path">
-								<t-flexbox>
-									<p class="workspace__changes__item__path__name">
-										{{ filePath(file.path) }}
-									</p>
-									<p class="workspace__changes__item__path__file">
-										{{ fileName(file.path) }}
-									</p>
-								</t-flexbox>
-							</label>
-							<div
-								:style="'background-color: #' + fileTypeColor(file)"
-								class="workspace__changes__item__type ml-auto"
-							>
-								{{ fileType(file) }}
-							</div>
-						</t-flexbox>
-					</div>
+					<status-list :status-list="status" />
 				</t-scrollbar>
 			</t-flexbox>
-			<commitMessage
-				ref="commitMessage"
-				padding-top="10px"
-				padding-bottom="10px"
-				padding-left="10px"
-				padding-right="10px"
+			<commit-message
+				v-if="repositoryData.commitFeature"
+				:branch-name="branchName"
 			/>
 		</div>
-		<diffPreview
-			v-if="this.$store.state.workspace.filePreview.isActive"
-			:preview="fileDiffPreview"
-		/>
-		<blank-slate v-else />
+		<diff-preview v-if="filePreview" />
+		<blank-slate />
 	</t-flexbox>
 </template>
 
 <script>
-import statusMixin from "../../git/status";
-import diffMixin from "../../git/diff";
-import repositoryDataMixin from "../../mixins/repositoryData";
+import TFlexbox from "../../components/TLayouts/TFlexbox";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
+import StatusList from "../../components/status/StatusList";
 import commitMessage from "../../components/commit/commitMessage";
 import branchIcon from "../../components/icon/branch";
-import diffPreview from "../../components/diff/diffPreview";
-import fileChangesSkeleton from "../../components/skeleton/fileChanges";
 import BlankSlate from "../../components/BlankSlate";
-import TFlexbox from "../../components/TLayouts/TFlexbox";
+import diffPreview from "../../components/diff/diffPreview";
+
+// mixins
+import repositoryData from "../../mixins/repositoryData";
+import { getStatus } from "../../git/status";
+import { getBranchName } from "../../git/branch";
 
 export default {
 	name: "Workspace",
 	components: {
+		TFlexbox,
 		branchIcon,
 		TScrollbar,
+		StatusList,
 		commitMessage,
-		diffPreview,
-		fileChangesSkeleton,
 		BlankSlate,
-		TFlexbox
+		diffPreview
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	data() {
 		return {
-			commitMessageTitle: "",
-			fileColors: {
-				modify: "57C9F6",
-				new: "7CCD5F",
-				delete: "EC746E",
-				rename: "3585de",
-				other: "E2E2E2"
-			}
+			branchName: "",
+			status: [],
+			filePreview: false,
+			commitMessageTitle: ""
 		};
 	},
 	computed: {
@@ -115,105 +68,33 @@ export default {
 					staged: value
 				});
 			}
-		},
-		getFeatureValue() {
-			return this.repositoryData.features;
-		},
-		fileDiffPreview() {
-			return this.$store.state.workspace.filePreview.preview;
-		},
-		fileChangesSize() {
-			return (
-				this.$refs.workspaceFiles.clientHeight -
-				this.$refs.branchName.clientHeight -
-				this.$refs.commitMessage.clientHeight +
-				"px"
-			);
 		}
 	},
-	mounted() {
+	beforeRouteEnter(to, from, next) {
+		next(vm => {
+			vm.currentBranchName();
+			vm.gitStatus();
+		});
+	},
+	beforeRouteUpdate(to, from, next) {
+		this.currentBranchName();
 		this.gitStatus();
-		this.previewFileChange(this.$store.getters["commit/allFiles"][0]);
+		next();
 	},
 	methods: {
+		currentBranchName() {
+			getBranchName(this.repositoryData.directoryPath)
+				.then(res => {
+					this.branchName = res;
+				})
+				.catch(err => {
+					console.log(err);
+					this.branchName = "master";
+				});
+		},
 		gitStatus() {
-			statusMixin(this.repositoryData.path).then(result => {
-				this.$store.dispatch({
-					type: "commit/updateActiveBranch",
-					branch: result.current
-				});
-				this.$store.commit({
-					type: "commit/files",
-					files: result.files
-				});
-			});
-		},
-		fileType(file) {
-			switch (file.working_dir) {
-				case "M":
-					return "M";
-				case "D":
-					return "D";
-				case "?":
-					return "A";
-				case " ":
-					switch (file.index) {
-						case "M":
-							return "M";
-						case "D":
-							return "D";
-						case "R":
-							return "R";
-						case "A":
-							return "A";
-					}
-			}
-		},
-		fileTypeColor(file) {
-			switch (file.working_dir) {
-				case "M":
-					return this.fileColors.modify;
-				case "D":
-					return this.fileColors.delete;
-				case "?":
-					return this.fileColors.new;
-				case " ":
-					switch (file.index) {
-						case "M":
-							return this.fileColors.modify;
-						case "D":
-							return this.fileColors.delete;
-						case "R":
-							return this.fileColors.rename;
-						case "A":
-							return this.fileColors.new;
-					}
-			}
-		},
-		filePath(path) {
-			if (path.lastIndexOf("/").toString() !== "-1") {
-				return path.slice(0, path.lastIndexOf("/"));
-			}
-		},
-		fileName(path) {
-			if (path.lastIndexOf("/").toString() !== "-1") {
-				return path.slice(path.lastIndexOf("/"), path.length);
-			}
-			return path;
-		},
-		previewFileChange(file) {
-			this.$store.commit({
-				type: "workspace/toggleFilePreview",
-				isActive: true
-			});
-			const params = ["HEAD", "--", `:${file.path}`];
-			diffMixin(this.repositoryData.path, params).then(result => {
-				let output = result.split("\n");
-				output.splice(0, 3);
-				this.$store.commit({
-					type: "workspace/filePreview",
-					preview: output
-				});
+			getStatus(this.repositoryData.directoryPath).then(result => {
+				this.status = result;
 			});
 		}
 	}
@@ -224,7 +105,8 @@ export default {
 .workspace
 	&__files
 		border-right: 1px solid #DEE0E3
-		width: 300px
+		max-width: 300px
+		width: 100%
 
 	&__branch
 		background-color: #EFEFEF

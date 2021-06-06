@@ -1,5 +1,0 @@
-linter:
-  goodcheck:
-    config: goodcheck.yml
-  eslint:
-    npm_install: true

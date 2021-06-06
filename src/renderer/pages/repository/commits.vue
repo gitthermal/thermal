@@ -18,13 +18,16 @@
 </template>
 
 <script>
+// components
 import commitHistoryItem from "../../components/commit/commitHistoryItem";
 import TScrollbar from "../../components/TLayouts/TScrollbar";
 import gitLog from "../../git/log";
-import repositoryDataMixin from "../../mixins/repositoryData";
 import logSkeleton from "../../components/skeleton/logs";
 import BlankSlate from "../../components/BlankSlate";
 import TFlexbox from "../../components/TLayouts/TFlexbox";
+
+// mixins
+import repositoryData from "../../mixins/repositoryData";
 
 export default {
 	name: "Commits",
@@ -35,7 +38,7 @@ export default {
 		BlankSlate,
 		TFlexbox
 	},
-	mixins: [repositoryDataMixin],
+	mixins: [repositoryData],
 	data() {
 		return {
 			logs: []
@@ -46,7 +49,7 @@ export default {
 	},
 	methods: {
 		gitLog() {
-			gitLog(this.repositoryData.path).then(result => {
+			gitLog(this.repositoryData.directoryPath).then(result => {
 				this.logs = result;
 			});
 		},
@@ -54,7 +57,6 @@ export default {
 			this.$router.push({
 				name: "projectCommitDetail",
 				params: {
-					branchName: this.$route.params.branchName,
 					commitId: hash
 				}
 			});

@@ -1,12 +1,14 @@
 const state = {
 	addLocalRepository: false,
 	switchRepository: false,
+	selectRepository: false,
 	newRepository: false,
 	about: false,
 	exportCommitData: false,
 	newRemote: false,
 	cloneRepository: false,
-	initializeGitRepository: false
+	initializeGitRepository: false,
+	feedback: false
 };
 
 const getters = {};
@@ -17,6 +19,9 @@ const mutations = {
 	},
 	toggleSwitchRepositoryModal(state, status) {
 		state.switchRepository = status;
+	},
+	toggleSelectRepositoryModal(state, status) {
+		state.selectRepository = state;
 	},
 	toggleAboutModal(state, status) {
 		state.about = status;
@@ -35,6 +40,9 @@ const mutations = {
 	},
 	toggleInitializeGitRepositoryModal(state, status) {
 		state.initializeGitRepository = status;
+	},
+	toggleFeedbackModal(state, status) {
+		state.feedback = status;
 	}
 };
 

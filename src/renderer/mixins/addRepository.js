@@ -1,7 +1,9 @@
-import git from "simple-git/promise";
+import nodegit from "nodegit";
 
 // mixins
 import queryAllRepository from "./queryAllRepository";
+import { getRemoteUrl } from "../git/remote";
+import gitInit from "../git/init";
 
 // database
 import database from "../../database";
@@ -12,8 +14,8 @@ export default {
 			newRepository: {
 				name: "",
 				isGitRepo: false,
-				remote: "",
-				path: ""
+				path: "",
+				remote: ""
 			}
 		};
 	},
@@ -22,7 +24,8 @@ export default {
 		// add repository to database
 		addRepositoryToDatabase(path) {
 			this.getRepositoryName(path);
-			this.getRemoteUrl(path);
+			this.isGitRepo(path);
+			this.remoteOriginUrl(path);
 
 			database.serialize(() => {
 				this.insertNewRepository(path);
@@ -37,7 +40,7 @@ export default {
 								...data[0],
 								name: this.newRepository.name,
 								isGitRepo: this.newRepository.isGitRepo,
-								remote: this.newRepository.remote
+								remoteUrl: this.newRepository.remote
 							};
 
 							this.insertNewGitRepository(repository);
@@ -62,17 +65,28 @@ export default {
 			this.newRepository.name = path.split("/")[path.split("/").length - 1];
 		},
 
-		// get remote url
-		async getRemoteUrl(path) {
-			let listRemote;
+		// validate git repository
+		async isGitRepo(path) {
 			try {
-				listRemote = await git(path).listRemote(["--get-url"]);
-				if (listRemote.slice(-4, -1) === "git") {
-					this.newRepository.isGitRepo = true;
+				let repository;
+				try {
+					repository = await nodegit.Repository.open(path);
+				} catch (_) {}
+				let autoInitFeature = this.$store.getters["settings/getExperimental"]
+					.autoInit;
+				if (!repository && autoInitFeature) {
+					gitInit({ path });
 				}
-				this.newRepository.remote = listRemote;
+				this.newRepository.isGitRepo = !!repository;
+			} catch (error) {
+				console.log(error);
+			}
+		},
 
-				console.log(listRemote);
+		async remoteOriginUrl(path) {
+			try {
+				let url = await getRemoteUrl(path, "origin");
+				this.newRepository.remote = url;
 			} catch (error) {
 				console.log(error);
 			}
@@ -101,12 +115,14 @@ export default {
 				`INSERT INTO repositorySettings(
 					repositoryName,
 					directoryName,
+					source,
 					commitFeature,
 					remoteFeature,
 					repositoryId
 				) VALUES(
 					$repositoryName,
 					$directoryName,
+					$source,
 					$commitFeature,
 					$remoteFeature,
 					$repositoryId
@@ -114,8 +130,9 @@ export default {
 				{
 					$repositoryName: data.name,
 					$directoryName: data.name,
-					$commitFeature: 1,
-					$remoteFeature: 1,
+					$source: "local",
+					$commitFeature: data.isGitRepo,
+					$remoteFeature: data.isGitRepo,
 					$repositoryId: data.repositoryId
 				},
 				(err, data) => {
@@ -138,7 +155,7 @@ export default {
 				);`,
 				{
 					$isGitRepo: data.isGitRepo,
-					$remoteUrl: data.remote,
+					$remoteUrl: data.remoteUrl,
 					$repositoryId: data.repositoryId
 				},
 				(err, data) => {

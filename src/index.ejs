@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Thermal</title>
+
     <% if (htmlWebpackPlugin.options.nodeModules) { %>
       <!-- Add `node_modules/` to global paths so `require` works properly in development -->
       <script>
@@ -10,12 +14,25 @@
       </script>
     <% } %>
   </head>
+
   <body>
+		<noscript>
+      <strong>Thermal doesn't work properly with JavaScript disabled. Please enable it to continue.</strong>
+    </noscript>
     <div id="app"></div>
     <!-- Set `__static` path to static files in production -->
     <% if (!process.browser) { %>
       <script>
-        if (process.env.NODE_ENV !== 'development') window.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+				if (process.env.NODE_ENV !== 'development') window.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+
+				/**
+				 * Set border around the app
+				 * for windows and linux platform
+				 */
+				const bodyTag = document.getElementsByTagName("body")
+				if (process.platform !== "darwin") {
+					bodyTag.style.border = "1px solid #DEE0E3"
+				}
       </script>
     <% } %>
 

@@ -5,13 +5,13 @@
 			<t-card-header-close modal-name="SwitchRepository" />
 		</t-card-header>
 		<t-card-body>
-			<repository-list height="300px" :source="false" :path="false" />
+			<repository-list height="300px" :source="false" />
 		</t-card-body>
 		<t-card-footer>
 			<t-button
 				:outline="true"
 				margin-left="auto"
-				@click.native="closeModal('SelectRepository')"
+				@click.native="closeModal('SwitchRepository')"
 			>
 				Close
 			</t-button>
