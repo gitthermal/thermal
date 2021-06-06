@@ -7,7 +7,8 @@ module.exports = {
 	},
 	env: {
 		browser: true,
-		node: true
+		node: true,
+		"jest/globals": true
 	},
 	extends: [
 		"standard",
@@ -23,7 +24,8 @@ module.exports = {
 		__static: true
 	},
 	plugins: [
-		"prettier"
+		"prettier",
+		"jest"
 	],
 	rules: {
 		"linebreak-style": [1, "unix"],
