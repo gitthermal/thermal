@@ -37,6 +37,9 @@ jobs:
         # if: steps.cache-package.outputs.cache-hit != 'true'
         run: yarn
 
+      - name: Post install
+        run: yarn postinstall
+
       - name: Run build
         run: yarn build:linux
 
@@ -71,6 +74,9 @@ jobs:
       - name: Install packages
         run: yarn
 
+      - name: Post install
+        run: yarn postinstall
+
       - name: Run build
         run: yarn build:window
 
@@ -104,6 +110,9 @@ jobs:
 
       - name: Install packages
         run: yarn
+
+      - name: Post install
+        run: yarn postinstall
 
       - name: Run build
         run: yarn build:mac
