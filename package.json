@@ -1,9 +1,9 @@
 {
   "name": "thermal",
   "license": "null",
-	"description": "Git made simpler.",
+  "description": "Git made simpler.",
   "version": "0.0.4",
-	"private": true,
+  "private": true,
   "copyright": "Copyright © 2019 CodeCarrot",
   "author": {
     "name": "CodeCarrot, Inc.",
@@ -133,6 +133,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^24.3.6",
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-promise": "4.2.1",
@@ -140,6 +141,7 @@
     "eslint-plugin-vue": "^5.2.3",
     "file-loader": "4.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^27.0.4",
     "mini-css-extract-plugin": "0.8.0",
     "multispinner": "^0.2.1",
     "node-loader": "^0.6.0",
