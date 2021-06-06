@@ -15,7 +15,7 @@
 			>
 				<img
 					class="history__item__author__image"
-					src="../../../../static/image/user_avatar.png"
+					src="../../../../static/images/user_avatar.png"
 				/>
 				{{ data.author_name }} committed {{ data.date | moment("from", "now") }}
 			</t-flexbox>

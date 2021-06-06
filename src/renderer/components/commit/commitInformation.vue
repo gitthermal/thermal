@@ -3,7 +3,7 @@
 		<t-flexbox flex-direction="row" class="commit__detail__author">
 			<img
 				class="commit__detail__author__image"
-				src="../../../../static/image/user_avatar.png"
+				src="../../../../static/images/user_avatar.png"
 			/>
 			<div>
 				<h6 class="commit__detail__author__name">
