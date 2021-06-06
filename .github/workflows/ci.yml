@@ -35,9 +35,10 @@ jobs:
 
       - name: Install packages
         # if: steps.cache-package.outputs.cache-hit != 'true'
-        run: |
-          yarn
-          yarn postinstall
+        run: yarn
+
+      - name: Post install
+        run: yarn postinstall
 
       - name: Run build
         run: yarn build:linux
@@ -71,9 +72,10 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Install packages
-        run: |
-          yarn
-          yarn postinstall
+        run: yarn
+
+      - name: Post install
+        run: yarn postinstall
 
       - name: Run build
         run: yarn build:window
@@ -107,9 +109,10 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Install packages
-        run: |
-          yarn
-          yarn postinstall
+        run: yarn
+
+      - name: Post install
+        run: yarn postinstall
 
       - name: Run build
         run: yarn build:mac
