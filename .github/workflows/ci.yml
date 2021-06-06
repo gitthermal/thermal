@@ -33,7 +33,7 @@ jobs:
   linux:
     name: Linux build on node ${{ matrix.node_version }}
     runs-on: ubuntu-latest
-    needs: [test:e2e]
+    needs: ['test:e2e']
     strategy:
       matrix:
         node_version: [14, 16]
@@ -80,7 +80,7 @@ jobs:
   windows:
     name: Windows build on node ${{ matrix.node_version }}
     runs-on: windows-latest
-    needs: [test:e2e]
+    needs: ['test:e2e']
     strategy:
       matrix:
         node_version: [14, 16]
@@ -117,7 +117,7 @@ jobs:
   mac:
     name: Mac build on node ${{ matrix.node_version }}
     runs-on: macOS-latest
-    needs: [test:e2e]
+    needs: ['test:e2e']
     strategy:
       matrix:
         node_version: [14, 16]
