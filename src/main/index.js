@@ -4,6 +4,9 @@ import { app, BrowserWindow } from "electron";
 import * as Sentry from "@sentry/electron";
 import packageJson from "../../package.json";
 
+const buildMenu = require("./menu");
+const CONFIG = require("./config");
+
 Sentry.init({
 	dsn: "https://c3fb5f4c94aa4921a71b5fb887e1cfac@sentry.io/1422446",
 	environment: process.env.NODE_ENV,
@@ -26,17 +29,27 @@ const winURL =
 		? "http://localhost:9080"
 		: `file://${__dirname}/index.html`;
 
+let windowOptions = {};
+
+if (process.platform === "darwin") {
+	// TODO: Use `titleBarStyle: "hidden"` with custom created TitleBar.vue component for macOS
+	windowOptions.titleBarStyle = "default";
+} else {
+	windowOptions.frame = false;
+}
+
 function createWindow() {
 	/**
 	 * Initial window options
 	 */
 	mainWindow = new BrowserWindow({
-		height: 563,
-		useContentSize: true,
-		width: 1000,
-		frame: false,
+		height: CONFIG.WINDOW_DEFAULT_HEIGHT,
+		width: CONFIG.WINDOW_DEFAULT_WIDTH,
+
+		// conditional data based on platform
+		...windowOptions,
+
 		webPreferences: {
-			devTools: true,
 			nodeIntegration: true
 		}
 	});
@@ -49,10 +62,15 @@ function createWindow() {
 }
 
 app.on("ready", () => {
+	if (process.platform === "darwin") {
+		buildMenu();
+	}
 	createWindow();
 });
 
 app.on("window-all-closed", () => {
+	// On OS X it is common for applications and their menu bar
+	// to stay active until the user quits explicitly with Cmd + Q
 	if (process.platform !== "darwin") {
 		app.quit();
 	}

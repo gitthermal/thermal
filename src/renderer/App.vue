@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<menubar />
+		<menubar v-if="windowLinuxMenuBar" />
 		<router-view style="height: 100%" />
 		<t-modal v-if="activeModal">
 			<components :is="modal"></components>
@@ -63,7 +63,7 @@ import packageJson from "../../package.json";
 import DropdownList from "./components/dropdown/dropdownList";
 import DropdownItem from "./components/dropdown/dropdownItem";
 import DropdownDivider from "./components/dropdown/dropdownDivider";
-const { shell } = require("electron");
+const { remote, shell } = require("electron");
 
 Sentry.configureScope(scope => {
 	scope.setTag("appVersion", this.appVersion);
@@ -94,6 +94,13 @@ export default {
 		};
 	},
 	computed: {
+		windowLinuxMenuBar() {
+			if (remote.process.platform === "darwin") {
+				return false;
+			} else {
+				return true;
+			}
+		},
 		modal() {
 			let modalsActiveStatus = Object.values(this.$store.state.modal);
 			let ModalNames = Object.keys(this.$store.state.modal);
