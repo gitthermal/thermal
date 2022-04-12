@@ -98,7 +98,7 @@
 		"@sentry/electron": "^0.17.3",
 		"chart.js": "^2.8.0",
 		"nodegit": "^0.26.2",
-		"simple-git": "1.113.0",
+		"simple-git": "3.5.0",
 		"sqlite3": "^4.0.9",
 		"vue": "^2.6.11",
 		"vue-chartjs": "^3.4.2",
